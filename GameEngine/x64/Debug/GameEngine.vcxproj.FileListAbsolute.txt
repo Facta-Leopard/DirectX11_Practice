@@ -1,0 +1,2 @@
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\ResidentEvil_Survivor\GameEngine\x64\Debug\GameEngine_Debug.lib
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\GameEngine_Debug.lib

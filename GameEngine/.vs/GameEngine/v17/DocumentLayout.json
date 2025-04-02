@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Rog-SHTeosis\\Desktop\\GitHub\\DirectX11_Practice\\ResidentEvil_Survivor\\GameEngine\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{470F2122-06E7-428A-9EB9-5EEADF1FCCD5}|GameEngine.vcxproj|C:\\Users\\Rog-SHTeosis\\Desktop\\GitHub\\DirectX11_Practice\\ResidentEvil_Survivor\\GameEngine\\GameEngine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{470F2122-06E7-428A-9EB9-5EEADF1FCCD5}|GameEngine.vcxproj|solutionrelative:GameEngine.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 234,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameEngine.cpp",
+              "DocumentMoniker": "C:\\Users\\Rog-SHTeosis\\Desktop\\GitHub\\DirectX11_Practice\\ResidentEvil_Survivor\\GameEngine\\GameEngine.cpp",
+              "RelativeDocumentMoniker": "GameEngine.cpp",
+              "ToolTip": "C:\\Users\\Rog-SHTeosis\\Desktop\\GitHub\\DirectX11_Practice\\ResidentEvil_Survivor\\GameEngine\\GameEngine.cpp",
+              "RelativeToolTip": "GameEngine.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-04-02T06:41:47.714Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
