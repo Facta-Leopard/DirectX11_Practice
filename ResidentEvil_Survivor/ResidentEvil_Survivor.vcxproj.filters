@@ -27,9 +27,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ResidentEvil_Survivor.h">
-      <Filter>0. Main</Filter>
-    </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>1. Foundation</Filter>
     </ClInclude>

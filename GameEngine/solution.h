@@ -1,5 +1,8 @@
 #pragma once
 
+#include <wrl/client.h>
+using namespace Microsoft::WRL;
+
 // 메모리 참조 해제관련
 #include <memory>
 using namespace std;

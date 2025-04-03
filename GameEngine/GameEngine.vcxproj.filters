@@ -52,7 +52,7 @@
       <Filter>0. Foundation</Filter>
     </ClInclude>
     <ClInclude Include="C_Device.h">
-      <Filter>00. Relic\헤더 파일</Filter>
+      <Filter>2. Device</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +66,7 @@
       <Filter>0. Foundation</Filter>
     </ClCompile>
     <ClCompile Include="C_Device.cpp">
-      <Filter>00. Relic\소스 파일</Filter>
+      <Filter>2. Device</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

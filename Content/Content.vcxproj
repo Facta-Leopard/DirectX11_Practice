@@ -75,11 +75,13 @@
     <ExternalIncludePath>$(SolutionDir)\Header;$(ExternalIncludePath)</ExternalIncludePath>
     <OutDir>$(SolutionDir)\Library\$(ProjectName)\</OutDir>
     <TargetName>$(ProjectName)_Debug</TargetName>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>$(SolutionDir)\Library;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(SolutionDir)\Header;$(ExternalIncludePath)</ExternalIncludePath>
     <OutDir>$(SolutionDir)\Library\$(ProjectName)\</OutDir>
+    <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
