@@ -22,6 +22,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="9. IMGUI">
+      <UniqueIdentifier>{5468b0cc-c6d0-43e0-a18b-f234e8776d1f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ResidentEvil_Survivor.h">
@@ -39,6 +42,30 @@
     <ClInclude Include="targetver.h">
       <Filter>1. Foundation</Filter>
     </ClInclude>
+    <ClInclude Include="..\Header\IMGUI\imconfig.h">
+      <Filter>9. IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IMGUI\imgui.h">
+      <Filter>9. IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IMGUI\imgui_impl_dx11.h">
+      <Filter>9. IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IMGUI\imgui_impl_win32.h">
+      <Filter>9. IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IMGUI\imgui_internal.h">
+      <Filter>9. IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IMGUI\imstb_rectpack.h">
+      <Filter>9. IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IMGUI\imstb_textedit.h">
+      <Filter>9. IMGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Header\IMGUI\imstb_truetype.h">
+      <Filter>9. IMGUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -46,6 +73,27 @@
     </ClCompile>
     <ClCompile Include="ResidentEvil_Survivor.cpp">
       <Filter>0. Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Header\IMGUI\imgui.cpp">
+      <Filter>9. IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Header\IMGUI\imgui_demo.cpp">
+      <Filter>9. IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Header\IMGUI\imgui_draw.cpp">
+      <Filter>9. IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Header\IMGUI\imgui_impl_dx11.cpp">
+      <Filter>9. IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Header\IMGUI\imgui_impl_win32.cpp">
+      <Filter>9. IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Header\IMGUI\imgui_tables.cpp">
+      <Filter>9. IMGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Header\IMGUI\imgui_widgets.cpp">
+      <Filter>9. IMGUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

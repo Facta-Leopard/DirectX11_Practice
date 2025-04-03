@@ -148,6 +148,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\Header\IMGUI\imconfig.h" />
+    <ClInclude Include="..\Header\IMGUI\imgui.h" />
+    <ClInclude Include="..\Header\IMGUI\imgui_impl_dx11.h" />
+    <ClInclude Include="..\Header\IMGUI\imgui_impl_win32.h" />
+    <ClInclude Include="..\Header\IMGUI\imgui_internal.h" />
+    <ClInclude Include="..\Header\IMGUI\imstb_rectpack.h" />
+    <ClInclude Include="..\Header\IMGUI\imstb_textedit.h" />
+    <ClInclude Include="..\Header\IMGUI\imstb_truetype.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="ResidentEvil_Survivor.h" />
@@ -155,6 +163,13 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Header\IMGUI\imgui.cpp" />
+    <ClCompile Include="..\Header\IMGUI\imgui_demo.cpp" />
+    <ClCompile Include="..\Header\IMGUI\imgui_draw.cpp" />
+    <ClCompile Include="..\Header\IMGUI\imgui_impl_dx11.cpp" />
+    <ClCompile Include="..\Header\IMGUI\imgui_impl_win32.cpp" />
+    <ClCompile Include="..\Header\IMGUI\imgui_tables.cpp" />
+    <ClCompile Include="..\Header\IMGUI\imgui_widgets.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

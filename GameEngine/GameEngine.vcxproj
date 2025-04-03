@@ -168,19 +168,28 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="buildeventtest.h" />
+    <ClInclude Include="C_Device.h" />
+    <ClInclude Include="C_Singleton.h" />
+    <ClInclude Include="define.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="C_GameEngine.h" />
+    <ClInclude Include="SimpleMath.h" />
+    <ClInclude Include="solution.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="buildeventtest.cpp" />
-    <ClCompile Include="GameEngine.cpp" />
+    <ClCompile Include="C_Device.cpp" />
+    <ClCompile Include="C_Singleton.cpp" />
+    <ClCompile Include="C_GameEngine.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SimpleMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

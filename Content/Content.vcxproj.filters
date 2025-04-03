@@ -30,9 +30,6 @@
     <ClInclude Include="framework.h">
       <Filter>1. Foundation</Filter>
     </ClInclude>
-    <ClInclude Include="BulidEventTest.h">
-      <Filter>0. Main</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Content.cpp">
@@ -40,9 +37,6 @@
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>1. Foundation</Filter>
-    </ClCompile>
-    <ClCompile Include="BulidEventTest.cpp">
-      <Filter>0. Main</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

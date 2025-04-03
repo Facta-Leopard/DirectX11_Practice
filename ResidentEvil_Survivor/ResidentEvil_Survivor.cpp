@@ -43,13 +43,33 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     MSG msg;
 
-    // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+    while (true)
     {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+        // 기본 메시지 루프입니다:
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
+            // 윈도우 큐 시스템에 종료 메시지가 들어간 경우에는 루프에서 나옮
+            if (msg.message == WM_QUIT)
+                break;
+
+            // 윈도우 메시지 콜백 프로시저 호출부분
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+
+            // 게임엔진 루프 호출
+
+
+            // 게임에디터 카메라 루프 호출
+
+
+            // IMGUI 관련 루프 호출
+
+
+            // 다이렉트로 생성된 스왑체인 화면 송출
+
         }
     }
 
