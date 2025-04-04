@@ -1,3 +1,151 @@
-﻿ResidentEvil_Survivor.obj : error LNK2019: "private: __cdecl C_GameEngine::C_GameEngine(void)" (??0C_GameEngine@@AEAA@XZ)"public: static class C_GameEngine * __cdecl C_Singleton<class C_GameEngine>::SF_GetInstance(void)" (?SF_GetInstance@?$C_Singleton@VC_GameEngine@@@@SAPEAVC_GameEngine@@XZ) 함수에서 참조되는 확인할 수 없는 외부 기호
-ResidentEvil_Survivor.obj : error LNK2019: "public: int __cdecl C_GameEngine::MF_Innitialize(void)" (?MF_Innitialize@C_GameEngine@@QEAAHXZ)wWinMain 함수에서 참조되는 확인할 수 없는 외부 기호
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\ResidentEvil_Survivor\Debug\ResidentEvil_Survivor_Debug.exe : fatal error LNK1120: 2개의 확인할 수 없는 외부 참조입니다.
+﻿  pch.cpp
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(4,9): error C2504: 'C_Singleton': 기본 클래스를 정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(4,20): error C2143: 구문 오류: ','이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(8,1): error C2143: 구문 오류: ';'이(가) 'private' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(6,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(6,2): warning C4183: 'SINGLE': 반환 형식이 없습니다. 'int'를 반환하는 멤버 함수로 간주됩니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(12,14): error C3646: 'M_V2_Resolution': 알 수 없는 재정의 지정자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(12,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(37,10): error C3646: 'MF_GetResolution': 알 수 없는 재정의 지정자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(37,26): error C2059: 구문 오류: '('
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(38,2): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(44,24): error C2061: 구문 오류: 식별자 'Vector2'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(46,3): error C2065: 'M_V2_Resolution': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(46,21): error C2065: '_Resolution': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(52,3): error C2065: 'M_V2_Resolution': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_GameEngine.h(53,3): error C2065: 'M_V2_Resolution': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(5,24): error C2504: 'C_Singleton': 기본 클래스를 정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(5,35): error C2143: 구문 오류: ','이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(10,1): error C2143: 구문 오류: ';'이(가) 'private' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(8,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(8,2): warning C4183: 'SINGLE': 반환 형식이 없습니다. 'int'를 반환하는 멤버 함수로 간주됩니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(12,16): error C3646: 'M_V2_RenderTargetResolution': 알 수 없는 재정의 지정자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(12,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(14,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(14,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(14,39): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(15,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(15,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(15,46): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(17,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(17,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(17,44): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(27,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(27,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(27,80): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(28,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(28,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(28,86): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(29,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(29,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(29,66): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(31,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(31,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(31,50): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(35,41): error C2061: 구문 오류: 식별자 'Vector2'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(50,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(50,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(50,38): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(51,8): error C2143: 구문 오류: ';'이(가) '<' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(51,2): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Header\library\GameEngine\C_Device.h(51,46): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  

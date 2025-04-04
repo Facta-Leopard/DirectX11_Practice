@@ -172,7 +172,7 @@
   <ItemGroup>
     <ClInclude Include="C_Device.h" />
     <ClInclude Include="C_Entity.h" />
-    <ClInclude Include="C_KeyManager.h" />
+    <ClInclude Include="C_InputManager.h" />
     <ClInclude Include="C_PathManager.h" />
     <ClInclude Include="C_Resource.h" />
     <ClInclude Include="C_ResourceManager.h" />
@@ -192,7 +192,7 @@
     <ClCompile Include="C_Device.cpp" />
     <ClCompile Include="C_Entity.cpp" />
     <ClCompile Include="C_GameEngine.cpp" />
-    <ClCompile Include="C_KeyManager.cpp" />
+    <ClCompile Include="C_InputManager.cpp" />
     <ClCompile Include="C_PathManager.cpp" />
     <ClCompile Include="C_Resource.cpp" />
     <ClCompile Include="C_ResourceManager.cpp" />
@@ -205,6 +205,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="cpp.hint" />
     <None Include="SimpleMath.inl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

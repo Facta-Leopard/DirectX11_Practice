@@ -54,4 +54,8 @@ using namespace std;
 // 그 외 사용자 정의
 #include "define.h"
 
+#include "enum.h"
+#include "globalVariable.h"
+#include "globalFunction.h"
+
 #include "C_Singleton.h"

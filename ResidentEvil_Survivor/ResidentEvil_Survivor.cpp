@@ -2,11 +2,6 @@
 //
 
 #include "pch.h"
-#include "Resource.h"
-#include "imgui/imgui.h"
-
-#include "library\GameEngine\C_GameEngine.h"
-#include "library\GameEngine\C_Device.h"
 
 // 전역 변수:
 HINSTANCE GH_Instance = nullptr;     
@@ -44,7 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // 엔진 초기화
-    C_GameEngine::SF_GetInstance()->MF_Innitialize();
+    C_GameEngine::SF_GetInstance()->MF_Initialize();
 
     // 에디터 카메라 관리자 초기화
 

@@ -11,8 +11,6 @@
 #include <Windows.h>
 #include "framework.h"
 
-#include "define.h"
-
 #include "solution.h"
 
 #include "C_GameEngine.h"

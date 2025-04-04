@@ -1,15 +1,14 @@
 #pragma once
 
-class C_GameEngine
-	: public C_Singleton<C_GameEngine>
+class C_GameEngine :
+	public C_Singleton<C_GameEngine>
 {
-	// 생성자 및 소멸자 포함된 매크로 사용
-	SINGLE(C_GameEngine);
+	SINGLE(C_GameEngine)
 
 private:
 	// 윈도우 관련
 	HINSTANCE				M_H_Instance;
-	HWND					M_H_Window;
+	HWND					M_H_WindowHandle;
 	Vector2					M_V2_Resolution;
 
 	// FMOD 관련
@@ -19,14 +18,20 @@ private:
 	UINT					M_IDCount;			// 기존 코드에서 extern를 사용해서 클래스 아이디값을 사용한 방법 개선, 메모리 점유 유의미 감소
 
 private:
-	HRESULT MF_CreateWindow();
+	void MF_CreateWindow();
 
 public:
 	// 초기화함수
-	HRESULT MF_Innitialize();
+	void MF_Initialize();
 
 	// Progress
 	void MF_Prograss();
+
+	// M_H_Window Getter
+	HWND MF_GetWindowHandle()
+	{
+		return M_H_WindowHandle;
+	}
 
 	// MV2_Resolution Getter
 	Vector2 MF_GetResolution()

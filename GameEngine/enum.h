@@ -83,6 +83,48 @@ enum E_DOMAIN_TYPE
 
 
 // In Program
+//// about Key
+enum E_KEY_TYPE
+{
+	_KEY_Q, _KEY_W, _KEY_E, _KEY_R, _KEY_T, _KEY_Y,
+	_KEY_A, _KEY_S, _KEY_D, _KEY_F, _KEY_G, _KEY_H,
+	_KEY_Z, _KEY_X, _KEY_C, _KEY_V, _KEY_B, _KEY_N, _KEY_M,
+
+	_KEY_ENTER,
+	_KEY_ESC,
+	_KEY_LSHIFT,
+	_KEY_ALT,
+	_KEY_CTRL,
+	_KEY_SPACE,
+
+	_KEY_UP, _KEY_DOWN, _KEY_LEFT, _KEY_RIGHT,
+
+	_KEY_NUM0,
+	_KEY_NUM1,
+	_KEY_NUM2,
+	_KEY_NUM3,
+	_KEY_NUM4,
+	_KEY_NUM5,
+	_KEY_NUM6,
+	_KEY_NUM7,
+	_KEY_NUM8,
+	_KEY_NUM9,
+
+	_KEY_LBTN,
+	_KEY_RBTN,
+
+	_KEY_END,
+};
+ 
+enum E_KEY_STATE
+{
+	_KEY_NONE,
+	_KEY_TAP,
+	_KEY_PRESSED,
+	_KEY_RELEASED,
+};
+
+
 //// about Progress
 enum E_TASK_TYPE
 {

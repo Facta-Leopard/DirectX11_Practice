@@ -10,4 +10,17 @@
 // 여기에 미리 컴파일하려는 헤더 추가
 #include "framework.h"
 
+#include "Resource.h"
+
+#include "imgui/imgui.h"
+
+#include "library/GameEngine/C_GameEngine.h"
+
+#include "library/GameEngine/C_Device.h"
+
+#include "Library/GameEngine/solution.h"
+
+#include "Library/GameEngine/define.h"
+
+
 #endif //PCH_H

@@ -55,14 +55,17 @@
     <Filter Include="9. Manager\4. ResourceManager">
       <UniqueIdentifier>{140763fd-905f-42c3-8cdc-4a14b77dbac1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="9. Manager\1. KeyManager">
-      <UniqueIdentifier>{57df4c13-da2a-4506-936a-a0d8152429b5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="9. Manager\2. PathManager">
       <UniqueIdentifier>{1d4dfa96-4378-48e3-8af8-af313942aec2}</UniqueIdentifier>
     </Filter>
     <Filter Include="9. Manager\4. ResourceManager\3. TimeManager">
       <UniqueIdentifier>{43fc742d-4d0f-4919-bc1e-896e8b14c97b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\3. TimeManager">
+      <UniqueIdentifier>{b81dc62a-d531-4ae4-9587-9b645626b921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\1. InputManager">
+      <UniqueIdentifier>{57df4c13-da2a-4506-936a-a0d8152429b5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -108,14 +111,14 @@
     <ClInclude Include="C_ResourceManager.h">
       <Filter>9. Manager\4. ResourceManager</Filter>
     </ClInclude>
-    <ClInclude Include="C_KeyManager.h">
-      <Filter>9. Manager\1. KeyManager</Filter>
+    <ClInclude Include="C_InputManager.h">
+      <Filter>9. Manager\1. InputManager</Filter>
     </ClInclude>
     <ClInclude Include="C_PathManager.h">
       <Filter>9. Manager\2. PathManager</Filter>
     </ClInclude>
     <ClInclude Include="C_TimeManager.h">
-      <Filter>Relic\헤더 파일</Filter>
+      <Filter>9. Manager\3. TimeManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -137,19 +140,20 @@
     <ClCompile Include="C_ResourceManager.cpp">
       <Filter>9. Manager\4. ResourceManager</Filter>
     </ClCompile>
-    <ClCompile Include="C_KeyManager.cpp">
-      <Filter>9. Manager\1. KeyManager</Filter>
+    <ClCompile Include="C_InputManager.cpp">
+      <Filter>9. Manager\1. InputManager</Filter>
     </ClCompile>
     <ClCompile Include="C_PathManager.cpp">
       <Filter>9. Manager\2. PathManager</Filter>
     </ClCompile>
     <ClCompile Include="C_TimeManager.cpp">
-      <Filter>Relic\소스 파일</Filter>
+      <Filter>9. Manager\3. TimeManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
       <Filter>0. Foundation</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

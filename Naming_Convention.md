@@ -21,6 +21,7 @@
 
 ### Structure & Member Types
 - **`C`**: Prefix for class names.
+- **`DS`**: Prefix for data structure names.
 - **`M`**: Prefix for member variables.
 - **`MF`**: Prefix for member functions.
 - **`G`**: Prefix for global (extern) variables.
@@ -32,9 +33,14 @@
 
 ---
 
+### STL Container Types
+- **`STL`**: Prefix for types or variables implemented using STL containers
+
+---
+
 ### Platform or API Specific Types
 - **`H`**: Prefix for Windows HANDLE types.
-- **`D`**: Prefix for DirectX-specific classes.
+- **`DX`**: Prefix for DirectX-specific classes.
 
 ---
 

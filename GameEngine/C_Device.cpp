@@ -14,7 +14,7 @@ HRESULT C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
     // Device 생성
     if (FAILED(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr
         , Flag, 0, 0, D3D11_SDK_VERSION
-        , CP_M_D_Device.GetAddressOf(), &level, CP_M_D_Context.GetAddressOf()))) // 향후, 해상도 관련 부분 조정예정
+        , CP_M_DX_Device.GetAddressOf(), &level, CP_M_DX_Context.GetAddressOf()))) // 향후, 해상도 관련 부분 조정예정
     {
         POPUP(L"Device Creating Failed", L"C_Device::MF_Initialize() 실패");
         return E_FAIL;
@@ -79,11 +79,11 @@ HRESULT C_Device::MF_CreateSwapChain()
     ComPtr<IDXGIAdapter> T_pAdapter = nullptr;
     ComPtr<IDXGIFactory> T_pFactory = nullptr;
 
-    CP_M_D_Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&T_pDevice);
+    CP_M_DX_Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&T_pDevice);
     T_pDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&T_pAdapter);
     T_pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&T_pFactory);
 
-    if (FAILED(T_pFactory->CreateSwapChain(T_pDevice.Get(), &Desc, CP_M_D_SwapChain.GetAddressOf())))
+    if (FAILED(T_pFactory->CreateSwapChain(T_pDevice.Get(), &Desc, CP_M_DX_SwapChain.GetAddressOf())))
     {
         return E_FAIL;
     }
@@ -94,18 +94,20 @@ HRESULT C_Device::MF_CreateSwapChain()
 HRESULT C_Device::MF_CreateView()
 {
     // 백 버퍼로 사용할 버퍼 생성
-    ComPtr<ID3D11Texture2D> CP_T_RenderTargetTexure = nullptr;
+    ComPtr<ID3D11Texture2D> CP_T_DX_RenderTargetTexure = nullptr;
 
     // 스왑체인 생성시, 자동으로 같이 만들어진 렌더타겟 버퍼를 가져옮
-    CP_M_D_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)CP_T_RenderTargetTexure.GetAddressOf());
+    CP_M_DX_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)CP_T_DX_RenderTargetTexure.GetAddressOf());
 
-    // SwapChain 이 보유하고있는 ID3D11Texture2D 객체를 CTexture 클래스로 전환한다.
-    CP_M_D_RenderTargetTexture = C_ResourceManager::MF_GetInstance()->MF_CreateTexture(L"RenderTarget_Texure", CP_T_RenderTargetTexure);
+    // SwapChain 이 보유하고있는 ID3D11Texture2D 객체를 CTexture 클래스로 전환
+    // C_Texture 만들고 활성화할 예정
+    // CP_M_DX_RenderTargetTexture = C_ResourceManager::MF_GetInstance()->MF_CreateTexture(L"RenderTarget_Texure", CP_T_DX_RenderTargetTexure);
 
-    // DepthStencil 리소스(텍스쳐) 생성    
-    CP_M_D_DepthStencilTexture = C_ResourceManager::MF_GetInstance()->MF_CreateTexture(L"DepthStencil_Texure"
-        , (UINT)M_V2_RenderTargetResolution.x, (UINT)M_V2_RenderTargetResolution.y
-        , DXGI_FORMAT_D24_UNORM_S8_UINT, D3D11_BIND_DEPTH_STENCIL);
+    // DepthStencil 리소스(텍스쳐) 생성
+    // C_Texture 만들고 활성화할 예정
+    // CP_M_DX_DepthStencilTexture = C_ResourceManager::MF_GetInstance()->MF_CreateTexture(L"DepthStencil_Texure"
+        // , (UINT)M_V2_RenderTargetResolution.x, (UINT)M_V2_RenderTargetResolution.y
+        // , DXGI_FORMAT_D24_UNORM_S8_UINT, D3D11_BIND_DEPTH_STENCIL);
 
     return S_OK;
 }
