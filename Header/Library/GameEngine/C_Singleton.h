@@ -21,21 +21,21 @@ private:
 	}
 
 private:
-	static T* s_Instance;
+	static T* S_Instance;
 
 public:
-	inline T* MF_GetInstance()
+	static T* SF_GetInstance()
 	{
-		s_Instance = new T;
-		return s_Instance;
+		S_Instance = new T;
+		return S_Instance;
 	}
 
-	inline void MF_Destory()
+	static void MF_Destory()
 	{
-		s_Instance = nullptr;
+		S_Instance = nullptr;
 	}
 };
 
 // 정적 멤버는 클래스 내부에서만 속하는 것이 아니므로, 초기화는 클래스 밖에서 해야 함
 template<typename T>
-T* C_Singleton<T>::s_Instance = nullptr;
+T* C_Singleton<T>::S_Instance = nullptr;

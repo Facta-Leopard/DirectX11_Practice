@@ -15,4 +15,6 @@
 
 #include "solution.h"
 
+#include "C_GameEngine.h"
+
 #endif //PCH_H

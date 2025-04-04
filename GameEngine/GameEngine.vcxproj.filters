@@ -1,21 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="00. Relic">
-      <UniqueIdentifier>{8e8c45fe-bb07-4eb6-ac23-b09d496695f2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="00. Relic\헤더 파일">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="00. Relic\리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="00. Relic\소스 파일">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
     <Filter Include="2. Device">
       <UniqueIdentifier>{a5da6ac6-7923-4576-8ee3-a9c5f6f1be2f}</UniqueIdentifier>
     </Filter>
@@ -25,20 +10,62 @@
     <Filter Include="1. Main">
       <UniqueIdentifier>{ef1bb6e5-6047-4e7e-8c78-206fbdbeb893}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Manager">
+    <Filter Include="3. Resource">
+      <UniqueIdentifier>{3ca67db3-02ac-4980-ac4c-1e839543fe25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component">
+      <UniqueIdentifier>{a8488a1c-b959-41e9-9464-b69bce9811b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager">
       <UniqueIdentifier>{40952f1b-ff77-4a4d-aa5a-3f18783af61d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. Stage">
+      <UniqueIdentifier>{bb07772a-9191-45a4-a869-3669c427142d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. Shader">
+      <UniqueIdentifier>{98743328-50c1-4470-a2b3-798157d60fdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\30. Entity">
+      <UniqueIdentifier>{10568c81-ada8-41a3-8d0f-6318d65a6d69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource">
+      <UniqueIdentifier>{35722dd4-0249-4370-b7e8-c8a482a09874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\01. Header">
+      <UniqueIdentifier>{0974320b-6144-4ab6-a100-b2ad3bf94d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\00. PreCompiled Header">
+      <UniqueIdentifier>{5c60a316-9b41-4f66-bf45-efb0e4dda5b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Relic">
+      <UniqueIdentifier>{8e8c45fe-bb07-4eb6-ac23-b09d496695f2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Relic\헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Relic\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Relic\소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="9. Manager\4. ResourceManager">
+      <UniqueIdentifier>{140763fd-905f-42c3-8cdc-4a14b77dbac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\1. KeyManager">
+      <UniqueIdentifier>{57df4c13-da2a-4506-936a-a0d8152429b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\2. PathManager">
+      <UniqueIdentifier>{1d4dfa96-4378-48e3-8af8-af313942aec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\4. ResourceManager\3. TimeManager">
+      <UniqueIdentifier>{43fc742d-4d0f-4919-bc1e-896e8b14c97b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>0. Foundation</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>0. Foundation</Filter>
-    </ClInclude>
-    <ClInclude Include="define.h">
-      <Filter>0. Foundation</Filter>
-    </ClInclude>
     <ClInclude Include="C_Singleton.h">
       <Filter>0. Foundation</Filter>
     </ClInclude>
@@ -48,25 +75,76 @@
     <ClInclude Include="SimpleMath.h">
       <Filter>0. Foundation</Filter>
     </ClInclude>
-    <ClInclude Include="solution.h">
-      <Filter>0. Foundation</Filter>
-    </ClInclude>
     <ClInclude Include="C_Device.h">
       <Filter>2. Device</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Entity.h">
+      <Filter>3. Resource\30. Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Resource.h">
+      <Filter>3. Resource\31. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>0. Foundation\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>0. Foundation\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="define.h">
+      <Filter>0. Foundation\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="globalVariable.h">
+      <Filter>0. Foundation\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="globalFunction.h">
+      <Filter>0. Foundation\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>0. Foundation\00. PreCompiled Header</Filter>
+    </ClInclude>
+    <ClInclude Include="solution.h">
+      <Filter>0. Foundation\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="C_ResourceManager.h">
+      <Filter>9. Manager\4. ResourceManager</Filter>
+    </ClInclude>
+    <ClInclude Include="C_KeyManager.h">
+      <Filter>9. Manager\1. KeyManager</Filter>
+    </ClInclude>
+    <ClInclude Include="C_PathManager.h">
+      <Filter>9. Manager\2. PathManager</Filter>
+    </ClInclude>
+    <ClInclude Include="C_TimeManager.h">
+      <Filter>Relic\헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
       <Filter>1. Main</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>0. Foundation</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Singleton.cpp">
-      <Filter>0. Foundation</Filter>
-    </ClCompile>
     <ClCompile Include="C_Device.cpp">
       <Filter>2. Device</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Entity.cpp">
+      <Filter>3. Resource\30. Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Resource.cpp">
+      <Filter>3. Resource\31. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>0. Foundation\00. PreCompiled Header</Filter>
+    </ClCompile>
+    <ClCompile Include="C_ResourceManager.cpp">
+      <Filter>9. Manager\4. ResourceManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_KeyManager.cpp">
+      <Filter>9. Manager\1. KeyManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_PathManager.cpp">
+      <Filter>9. Manager\2. PathManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_TimeManager.cpp">
+      <Filter>Relic\소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

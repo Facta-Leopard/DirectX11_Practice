@@ -5,6 +5,9 @@
 #include "Resource.h"
 #include "imgui/imgui.h"
 
+#include "library\GameEngine\C_GameEngine.h"
+#include "library\GameEngine\C_Device.h"
+
 // 전역 변수:
 HINSTANCE GH_Instance = nullptr;     
 
@@ -41,7 +44,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // 엔진 초기화
-
+    C_GameEngine::SF_GetInstance()->MF_Innitialize();
 
     // 에디터 카메라 관리자 초기화
 
@@ -94,7 +97,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 // 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 
-
+// 향후, 풀스크린 및 창모드 변경 메시지 관련 - Device-쪽 윈도우 변경
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     // IMGUI 적용을 위해 바로 전 콜백함수 ImGui_ImplWin32_WndProcHandler를 윈도우 프로시저에 붙혀서 사용
@@ -114,6 +117,10 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
+                break;
+            case IDM_FULLSCREEN:
+                break;
+            case IDM_WINDOWEDSCREEN:
                 break;
             default:
                 return DefWindowProc(hWnd, message, wParam, lParam);
