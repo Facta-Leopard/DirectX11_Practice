@@ -24,8 +24,8 @@ using namespace DirectX::PackedVector;
 using namespace DirectX::SimpleMath;
 
 // DirectxTex 라이브러리 링크
-#include <Library/DirectxTex/DirectXTex.h>
-#include <Library/DirectxTex/DirectXTex.inl>
+#include <DirectxTex/DirectXTex.h>
+#include <DirectxTex/DirectXTex.inl>
 
 #ifndef _DEBUG
 #pragma comment(lib, "DirectxTex/DirectXTex.lib")
@@ -34,9 +34,9 @@ using namespace DirectX::SimpleMath;
 #endif
 
 // FMOD
-#include <Library/FMOD/fmod.h>
-#include <Library/FMOD/fmod.hpp>
-#include <Library/FMOD/fmod_codec.h>
+#include <FMOD/fmod.h>
+#include <FMOD/fmod.hpp>
+#include <FMOD/fmod_codec.h>
 
 #ifdef _DEBUG
 #pragma comment(lib, "FMOD/fmodL64_vc.lib")

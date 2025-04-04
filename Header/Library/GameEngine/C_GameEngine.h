@@ -15,7 +15,7 @@ private:
 
 
 	// 객체클래스 관련
-	UINT					M_IDCount;			// 기존 코드에서 extern를 사용해서 클래스 아이디값을 사용한 방법 개선, 메모리 점유 유의미 감소
+	UINT					M_IDCount;			// 기존 코드를 클래스 아이디값을 사용한 방법 개선, 메모리 점유 유의미 감소
 
 private:
 	void MF_CreateWindow();

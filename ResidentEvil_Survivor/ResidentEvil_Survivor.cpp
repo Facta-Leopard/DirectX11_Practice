@@ -3,6 +3,8 @@
 
 #include "pch.h"
 
+#include "../IMGUI/imgui.h"
+
 // 전역 변수:
 HINSTANCE GH_Instance = nullptr;     
 

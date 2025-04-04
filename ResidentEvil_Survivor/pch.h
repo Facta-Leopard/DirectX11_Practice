@@ -12,15 +12,19 @@
 
 #include "Resource.h"
 
-#include "imgui/imgui.h"
+#include <Windows.h>
 
-#include "library/GameEngine/C_GameEngine.h"
+#include "GameEngine/solution.h"
 
-#include "library/GameEngine/C_Device.h"
+#include "GameEngine/C_GameEngine.h"
 
-#include "Library/GameEngine/solution.h"
 
-#include "Library/GameEngine/define.h"
+#ifndef _DEBUG
+#pragma comment(lib, "GameEngine//GameEngine")
+#else
+#pragma comment(lib, "GameEngine//GameEngine_Debug")
+#endif
+
 
 
 #endif //PCH_H
