@@ -13,6 +13,8 @@
 
 #include "solution.h"
 
+#include "define.h"
+
 #include "C_GameEngine.h"
 
 // 관리자
@@ -23,6 +25,14 @@
 #ifdef _DEBUG
 #include "C_DebugManager.h"
 #endif // DEBUG
+
+// Resourece
+#include "C_Entity.h"
+
+#include "C_Object.h"
+
+#include "C_Component.h"
+#include "C_RenderComponent.h"
 
 
 #endif //PCH_H

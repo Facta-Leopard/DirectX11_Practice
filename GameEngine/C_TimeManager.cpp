@@ -42,11 +42,11 @@ void C_TimeManager::MF_Update()
 	if (1.f <= M_OneSecondTime)
 	{
 		HWND T_H_WindowHandle = C_GameEngine::SF_GetInstance()->MF_GetWindowHandle();
-		wchar_t T_WindowTitleSubjectBuffer[255] = {};
+		wchar_t T_WindowTitleSubjectBuffer_s[255] = {};
 
-		swprintf_s(T_WindowTitleSubjectBuffer, 255, L"FPS : %d, DeltaTime : %f", M_FPS, M_DeltaTime);		// 임시 버퍼에 델타타임 문자열 기재
+		swprintf_s(T_WindowTitleSubjectBuffer_s, 255, L"FPS : %d, DeltaTime : %f", M_FPS, M_DeltaTime);		// 임시 버퍼에 델타타임 문자열 기재
 
-		SetWindowText(T_H_WindowHandle, T_WindowTitleSubjectBuffer);				// 창에 문자열 표시
+		SetWindowText(T_H_WindowHandle, T_WindowTitleSubjectBuffer_s);				// 창에 문자열 표시
 
 		M_OneSecondTime -= 1.f;														// 1초 기준점 초기화
 		M_FPS = 0;																// FPS 초기화

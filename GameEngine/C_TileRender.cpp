@@ -1,0 +1,16 @@
+#include "pch.h"
+#include "C_TileRender.h"
+
+C_TileRender::C_TileRender()
+	: C_RenderComponent(_COMPONENT_TILE_RENDER)
+{
+}
+
+C_TileRender::C_TileRender(const C_TileRender& _Origin)
+	: C_RenderComponent(_Origin)
+{
+}
+
+C_TileRender::~C_TileRender()
+{
+}

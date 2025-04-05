@@ -1,1 +1,1 @@
-﻿  ResidentEvil_Survivor.vcxproj -> C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\ResidentEvil_Survivor\ResidentEvil_Survivor_Debug.exe
+﻿LINK : fatal error LNK1104: 'GameEngine//GameEngine_Debug.lib' 파일을 열 수 없습니다.

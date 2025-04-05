@@ -19,12 +19,6 @@
     <Filter Include="9. Manager">
       <UniqueIdentifier>{40952f1b-ff77-4a4d-aa5a-3f18783af61d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="5. Stage">
-      <UniqueIdentifier>{bb07772a-9191-45a4-a869-3669c427142d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="6. Shader">
-      <UniqueIdentifier>{98743328-50c1-4470-a2b3-798157d60fdd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3. Resource\30. Entity">
       <UniqueIdentifier>{10568c81-ada8-41a3-8d0f-6318d65a6d69}</UniqueIdentifier>
     </Filter>
@@ -70,6 +64,117 @@
     <Filter Include="9. Manager\8. RenderManager">
       <UniqueIdentifier>{92497537-c72e-4151-a81a-b560eff9300b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="9. Manager\5. CollisionManager">
+      <UniqueIdentifier>{5becc875-c0bc-4702-8623-ac516eac2760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\6. StageManager">
+      <UniqueIdentifier>{15033842-a9f2-4899-97a4-69b89a19f5aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\310. Resource">
+      <UniqueIdentifier>{642537bf-0f55-48dc-a07b-398ad9348484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\311. Mesh">
+      <UniqueIdentifier>{5ff4c869-fe00-4e52-a373-cdd2e4cbdb11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\313. Material">
+      <UniqueIdentifier>{7239bf1f-c395-4237-b6be-72da7260724f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\314. Texture">
+      <UniqueIdentifier>{1a4335a6-9cbf-4ad6-bfa8-44fa04b16a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\315. Shader">
+      <UniqueIdentifier>{97ad6f7f-80b0-4a05-8d6d-2eb3e072c703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\316. Sprite">
+      <UniqueIdentifier>{ffef2b2a-7c71-459c-904f-04f9148b5334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\317. Flipbook">
+      <UniqueIdentifier>{39a9fa31-a9b0-42f2-8f42-72cd372a7352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\319. Prefab">
+      <UniqueIdentifier>{68702963-2237-465a-a296-4a7e4dc1b1e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\318. Sound">
+      <UniqueIdentifier>{32352a10-cb8e-4575-b577-e010bb0307a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Object">
+      <UniqueIdentifier>{2a67f850-fca8-451c-83ee-d04bc0f39ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Object\320. Object">
+      <UniqueIdentifier>{3fce44a9-35e2-4824-9885-d7e2681af2db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Object\321. RenderObject">
+      <UniqueIdentifier>{a42e632c-3c3b-4479-ad74-59222926c5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="8. Stage">
+      <UniqueIdentifier>{bb07772a-9191-45a4-a869-3669c427142d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="7. Layer">
+      <UniqueIdentifier>{98743328-50c1-4470-a2b3-798157d60fdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\49. Camera">
+      <UniqueIdentifier>{f6d5a8bd-3054-40c1-9dd6-2ddd1a25fe53}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\40. Component">
+      <UniqueIdentifier>{2e1c2f84-e26a-4313-85c6-f5cb2266a6da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\43. Light">
+      <UniqueIdentifier>{b47eb770-a1d8-46be-8c5c-0796072e98f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\43. Light\4321. Light2D">
+      <UniqueIdentifier>{daeee69e-ad70-4eca-80b0-1a3218f55603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\41. Transform">
+      <UniqueIdentifier>{6e2fbc35-1c38-41a9-9dba-0f33411a7508}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\42. Collider">
+      <UniqueIdentifier>{428d9dfc-59d6-40e5-9be0-eb853e677165}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\42. Collider\4331. Collider2D">
+      <UniqueIdentifier>{ad3d3ea2-fd55-4865-99ee-fae4114c6944}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent">
+      <UniqueIdentifier>{db97c603-eb24-459e-aeac-9cecf133d363}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. RenderComponent">
+      <UniqueIdentifier>{b8d48e97-fb37-4096-904f-150a554daa5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. RenderComponent\60. RenderComponent">
+      <UniqueIdentifier>{44ee17c7-0c99-4958-a8ef-5d0bb4fa9562}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. RenderComponent\61. MeshRender">
+      <UniqueIdentifier>{ff0d62db-0670-435b-90d9-764ccea07d9b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. RenderComponent\62. SpriteRender">
+      <UniqueIdentifier>{4eb61042-b112-465d-97a5-01ba2ae901fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. RenderComponent\63. FlipbookRender">
+      <UniqueIdentifier>{dac8cee3-7628-4228-a807-39fb6ce69843}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. RenderComponent\64. TileRender">
+      <UniqueIdentifier>{7698376e-6d5d-4f48-86c2-b3a3662f51d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. RenderComponent\69. ParticleRender">
+      <UniqueIdentifier>{e3b54612-5d12-46b9-bfaf-730fae91173f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\60. ScriptComponent">
+      <UniqueIdentifier>{9d201e80-682a-475f-a40f-fd0266599f6c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\69. CameraMove">
+      <UniqueIdentifier>{12f9b6ea-387c-4038-95af-a18e639894f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\63. MoveScript">
+      <UniqueIdentifier>{33b7f9a4-d2c1-41b4-8c20-a4000e86b26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\63. NPCScript">
+      <UniqueIdentifier>{a22fdf9e-ac12-4913-be03-0737aa11e41a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\61. RigedScript">
+      <UniqueIdentifier>{134395e4-75ab-42f6-b157-72a2dc55b433}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\62. StateScript">
+      <UniqueIdentifier>{0f09ceb3-4a73-4fa2-8d86-17295bdc57ae}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Singleton.h">
@@ -86,9 +191,6 @@
     </ClInclude>
     <ClInclude Include="C_Entity.h">
       <Filter>3. Resource\30. Entity</Filter>
-    </ClInclude>
-    <ClInclude Include="C_Resource.h">
-      <Filter>3. Resource\31. Resource</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
       <Filter>0. Foundation\01. Header</Filter>
@@ -129,6 +231,72 @@
     <ClInclude Include="C_RenderManager.h">
       <Filter>9. Manager\8. RenderManager</Filter>
     </ClInclude>
+    <ClInclude Include="C_CollisionManager.h">
+      <Filter>9. Manager\5. CollisionManager</Filter>
+    </ClInclude>
+    <ClInclude Include="C_StageManager.h">
+      <Filter>9. Manager\6. StageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Resource.h">
+      <Filter>3. Resource\31. Resource\310. Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Object.h">
+      <Filter>3. Resource\32. Object\320. Object</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Component.h">
+      <Filter>4. Component\40. Component</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Transform.h">
+      <Filter>4. Component\41. Transform</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Collider_2D.h">
+      <Filter>4. Component\42. Collider\4331. Collider2D</Filter>
+    </ClInclude>
+    <ClInclude Include="C_CameraComponent.h">
+      <Filter>4. Component\49. Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Light_2D.h">
+      <Filter>4. Component\43. Light\4321. Light2D</Filter>
+    </ClInclude>
+    <ClInclude Include="component.h">
+      <Filter>0. Foundation\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="C_RenderComponent.h">
+      <Filter>5. RenderComponent\60. RenderComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="C_MeshRender.h">
+      <Filter>5. RenderComponent\61. MeshRender</Filter>
+    </ClInclude>
+    <ClInclude Include="C_SpriteRender.h">
+      <Filter>5. RenderComponent\62. SpriteRender</Filter>
+    </ClInclude>
+    <ClInclude Include="C_FlipbookRender.h">
+      <Filter>5. RenderComponent\63. FlipbookRender</Filter>
+    </ClInclude>
+    <ClInclude Include="C_TileRender.h">
+      <Filter>5. RenderComponent\64. TileRender</Filter>
+    </ClInclude>
+    <ClInclude Include="C_ParticleRender.h">
+      <Filter>5. RenderComponent\69. ParticleRender</Filter>
+    </ClInclude>
+    <ClInclude Include="C_MoveScript.h">
+      <Filter>Relic\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="C_NPCScript.h">
+      <Filter>Relic\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="C_CameraScript.h">
+      <Filter>Relic\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="C_RigidScript.h">
+      <Filter>Relic\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="C_StateScript.h">
+      <Filter>Relic\헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="C_ScriptComponent.h">
+      <Filter>6. ScriptComponent\60. ScriptComponent</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
@@ -139,9 +307,6 @@
     </ClCompile>
     <ClCompile Include="C_Entity.cpp">
       <Filter>3. Resource\30. Entity</Filter>
-    </ClCompile>
-    <ClCompile Include="C_Resource.cpp">
-      <Filter>3. Resource\31. Resource</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
       <Filter>0. Foundation\00. PreCompiled Header</Filter>
@@ -163,6 +328,72 @@
     </ClCompile>
     <ClCompile Include="C_RenderManager.cpp">
       <Filter>9. Manager\8. RenderManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_CollisionManager.cpp">
+      <Filter>9. Manager\5. CollisionManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_StageManager.cpp">
+      <Filter>9. Manager\6. StageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Resource.cpp">
+      <Filter>3. Resource\31. Resource\310. Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Object.cpp">
+      <Filter>3. Resource\32. Object\320. Object</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Component.cpp">
+      <Filter>4. Component\40. Component</Filter>
+    </ClCompile>
+    <ClCompile Include="globalFunction.cpp">
+      <Filter>0. Foundation</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Transform.cpp">
+      <Filter>4. Component\41. Transform</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Collider_2D.cpp">
+      <Filter>4. Component\42. Collider\4331. Collider2D</Filter>
+    </ClCompile>
+    <ClCompile Include="C_CameraComponent.cpp">
+      <Filter>4. Component\49. Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Light_2D.cpp">
+      <Filter>4. Component\43. Light\4321. Light2D</Filter>
+    </ClCompile>
+    <ClCompile Include="C_RenderComponent.cpp">
+      <Filter>5. RenderComponent\60. RenderComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="C_MeshRender.cpp">
+      <Filter>5. RenderComponent\61. MeshRender</Filter>
+    </ClCompile>
+    <ClCompile Include="C_SpriteRender.cpp">
+      <Filter>5. RenderComponent\62. SpriteRender</Filter>
+    </ClCompile>
+    <ClCompile Include="C_FlipbookRender.cpp">
+      <Filter>5. RenderComponent\63. FlipbookRender</Filter>
+    </ClCompile>
+    <ClCompile Include="C_TileRender.cpp">
+      <Filter>5. RenderComponent\64. TileRender</Filter>
+    </ClCompile>
+    <ClCompile Include="C_ParticleRender.cpp">
+      <Filter>5. RenderComponent\69. ParticleRender</Filter>
+    </ClCompile>
+    <ClCompile Include="C_MoveScript.cpp">
+      <Filter>Relic\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="C_NPCScript.cpp">
+      <Filter>Relic\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="C_CameraScript.cpp">
+      <Filter>Relic\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="C_RigidScript.cpp">
+      <Filter>Relic\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="C_StateScript.cpp">
+      <Filter>Relic\소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="C_ScriptComponent.cpp">
+      <Filter>6. ScriptComponent\60. ScriptComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

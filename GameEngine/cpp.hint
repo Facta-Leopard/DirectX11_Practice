@@ -3,3 +3,5 @@
 // 자세한 내용은 다음을 참조하세요. https://go.microsoft.com/fwlink/?linkid=865984
 #define SINGLE(_T) friend class C_Singleton<_T>; _T& operator = (const _T& _Other) = delete; _T(); _T(const _T& _Origin) = delete; ~_T();
 #define SINGLE(_type) friend class C_Singleton<_type>; _type& operator = (const _type& _Other) = delete; _type(); _type(const _type& _Origin) = delete; ~_type();
+#define CLONE(Class) virtual Class* MF_Clone() override { return new Class(*this); }
+#define CLONE(Class) virtual Class* MF_Clone() override { return new Class(*this); } \

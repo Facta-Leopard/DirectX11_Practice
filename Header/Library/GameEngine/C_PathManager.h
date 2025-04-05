@@ -6,10 +6,10 @@ class C_PathManager :
     SINGLE(C_PathManager);
 
 protected:
-    wchar_t     M_ProjectPath[255];                     // Project Directory Address
-    wchar_t     M_SolutionPath[255];                    // Solution Directory Address
-    wchar_t     M_ResourcePath[255];                    // Resource Directory Address
-    wchar_t     M_SaveAndLoadPath[255];                 // 향후, 정리 필요; Save And Load Directory Address
+    wchar_t     M_ProjectPaths[255];                     // Project Directory Address
+    wchar_t     M_SolutionPaths[255];                    // Solution Directory Address
+    wchar_t     M_ResourcePaths[255];                    // Resource Directory Address
+    wchar_t     M_SaveAndLoadPaths[255];                 // 향후, 정리 필요; Save And Load Directory Address
 
 public:
     void MF_Initialize();
@@ -17,24 +17,24 @@ public:
 
     // 유의: 배열을 버퍼로 읽을 때는 포인터로 하여야 함!
     // 배열은 포인터로 표현이 가능!
-    inline wchar_t* MF_GetProjectPath()                         // Getter; M_ProjectPath
+    inline wchar_t* MF_GetProjectPaths()                         // Getter; M_ProjectPaths
     {
-        return M_ProjectPath;
+        return M_ProjectPaths;
     }
 
-    inline wchar_t* MF_GetSolutionPath()                        // Getter; M_SolutionPath
+    inline wchar_t* MF_GetSolutionPaths()                        // Getter; M_SolutionPaths
     {
-        return M_SolutionPath;
+        return M_SolutionPaths;
     }
 
-    inline wchar_t* MF_GetResourcePath()                        // Getter; M_ResourcePath
+    inline wchar_t* MF_GetResourcePaths()                        // Getter; M_ResourcePaths
     {
-        return M_ResourcePath;
+        return M_ResourcePaths;
     }
 
-    inline wchar_t* MF_GetSaveAndLoadPath()                     // Getter; M_SaveAndLoadPath
+    inline wchar_t* MF_GetSaveAndLoadPaths()                     // Getter; M_SaveAndLoadPaths
     {
-        return M_SaveAndLoadPath;
+        return M_SaveAndLoadPaths;
     }
 };
 

@@ -183,10 +183,10 @@ enum E_COMPONENT_TYPE
 {
 	_COMPONENT_TRANSFORM,
 	_COMPONENT_COLLIDER_2D,
-	_COMPONENT_LIGHTING_2D,
+	_COMPONENT_LIGHT_2D,
 	_COMPONENT_CAMERA,
 
-	// Rendering Component
+	// Render Component
 	_COMPONENT_MESH_RENDER,				// 가장 기본적인 RenderComponent
 	_COMPONENT_SPRITE_RENDER,				// Sprite 하나 렌더링하는 컴포넌트
 	_COMPONENT_FLIPBOOK_RENDER,			// Flipbook 재생 컴포넌트
@@ -195,7 +195,20 @@ enum E_COMPONENT_TYPE
 
 	_COMPONENT_END,
 
-	_COMPONENT_SCRIPT,					// 대본, 역할, 컨텐츠
+	// Script Component
+	_COMPONENT_SCRIPT,					// 별도 타입 세분화, E_SCRIPT_TYPE 참조
+};
+
+enum E_SCRIPT_TYPE
+{
+	_SCRIPT_RIGID,						// 강체관련
+	_SCRIPT_STATE,						// 상태관련
+	_SCRIPT_MOVE,						// 이동관련
+	_SCRIPT_NPC,						// 반응관련
+
+	_SCRIPT_CAMERAMOVE,					// 카메라관련
+
+	_SCRIPT_END,
 };
 
 

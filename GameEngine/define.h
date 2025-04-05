@@ -1,4 +1,6 @@
 #pragma once
+// 유의! \ 뒤에 공백이 붙으면 매크로 구문 자체가 맛이 감을 조심!
+// 존나 그지같은 문법이네
 
 // WinAPI 메시지 박스를 간단히 쓰기 위함
 #ifdef _DEBUG
@@ -15,4 +17,40 @@ public: \
 Class& operator = (const Class& _Other) = delete; \
 Class(); \
 Class(const Class& _Origin) = delete; \
-~Class();
+~Class(); \
+
+// 클론
+#define CLONE(Class)	virtual Class* MF_Clone() override \
+{ \
+	return new Class(*this); \
+} \
+
+// Component 종류에 따른 자식 Component 포인터 반환하는 매크로
+#define GETCOMPONENTBYTYPE(Class, _COMPONENT)    Class* MF_Get##Class##() \
+                                    { \
+                                    	return (Class*)P_M_OwnerObject->P_M_Component_s[_COMPONENT]; \
+                                    } \
+
+// Deep Copy Macro
+// 향후, 구현 및 기재예정
+// 깊은 복사는 범위기반 for문은 못 쓴다는 점 유의해서 만들어야 겠음
+
+// Heap Memory Free Macro
+//// STL Version
+// 범위기반 For문 이용; Swift 범위기반 문 응용
+#define DELETE_STL(STL)		for (auto& Element : STL) \
+                            { \
+                                delete component; \
+                            } \
+                            STL.clear(); \
+
+//// Fixed Array Version
+#define DELETE_FIXEDARRAY_HEAP(FixedArray, _END)           for (int i = 0; i < _END; ++i) \
+                                                           { \
+                                                               if (FixedArray[i] != nullptr) \
+                                                               { \
+                                                                   delete FixedArray[i]; \
+                                                                   FixedArray[i] = nullptr; \
+                                                               } \
+                                                           } \
+                                                           FixedArray = nullptr; \

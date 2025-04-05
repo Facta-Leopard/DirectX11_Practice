@@ -1,4 +1,5 @@
 # Naming Convention for This Practice Solution
+- Made by Facta-Leopard : https://github.com/Facta-Leopard
 
 ## In Codebase
 
@@ -34,7 +35,7 @@
 ---
 
 ### STL Container Types
-- **`STL`**: Prefix for types or variables implemented using STL containers
+- **`STL`**: Prefix for types or variables implemented using STL containers.
 
 ---
 
@@ -52,6 +53,11 @@
 - **`V3`**: Used for Vector3 structure.
 - **`V4`**: Used for Vector4 structure.
 - **`M16`**: Used for Matrix (4x4) structure.
+
+---
+
+### Array Type
+- **_s**: Suffix for Fixed-size array.
 
 ---
 

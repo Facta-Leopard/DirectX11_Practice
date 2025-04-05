@@ -16,3 +16,9 @@ Class& operator = (const Class& _Other) = delete; \
 Class(); \
 Class(const Class& _Origin) = delete; \
 ~Class();
+
+// ХЌЗа
+#define CLONE(Class)	virtual Class* MF_Clone() override \
+{ \
+return new Class(*this); \
+} \

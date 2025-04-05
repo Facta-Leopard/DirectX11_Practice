@@ -1,26 +1,31 @@
-﻿  C_TimeManager.cpp
-  GameEngine.vcxproj -> C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
-  통합관리를 위한 파일 복사용 배치파일 실행
-  .\C_DebugManager.h
-  .\C_Device.h
-  .\C_Entity.h
-  .\C_GameEngine.h
-  .\C_InputManager.h
-  .\C_PathManager.h
-  .\C_RenderManager.h
-  .\C_Resource.h
-  .\C_ResourceManager.h
-  .\C_Singleton.h
-  .\C_TimeManager.h
-  .\define.h
-  .\enum.h
-  .\globalFunction.h
-  .\globalVariable.h
-  .\SimpleMath.h
-  .\solution.h
-  17개 파일이 복사되었습니다.
-  .\SimpleMath.inl
-  1개 파일이 복사되었습니다.
-  지정된 경로를 찾을 수 없습니다.
-  파일을 찾을 수 없습니다-*.fx
-  0개 파일이 복사되었습니다.
+﻿  pch.cpp
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Transform.h(4,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Transform.h(16,5): error C3668: 'C_Transform::MF_Clone': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Collider_2D.h(5,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Collider_2D.h(17,5): error C3668: 'C_Collider_2D::MF_Clone': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Light_2D.h(4,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Light_2D.h(16,5): error C3668: 'C_Light_2D::MF_Clone': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_CameraComponent.h(4,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_CameraComponent.h(16,5): error C3668: 'C_CameraComponent::MF_Clone': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_RenderComponent.h(5,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_ScriptComponent.h(4,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  

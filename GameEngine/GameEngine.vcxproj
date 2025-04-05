@@ -170,16 +170,37 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="component.h" />
+    <ClInclude Include="C_CameraComponent.h" />
+    <ClInclude Include="C_CameraScript.h" />
+    <ClInclude Include="C_Collider_2D.h" />
+    <ClInclude Include="C_CollisionManager.h" />
+    <ClInclude Include="C_Component.h" />
     <ClInclude Include="C_DebugManager.h" />
     <ClInclude Include="C_Device.h" />
     <ClInclude Include="C_Entity.h" />
+    <ClInclude Include="C_FlipbookRender.h" />
     <ClInclude Include="C_InputManager.h" />
+    <ClInclude Include="C_Light_2D.h" />
+    <ClInclude Include="C_MeshRender.h" />
+    <ClInclude Include="C_MoveScript.h" />
+    <ClInclude Include="C_NPCScript.h" />
+    <ClInclude Include="C_Object.h" />
+    <ClInclude Include="C_ParticleRender.h" />
     <ClInclude Include="C_PathManager.h" />
+    <ClInclude Include="C_RenderComponent.h" />
     <ClInclude Include="C_RenderManager.h" />
     <ClInclude Include="C_Resource.h" />
     <ClInclude Include="C_ResourceManager.h" />
+    <ClInclude Include="C_RigidScript.h" />
+    <ClInclude Include="C_ScriptComponent.h" />
     <ClInclude Include="C_Singleton.h" />
+    <ClInclude Include="C_SpriteRender.h" />
+    <ClInclude Include="C_StageManager.h" />
+    <ClInclude Include="C_StateScript.h" />
+    <ClInclude Include="C_TileRender.h" />
     <ClInclude Include="C_TimeManager.h" />
+    <ClInclude Include="C_Transform.h" />
     <ClInclude Include="define.h" />
     <ClInclude Include="enum.h" />
     <ClInclude Include="framework.h" />
@@ -191,16 +212,37 @@
     <ClInclude Include="solution.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C_CameraComponent.cpp" />
+    <ClCompile Include="C_CameraScript.cpp" />
+    <ClCompile Include="C_Collider_2D.cpp" />
+    <ClCompile Include="C_CollisionManager.cpp" />
+    <ClCompile Include="C_Component.cpp" />
     <ClCompile Include="C_DebugManager.cpp" />
     <ClCompile Include="C_Device.cpp" />
     <ClCompile Include="C_Entity.cpp" />
+    <ClCompile Include="C_FlipbookRender.cpp" />
     <ClCompile Include="C_GameEngine.cpp" />
     <ClCompile Include="C_InputManager.cpp" />
+    <ClCompile Include="C_Light_2D.cpp" />
+    <ClCompile Include="C_MeshRender.cpp" />
+    <ClCompile Include="C_MoveScript.cpp" />
+    <ClCompile Include="C_NPCScript.cpp" />
+    <ClCompile Include="C_Object.cpp" />
+    <ClCompile Include="C_ParticleRender.cpp" />
     <ClCompile Include="C_PathManager.cpp" />
+    <ClCompile Include="C_RenderComponent.cpp" />
     <ClCompile Include="C_RenderManager.cpp" />
     <ClCompile Include="C_Resource.cpp" />
     <ClCompile Include="C_ResourceManager.cpp" />
+    <ClCompile Include="C_RigidScript.cpp" />
+    <ClCompile Include="C_ScriptComponent.cpp" />
+    <ClCompile Include="C_SpriteRender.cpp" />
+    <ClCompile Include="C_StageManager.cpp" />
+    <ClCompile Include="C_StateScript.cpp" />
+    <ClCompile Include="C_TileRender.cpp" />
     <ClCompile Include="C_TimeManager.cpp" />
+    <ClCompile Include="C_Transform.cpp" />
+    <ClCompile Include="globalFunction.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
