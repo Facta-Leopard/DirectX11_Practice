@@ -7,9 +7,9 @@ class C_GameEngine :
 
 private:
 	// 윈도우 관련
-	HINSTANCE				M_H_Instance;
-	HWND					M_H_WindowHandle;
-	Vector2					M_V2_Resolution;
+	HINSTANCE				M_H_Instance;			// HINSTANCE
+	HWND					M_H_WindowHandle;		// HWND
+	Vector2					M_V2_Resolution;		// Vector2, DirectX와의 호환성을 위해 UINT 대신 float을 쓰는 듯
 
 	// FMOD 관련
 
@@ -22,7 +22,7 @@ private:
 
 public:
 	// 초기화함수
-	void MF_Initialize();
+	void MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _ResoulutionY);
 
 	// Progress
 	void MF_Prograss();

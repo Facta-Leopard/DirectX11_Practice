@@ -7,10 +7,6 @@
     <Filter Include="1. Foundation">
       <UniqueIdentifier>{92a5167c-e8fa-4264-ab44-98afa78a2c60}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0. Main\리소스 파일">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="9. IMGUI">
       <UniqueIdentifier>{5468b0cc-c6d0-43e0-a18b-f234e8776d1f}</UniqueIdentifier>
     </Filter>
@@ -24,6 +20,10 @@
     <Filter Include="Relic\헤더 파일">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
+    <Filter Include="Relic\리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -95,15 +95,15 @@
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ResidentEvil_Survivor.rc">
-      <Filter>0. Main\리소스 파일</Filter>
+      <Filter>Relic\리소스 파일</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <Image Include="small.ico">
-      <Filter>0. Main\리소스 파일</Filter>
+      <Filter>Relic\리소스 파일</Filter>
     </Image>
     <Image Include="ResidentEvil_Survivor.ico">
-      <Filter>0. Main\리소스 파일</Filter>
+      <Filter>Relic\리소스 파일</Filter>
     </Image>
   </ItemGroup>
 </Project>

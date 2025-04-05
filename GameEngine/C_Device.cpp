@@ -16,21 +16,21 @@ HRESULT C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
         , Flag, 0, 0, D3D11_SDK_VERSION
         , CP_M_DX_Device.GetAddressOf(), &level, CP_M_DX_Context.GetAddressOf()))) // 향후, 해상도 관련 부분 조정예정
     {
-        POPUP(L"Device Creating Failed", L"C_Device::MF_Initialize() 실패");
+        POPUP_DEBUG(L"Device Creating Failed", L"C_Device::MF_Initialize() 실패");
         return E_FAIL;
     }
 
     // Swapchain 생성
     if (FAILED(MF_CreateSwapChain()))
     {
-        POPUP(L"Swapchain Creating Failed", L"C_Device::MF_CreateSwapChain() 실패");
+        POPUP_DEBUG(L"Swapchain Creating Failed", L"C_Device::MF_CreateSwapChain() 실패");
         return E_FAIL;
     }
 
     // View 생성
     if (FAILED(MF_CreateView()))
     {
-        POPUP(L"View Creating Failed", L"C_Device::MF_CreateSwapChain() 실패");
+        POPUP_DEBUG(L"View Creating Failed", L"C_Device::MF_CreateSwapChain() 실패");
         return E_FAIL;
     }
 

@@ -58,9 +58,6 @@
     <Filter Include="9. Manager\2. PathManager">
       <UniqueIdentifier>{1d4dfa96-4378-48e3-8af8-af313942aec2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="9. Manager\4. ResourceManager\3. TimeManager">
-      <UniqueIdentifier>{43fc742d-4d0f-4919-bc1e-896e8b14c97b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="9. Manager\3. TimeManager">
       <UniqueIdentifier>{b81dc62a-d531-4ae4-9587-9b645626b921}</UniqueIdentifier>
     </Filter>

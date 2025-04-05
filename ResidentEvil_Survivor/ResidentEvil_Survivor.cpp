@@ -5,8 +5,7 @@
 
 #include "../IMGUI/imgui.h"
 
-// 전역 변수:
-HINSTANCE GH_Instance = nullptr;     
+HINSTANCE G_H_Instance = nullptr;     
 
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
@@ -16,7 +15,12 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ LPWSTR    lpCmdLine,
                      _In_ int       nCmdShow)
 {
-    GH_Instance = hInstance;
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // 프로그램 종료 후, 메모리 누수 확인 가능
+    // _CrtSetBreakAlloc(); // 프로그램 중단 설정; 메모리 누수가 되는 메모리 블록 확인가능
+    // _CrtDumpMemoryLeaks(); // 프로그램 실행 중, 메모리 누수 확인 가능
+
+
+    G_H_Instance = hInstance;
 
     WNDCLASSEXW wcex;
 
@@ -31,17 +35,26 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_RESIDENTEVILSURVIVOR);
-    wcex.lpszClassName = L"ResidentEvil_Survivor";              // 기본 창 클래스 이름
+    wcex.lpszClassName = L"DirectX_Practice";              // 기본 창 클래스 이름
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     RegisterClassExW(&wcex);
+
+    // 해상도 임의 설정
+    struct UINT2
+    {
+        UINT    M_X;
+        UINT    M_Y;
+    };
+
+    UINT2 DS_Resolution = { 800, 600 };
 
 
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // 엔진 초기화
-    C_GameEngine::SF_GetInstance()->MF_Initialize();
+    C_GameEngine::SF_GetInstance()->MF_Initialize(G_H_Instance, 800, 600);
 
     // 에디터 카메라 관리자 초기화
 
@@ -98,8 +111,8 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     // IMGUI 적용을 위해 바로 전 콜백함수 ImGui_ImplWin32_WndProcHandler를 윈도우 프로시저에 붙혀서 사용
-    if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
-        return true;
+    // if (ImGui_ImplWin32_WndProcHandler(hWnd, message, wParam, lParam))
+        // return true;
 
     switch (message)
     {
@@ -110,7 +123,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             switch (wmId)
             {
             case IDM_ABOUT:
-                DialogBox(GH_Instance, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
+                DialogBox(G_H_Instance, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
                 break;
             case IDM_EXIT:
                 DestroyWindow(hWnd);
