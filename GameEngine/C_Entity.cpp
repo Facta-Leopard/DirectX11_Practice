@@ -17,3 +17,8 @@ C_Entity::C_Entity(const C_Entity& _Origin)
 	M_EntityID = ++T_ID;
 	C_GameEngine::SF_GetInstance()->MF_SetIDCount(T_ID);
 }
+
+C_Entity::~C_Entity()
+{
+
+}

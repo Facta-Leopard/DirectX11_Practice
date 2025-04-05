@@ -47,8 +47,15 @@ private:
 	HRESULT MF_CreateSamplerState();
 
 public:
-	ComPtr<ID3D11Device> MF_GetDevice() { return CP_M_DX_Device; }
-	ComPtr<ID3D11DeviceContext> MF_GetContext() { return CP_M_DX_Context; }
+	inline ComPtr<ID3D11Device> MF_GetDevice()												// Getter; CP_M_DX_Device
+	{
+		return CP_M_DX_Device;
+	}
+	inline ComPtr<ID3D11DeviceContext> MF_GetContext()										// Getter; CP_M_DX_Context
+	{
+		return CP_M_DX_Context;
+	}
+
 	// 향후 정의예정
 	// C_ConstBuffer* MF_GetConstBuffer(CONSTRUCTUREBUFFER_TYPE _Type) { return MD_ConstructureBuffer[(UINT)_Type]; }
 	// Vector2 MF_GetRenderResolution() { return MV2_RenderTargetResolution; }

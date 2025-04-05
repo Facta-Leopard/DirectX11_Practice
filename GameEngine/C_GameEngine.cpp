@@ -1,10 +1,5 @@
 ﻿#include "pch.h"
 
-#include "C_GameEngine.h"
-
-#include "C_InputManager.h"
-#include "C_PathManager.h"
-
 C_GameEngine::C_GameEngine()
     : M_H_Instance(nullptr)
     , M_H_WindowHandle(nullptr)
@@ -28,10 +23,16 @@ void C_GameEngine::MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _
     MF_CreateWindow();
 
 	// 관리자 생성 및 초기화
+    // 향후, 추가 구현 예정
     C_InputManager::SF_GetInstance()->MF_Initialize();
     C_PathManager::SF_GetInstance()->MF_Initialize();
+    C_TimeManager::SF_GetInstance()->MF_Initialize();
 
+    // C_RenderManager::SF_GetInstance()->MF_Initialize();
 
+#ifdef DEBUG
+    C_DebugManager::SF_GetInstance()->MF_Initialize();
+#endif // DEBUG
  
     // 객체 구별용 ID값 초기화
     M_IDCount = 0;
@@ -39,6 +40,21 @@ void C_GameEngine::MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _
 
 void C_GameEngine::MF_Prograss()
 {
+    // 관리자 Update
+    // 향후, 추가 구현 예정
+    // TaskManager::SF_GetInstance()->MF_Update();
+    C_InputManager::SF_GetInstance()->MF_Update();
+
+    C_TimeManager::SF_GetInstance()->MF_Update();
+
+    C_RenderManager::SF_GetInstance()->MF_Update();
+
+    
+#ifdef _DEBUG
+    C_DebugManager::SF_GetInstance()->MF_Update();
+#endif // DEBUG
+
+
 }
 
 void C_GameEngine::MF_CreateWindow()
@@ -53,11 +69,11 @@ void C_GameEngine::MF_CreateWindow()
         return;
     }
 
-    ShowWindow(M_H_WindowHandle, true);
-    UpdateWindow(M_H_WindowHandle);
+    ShowWindow(M_H_WindowHandle, true);             // 창 띄우기
+    UpdateWindow(M_H_WindowHandle);                 // 창 주소 연결
 
     // 입력된 해상도에 맞는 윈도우 크기 설정
-    RECT T_WindowSize = { 0, 0, (int)M_V2_Resolution.x, (int)M_V2_Resolution.y };
-    AdjustWindowRect(&T_WindowSize, WS_OVERLAPPEDWINDOW, !!GetMenu(M_H_WindowHandle));
-    SetWindowPos(M_H_WindowHandle, nullptr, 0, 0, T_WindowSize.right - T_WindowSize.left, T_WindowSize.bottom - T_WindowSize.top, 0);
+    RECT T_WindowSize = { 0, 0, (int)M_V2_Resolution.x, (int)M_V2_Resolution.y };                                                       // 창 크기 설정; 해상도 값을 전달받아 설정
+    AdjustWindowRect(&T_WindowSize, WS_OVERLAPPEDWINDOW, !!GetMenu(M_H_WindowHandle));                                                  // 창 크기 조정
+    SetWindowPos(M_H_WindowHandle, nullptr, 0, 0, T_WindowSize.right - T_WindowSize.left, T_WindowSize.bottom - T_WindowSize.top, 0);   // 창 위치 지정
 }

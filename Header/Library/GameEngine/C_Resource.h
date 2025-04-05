@@ -16,30 +16,27 @@ protected:
     ~C_Resource();
 
 protected:
-    const E_RESOURCE_TYPE   M_E_ResouceType;        // E_RESOURCE_TYPE
+    const E_RESOURCE_TYPE   M_E_ResouceType;            // E_RESOURCE_TYPE
     
     // 참조 카운트를 통한 스스로 삭제기능은 코드에서 제거하고, 스마트 포인터를 사용하도록 수정
 
-    wstring                 M_PathKey;              // wstring 경로와 키를 동시에 사용하기 위함
+    wstring                 M_PathKey;                  // wstring 경로와 키를 동시에 사용하기 위함
 
 public:
-    // 클론 함수 추상화
-    virtual C_Resource* MF_Clone() = 0;
+    virtual C_Resource* MF_Clone() = 0;                 // Clone Function; Virtual
 
-    // M_E_ResouceType Getter
-    E_RESOURCE_TYPE MF_GetResourceType()
+
+    inline E_RESOURCE_TYPE MF_GetResourceType()                // Getter; M_E_ResouceType
     {
         return M_E_ResouceType;
     }
 
-    // M_PathKey Getter
-    wstring MF_GetPathKey()
+    inline wstring MF_GetPathKey()                             // Getter; M_PathKey
     {
         return M_PathKey;
     }
 
-    // M_PathKey Setter
-    wstring MF_SetPathKey(const wstring& _PathKey)
+    inline wstring MF_SetPathKey(const wstring& _PathKey)      // Setter
     {
         M_PathKey = _PathKey;
     }

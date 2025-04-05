@@ -15,4 +15,14 @@
 
 #include "C_GameEngine.h"
 
+// 관리자
+#include "C_InputManager.h"
+#include "C_PathManager.h"
+#include "C_TimeManager.h"
+#include "C_RenderManager.h"
+#ifdef _DEBUG
+#include "C_DebugManager.h"
+#endif // DEBUG
+
+
 #endif //PCH_H

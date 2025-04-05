@@ -170,10 +170,12 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="C_DebugManager.h" />
     <ClInclude Include="C_Device.h" />
     <ClInclude Include="C_Entity.h" />
     <ClInclude Include="C_InputManager.h" />
     <ClInclude Include="C_PathManager.h" />
+    <ClInclude Include="C_RenderManager.h" />
     <ClInclude Include="C_Resource.h" />
     <ClInclude Include="C_ResourceManager.h" />
     <ClInclude Include="C_Singleton.h" />
@@ -189,11 +191,13 @@
     <ClInclude Include="solution.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="C_DebugManager.cpp" />
     <ClCompile Include="C_Device.cpp" />
     <ClCompile Include="C_Entity.cpp" />
     <ClCompile Include="C_GameEngine.cpp" />
     <ClCompile Include="C_InputManager.cpp" />
     <ClCompile Include="C_PathManager.cpp" />
+    <ClCompile Include="C_RenderManager.cpp" />
     <ClCompile Include="C_Resource.cpp" />
     <ClCompile Include="C_ResourceManager.cpp" />
     <ClCompile Include="C_TimeManager.cpp" />

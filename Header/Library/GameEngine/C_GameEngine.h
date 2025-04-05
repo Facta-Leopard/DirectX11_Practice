@@ -21,49 +21,43 @@ private:
 	void MF_CreateWindow();
 
 public:
-	// 초기화함수
-	void MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _ResoulutionY);
+	void MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _ResoulutionY);		// 초기화 함수
 
-	// Progress
 	void MF_Prograss();
 
-	// M_H_Window Getter
-	HWND MF_GetWindowHandle()
+
+	inline HWND MF_GetWindowHandle()														// Getter; 
 	{
 		return M_H_WindowHandle;
 	}
 
-	// MV2_Resolution Getter
-	Vector2 MF_GetResolution()
+	inline  Vector2 MF_GetResolution()														// Getter; 
 	{
 		return M_V2_Resolution;
 	}
 
-	// M_v2Resolution Setter
-	//// Vector2
-	void MF_SetResolution(Vector2 _Resolution)
+	inline void MF_SetResolution(Vector2 _Resolution)										// Setter; M_V2_Resolution; Overloaded
 	{
 		M_V2_Resolution = _Resolution;
 	}
 
-	//// float
-	void MF_SetResolution(float _Resolution_X, float _Resolution_Y)
+	inline void MF_SetResolution(float _Resolution_X, float _Resolution_Y)					// Setter; M_V2_Resolution; Overloaded
 	{
 		M_V2_Resolution.x = _Resolution_X;
 		M_V2_Resolution.y = _Resolution_Y;
 	}
 
-	// M_IDCount Getter
-	UINT MF_GetIDCount()
+	inline UINT MF_GetIDCount()																// Getter; M_IDCount
 	{
 		return M_IDCount;
 	}
 
-	// M_IDCount Setter
-	void MF_SetIDCount(UINT _Count)
+	inline void MF_SetIDCount(UINT _Count)													// Setter; M_IDCount
 	{
 		M_IDCount = _Count;
 	}
+
+	// 향후, 구현 예정
 	// FMOD 관련
 
 };

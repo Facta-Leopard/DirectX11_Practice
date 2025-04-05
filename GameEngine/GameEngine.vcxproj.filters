@@ -64,6 +64,12 @@
     <Filter Include="9. Manager\1. InputManager">
       <UniqueIdentifier>{57df4c13-da2a-4506-936a-a0d8152429b5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="9. Manager\9. DebugManager">
+      <UniqueIdentifier>{a202515e-1d01-4913-b098-3950f5ededba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\8. RenderManager">
+      <UniqueIdentifier>{92497537-c72e-4151-a81a-b560eff9300b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Singleton.h">
@@ -117,6 +123,12 @@
     <ClInclude Include="C_TimeManager.h">
       <Filter>9. Manager\3. TimeManager</Filter>
     </ClInclude>
+    <ClInclude Include="C_DebugManager.h">
+      <Filter>9. Manager\9. DebugManager</Filter>
+    </ClInclude>
+    <ClInclude Include="C_RenderManager.h">
+      <Filter>9. Manager\8. RenderManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
@@ -145,6 +157,12 @@
     </ClCompile>
     <ClCompile Include="C_TimeManager.cpp">
       <Filter>9. Manager\3. TimeManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_DebugManager.cpp">
+      <Filter>9. Manager\9. DebugManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_RenderManager.cpp">
+      <Filter>9. Manager\8. RenderManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

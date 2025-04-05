@@ -16,7 +16,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
                      _In_ int       nCmdShow)
 {
     _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF); // 프로그램 종료 후, 메모리 누수 확인 가능
-    // _CrtSetBreakAlloc(); // 프로그램 중단 설정; 메모리 누수가 되는 메모리 블록 확인가능
+    // _CrtSetBreakAlloc(29528); // 프로그램 중단 설정; 메모리 누수가 되는 메모리 블록 확인가능
     // _CrtDumpMemoryLeaks(); // 프로그램 실행 중, 메모리 누수 확인 가능
 
 
@@ -86,7 +86,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         else
         {
             // 게임엔진 루프 호출
-
+            C_GameEngine::SF_GetInstance()->MF_Prograss();
 
             // 에디터 카메라 루프 호출
 
