@@ -15,5 +15,7 @@ public:
 
 public:
     CLONE(C_CameraComponent)
+
+    virtual void MF_ComponentTick() override;
 };
 

@@ -14,5 +14,8 @@ public:
 
 public:
     CLONE(C_NPCScript)
+
+    virtual void MF_ScriptTick() override;
+
 };
 

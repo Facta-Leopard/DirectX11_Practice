@@ -17,3 +17,7 @@ C_Light_2D::~C_Light_2D()
 {
 
 }
+
+void C_Light_2D::MF_ComponentTick()
+{
+}

@@ -15,6 +15,7 @@ public:
 public:
     CLONE(C_SpriteRender)
 
+    virtual void MF_ComponentTick() override;
 
 };
 

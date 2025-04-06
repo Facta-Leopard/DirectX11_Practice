@@ -14,3 +14,7 @@ C_MoveScript::C_MoveScript(const C_MoveScript& _Origin)
 C_MoveScript::~C_MoveScript()
 {
 }
+
+void C_MoveScript::MF_ScriptTick()
+{
+}

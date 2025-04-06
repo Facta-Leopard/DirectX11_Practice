@@ -14,3 +14,7 @@ C_TileRender::C_TileRender(const C_TileRender& _Origin)
 C_TileRender::~C_TileRender()
 {
 }
+
+void C_TileRender::MF_ComponentTick()
+{
+}

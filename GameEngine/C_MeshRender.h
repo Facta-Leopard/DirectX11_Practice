@@ -15,5 +15,7 @@ protected:
 
 public:
     CLONE(C_MeshRender)
+
+    virtual void MF_ComponentTick() override;
 };
 

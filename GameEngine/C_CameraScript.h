@@ -15,4 +15,7 @@ public:
 public:
     CLONE(C_CameraScript)
 
+    virtual void MF_ScriptTick() override;
+
+
 };

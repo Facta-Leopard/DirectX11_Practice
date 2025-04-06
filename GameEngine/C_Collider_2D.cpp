@@ -17,3 +17,7 @@ C_Collider_2D::~C_Collider_2D()
 {
 
 }
+
+void C_Collider_2D::MF_ComponentTick()
+{
+}

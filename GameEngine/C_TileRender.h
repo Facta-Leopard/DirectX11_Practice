@@ -14,5 +14,7 @@ public:
 
 public:
     CLONE(C_TileRender)
+
+    virtual void MF_ComponentTick() override;
 };
 

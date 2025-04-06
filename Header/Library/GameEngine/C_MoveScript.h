@@ -14,5 +14,9 @@ public:
 
 public:
     CLONE(C_MoveScript)
+
+    virtual void MF_ScriptTick() override;
+
+
 };
 

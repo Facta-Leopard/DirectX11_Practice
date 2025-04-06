@@ -17,3 +17,7 @@ C_SpriteRender::~C_SpriteRender()
 {
 
 }
+
+void C_SpriteRender::MF_ComponentTick()
+{
+}

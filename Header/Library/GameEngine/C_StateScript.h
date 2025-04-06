@@ -14,5 +14,8 @@ public:
 
 public:
     CLONE(C_StateScript)
+
+    virtual void MF_ScriptTick() override;
+
 };
 

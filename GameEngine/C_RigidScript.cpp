@@ -14,3 +14,7 @@ C_RigidScript::C_RigidScript(const C_RigidScript& _Origin)
 C_RigidScript::~C_RigidScript()
 {
 }
+
+void C_RigidScript::MF_ScriptTick()
+{
+}

@@ -24,6 +24,8 @@ public:
     // 추상 함수 설정한 클래스에서 상속받고 나서, 다시 추상클래스로 재정의할 때 override를 빼먹지 말자!
     virtual C_Component* MF_Clone() override = 0;                   // Clone Function; Virtual
 
+    virtual void MF_ComponentTick() = 0;                            // 상속받는 클래스의 작동함수 작성을 강제하기 위해서 추상화 설정
+
 public:
     // 향후, 클래스별 자동형변환 추가예정
 

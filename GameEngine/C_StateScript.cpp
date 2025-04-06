@@ -14,3 +14,7 @@ C_StateScript::C_StateScript(const C_StateScript& _Origin)
 C_StateScript::~C_StateScript()
 {
 }
+
+void C_StateScript::MF_ScriptTick()
+{
+}

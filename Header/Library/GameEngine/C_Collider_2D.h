@@ -16,5 +16,8 @@ public:
 public:
     CLONE(C_Collider_2D)
 
+    virtual void MF_ComponentTick() override;
+
+
 };
 

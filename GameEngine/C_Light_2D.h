@@ -15,5 +15,7 @@ public:
 
 public:
     CLONE(C_Light_2D)
+
+    virtual void MF_ComponentTick() override;
 };
 

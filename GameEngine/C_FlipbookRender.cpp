@@ -14,3 +14,7 @@ C_FlipbookRender::C_FlipbookRender(const C_FlipbookRender& _Origin)
 C_FlipbookRender::~C_FlipbookRender()
 {
 }
+
+void C_FlipbookRender::MF_ComponentTick()
+{
+}

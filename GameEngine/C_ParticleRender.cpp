@@ -14,3 +14,7 @@ C_ParticleRender::C_ParticleRender(const C_ParticleRender& _Origin)
 C_ParticleRender::~C_ParticleRender()
 {
 }
+
+void C_ParticleRender::MF_ComponentTick()
+{
+}

@@ -15,6 +15,6 @@ public:
 public:
     CLONE(C_ParticleRender)
 
-
+    virtual void MF_ComponentTick() override;
 };
 

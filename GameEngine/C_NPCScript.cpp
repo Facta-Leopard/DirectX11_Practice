@@ -14,3 +14,7 @@ C_NPCScript::C_NPCScript(const C_NPCScript& _Origin)
 C_NPCScript::~C_NPCScript()
 {
 }
+
+void C_NPCScript::MF_ScriptTick()
+{
+}

@@ -41,7 +41,7 @@ Class* MF_Get##Class##()                                                \
 // Heap Memory Free Macro
 //// STL Version
 // 범위기반 For문 이용; Swift 범위기반 문 응용
-#define DELETE_STL(STL)         \
+#define DELETEALL_STL(STL)         \
 for (auto& Element : STL)       \
 {                               \
     delete Element;             \
@@ -49,7 +49,7 @@ for (auto& Element : STL)       \
 STL.clear();
 
 //// Fixed Array Version
-#define DELETE_FIXEDARRAY_HEAP(FixedArray, _END)    \
+#define DELETEALL_FIXEDARRAY_HEAP(FixedArray, _END)    \
 for (int i = 0; i < _END; ++i)                      \
 {                                                   \
     if (FixedArray[i] != nullptr)                   \

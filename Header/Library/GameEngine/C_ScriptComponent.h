@@ -20,5 +20,9 @@ protected:
 
 public:
     virtual C_ScriptComponent* MF_Clone() = 0;              // Clone Function; Virtual
+
+    virtual void MF_ComponentTick() final {}                // 상속받은 작동함수 추상화 오버라이드 불능 설정
+
+    virtual void MF_ScriptTick() = 0;                       // 상속받는 클래스의 작동함수 작성을 강제하기 위해서 추상화 설정
 };
 

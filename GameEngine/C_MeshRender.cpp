@@ -14,3 +14,7 @@ C_MeshRender::C_MeshRender(const C_MeshRender& _Origin)
 C_MeshRender::~C_MeshRender()
 {
 }
+
+void C_MeshRender::MF_ComponentTick()
+{
+}

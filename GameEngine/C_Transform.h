@@ -14,5 +14,7 @@ public:
 
 public:
     CLONE(C_Transform)
+
+    virtual void MF_ComponentTick() override;
 };
 

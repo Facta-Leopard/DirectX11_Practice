@@ -14,3 +14,7 @@ C_CameraScript::C_CameraScript(const C_CameraScript& _Origin)
 C_CameraScript::~C_CameraScript()
 {
 }
+
+void C_CameraScript::MF_ScriptTick()
+{
+}

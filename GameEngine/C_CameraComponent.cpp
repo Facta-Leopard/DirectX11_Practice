@@ -14,3 +14,7 @@ C_CameraComponent::C_CameraComponent(const C_CameraComponent& _Origin)
 C_CameraComponent::~C_CameraComponent()
 {
 }
+
+void C_CameraComponent::MF_ComponentTick()
+{
+}
