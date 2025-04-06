@@ -83,7 +83,7 @@ This section defines the naming convention for methods executed per frame in a r
 | Manager Level  | `Update()`         | Updates the status of systems or subsystems.           |
 | Group Level    | `Step()`           | Executes logic for a group of objects.                 |
 | Object Level   | `Tick()`           | Per-frame logic for an individual object.              |
-| Component Level| `TickComponent()`  | Executes per-frame logic for a component.              |
+| Component Level| `TComponentick()`  | Executes per-frame logic for a component.              |
 
 ### Naming Example
 ```cpp
@@ -100,5 +100,5 @@ void Step(); // Handles group-level logic
 void Tick(); // Individual enemy behavior
 
 // HealthComponent.cpp
-void TickComponent(); // Executes component logic (e.g., health, movement)
+void Componentick(); // Executes component logic (e.g., transform, state, regdi and so on)
 ```
