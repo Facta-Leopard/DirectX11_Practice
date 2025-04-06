@@ -15,7 +15,7 @@ Each level has a clear role and naming consistency to ensure readability and mai
 | Manager Level    | `Update()`          | Updates the status of systems or subsystems.           |
 | Group Level      | `Step()`            | Executes logic for a group of objects.                 |
 | Object Level     | `Tick()`            | Per-frame logic for an individual object.              |
-| Component Level  | `TickComponent()`   | Executes per-frame logic for a component.              |
+| Component Level  | `ComponentTick()`   | Executes per-frame logic for a component.              |
 
 ---
 
@@ -35,4 +35,4 @@ void Step(); // Handles group-level logic
 void Tick(); // Individual enemy behavior
 
 // HealthComponent.cpp
-void TickComponent(); // Executes component logic (e.g., health, movement)
+void ComponentTick(); // Executes component logic (e.g., transform, state, rigid, and so on)
