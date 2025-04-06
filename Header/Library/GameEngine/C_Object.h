@@ -4,6 +4,8 @@
 #include "define.h"
 
 class C_Component;
+class C_RenderComponent;
+class C_Script;
 
 class C_Object :
     public C_Entity
@@ -16,7 +18,15 @@ protected:
 
 protected:
     // 효율성을 위해 Heap으로 관리
-    C_Component*         M_Components[_COMPONENT_END];              // C_Component
+    // Object
+
+    
+    // Component
+    C_Component*                P_M_Component_s[_COMPONENT_END];             // C_Component*
+    C_RenderComponent*          P_M_RenderComponent;                         // C_RenderComponent*
+
+    C_Script*                   P_M_Script_s[_SCRIPT_END];                   // C_Script*
+
 
 public:
     CLONE(C_Object)

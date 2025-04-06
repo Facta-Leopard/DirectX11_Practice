@@ -1,7 +1,8 @@
 #pragma once
 #include "C_Component.h"
-class C_Light_2D :
-    public C_Component
+
+class C_Light_2D
+    : public C_Component
 {
 public:
     C_Light_2D();

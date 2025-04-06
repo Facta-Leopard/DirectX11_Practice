@@ -3,8 +3,11 @@ class C_Entity
 {
 public:
 	C_Entity();
+
+protected:
 	C_Entity(const C_Entity& _Origin);
 
+public:
 	virtual ~C_Entity();
 
 protected:

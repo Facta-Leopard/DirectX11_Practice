@@ -1,31 +1,89 @@
 ﻿  pch.cpp
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Transform.h(4,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  C_CameraComponent.cpp
+  C_CameraScript.cpp
+  C_Collider_2D.cpp
+  C_CollisionManager.cpp
+  C_Component.cpp
+  C_DebugManager.cpp
+  C_Device.cpp
+  C_Entity.cpp
+  C_FlipbookRender.cpp
+  C_GameEngine.cpp
+  C_InputManager.cpp
+  C_Light_2D.cpp
+  C_MeshRender.cpp
+  C_MoveScript.cpp
+  C_NPCScript.cpp
+  C_Object.cpp
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.cpp(29,2): warning C4150: 불완전한 형식 'C_Script'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
+  (소스 파일 '/C_Object.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(8,7):
+      'C_Script' 선언을 참조하십시오.
   
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Transform.h(16,5): error C3668: 'C_Transform::MF_Clone': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  C_ParticleRender.cpp
+  C_PathManager.cpp
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_PathManager.cpp(31,13): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+  (소스 파일 '/C_PathManager.cpp'을(를) 컴파일하는 중)
   
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Collider_2D.h(5,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Collider_2D.h(17,5): error C3668: 'C_Collider_2D::MF_Clone': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Light_2D.h(4,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Light_2D.h(16,5): error C3668: 'C_Light_2D::MF_Clone': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_CameraComponent.h(4,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_CameraComponent.h(16,5): error C3668: 'C_CameraComponent::MF_Clone': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_RenderComponent.h(5,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_ScriptComponent.h(4,12): error C2504: 'C_Component': 기본 클래스를 정의하지 않았습니다.
-  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
-  
+  C_RenderComponent.cpp
+  C_RenderManager.cpp
+  코드를 생성하고 있습니다...
+  컴파일하고 있습니다...
+  C_Resource.cpp
+  C_ResourceManager.cpp
+  C_RigidScript.cpp
+  C_ScriptComponent.cpp
+  C_SpriteRender.cpp
+  C_StageManager.cpp
+  C_StateScript.cpp
+  C_TileRender.cpp
+  C_TimeManager.cpp
+  C_Transform.cpp
+  globalFunction.cpp
+  코드를 생성하고 있습니다...
+  GameEngine.vcxproj -> C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
+  통합관리를 위한 파일 복사용 배치파일 실행
+  .\component.h
+  .\C_CameraComponent.h
+  .\C_CameraScript.h
+  .\C_Collider_2D.h
+  .\C_CollisionManager.h
+  .\C_Component.h
+  .\C_DebugManager.h
+  .\C_Device.h
+  .\C_Entity.h
+  .\C_FlipbookRender.h
+  .\C_GameEngine.h
+  .\C_InputManager.h
+  .\C_Light_2D.h
+  .\C_MeshRender.h
+  .\C_MoveScript.h
+  .\C_NPCScript.h
+  .\C_Object.h
+  .\C_ParticleRender.h
+  .\C_PathManager.h
+  .\C_RenderComponent.h
+  .\C_RenderManager.h
+  .\C_Resource.h
+  .\C_ResourceManager.h
+  .\C_RigidScript.h
+  .\C_ScriptComponent.h
+  .\C_Singleton.h
+  .\C_SpriteRender.h
+  .\C_StageManager.h
+  .\C_StateScript.h
+  .\C_TileRender.h
+  .\C_TimeManager.h
+  .\C_Transform.h
+  .\define.h
+  .\enum.h
+  .\globalFunction.h
+  .\globalVariable.h
+  .\SimpleMath.h
+  .\solution.h
+  38개 파일이 복사되었습니다.
+  .\SimpleMath.inl
+  1개 파일이 복사되었습니다.
+  지정된 경로를 찾을 수 없습니다.
+  파일을 찾을 수 없습니다-*.fx
+  0개 파일이 복사되었습니다.

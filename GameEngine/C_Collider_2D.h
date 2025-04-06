@@ -1,8 +1,8 @@
 #pragma once
-#include "C_Component.h"
+#include "component.h"
 
-class C_Collider_2D :
-    public C_Component
+class C_Collider_2D
+    : public C_Component
 {
 public:
     C_Collider_2D();
