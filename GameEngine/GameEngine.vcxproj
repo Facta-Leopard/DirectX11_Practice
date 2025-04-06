@@ -180,6 +180,7 @@
     <ClInclude Include="C_Device.h" />
     <ClInclude Include="C_Entity.h" />
     <ClInclude Include="C_FlipbookRender.h" />
+    <ClInclude Include="C_Gruop.h" />
     <ClInclude Include="C_InputManager.h" />
     <ClInclude Include="C_Light_2D.h" />
     <ClInclude Include="C_MeshRender.h" />
@@ -222,6 +223,7 @@
     <ClCompile Include="C_Entity.cpp" />
     <ClCompile Include="C_FlipbookRender.cpp" />
     <ClCompile Include="C_GameEngine.cpp" />
+    <ClCompile Include="C_Gruop.cpp" />
     <ClCompile Include="C_InputManager.cpp" />
     <ClCompile Include="C_Light_2D.cpp" />
     <ClCompile Include="C_MeshRender.cpp" />

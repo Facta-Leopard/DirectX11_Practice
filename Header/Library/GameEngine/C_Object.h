@@ -5,7 +5,7 @@
 
 class C_Component;
 class C_RenderComponent;
-class C_Script;
+class C_ScriptComponent;
 
 class C_Object :
     public C_Entity
@@ -25,7 +25,7 @@ protected:
     C_Component*                P_M_Component_s[_COMPONENT_END];             // C_Component*
     C_RenderComponent*          P_M_RenderComponent;                         // C_RenderComponent*
 
-    C_Script*                   P_M_Script_s[_SCRIPT_END];                   // C_Script*
+    C_ScriptComponent*                   P_M_Script_s[_SCRIPT_END];                   // C_Script*
 
 
 public:

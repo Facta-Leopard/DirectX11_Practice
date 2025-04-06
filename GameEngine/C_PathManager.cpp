@@ -28,7 +28,7 @@ void C_PathManager::MF_Initialize()
 	// Solution 폴더 위치 경로 계산
 	wcscpy_s(M_SolutionPath_s, M_ProjectPath_s);
 	wcscat_s(M_ProjectPath_s, L"\\");
-	for (int i = wcslen(M_SolutionPath_s); 0 < i; --i)
+	for (size_t i = wcslen(M_SolutionPath_s); 0 < i; --i)
 	{
 		if (L'\\' == M_SolutionPath_s[i])
 		{

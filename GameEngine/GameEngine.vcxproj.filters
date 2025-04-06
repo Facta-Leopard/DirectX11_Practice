@@ -109,9 +109,6 @@
     <Filter Include="8. Stage">
       <UniqueIdentifier>{bb07772a-9191-45a4-a869-3669c427142d}</UniqueIdentifier>
     </Filter>
-    <Filter Include="7. Layer">
-      <UniqueIdentifier>{98743328-50c1-4470-a2b3-798157d60fdd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4. Component\49. Camera">
       <UniqueIdentifier>{f6d5a8bd-3054-40c1-9dd6-2ddd1a25fe53}</UniqueIdentifier>
     </Filter>
@@ -160,9 +157,6 @@
     <Filter Include="6. ScriptComponent\60. ScriptComponent">
       <UniqueIdentifier>{9d201e80-682a-475f-a40f-fd0266599f6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="6. ScriptComponent\69. CameraMove">
-      <UniqueIdentifier>{12f9b6ea-387c-4038-95af-a18e639894f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="6. ScriptComponent\63. MoveScript">
       <UniqueIdentifier>{33b7f9a4-d2c1-41b4-8c20-a4000e86b26a}</UniqueIdentifier>
     </Filter>
@@ -174,6 +168,12 @@
     </Filter>
     <Filter Include="6. ScriptComponent\62. StateScript">
       <UniqueIdentifier>{0f09ceb3-4a73-4fa2-8d86-17295bdc57ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\69. CameraScript">
+      <UniqueIdentifier>{12f9b6ea-387c-4038-95af-a18e639894f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="7. Group">
+      <UniqueIdentifier>{98743328-50c1-4470-a2b3-798157d60fdd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -279,23 +279,26 @@
     <ClInclude Include="C_ParticleRender.h">
       <Filter>5. RenderComponent\69. ParticleRender</Filter>
     </ClInclude>
-    <ClInclude Include="C_MoveScript.h">
-      <Filter>Relic\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="C_NPCScript.h">
-      <Filter>Relic\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="C_CameraScript.h">
-      <Filter>Relic\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="C_RigidScript.h">
-      <Filter>Relic\헤더 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="C_StateScript.h">
-      <Filter>Relic\헤더 파일</Filter>
-    </ClInclude>
     <ClInclude Include="C_ScriptComponent.h">
       <Filter>6. ScriptComponent\60. ScriptComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="C_CameraScript.h">
+      <Filter>6. ScriptComponent\69. CameraScript</Filter>
+    </ClInclude>
+    <ClInclude Include="C_NPCScript.h">
+      <Filter>6. ScriptComponent\63. NPCScript</Filter>
+    </ClInclude>
+    <ClInclude Include="C_RigidScript.h">
+      <Filter>6. ScriptComponent\61. RigedScript</Filter>
+    </ClInclude>
+    <ClInclude Include="C_StateScript.h">
+      <Filter>6. ScriptComponent\62. StateScript</Filter>
+    </ClInclude>
+    <ClInclude Include="C_MoveScript.h">
+      <Filter>6. ScriptComponent\63. MoveScript</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Gruop.h">
+      <Filter>7. Group</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -377,23 +380,26 @@
     <ClCompile Include="C_ParticleRender.cpp">
       <Filter>5. RenderComponent\69. ParticleRender</Filter>
     </ClCompile>
-    <ClCompile Include="C_MoveScript.cpp">
-      <Filter>Relic\소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="C_NPCScript.cpp">
-      <Filter>Relic\소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="C_CameraScript.cpp">
-      <Filter>Relic\소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="C_RigidScript.cpp">
-      <Filter>Relic\소스 파일</Filter>
-    </ClCompile>
-    <ClCompile Include="C_StateScript.cpp">
-      <Filter>Relic\소스 파일</Filter>
-    </ClCompile>
     <ClCompile Include="C_ScriptComponent.cpp">
       <Filter>6. ScriptComponent\60. ScriptComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="C_CameraScript.cpp">
+      <Filter>6. ScriptComponent\69. CameraScript</Filter>
+    </ClCompile>
+    <ClCompile Include="C_NPCScript.cpp">
+      <Filter>6. ScriptComponent\63. NPCScript</Filter>
+    </ClCompile>
+    <ClCompile Include="C_RigidScript.cpp">
+      <Filter>6. ScriptComponent\61. RigedScript</Filter>
+    </ClCompile>
+    <ClCompile Include="C_StateScript.cpp">
+      <Filter>6. ScriptComponent\62. StateScript</Filter>
+    </ClCompile>
+    <ClCompile Include="C_MoveScript.cpp">
+      <Filter>6. ScriptComponent\63. MoveScript</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Gruop.cpp">
+      <Filter>7. Group</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

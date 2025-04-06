@@ -31,8 +31,7 @@
 
 #include "C_Object.h"
 
-#include "C_Component.h"
-#include "C_RenderComponent.h"
+#include "component.h"
 
 
 #endif //PCH_H

@@ -9,26 +9,19 @@
   C_Entity.cpp
   C_FlipbookRender.cpp
   C_GameEngine.cpp
+  C_Gruop.cpp
   C_InputManager.cpp
   C_Light_2D.cpp
   C_MeshRender.cpp
   C_MoveScript.cpp
   C_NPCScript.cpp
   C_Object.cpp
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.cpp(29,2): warning C4150: 불완전한 형식 'C_Script'에 대한 포인터를 삭제했습니다. 소멸자가 호출되지 않습니다.
-  (소스 파일 '/C_Object.cpp'을(를) 컴파일하는 중)
-      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(8,7):
-      'C_Script' 선언을 참조하십시오.
-  
   C_ParticleRender.cpp
   C_PathManager.cpp
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_PathManager.cpp(31,13): warning C4267: '초기화 중': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  (소스 파일 '/C_PathManager.cpp'을(를) 컴파일하는 중)
-  
   C_RenderComponent.cpp
-  C_RenderManager.cpp
   코드를 생성하고 있습니다...
   컴파일하고 있습니다...
+  C_RenderManager.cpp
   C_Resource.cpp
   C_ResourceManager.cpp
   C_RigidScript.cpp
@@ -54,6 +47,7 @@ C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_PathManager
   .\C_Entity.h
   .\C_FlipbookRender.h
   .\C_GameEngine.h
+  .\C_Gruop.h
   .\C_InputManager.h
   .\C_Light_2D.h
   .\C_MeshRender.h
@@ -81,7 +75,7 @@ C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_PathManager
   .\globalVariable.h
   .\SimpleMath.h
   .\solution.h
-  38개 파일이 복사되었습니다.
+  39개 파일이 복사되었습니다.
   .\SimpleMath.inl
   1개 파일이 복사되었습니다.
   지정된 경로를 찾을 수 없습니다.

@@ -8,7 +8,7 @@ enum E_CONSTANTBUFFER_TYPE
 	// 상수버퍼이므로 b 레지스터를 사용
 	_CONSTANTBUFFER_TRANSFORM,					// b0
 	_CONSTANTBUFFER_MATERIAL,					// b1
-	_CONSTANTBUFFER_GLOBAL,					// b2
+	_CONSTANTBUFFER_GLOBAL,						// b2
 
 	_CONSTANTBUFFER_END,
 };
@@ -148,6 +148,7 @@ enum E_STAGE_STATE
 	_STAGE_STOP,
 };
 
+
 //// about Resourece
 enum E_RESOURCE_TYPE
 {
@@ -175,6 +176,16 @@ enum E_TEXTURE_NUMBER
 	_TEXTURE_5,
 
 	_TEXTURE_END,
+};
+
+
+//// about Group
+enum E_GROUP_NUMBER
+{
+	_GROUP_PLAYER,
+	_GROUP_ENEMY,
+
+	_GROUP_END
 };
 
 
@@ -206,7 +217,7 @@ enum E_SCRIPT_TYPE
 	_SCRIPT_MOVE,						// 이동관련
 	_SCRIPT_NPC,						// 반응관련
 
-	_SCRIPT_CAMERAMOVE,					// 카메라관련
+	_SCRIPT_CAMERA,					// 카메라관련
 
 	_SCRIPT_END,
 };
