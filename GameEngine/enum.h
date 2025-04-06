@@ -140,7 +140,23 @@ enum E_TASK_TYPE
 };
 
 
+
+
 //// about Stage
+////// about Stage Number
+enum E_STAGE_NUMBER					// 향후, 스테이지 타입으로 바꾸는 게 더 가독성이 나을지 고민해봐야 할 듯			
+{
+	_STAGE_0,						// 향후, 실행시 초기화면으로 정의예정
+	_STAGE_1,						// 
+	_STAGE_2,						// 초기화면
+	_STAGE_3,						// 초기화면
+	_STAGE_4,						// 초기화면
+	_STAGE_5,						// 초기화면
+	_STAGE_END,						// 
+};
+
+
+////// about Stage State
 enum E_STAGE_STATE
 {
 	_STAGE_PLAY,
@@ -150,10 +166,16 @@ enum E_STAGE_STATE
 
 
 //// about Group
-enum E_GROUP_NUMBER
+enum E_GROUP_TYPE
 {
 	_GROUP_PLAYER,
+	_GROUP_PLAYER_MISSILE,
+
 	_GROUP_ENEMY,
+	_GROUP_ENEMY_MISSOLE,
+
+	_GROUP_OBJECT_INTERACTABLE,
+	_GROUP_OBJECT_UNINTERACTABLE,
 
 	_GROUP_END
 };

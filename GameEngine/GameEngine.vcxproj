@@ -197,6 +197,7 @@
     <ClInclude Include="C_ScriptComponent.h" />
     <ClInclude Include="C_Singleton.h" />
     <ClInclude Include="C_SpriteRender.h" />
+    <ClInclude Include="C_Stage.h" />
     <ClInclude Include="C_StageManager.h" />
     <ClInclude Include="C_StateScript.h" />
     <ClInclude Include="C_TileRender.h" />
@@ -210,7 +211,7 @@
     <ClInclude Include="pch.h" />
     <ClInclude Include="C_GameEngine.h" />
     <ClInclude Include="SimpleMath.h" />
-    <ClInclude Include="solution.h" />
+    <ClInclude Include="global.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_CameraComponent.cpp" />
@@ -239,6 +240,7 @@
     <ClCompile Include="C_RigidScript.cpp" />
     <ClCompile Include="C_ScriptComponent.cpp" />
     <ClCompile Include="C_SpriteRender.cpp" />
+    <ClCompile Include="C_Stage.cpp" />
     <ClCompile Include="C_StageManager.cpp" />
     <ClCompile Include="C_StateScript.cpp" />
     <ClCompile Include="C_TileRender.cpp" />

@@ -1,5 +1,5 @@
 #pragma once
-#include "solution.h"
+#include "global.h"
 
 class C_InputManager :
     public C_Singleton< C_InputManager>

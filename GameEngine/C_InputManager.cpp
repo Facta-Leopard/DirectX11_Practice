@@ -56,16 +56,16 @@ void C_InputManager::MF_Initialize()
 	// 마우스 초기화
 	//// 마우스 좌표를 담을 임시 객체
 	POINT T_MousePos;
-	if (!GetCursorPos(&T_MousePos))	// 마우스 절대좌표 가져오는 WInAPI Function 사용
+	if (NULL == GetCursorPos(&T_MousePos))					// 마우스 절대좌표 가져오는 WInAPI Function 사용
 	{
-		POPUP_DEBUG(L"MousePos Initializing Failed", L"C_InputManager::MF_Initialize() 내 GetCursorPos() 실패");
+		POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_InputManager::MF_Initialize(), NULL == GetCursorPos()");
 	}
 
 	HWND T_H_Window = C_GameEngine::SF_GetInstance()->MF_GetWindowHandle();
 
-	if (!ScreenToClient(T_H_Window, &T_MousePos))	// 마우스 좌표를 창 기준으로 상대좌표로 변환해주는 WinAPI Function 사용
+	if (NULL == ScreenToClient(T_H_Window, &T_MousePos))	// 마우스 좌표를 창 기준으로 상대좌표로 변환해주는 WinAPI Function 사용
 	{
-		POPUP_DEBUG(L"MousePos Initializing Failed", L"C_InputManager::MF_Initialize() ScreenToClient() 실패");
+		POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_InputManager::MF_Initialize(), NULL == ScreenToClient()");
 	}
 
 	Vector2 T_Mousepos = (Vector2)(C_GameEngine::SF_GetInstance()->MF_GetResolution());
@@ -124,14 +124,14 @@ void C_InputManager::MF_Update()
 		M_DS_MouseInfo.M_MousePosBefore = M_DS_MouseInfo.M_MousePos;
 
 		POINT T_MousePos;
-		if (!GetCursorPos(&T_MousePos))	// 마우스 절대좌표 가져오는 WInAPI Function 사용
+		if (NULL == GetCursorPos(&T_MousePos))	// 마우스 절대좌표 가져오는 WInAPI Function 사용
 		{
-			POPUP_DEBUG(L"MousePos Initializing Failed", L"C_KeyManager::MF_Update() 내 GetCursorPos() 실패");
+			POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_KeyManager::MF_Update(), NULL == GetCursorPos()");
 		}
 
-		if (!ScreenToClient(C_GameEngine::SF_GetInstance()->MF_GetWindowHandle(), &T_MousePos))			// 마우스 좌표를 창 기준으로 상대좌표로 변환해주는 WinAPI Function 사용
+		if (NULL == ScreenToClient(C_GameEngine::SF_GetInstance()->MF_GetWindowHandle(), &T_MousePos))			// 마우스 좌표를 창 기준으로 상대좌표로 변환해주는 WinAPI Function 사용
 		{
-			POPUP_DEBUG(L"MousePos Initializing Failed", L"C_KeyManager::MF_Update() ScreenToClient() 실패");
+			POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_KeyManager::MF_Update() ScreenToClient(), NULL == ScreenToClient(");
 		}
 
 		M_DS_MouseInfo.M_MousePos = (Vector2)((float)T_MousePos.x, (float)T_MousePos.y);								// 현재 마우스 좌표 설정

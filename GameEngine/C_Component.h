@@ -2,6 +2,10 @@
 
 #include "C_Entity.h"
 
+#include "enum.h"
+
+class C_Object;
+
 class C_Component :
     public C_Entity
 {
@@ -16,9 +20,9 @@ public:
     virtual ~C_Component();
 
 protected:
-    C_Object*                       P_M_OwnerObject;                // C_Object*; 컴포넌트가 속한 객체 대상을 알려주는 역할
-
     const E_COMPONENT_TYPE          L_M_ComponentType;              // const E_COMPONENT_TYPE; 본인이 무슨 타입이지 생성될 때 정해지도록 하기 위함
+
+    C_Object*                       P_M_OwnerObject;                // C_Object*; 컴포넌트가 속한 객체 대상을 알려주는 역할
 
 public:
     // 추상 함수 설정한 클래스에서 상속받고 나서, 다시 추상클래스로 재정의할 때 override를 빼먹지 말자!
@@ -27,6 +31,11 @@ public:
     virtual void MF_ComponentTick() = 0;                            // 상속받는 클래스의 작동함수 작성을 강제하기 위해서 추상화 설정
 
 public:
+    inline E_COMPONENT_TYPE MF_GetComponentType()                          // Getter
+    {
+        return L_M_ComponentType;
+    }
+
     // 향후, 클래스별 자동형변환 추가예정
 
 

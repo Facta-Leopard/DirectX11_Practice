@@ -1,6 +1,9 @@
 #pragma once
 #include "C_Entity.h"
+
 #include "C_Object.h"
+
+#include "global.h"
 
 class C_Group :
     public C_Entity
@@ -14,7 +17,7 @@ public:
     ~C_Group();
 
 protected:
-    E_GROUP_NUMBER                      M_Index;                    // E_GROUP_NUMBER; 분류를 위한 그룹
+    E_GROUP_TYPE                        M_Index;                    // E_GROUP_NUMBER; 분류를 위한 그룹
 
     // Object를 관리하기 위한 Member Variable
     vector<C_Object*>                   STL_M_AllObject;            // vector<C_Object*>; 성능이점을 갖기위한 구조
@@ -24,7 +27,7 @@ protected:
 public:
     void MF_Prepare();
 
-    void MF_Step();
+    void MF_Tick();
 
     // STL_M_AllObject 관련
     inline void MF_InsertObjectIntoAllObject(C_Object* _Object)
@@ -40,7 +43,7 @@ public:
     void MF_EraseObjectFromAllObject(C_Object* _Object);                    // Just Unlist, Not Delete
 
     // STL_M_ParentObject 관련
-    void MF_AddObjectToParentObject(C_Object* _Object);                     // 오브젝트를 부모 오브젝트에 넣기 
+    void MF_AddObjectToParentObject(C_Object* _Object);                     // 향후, 구현 예정; 오브젝트를 부모 오브젝트에 넣기
 
     inline vector<C_Object*> MF_GetParentObjectFromGroup()                  // Getter
     {

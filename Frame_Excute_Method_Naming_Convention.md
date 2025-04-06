@@ -9,13 +9,14 @@ Each level has a clear role and naming consistency to ensure readability and mai
 
 ## Overview
 
-| Layer           | Method Name        | Description                                             |
-|------------------|---------------------|---------------------------------------------------------|
-| Program Level    | `Progress()`        | Handles the overall program loop or frame progression. |
-| Manager Level    | `Update()`          | Updates the status of systems or subsystems.           |
-| Group Level      | `Step()`            | Executes logic for a group of objects.                 |
-| Object Level     | `Tick()`            | Per-frame logic for an individual object.              |
-| Component Level  | `ComponentTick()`   | Executes per-frame logic for a component.              |
+| Layer           | Method Name          | Description                                             |
+|-----------------|----------------------|---------------------------------------------------------|
+| Program Level   | `MF_Progress()`       | Handles the overall program loop or frame progression. |
+| Manager Level   | `MF_Update()`         | Updates the status of systems or subsystems.           |
+| Stage Level     | `MF_Step()`, `MF_ComponentStep()` | Executes logic for a group of objects.                 |
+| Object Level    | `MF_Tick()`           | Per-frame logic for an individual object.              |
+| Component Level | `MF_ComponentTick()`  | Executes per-frame logic for a component.              |
+| Script Component Level | `MF_ScriptComponentTick()` | Executes per-frame logic for a script component. This method is abstracted in `MF_ComponentTick()` and is blocked as final in the base `ComponentTick()` to prevent further modification. |
 
 ---
 
@@ -23,16 +24,19 @@ Each level has a clear role and naming consistency to ensure readability and mai
 
 ```cpp
 // Program.cpp
-void Progress(); // Main loop control
+void MF_Progress();
 
 // SceneManager.cpp
-void Update(); // Scene or system-level update
+void MF_Update();
 
 // EnemyGroup.cpp
-void Step(); // Handles group-level logic
+void MF_Step();
 
 // Enemy.cpp
-void Tick(); // Individual enemy behavior
+void MF_Tick();
 
 // HealthComponent.cpp
-void ComponentTick(); // Executes component logic (e.g., transform, state, rigid, and so on)
+void MF_ComponentTick();
+
+// ScriptComponent.cpp
+void MF_ScriptComponentTick();

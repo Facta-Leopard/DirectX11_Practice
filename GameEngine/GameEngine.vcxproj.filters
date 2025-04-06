@@ -210,7 +210,7 @@
     <ClInclude Include="pch.h">
       <Filter>0. Foundation\00. PreCompiled Header</Filter>
     </ClInclude>
-    <ClInclude Include="solution.h">
+    <ClInclude Include="global.h">
       <Filter>0. Foundation\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="C_ResourceManager.h">
@@ -299,6 +299,9 @@
     </ClInclude>
     <ClInclude Include="C_Gruop.h">
       <Filter>7. Group</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Stage.h">
+      <Filter>8. Stage</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -401,11 +404,16 @@
     <ClCompile Include="C_Gruop.cpp">
       <Filter>7. Group</Filter>
     </ClCompile>
+    <ClCompile Include="C_Stage.cpp">
+      <Filter>8. Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleMath.inl">
       <Filter>0. Foundation</Filter>
     </None>
-    <None Include="cpp.hint" />
+    <None Include="cpp.hint">
+      <Filter>Relic</Filter>
+    </None>
   </ItemGroup>
 </Project>

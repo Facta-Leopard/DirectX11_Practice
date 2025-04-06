@@ -4,10 +4,10 @@
 
 // WinAPI 메시지 박스를 간단히 쓰기 위함
 #ifdef _DEBUG
-#define POPUP_DEBUG(title, message) MessageBox(nullptr, message, title, MB_OK | MB_ICONINFORMATION)
+#define POPUP_DEBUG(title, message) MessageBox(nullptr, message, title, MB_OK | MB_ICONINFORMATION);
 #endif
 
-#define POPUP(title, message) MessageBox(nullptr, message, title, MB_OK | MB_ICONINFORMATION)
+#define POPUP(title, message) MessageBox(nullptr, message, title, MB_OK | MB_ICONINFORMATION);
 
 // 싱글턴, 하나의 매크로 단위에서 줄넘김을 하려면 '\'를 써야 하며, 매크로의 ()안의 인자는 하나의 매크로 안에서 쓰이는 토큰이 됨
 // 여기서 "friend class singleton<type>"를 쓴 이유는, 상속해서 싱글턴 패턴을 구성하여 사용할 때 접근자 private에 접근하기 위함임
@@ -40,8 +40,8 @@ Class* MF_Get##Class##()                                                \
 
 // Heap Memory Free Macro
 //// STL Version
-// 범위기반 For문 이용; Swift 범위기반 문 응용
-#define DELETEALL_STL(STL)         \
+// 범위기반 for문 이용; Swift 범위기반 문 응용
+#define DELETEALL_STL(STL)      \
 for (auto& Element : STL)       \
 {                               \
     delete Element;             \

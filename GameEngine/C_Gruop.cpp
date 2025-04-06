@@ -17,13 +17,14 @@ void C_Group::MF_Prepare()
 {
 }
 
-void C_Group::MF_Step()
+void C_Group::MF_Tick()
 {
 	for (size_t i = 0; i < STL_M_AllObject.size(); i++)
 	{
 		STL_M_AllObject[i]->MF_Tick();
 	}
 }
+
 
 void C_Group::MF_EraseObjectFromAllObject(C_Object* _Object)
 {

@@ -63,9 +63,9 @@ void C_GameEngine::MF_CreateWindow()
         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, M_H_Instance, nullptr); // 유의! wcex.lpszClassName로 연결하는 기본창 클래스 이름과 일치하지 않으면 에러남
 
 
-    if (!M_H_WindowHandle)
+    if (NULL == M_H_WindowHandle)
     {
-        POPUP_DEBUG(L"Window Creating Failed", L"CreateWindowW 실패");
+        POPUP_DEBUG(L"Window Creating Failed", L"in C_GameEngine::MF_CreateWindow(), NULL == M_H_WindowHandle");
         return;
     }
 

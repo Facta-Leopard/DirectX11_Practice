@@ -1,6 +1,6 @@
 #pragma once
 
-#include "solution.h"
+#include "global.h"
 
 #include "C_Entity.h"
 
@@ -16,14 +16,14 @@ protected:
     ~C_Resource();
 
 protected:
-    const E_RESOURCE_TYPE   M_E_ResouceType;            // E_RESOURCE_TYPE
+    const E_RESOURCE_TYPE   M_E_ResouceType;                   // E_RESOURCE_TYPE
     
-    // 참조 카운트를 통한 스스로 삭제기능은 코드에서 제거하고, 스마트 포인터를 사용하도록 수정
+    // 참조 카운트를 통한 스스로 삭제기능은 코드에서 제거했음; 스마트 포인터를 사용하거나 Resource Manager에서 한번씩 훑는 걸로 하는 것이 어쩔까 싶은데..
 
-    wstring                 M_PathKey;                  // wstring 경로와 키를 동시에 사용하기 위함
+    wstring                 M_PathKey;                         // wstring 경로와 키를 동시에 사용하기 위함
 
 public:
-    virtual C_Resource* MF_Clone() = 0;                 // Clone Function; Virtual
+    virtual C_Resource* MF_Clone() = 0;                        // Clone Function; Virtual
 
 
     inline E_RESOURCE_TYPE MF_GetResourceType()                // Getter; M_E_ResouceType

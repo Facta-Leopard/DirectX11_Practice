@@ -11,7 +11,7 @@
 #include <Windows.h>
 #include "framework.h"
 
-#include "solution.h"
+#include "global.h"
 
 #include "define.h"
 
