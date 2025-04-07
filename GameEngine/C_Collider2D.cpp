@@ -18,6 +18,10 @@ C_Collider2D::~C_Collider2D()
 
 }
 
+void C_Collider2D::MF_Prepare()
+{
+}
+
 void C_Collider2D::MF_ComponentTick()
 {
 }

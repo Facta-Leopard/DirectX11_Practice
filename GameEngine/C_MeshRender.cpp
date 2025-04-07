@@ -15,6 +15,10 @@ C_MeshRender::~C_MeshRender()
 {
 }
 
+void C_MeshRender::MF_Prepare()
+{
+}
+
 void C_MeshRender::MF_ComponentTick()
 {
 }

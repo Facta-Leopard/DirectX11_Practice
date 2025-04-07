@@ -15,6 +15,8 @@ public:
 public:
     CLONE(C_TileRender)
 
+    virtual void MF_Prepare() override;
+
     virtual void MF_ComponentTick() override;
 
     virtual C_TileRender* MF_GetMyself() override

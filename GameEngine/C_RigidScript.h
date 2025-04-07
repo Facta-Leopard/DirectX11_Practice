@@ -15,6 +15,8 @@ public:
 public:
     CLONE(C_RigidScript)
 
+    virtual void MF_Prepare() override;
+
     virtual void MF_ScriptTick() override;
 };
 

@@ -16,6 +16,8 @@ public:
 public:
     CLONE(C_Collider2D)
 
+    virtual void MF_Prepare() override;
+
     virtual void MF_ComponentTick() override;
 
     virtual C_Collider2D* MF_GetMyself() override

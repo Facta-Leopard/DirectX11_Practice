@@ -33,19 +33,21 @@ public:
 
     virtual C_Component* MF_GetMyself()                             // Return This Point By Vitual and Polymorph; 다형성을 이용한 자기자신 반환함수
     {
-        if (_COMPONENT_SCRIPT == this->L_M_ComponentType)               // 방어코드
+        if (_COMPONENT_SCRIPT == this->L_M_ComponentType)           // 방어코드
         {
             POPUP_DEBUG(L"Return This Is Script Component", L"in C_Component::GetMyself, _COMPONENT_SCRIPT == this->L_M_ComponentType")
         }
-        if (_COMPONENT_RENDER == this->L_M_ComponentType)               // 방어코드
+        if (_COMPONENT_RENDER == this->L_M_ComponentType)           // 방어코드
         {
             POPUP_DEBUG(L"Return This Is Script Component", L"in C_Component::GetMyself, _COMPONENT_RENDER == this->L_M_ComponentType")
         }
         return this; 
-    }            // 자기자신을 반환하는 함수; 다형성을 이용
+    }
+
+    virtual void MF_Prepare() = 0;                                  // 상속받는 클래스의 작동함수 작성을 강제하기 위해서 추상화 설정
 
 public:
-    inline E_COMPONENT_TYPE MF_GetComponentType()                          // Getter
+    inline E_COMPONENT_TYPE MF_GetComponentType()                   // Getter
     {
         return L_M_ComponentType;
     }

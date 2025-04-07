@@ -9,7 +9,7 @@
 - **`CP`**: Prefix for objects wrapped by `ComPtr`.
 - **`SP`**: Prefix for objects wrapped by `shared_ptr`.
 - **`P`**: Prefix for raw pointers.
-- **`FP`**: Prefix for function pointers.
+- **`PF`**: Prefix for function pointers.
 - **`R`**: Prefix for references.
 
 ---

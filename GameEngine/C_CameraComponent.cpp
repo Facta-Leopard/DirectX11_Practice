@@ -15,6 +15,10 @@ C_CameraComponent::~C_CameraComponent()
 {
 }
 
+void C_CameraComponent::MF_Prepare()
+{
+}
+
 void C_CameraComponent::MF_ComponentTick()
 {
 }

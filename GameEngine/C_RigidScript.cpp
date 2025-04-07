@@ -15,6 +15,10 @@ C_RigidScript::~C_RigidScript()
 {
 }
 
+void C_RigidScript::MF_Prepare()
+{
+}
+
 void C_RigidScript::MF_ScriptTick()
 {
 }

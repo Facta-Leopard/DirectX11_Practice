@@ -18,6 +18,10 @@ C_Light2D::~C_Light2D()
 
 }
 
+void C_Light2D::MF_Prepare()
+{
+}
+
 void C_Light2D::MF_ComponentTick()
 {
 }

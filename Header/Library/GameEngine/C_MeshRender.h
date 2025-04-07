@@ -16,6 +16,8 @@ protected:
 public:
     CLONE(C_MeshRender)
 
+    virtual void MF_Prepare() override;
+
     virtual void MF_ComponentTick() override;
 
     virtual C_MeshRender* MF_GetMyself() override

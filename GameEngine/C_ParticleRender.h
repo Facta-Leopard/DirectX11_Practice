@@ -15,6 +15,8 @@ public:
 public:
     CLONE(C_ParticleRender)
 
+    virtual void MF_Prepare() override;
+
     virtual void MF_ComponentTick() override;
 
     virtual C_ParticleRender* MF_GetMyself() override { return this; }

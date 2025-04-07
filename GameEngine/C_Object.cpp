@@ -24,28 +24,78 @@ C_Object::C_Object(const C_Object& _Origin)
 	, P_M_RenderComponent(_Origin.P_M_RenderComponent)			// 기본적으로 렌더링하는 요소 복사
 	, P_M_Script_s{}
 {
-	// 스크립트 깊은 복사
-	for (int i = _SCRIPT_RIGID; i < _SCRIPT_END; i++)
-	{
-
-	}
-
 	// 컴포넌트 깊은 복사
 	for (int i = _SCRIPT_RIGID; i < _SCRIPT_END; i++)
 	{
+		// Colne 함수를 쓴 버전
+		P_M_Component_s[i] = _Origin.P_M_Component_s[i]->MF_Clone();
 
+		// Clone 함수를 안 쓴 버전은 사용할 수 없음
+		//// C_ScriptComponent를 추상클래스화 했으므로, 인스턴스 생성을 할 수 없기 때문
+		//// C_ScriptComponent* T_Script = new C_ScriptComponent(_Origin.P_M_Component_s[i]);
+		//// P_M_Component_s[i] = T_Script;
+		// 이렇게 사용불가
 	}
 
+	// 스크립트 깊은 복사
+	for (int i = _SCRIPT_RIGID; i < _SCRIPT_END; i++)
+	{
+		P_M_Script_s[i] = _Origin.P_M_Script_s[i]->MF_Clone();
+	}
+
+	// 자식 오브젝트 깊은 복사
+	for (vector<C_Object*>::iterator T_Iterator = STL_M_ChildObejct.begin(); T_Iterator < STL_M_ChildObejct.end(); T_Iterator++)
+	{
+		if (nullptr == *T_Iterator)			   // 방어코드; 
+		{
+			continue;
+		}
+		
+		C_Object* T_Object = (*T_Iterator)->MF_Clone();
+
+		STL_M_ChildObejct.push_back(T_Object);
+	}
 }
 
 C_Object::~C_Object()
 {
 	DELETEALL_FIXEDARRAY_HEAP(P_M_Component_s, _COMPONENT_END)
 	DELETEALL_FIXEDARRAY_HEAP(P_M_Script_s, _SCRIPT_END)
+	DELETEALL_STL(STL_M_ChildObejct)
 }
 
 void C_Object::MF_Prepare()
 {
+	// 기반료소부터 준비; C_Component -> C_ScriptComponent -> Obejct
+	//// C_Component
+	for (size_t i = 0; i < _COMPONENT_END; i++)
+	{
+		if (nullptr == P_M_Component_s)			// 방어코드; 
+		{
+			continue;
+		}
+		P_M_Component_s[i]->MF_Prepare();
+	}
+
+	//// C_ScriptComponent
+	for (size_t i = 0; i < _COMPONENT_END; i++)
+	{
+		if (nullptr == P_M_Component_s)			// 방어코드; 
+		{
+			continue;
+		}
+		P_M_Component_s[i]->MF_Prepare();
+	}
+
+	//// STL_M_ChildObejct
+	for (vector<C_Object*>::iterator T_Iterator = STL_M_ChildObejct.begin(); T_Iterator < STL_M_ChildObejct.end(); T_Iterator++)
+	{
+		if (nullptr == *T_Iterator)			   // 방어코드; 
+		{
+			continue;
+		}
+		(*T_Iterator)->MF_Prepare();
+	}
 }
 
 void C_Object::MF_Tick()

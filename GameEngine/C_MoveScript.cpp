@@ -15,6 +15,10 @@ C_MoveScript::~C_MoveScript()
 {
 }
 
+void C_MoveScript::MF_Prepare()
+{
+}
+
 void C_MoveScript::MF_ScriptTick()
 {
 }

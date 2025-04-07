@@ -15,6 +15,10 @@ C_CameraScript::~C_CameraScript()
 {
 }
 
+void C_CameraScript::MF_Prepare()
+{
+}
+
 void C_CameraScript::MF_ScriptTick()
 {
 }

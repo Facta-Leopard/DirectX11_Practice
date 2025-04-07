@@ -15,6 +15,10 @@ C_StateScript::~C_StateScript()
 {
 }
 
+void C_StateScript::MF_Prepare()
+{
+}
+
 void C_StateScript::MF_ScriptTick()
 {
 }

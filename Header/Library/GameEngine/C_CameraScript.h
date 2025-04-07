@@ -1,5 +1,8 @@
 #pragma once
 #include "C_ScriptComponent.h"
+
+#include "define.h"
+
 class C_CameraScript :
     public C_ScriptComponent
 {
@@ -14,6 +17,8 @@ public:
 
 public:
     CLONE(C_CameraScript)
+
+    virtual void MF_Prepare() override;
 
     virtual void MF_ScriptTick() override;
 

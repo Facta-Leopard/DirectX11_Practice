@@ -15,6 +15,10 @@ C_FlipbookRender::~C_FlipbookRender()
 {
 }
 
+void C_FlipbookRender::MF_Prepare()
+{
+}
+
 void C_FlipbookRender::MF_ComponentTick()
 {
 }
