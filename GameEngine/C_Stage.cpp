@@ -11,10 +11,15 @@ C_Stage::C_Stage(E_STAGE_NUMBER _StageNumber)
 
 C_Stage::~C_Stage()
 {
+
 }
 
 void C_Stage::MF_Prepare()
 {
+	for (size_t i = 0; i < _GROUP_END; i++)
+	{
+		P_M_Group_s[i]->MF_Prepare();
+	}
 }
 
 void C_Stage::MF_Step()

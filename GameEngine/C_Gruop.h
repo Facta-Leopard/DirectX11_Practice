@@ -40,7 +40,7 @@ public:
         return STL_M_AllObject;
     }
 
-    void MF_EraseObjectFromAllObject(C_Object* _Object);                    // Just Unlist, Not Delete
+    void MF_DetachObjectFromAllObject(C_Object* _Object);                    // 문법 유의! 벡터 계열 삭제관련 문법 유의!
 
     // STL_M_ParentObject 관련
     void MF_AddObjectToParentObject(C_Object* _Object);                     // 향후, 구현 예정; 오브젝트를 부모 오브젝트에 넣기

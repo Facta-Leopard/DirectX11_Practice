@@ -15,6 +15,10 @@ C_Group::~C_Group()
 
 void C_Group::MF_Prepare()
 {
+	for (vector<C_Object*>::iterator T_Iterator = STL_M_ParentObject.begin(); T_Iterator < STL_M_ParentObject.end(); T_Iterator++)
+	{
+		(*T_Iterator)->MF_Prepare();
+	}
 }
 
 void C_Group::MF_Tick()
@@ -26,15 +30,19 @@ void C_Group::MF_Tick()
 }
 
 
-void C_Group::MF_EraseObjectFromAllObject(C_Object* _Object)
+void C_Group::MF_DetachObjectFromAllObject(C_Object* _Object)					// 유의! 벡터에서 지울 때 문법 주의!
 {
-	vector<C_Object*>::iterator STL_T_Iterator = STL_M_AllObject.begin();
+	vector<C_Object*>::iterator STL_T_Iterator = STL_M_AllObject.begin();		// 유의! 벡터에서 지울 때 문법 주의!
 
-	for (; STL_T_Iterator != STL_M_AllObject.end(); STL_T_Iterator++)
+	for (; STL_T_Iterator != STL_M_AllObject.end();)							// 유의! 벡터에서 지울 때 문법 주의!
 	{
 		if (*STL_T_Iterator == _Object)
 		{
 			STL_M_AllObject.erase(STL_T_Iterator);
+		}
+		else
+		{
+			STL_T_Iterator++;
 		}
 	}
 }

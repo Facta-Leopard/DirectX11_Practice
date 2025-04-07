@@ -22,3 +22,7 @@ void C_TileRender::MF_Prepare()
 void C_TileRender::MF_ComponentTick()
 {
 }
+
+void C_TileRender::MF_Render()
+{
+}

@@ -22,3 +22,7 @@ void C_MeshRender::MF_Prepare()
 void C_MeshRender::MF_ComponentTick()
 {
 }
+
+void C_MeshRender::MF_Render()
+{
+}

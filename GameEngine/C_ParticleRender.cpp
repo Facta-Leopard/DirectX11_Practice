@@ -22,3 +22,7 @@ void C_ParticleRender::MF_Prepare()
 void C_ParticleRender::MF_ComponentTick()
 {
 }
+
+void C_ParticleRender::MF_Render()
+{
+}

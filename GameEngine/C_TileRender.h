@@ -19,6 +19,8 @@ public:
 
     virtual void MF_ComponentTick() override;
 
+    virtual void MF_Render() override;
+
     virtual C_TileRender* MF_GetMyself() override
     {
         return this;

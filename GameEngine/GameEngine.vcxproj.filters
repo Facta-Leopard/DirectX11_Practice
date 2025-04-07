@@ -103,9 +103,6 @@
     <Filter Include="3. Resource\32. Object\320. Object">
       <UniqueIdentifier>{3fce44a9-35e2-4824-9885-d7e2681af2db}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Object\321. RenderObject">
-      <UniqueIdentifier>{a42e632c-3c3b-4479-ad74-59222926c5a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="8. Stage">
       <UniqueIdentifier>{bb07772a-9191-45a4-a869-3669c427142d}</UniqueIdentifier>
     </Filter>
@@ -174,6 +171,9 @@
     </Filter>
     <Filter Include="7. Group">
       <UniqueIdentifier>{98743328-50c1-4470-a2b3-798157d60fdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Object\321. CameraObject">
+      <UniqueIdentifier>{a42e632c-3c3b-4479-ad74-59222926c5a9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +303,9 @@
     <ClInclude Include="C_Stage.h">
       <Filter>8. Stage</Filter>
     </ClInclude>
+    <ClInclude Include="C_Texture.h">
+      <Filter>Relic\헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
@@ -406,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="C_Stage.cpp">
       <Filter>8. Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Texture.cpp">
+      <Filter>Relic\소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

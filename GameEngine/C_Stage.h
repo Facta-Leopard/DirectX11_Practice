@@ -24,7 +24,7 @@ public:
 public:
     void MF_Prepare();                                                                  // 초기화 함수
 
-    void MF_Step();
+    void MF_Step();                                                                     // Group 내 모든 Object의 Tick() 실행
 
     void DetachGroups();                                                                // 소멸자 생성 이전 사용할 순환참조 방지용 함수
 
