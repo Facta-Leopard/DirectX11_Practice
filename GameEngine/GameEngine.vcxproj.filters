@@ -249,13 +249,13 @@
     <ClInclude Include="C_Transform.h">
       <Filter>4. Component\41. Transform</Filter>
     </ClInclude>
-    <ClInclude Include="C_Collider_2D.h">
+    <ClInclude Include="C_Collider2D.h">
       <Filter>4. Component\42. Collider\4331. Collider2D</Filter>
     </ClInclude>
     <ClInclude Include="C_CameraComponent.h">
       <Filter>4. Component\49. Camera</Filter>
     </ClInclude>
-    <ClInclude Include="C_Light_2D.h">
+    <ClInclude Include="C_Light2D.h">
       <Filter>4. Component\43. Light\4321. Light2D</Filter>
     </ClInclude>
     <ClInclude Include="component.h">
@@ -356,13 +356,13 @@
     <ClCompile Include="C_Transform.cpp">
       <Filter>4. Component\41. Transform</Filter>
     </ClCompile>
-    <ClCompile Include="C_Collider_2D.cpp">
+    <ClCompile Include="C_Collider2D.cpp">
       <Filter>4. Component\42. Collider\4331. Collider2D</Filter>
     </ClCompile>
     <ClCompile Include="C_CameraComponent.cpp">
       <Filter>4. Component\49. Camera</Filter>
     </ClCompile>
-    <ClCompile Include="C_Light_2D.cpp">
+    <ClCompile Include="C_Light2D.cpp">
       <Filter>4. Component\43. Light\4321. Light2D</Filter>
     </ClCompile>
     <ClCompile Include="C_RenderComponent.cpp">

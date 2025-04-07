@@ -16,5 +16,10 @@ public:
     CLONE(C_Transform)
 
     virtual void MF_ComponentTick() override;
+
+    virtual C_Transform* MF_GetMyself() override
+    {
+        return this;
+    };
 };
 

@@ -16,5 +16,10 @@ public:
     CLONE(C_FlipbookRender)
 
     virtual void MF_ComponentTick() override;
+
+    virtual C_FlipbookRender* MF_GetMyself() override
+    {
+        return this;
+    };
 };
 

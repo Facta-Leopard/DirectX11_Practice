@@ -17,5 +17,10 @@ public:
 
     virtual void MF_ComponentTick() override;
 
+    virtual C_SpriteRender* MF_GetMyself() override
+    {
+        return this;
+    };
+
 };
 

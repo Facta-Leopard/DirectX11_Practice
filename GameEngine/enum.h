@@ -191,7 +191,7 @@ enum E_COMPONENT_TYPE
 
 	// Render Component
 	_COMPONENT_MESH_RENDER,				// 가장 기본적인 RenderComponent
-	_COMPONENT_SPRITE_RENDER,				// Sprite 하나 렌더링하는 컴포넌트
+	_COMPONENT_SPRITE_RENDER,			// Sprite 하나 렌더링하는 컴포넌트
 	_COMPONENT_FLIPBOOK_RENDER,			// Flipbook 재생 컴포넌트
 	_COMPONENT_TILE_RENDER,				// 타일맵 렌더링
 	_COMPONENT_PARTICLE_RENDER,			// 입자 렌더링
@@ -200,6 +200,9 @@ enum E_COMPONENT_TYPE
 
 	// Script Component
 	_COMPONENT_SCRIPT,					// 별도 타입 세분화, E_SCRIPT_TYPE 참조
+
+	// Render Component
+	_COMPONENT_RENDER,					// 자기자신 반환 추상함수 방어코드용
 };
 
 enum E_SCRIPT_TYPE

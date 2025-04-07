@@ -17,5 +17,10 @@ public:
     CLONE(C_CameraComponent)
 
     virtual void MF_ComponentTick() override;
+
+    virtual C_CameraComponent* MF_GetMyself() override
+    {
+        return this;
+    };
 };
 

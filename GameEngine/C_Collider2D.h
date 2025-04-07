@@ -18,6 +18,9 @@ public:
 
     virtual void MF_ComponentTick() override;
 
-
+    virtual C_Collider2D* MF_GetMyself() override
+    {
+        return this;
+    };
 };
 

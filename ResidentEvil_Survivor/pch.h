@@ -14,7 +14,7 @@
 
 #include <Windows.h>
 
-#include "GameEngine/solution.h"
+#include "GameEngine/global.h"
 
 #include "GameEngine/C_GameEngine.h"
 

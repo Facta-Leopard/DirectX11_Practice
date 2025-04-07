@@ -1,7 +1,7 @@
 ﻿  pch.cpp
   C_CameraComponent.cpp
   C_CameraScript.cpp
-  C_Collider_2D.cpp
+  C_Collider2D.cpp
   C_CollisionManager.cpp
   C_Component.cpp
   C_DebugManager.cpp
@@ -11,7 +11,7 @@
   C_GameEngine.cpp
   C_Gruop.cpp
   C_InputManager.cpp
-  C_Light_2D.cpp
+  C_Light2D.cpp
   C_MeshRender.cpp
   C_MoveScript.cpp
   C_NPCScript.cpp
@@ -40,7 +40,7 @@
   .\component.h
   .\C_CameraComponent.h
   .\C_CameraScript.h
-  .\C_Collider_2D.h
+  .\C_Collider2D.h
   .\C_CollisionManager.h
   .\C_Component.h
   .\C_DebugManager.h
@@ -50,7 +50,7 @@
   .\C_GameEngine.h
   .\C_Gruop.h
   .\C_InputManager.h
-  .\C_Light_2D.h
+  .\C_Light2D.h
   .\C_MeshRender.h
   .\C_MoveScript.h
   .\C_NPCScript.h

@@ -17,5 +17,10 @@ public:
     CLONE(C_Light2D)
 
     virtual void MF_ComponentTick() override;
+
+    virtual C_Light2D* MF_GetMyself() override
+    {
+        return this;
+    };
 };
 

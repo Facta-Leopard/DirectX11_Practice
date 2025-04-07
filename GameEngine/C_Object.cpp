@@ -170,7 +170,9 @@ void C_Object::MF_AttachComponent(C_Component* _Component)
 		return;
 	}
 
-// 향후, 추가구현 예정
+	E_COMPONENT_TYPE T_COMPONENT_TYPE = _Component->MF_GetComponentType();
+
+	P_M_Component_s[T_COMPONENT_TYPE] = _Component;
 }
 
 

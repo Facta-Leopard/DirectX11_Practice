@@ -17,5 +17,10 @@ public:
     CLONE(C_MeshRender)
 
     virtual void MF_ComponentTick() override;
+
+    virtual C_MeshRender* MF_GetMyself() override
+    {
+        return this;
+    };
 };
 

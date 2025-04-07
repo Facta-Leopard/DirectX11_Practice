@@ -14,3 +14,7 @@ C_Transform::C_Transform(const C_Transform& _Origin)
 C_Transform::~C_Transform()
 {
 }
+
+void C_Transform::MF_ComponentTick()
+{
+}
