@@ -3,7 +3,7 @@
 
 C_Stage::C_Stage(E_STAGE_NUMBER _StageNumber)
 	: C_Entity()
-	, M_StageNumber()
+	, L_M_StageNumber(_StageNumber)
 	, M_StageState(_STAGE_PLAY)
 	, P_M_Group_s{}
 {
@@ -27,6 +27,14 @@ void C_Stage::MF_Step()
 	for (size_t i = 0; i < _GROUP_END; i++)
 	{
 		P_M_Group_s[i]->MF_Tick();
+	}
+}
+
+void C_Stage::MF_StepAfter()
+{
+	for (size_t i = 0; i < _GROUP_END; i++)
+	{
+		P_M_Group_s[i]->MF_TickAfter();
 	}
 }
 

@@ -25,9 +25,12 @@ protected:
     wstring                 M_PathKey;                         // wstring 경로와 키를 동시에 사용하기 위함
 
 public:
-    virtual C_Resource* MF_Clone() final {}                    // 추상클래스 해제
+    virtual C_Resource* MF_Clone() override final              // 추상클래스 해제
+    {
+        return nullptr;
+    }
 
-
+public:
     inline E_RESOURCE_TYPE MF_GetResourceType()                // Getter; M_E_ResouceType
     {
         return M_E_ResouceType;

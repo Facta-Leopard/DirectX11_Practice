@@ -1,5 +1,10 @@
 #pragma once
 
+// OverHead를 줄이기 위해, enum class를 쓰지 않음
+// 대신, 중복 문제를 줄이기 위해 '_'를 접미사로 사용하고,
+// 무조건 대문자를 사용하며
+// 단어별로 '_'로 끊는 것으로 정함
+
 // DirectX
 //// Buffer
 enum E_CONSTANTBUFFER_TYPE
@@ -147,11 +152,10 @@ enum E_TASK_TYPE
 enum E_STAGE_NUMBER					// 향후, 스테이지 타입으로 바꾸는 게 더 가독성이 나을지 고민해봐야 할 듯			
 {
 	_STAGE_0,						// 향후, 실행시 초기화면으로 정의예정
-	_STAGE_1,						// 
-	_STAGE_2,						// 초기화면
-	_STAGE_3,						// 초기화면
-	_STAGE_4,						// 초기화면
-	_STAGE_5,						// 초기화면
+	_STAGE_1,						// 향후, 메인메뉴로 정의예정
+	_STAGE_2,						// 향후, 케릭터 선택메뉴로 정의예정
+	_STAGE_3,						// 향후, 게임플레이하는 스테이지로 정의예정
+	_STAGE_4,						// 향후, 종료화면으로 정의예정
 	_STAGE_END,						// 
 };
 

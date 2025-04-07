@@ -4,7 +4,7 @@
 C_Object::C_Object()
 	: C_Entity()
 	, M_GroupType(_GROUP_END)
-	, M_IsDead(false)
+	, M_IsLive(true)
 	, M_ParentObejct(nullptr)
 	, STL_M_ChildObejct{}
 	, P_M_Component_s{}
@@ -17,7 +17,7 @@ C_Object::C_Object()
 C_Object::C_Object(const C_Object& _Origin)
 	: C_Entity(_Origin)
 	, M_GroupType(_Origin.M_GroupType)
-	, M_IsDead(_Origin.M_IsDead)
+	, M_IsLive(_Origin.M_IsLive)
 	, M_ParentObejct(nullptr)									// 복사해서 붙여야 할 수도 있으므로 nullptr
 	, STL_M_ChildObejct{}
 	, P_M_Component_s{}
@@ -31,10 +31,14 @@ C_Object::C_Object(const C_Object& _Origin)
 		P_M_Component_s[i] = _Origin.P_M_Component_s[i]->MF_Clone();
 
 		// Clone 함수를 안 쓴 버전은 사용할 수 없음
-		//// C_ScriptComponent를 추상클래스화 했으므로, 인스턴스 생성을 할 수 없기 때문
+		//// 깊은 복사를 하려는 타입은 C_Component*이므로 포인터 형식인데다가,
+		//// C_Component와 C_ScriptComponent가 추상클래스여서 인스턴스 생성을 할 수 없음
+		//// 그러므로, new를 통합 힙 메모리 생성을 하는 깊은 복사는 원칙적으로 할 수 없음
+		//// 그러나, 다형성을 이용하지 않으면 깊은 복사를 할 수 있음
+		//// 상속받은 C_Component가 C_Entity를 상속받았으므로, C_Entity의 클론을 써서 깊은 복사를 해야함
+		//// 불가능한 사용의 예
 		//// C_ScriptComponent* T_Script = new C_ScriptComponent(_Origin.P_M_Component_s[i]);
 		//// P_M_Component_s[i] = T_Script;
-		// 이렇게 사용불가
 	}
 
 	// 스크립트 깊은 복사
@@ -80,11 +84,11 @@ void C_Object::MF_Prepare()
 	//// C_ScriptComponent
 	for (size_t i = 0; i < _COMPONENT_END; i++)
 	{
-		if (nullptr == P_M_Component_s)			// 방어코드; 
+		if (nullptr == P_M_Script_s)			// 방어코드; 
 		{
 			continue;
 		}
-		P_M_Component_s[i]->MF_Prepare();
+		P_M_Script_s[i]->MF_Prepare();
 	}
 
 	//// STL_M_ChildObejct
@@ -111,36 +115,15 @@ void C_Object::MF_Tick()
 	// Render는 별도로 카메라 오브젝트에서 할 예정이므로 여기서는 작동시키지 않는 걸로
 }
 
-void C_Object::MF_ComponentTick()
+void C_Object::MF_TickAfter()
 {
-	for (size_t i = 0; i < _COMPONENT_END; i++)
-	{
-		if (nullptr == P_M_Component_s)			// 방어코드; 
-		{
-			continue;
-		}
-		P_M_Component_s[i]->MF_ComponentTick();
-	}
-}
+	// 컴포넌트 영역
+	MF_ComponentTickAfter();
 
-void C_Object::MF_ScriptTick()
-{
-	for (size_t i = 0; i < _SCRIPT_END; i++)
-	{
-		if (nullptr == P_M_Script_s[i])			// 방어코드;
-		{
-			continue;
-		}
-		P_M_Script_s[i]->MF_ScriptTick();
-	}
+	// 자식 영역
+	// 죽었으면 자식객체에서 제거하는 것을 목적으로 함
+	MF_DetachDeadObjectFromChildObject();
 }
-
-void C_Object::MF_Render()
-{
-	// 향후, C_RenderComponent 구현해야 함
-	// P_M_RenderComponent->MF_Render();
-}
-
 
 void C_Object::MF_AttachObjectToParentObject(C_Object* _Object)
 {
@@ -174,7 +157,6 @@ void C_Object::MF_DetachMyselfFromParentObject()
 		}
 	}
 }
-
 
 void C_Object::MF_AttachObjectToChildObject(C_Object* _Object)
 {
@@ -212,6 +194,22 @@ void C_Object::MF_DetachMyselfFromChildObject()
 	}
 }
 
+void C_Object::MF_DetachDeadObjectFromChildObject()										// 유의! 이터레이터 erase 문법 유의!
+{
+	vector<C_Object*>::iterator T_Iterator = STL_M_ChildObejct.begin();					// 유의! 이터레이터 erase 문법 유의!
+	for (T_Iterator = STL_M_ChildObejct.begin(); T_Iterator < STL_M_ChildObejct.end();) // 유의! 이터레이터 erase 문법 유의!
+	{
+		if ((*T_Iterator)->M_IsLive)													// 유의! 이터레이터 erase 문법 유의!
+		{
+			++T_Iterator;
+		}
+		else
+		{
+			STL_M_ChildObejct.erase(T_Iterator);
+		}
+	}
+}
+
 void C_Object::MF_AttachComponent(C_Component* _Component)
 {
 	if (nullptr == _Component)				// 방어코드
@@ -225,7 +223,6 @@ void C_Object::MF_AttachComponent(C_Component* _Component)
 	P_M_Component_s[T_COMPONENT_TYPE] = _Component;
 }
 
-
 void C_Object::MF_ChildTick()
 {
 	for (vector<C_Object*>::iterator T_Iterator = STL_M_ChildObejct.begin(); T_Iterator < STL_M_ChildObejct.end(); T_Iterator++)
@@ -238,3 +235,44 @@ void C_Object::MF_ChildTick()
 	}
 }
 
+void C_Object::MF_ComponentTick()
+{
+	for (size_t i = 0; i < _COMPONENT_END; i++)
+	{
+		if (nullptr == P_M_Component_s)			// 방어코드; 
+		{
+			continue;
+		}
+		P_M_Component_s[i]->MF_ComponentTick();
+	}
+}
+
+void C_Object::MF_ComponentTickAfter()
+{
+	for (size_t i = 0; i < _COMPONENT_END; i++)
+	{
+		if (nullptr == P_M_Component_s)			// 방어코드; 
+		{
+			continue;
+		}
+		P_M_Component_s[i]->MF_ComponentTickAfter();
+	}
+}
+
+void C_Object::MF_ScriptTick()
+{
+	for (size_t i = 0; i < _SCRIPT_END; i++)
+	{
+		if (nullptr == P_M_Script_s[i])			// 방어코드;
+		{
+			continue;
+		}
+		P_M_Script_s[i]->MF_ScriptTick();
+	}
+}
+
+void C_Object::MF_Render()
+{
+	// 향후, C_RenderComponent 구현해야 함
+	// P_M_RenderComponent->MF_Render();
+}

@@ -27,6 +27,9 @@ virtual Class* MF_Clone() override          \
 	return new Class(*this);                \
 }
 
+// 복사 생성자 금지 매크로
+#define DELETE_COPY_CONSTRUCTOR(Class) Class
+
 // Component 종류에 따른 자식 Component 포인터 반환하는 매크로
 #define GETCOMPONENTBYTYPE(Class, _COMPONENT)                           \
 Class* MF_Get##Class##()                                                \

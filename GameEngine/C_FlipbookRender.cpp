@@ -23,6 +23,10 @@ void C_FlipbookRender::MF_ComponentTick()
 {
 }
 
+void C_FlipbookRender::MF_ComponentTickAfter()
+{
+}
+
 void C_FlipbookRender::MF_Render()
 {
 }

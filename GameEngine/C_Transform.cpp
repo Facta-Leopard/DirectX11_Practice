@@ -15,6 +15,14 @@ C_Transform::~C_Transform()
 {
 }
 
+void C_Transform::MF_Prepare()
+{
+}
+
 void C_Transform::MF_ComponentTick()
+{
+}
+
+void C_Transform::MF_ComponentTickAfter()
 {
 }

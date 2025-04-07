@@ -17,4 +17,6 @@ public:
     virtual C_RenderComponent* MF_Clone() = 0;              // Clone Function; Vertual
 
     virtual void MF_ComponentTick() = 0;                    // ComponentTick; Virtual
+
+    virtual void MF_Render() = 0;                           // Render; Virtual
 };

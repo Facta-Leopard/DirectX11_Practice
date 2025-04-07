@@ -25,3 +25,7 @@ void C_Collider2D::MF_Prepare()
 void C_Collider2D::MF_ComponentTick()
 {
 }
+
+void C_Collider2D::MF_ComponentTickAfter()
+{
+}

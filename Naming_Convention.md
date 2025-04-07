@@ -63,7 +63,13 @@
 
 ## Naming Rule Notes
 
+### General
 - All prefixed names should include a **trailing underscore** (`_`) to improve readability and avoid naming conflicts (e.g., with macros or keywords).
+
+
+### Enum Structure
+- To reduce overhead, enum class is not used.
+- Instead, to minimize duplication, an underscore (_) is used as a suffix, and all letters are written in uppercase with words separated by underscores.
 
 ---
 

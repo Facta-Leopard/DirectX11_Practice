@@ -19,6 +19,8 @@ public:
 
     virtual void MF_ComponentTick() override;
 
+    virtual void MF_ComponentTickAfter() override;
+
     virtual C_Transform* MF_GetMyself() override
     {
         return this;

@@ -29,9 +29,23 @@ void C_Group::MF_Tick()
 	}
 }
 
+void C_Group::MF_TickAfter()
+{
+	for (size_t i = 0; i < STL_M_AllObject.size(); i++)
+	{
+		STL_M_AllObject[i]->MF_TickAfter();
+	}
+}
+
 
 void C_Group::MF_DetachObjectFromAllObject(C_Object* _Object)					// 유의! 벡터에서 지울 때 문법 주의!
 {
+	if (nullptr == _Object)						// 방어코드
+	{
+		POPUP_DEBUG(L"_Object Is Nullptr", L"in C_Group::MF_DetachObjectFromAllObject(), nullptr == _Object")
+		return;
+	}
+
 	vector<C_Object*>::iterator STL_T_Iterator = STL_M_AllObject.begin();		// 유의! 벡터에서 지울 때 문법 주의!
 
 	for (; STL_T_Iterator != STL_M_AllObject.end();)							// 유의! 벡터에서 지울 때 문법 주의!
@@ -47,7 +61,13 @@ void C_Group::MF_DetachObjectFromAllObject(C_Object* _Object)					// 유의! 벡터�
 	}
 }
 
-void C_Group::MF_AddObjectToParentObject(C_Object* _Object)
+void C_Group::MF_AttachObjectToParentObject(C_Object* _Object)
 {
+	if (nullptr == _Object)						// 방어코드
+	{
+		POPUP_DEBUG(L"_Object Is Nullptr", L"in C_Group::MF_AttachObjectToParentObject(), nullptr == _Object")
+			return;
+	}
+
 
 }

@@ -14,7 +14,7 @@ public:
     ~C_Stage();
 
 protected:
-    E_STAGE_NUMBER                  M_StageNumber;                  // E_STAGE_NUMBER; Stage 종류
+    const E_STAGE_NUMBER            L_M_StageNumber;                // E_STAGE_NUMBER; Stage 종류
     E_STAGE_STATE                   M_StageState;                   // E_STAGE_STATE; Play, Pause, Stop
     C_Group*                        P_M_Group_s[_GROUP_END];        // C_Group*;
 
@@ -24,16 +24,17 @@ public:
 public:
     void MF_Prepare();                                                                  // 초기화 함수
 
-    void MF_Step();
+    void MF_Step();                                                                     // Group 내 모든 Object의 Tick() 실행
+
+    void MF_StepAfter();                                                                // Group 내 모든 Object의 TickAfter() 실행
 
     void DetachGroups();                                                                // 소멸자 생성 이전 사용할 순환참조 방지용 함수
 
 
     inline E_STAGE_NUMBER MF_GetStageNumber()                                           // Getter; 처음 만들어질 때 정해지는 부분이므로, Setter는 따로 지정하지 안음
     {
-        return M_StageNumber;
+        return L_M_StageNumber;
     }
-
 
     inline E_STAGE_STATE MF_GetStageState()                                             // Getter
     {

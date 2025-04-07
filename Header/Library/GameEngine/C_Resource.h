@@ -8,12 +8,14 @@
 class C_Resource :
     public C_Entity
 {
-protected:
-    // Resource Type은 생성시 정의되어야 하므로, 이에 대한 부분 무조껀 정의하도록 함
-    C_Resource(E_RESOURCE_TYPE _ResourceType);
+public:
+    C_Resource(E_RESOURCE_TYPE _ResourceType);                 // Resource Type은 생성시 정의되어야 하므로, 이에 대한 부분 무조껀 정의하도록 함
 
-    // C_Entity 클래스에서 virtual 선언해서 안 붙혀도 virtual 상관없음
-    ~C_Resource();
+protected:
+    C_Resource(const C_Resource& _Origin) = delete;            // 리소스는 고유한 부분이므로, CLone 추상화 해제 및 복사생성자 사용 금지
+
+public:
+    ~C_Resource();                                             // C_Entity 클래스에서 virtual 선언해서 안 붙혀도 virtual 상관없음
 
 protected:
     const E_RESOURCE_TYPE   M_E_ResouceType;                   // E_RESOURCE_TYPE
@@ -23,9 +25,12 @@ protected:
     wstring                 M_PathKey;                         // wstring 경로와 키를 동시에 사용하기 위함
 
 public:
-    virtual C_Resource* MF_Clone() = 0;                        // Clone Function; Virtual
+    virtual C_Resource* MF_Clone() override final              // 추상클래스 해제
+    {
+        return nullptr;
+    }
 
-
+public:
     inline E_RESOURCE_TYPE MF_GetResourceType()                // Getter; M_E_ResouceType
     {
         return M_E_ResouceType;

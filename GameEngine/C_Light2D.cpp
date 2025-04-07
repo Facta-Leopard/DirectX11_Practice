@@ -25,3 +25,7 @@ void C_Light2D::MF_Prepare()
 void C_Light2D::MF_ComponentTick()
 {
 }
+
+void C_Light2D::MF_ComponentTickAfter()
+{
+}

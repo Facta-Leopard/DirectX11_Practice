@@ -23,6 +23,10 @@ void C_ParticleRender::MF_ComponentTick()
 {
 }
 
+void C_ParticleRender::MF_ComponentTickAfter()
+{
+}
+
 void C_ParticleRender::MF_Render()
 {
 }

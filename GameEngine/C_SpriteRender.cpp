@@ -26,6 +26,10 @@ void C_SpriteRender::MF_ComponentTick()
 {
 }
 
+void C_SpriteRender::MF_ComponentTickAfter()
+{
+}
+
 void C_SpriteRender::MF_Render()
 {
 }

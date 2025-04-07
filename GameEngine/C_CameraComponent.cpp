@@ -22,3 +22,7 @@ void C_CameraComponent::MF_Prepare()
 void C_CameraComponent::MF_ComponentTick()
 {
 }
+
+void C_CameraComponent::MF_ComponentTickAfter()
+{
+}

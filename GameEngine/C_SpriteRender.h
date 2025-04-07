@@ -19,6 +19,8 @@ public:
 
     virtual void MF_ComponentTick() override;
 
+    virtual void MF_ComponentTickAfter() override;
+
     virtual void MF_Render() override;
 
     virtual C_SpriteRender* MF_GetMyself() override

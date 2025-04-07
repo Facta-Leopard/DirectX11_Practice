@@ -30,6 +30,7 @@
   C_Stage.cpp
   C_StageManager.cpp
   C_StateScript.cpp
+  C_Texture.cpp
   C_TileRender.cpp
   C_TimeManager.cpp
   C_Transform.cpp
@@ -68,6 +69,7 @@
   .\C_Stage.h
   .\C_StageManager.h
   .\C_StateScript.h
+  .\C_Texture.h
   .\C_TileRender.h
   .\C_TimeManager.h
   .\C_Transform.h
@@ -77,7 +79,7 @@
   .\globalFunction.h
   .\globalVariable.h
   .\SimpleMath.h
-  40개 파일이 복사되었습니다.
+  41개 파일이 복사되었습니다.
   .\SimpleMath.inl
   1개 파일이 복사되었습니다.
   지정된 경로를 찾을 수 없습니다.
