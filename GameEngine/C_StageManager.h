@@ -19,7 +19,7 @@ public:
 public:
     C_Stage* MF_GetCurrentStage()
     {
-        return;
+        return P_M_CurrentStage;
     }
 };
 

@@ -1,5 +1,4 @@
-﻿  pch.cpp
-  C_CameraComponent.cpp
+﻿  C_CameraComponent.cpp
   C_CameraScript.cpp
   C_Collider2D.cpp
   C_CollisionManager.cpp
@@ -36,49 +35,49 @@
   C_Transform.cpp
   globalFunction.cpp
   코드를 생성하고 있습니다...
-  GameEngine.vcxproj -> C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
+  GameEngine.vcxproj -> Z:\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
   통합관리를 위한 파일 복사용 배치파일 실행
-  .\component.h
   .\C_CameraComponent.h
-  .\C_CameraScript.h
-  .\C_Collider2D.h
-  .\C_CollisionManager.h
-  .\C_Component.h
-  .\C_DebugManager.h
-  .\C_Device.h
-  .\C_Entity.h
-  .\C_FlipbookRender.h
-  .\C_GameEngine.h
-  .\C_Gruop.h
-  .\C_InputManager.h
-  .\C_Light2D.h
-  .\C_MeshRender.h
-  .\C_MoveScript.h
   .\C_NPCScript.h
-  .\C_Object.h
-  .\C_ParticleRender.h
-  .\C_PathManager.h
-  .\C_RenderComponent.h
-  .\C_RenderManager.h
-  .\C_Resource.h
-  .\C_ResourceManager.h
-  .\C_RigidScript.h
-  .\C_ScriptComponent.h
-  .\C_Singleton.h
-  .\C_SpriteRender.h
-  .\C_Stage.h
-  .\C_StageManager.h
-  .\C_StateScript.h
-  .\C_Texture.h
-  .\C_TileRender.h
+  .\C_MeshRender.h
   .\C_TimeManager.h
+  .\C_CollisionManager.h
   .\C_Transform.h
-  .\define.h
+  .\C_InputManager.h
+  .\C_StageManager.h
+  .\C_RigidScript.h
+  .\C_SpriteRender.h
   .\enum.h
+  .\define.h
   .\global.h
-  .\globalFunction.h
-  .\globalVariable.h
+  .\C_DebugManager.h
+  .\C_Texture.h
   .\SimpleMath.h
+  .\C_RenderComponent.h
+  .\globalFunction.h
+  .\C_RenderManager.h
+  .\C_ResourceManager.h
+  .\C_Device.h
+  .\C_Component.h
+  .\C_Resource.h
+  .\C_Singleton.h
+  .\C_PathManager.h
+  .\C_MoveScript.h
+  .\C_ScriptComponent.h
+  .\C_Light2D.h
+  .\C_GameEngine.h
+  .\C_Collider2D.h
+  .\C_Stage.h
+  .\component.h
+  .\C_TileRender.h
+  .\C_CameraScript.h
+  .\C_FlipbookRender.h
+  .\C_Gruop.h
+  .\C_ParticleRender.h
+  .\C_Object.h
+  .\globalVariable.h
+  .\C_StateScript.h
+  .\C_Entity.h
   41개 파일이 복사되었습니다.
   .\SimpleMath.inl
   1개 파일이 복사되었습니다.
