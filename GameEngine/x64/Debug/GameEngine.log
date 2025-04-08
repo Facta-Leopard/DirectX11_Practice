@@ -1,41 +1,5 @@
-﻿  C_CameraComponent.cpp
-  C_CameraScript.cpp
-  C_Collider2D.cpp
-  C_CollisionManager.cpp
-  C_Component.cpp
-  C_DebugManager.cpp
-  C_Device.cpp
-  C_Entity.cpp
-  C_FlipbookRender.cpp
-  C_GameEngine.cpp
-  C_Gruop.cpp
-  C_InputManager.cpp
-  C_Light2D.cpp
-  C_MeshRender.cpp
-  C_MoveScript.cpp
-  C_NPCScript.cpp
-  C_Object.cpp
-  C_ParticleRender.cpp
-  C_PathManager.cpp
-  C_RenderComponent.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  C_RenderManager.cpp
-  C_Resource.cpp
-  C_ResourceManager.cpp
-  C_RigidScript.cpp
-  C_ScriptComponent.cpp
-  C_SpriteRender.cpp
-  C_Stage.cpp
-  C_StageManager.cpp
-  C_StateScript.cpp
-  C_Texture.cpp
-  C_TileRender.cpp
-  C_TimeManager.cpp
-  C_Transform.cpp
-  globalFunction.cpp
-  코드를 생성하고 있습니다...
-  GameEngine.vcxproj -> Z:\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
+﻿  C_Texture.cpp
+  GameEngine.vcxproj -> \\Mac\Home\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
   통합관리를 위한 파일 복사용 배치파일 실행
   .\C_CameraComponent.h
   .\C_NPCScript.h

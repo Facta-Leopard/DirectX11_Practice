@@ -32,7 +32,7 @@ virtual Class* MF_Clone() override          \
 
 // Component 종류에 따른 자식 Component 포인터 반환하는 매크로
 #define GETCOMPONENTBYTYPE(Class, _COMPONENT)                           \
-Class* MF_Get##Class##()                                                \
+Class* MF_Get_##Class##()                                                \
 {                                                                       \
     return (Class*)P_M_OwnerObject->P_M_Component_s[_COMPONENT];        \
 }

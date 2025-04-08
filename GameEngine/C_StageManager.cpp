@@ -18,7 +18,7 @@ void C_StageManager::Initialize()
 
 void C_StageManager::Update()
 {
-	E_STAGE_STATE T_STAGE_STATE = P_M_CurrentStage->MF_GetStageState();
+	E_STAGE_STATE T_STAGE_STATE = P_M_CurrentStage->MF_Get_StageState();
 
 	if (T_STAGE_STATE)
 	{

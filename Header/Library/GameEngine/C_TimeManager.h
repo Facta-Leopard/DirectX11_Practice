@@ -33,32 +33,32 @@ public:
     void MF_Update();
 
 
-    inline float MF_GetEngineTime()                 // Getter; M_EngineTime
+    inline float MF_Get_EngineTime()                 // Getter; M_EngineTime
     {
         return M_EngineTime;
     }
 
-    inline float MF_GetEngineDeltaTime()            // Getter; M_EngineDeltaTime
+    inline float MF_Get_EngineDeltaTime()            // Getter; M_EngineDeltaTime
     {
         return M_EngineDeltaTime;
     }
 
-    inline float MF_GetTotalPlayTime()              // Getter; M_OneSecondTime
+    inline float MF_Get_TotalPlayTime()              // Getter; M_OneSecondTime
     {
         return M_OneSecondTime;
     }
 
-    inline float MF_GetDeltaTime()                  // Getter; M_DeltaTime
+    inline float MF_Get_DeltaTime()                  // Getter; M_DeltaTime
     {
         return M_DeltaTime;
     }
 
-    inline float MF_GetOneSecondTime()              // Getter; M_OneSecondTime
+    inline float MF_Get_OneSecondTime()              // Getter; M_OneSecondTime
     {
         return M_OneSecondTime;
     }
 
-    inline UINT MF_GetFPS()                         // Getter; M_FPS
+    inline UINT MF_Get_FPS()                         // Getter; M_FPS
     {
         return M_FPS;
     }

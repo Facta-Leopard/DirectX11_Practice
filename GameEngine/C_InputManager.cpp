@@ -61,14 +61,14 @@ void C_InputManager::MF_Initialize()
 		POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_InputManager::MF_Initialize(), NULL == GetCursorPos()");
 	}
 
-	HWND T_H_Window = C_GameEngine::SF_GetInstance()->MF_GetWindowHandle();
+	HWND T_H_Window = C_GameEngine::SF_Get_Instance()->MF_Get_WindowHandle();
 
 	if (NULL == ScreenToClient(T_H_Window, &T_MousePos))	// 마우스 좌표를 창 기준으로 상대좌표로 변환해주는 WinAPI Function 사용
 	{
 		POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_InputManager::MF_Initialize(), NULL == ScreenToClient()");
 	}
 
-	Vector2 T_Mousepos = (Vector2)(C_GameEngine::SF_GetInstance()->MF_GetResolution());
+	Vector2 T_Mousepos = (Vector2)(C_GameEngine::SF_Get_Instance()->MF_Get_Resolution());
 	T_Mousepos /= 2;
 
 	M_DS_MouseInfo.M_MousePos = T_Mousepos;															// 현재 마우스 좌표 초기좌표 해상도 절반으로 강제 설정
@@ -80,7 +80,7 @@ void C_InputManager::MF_Initialize()
 void C_InputManager::MF_Update()
 {
 	// 실행창이 포커스 중일 때
-	if (GetFocus() == C_GameEngine::SF_GetInstance()->MF_GetWindowHandle())		// 포커스 상태를 확인하기 위한 WinAPI Function 사용
+	if (GetFocus() == C_GameEngine::SF_Get_Instance()->MF_Get_WindowHandle())		// 포커스 상태를 확인하기 위한 WinAPI Function 사용
 	{
 		//// for (auto& n : STL_M_DS_KeyInfo) 형식인 loop문으로 하면 GetAsyncKeyState()가 되지 않음..
 		//// loop문은 indexing에는 못 쓴다는 사실을 알았다.. 몇 시간을 박은 거야 진짜..
@@ -129,7 +129,7 @@ void C_InputManager::MF_Update()
 			POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_KeyManager::MF_Update(), NULL == GetCursorPos()");
 		}
 
-		if (NULL == ScreenToClient(C_GameEngine::SF_GetInstance()->MF_GetWindowHandle(), &T_MousePos))			// 마우스 좌표를 창 기준으로 상대좌표로 변환해주는 WinAPI Function 사용
+		if (NULL == ScreenToClient(C_GameEngine::SF_Get_Instance()->MF_Get_WindowHandle(), &T_MousePos))			// 마우스 좌표를 창 기준으로 상대좌표로 변환해주는 WinAPI Function 사용
 		{
 			POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_KeyManager::MF_Update() ScreenToClient(), NULL == ScreenToClient(");
 		}

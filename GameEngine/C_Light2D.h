@@ -22,7 +22,7 @@ public:
 
     virtual void MF_ComponentTickAfter() override;
 
-    virtual C_Light2D* MF_GetMyself() override
+    virtual C_Light2D* MF_Get_Myself() override
     {
         return this;
     };

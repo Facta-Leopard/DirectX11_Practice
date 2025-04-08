@@ -14,7 +14,7 @@ HRESULT C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
     // Device 생성
     if (FAILED(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr
         , Flag, 0, 0, D3D11_SDK_VERSION
-        , CP_M_DX_Device.GetAddressOf(), &level, CP_M_DX_Context.GetAddressOf()))) // 향후, 해상도 관련 부분 조정예정
+        , CP_M_DX_Device.GetAddressOf(), &level, CP_M_DX_DeviceContext.GetAddressOf()))) // 향후, 해상도 관련 부분 조정예정
     {
         POPUP_DEBUG(L"Device Creating Failed", L"in C_Device::MF_Initialize(), Failed");
         return E_FAIL;
@@ -101,11 +101,11 @@ HRESULT C_Device::MF_CreateView()
 
     // SwapChain 이 보유하고있는 ID3D11Texture2D 객체를 CTexture 클래스로 전환
     // C_Texture 만들고 활성화할 예정
-    // CP_M_DX_RenderTargetTexture = C_ResourceManager::MF_GetInstance()->MF_CreateTexture(L"RenderTarget_Texure", CP_T_DX_RenderTargetTexure);
+    // CP_M_DX_RenderTargetTexture = C_ResourceManager::MF_Get__Instance()->MF_CreateTexture(L"RenderTarget_Texure", CP_T_DX_RenderTargetTexure);
 
     // DepthStencil 리소스(텍스쳐) 생성
     // C_Texture 만들고 활성화할 예정
-    // CP_M_DX_DepthStencilTexture = C_ResourceManager::MF_GetInstance()->MF_CreateTexture(L"DepthStencil_Texure"
+    // CP_M_DX_DepthStencilTexture = C_ResourceManager::MF_Get__Instance()->MF_CreateTexture(L"DepthStencil_Texure"
         // , (UINT)M_V2_RenderTargetResolution.x, (UINT)M_V2_RenderTargetResolution.y
         // , DXGI_FORMAT_D24_UNORM_S8_UINT, D3D11_BIND_DEPTH_STENCIL);
 

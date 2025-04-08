@@ -24,14 +24,14 @@ void C_GameEngine::MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _
 
 	// 관리자 생성 및 초기화
     // 향후, 추가 구현 예정
-    C_InputManager::SF_GetInstance()->MF_Initialize();
-    C_PathManager::SF_GetInstance()->MF_Initialize();
-    C_TimeManager::SF_GetInstance()->MF_Initialize();
+    C_InputManager::SF_Get_Instance()->MF_Initialize();
+    C_PathManager::SF_Get_Instance()->MF_Initialize();
+    C_TimeManager::SF_Get_Instance()->MF_Initialize();
 
-    // C_RenderManager::SF_GetInstance()->MF_Initialize();
+    // C_RenderManager::SF_Get_Instance()->MF_Initialize();
 
 #ifdef DEBUG
-    C_DebugManager::SF_GetInstance()->MF_Initialize();
+    C_DebugManager::SF_Get_Instance()->MF_Initialize();
 #endif // DEBUG
  
     // 객체 구별용 ID값 초기화
@@ -42,16 +42,16 @@ void C_GameEngine::MF_Prograss()
 {
     // 관리자 Update
     // 향후, 추가 구현 예정
-    // TaskManager::SF_GetInstance()->MF_Update();
-    C_InputManager::SF_GetInstance()->MF_Update();
+    // TaskManager::SF_Get_Instance()->MF_Update();
+    C_InputManager::SF_Get_Instance()->MF_Update();
 
-    C_TimeManager::SF_GetInstance()->MF_Update();
+    C_TimeManager::SF_Get_Instance()->MF_Update();
 
-    C_RenderManager::SF_GetInstance()->MF_Update();
+    C_RenderManager::SF_Get_Instance()->MF_Update();
 
     
 #ifdef _DEBUG
-    C_DebugManager::SF_GetInstance()->MF_Update();
+    C_DebugManager::SF_Get_Instance()->MF_Update();
 #endif // DEBUG
 
 

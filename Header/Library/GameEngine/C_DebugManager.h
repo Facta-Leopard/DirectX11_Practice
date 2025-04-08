@@ -18,17 +18,17 @@ public:
     void MF_Update();
 
 
-    inline bool MF_GetDebugScreenOn()                   // Getter; M_IsDebugSrcreenOn
+    inline bool MF_Get_DebugScreenOn()                   // Getter; M_IsDebugSrcreenOn
     {
         return M_IsDebugSrcreen;
     }
 
-    inline void MF_SetScreenOn()                        // Setter; M_IsDebugSrcreenOn
+    inline void MF_Set_ScreenOn()                        // Setter; M_IsDebugSrcreenOn
     {
         M_IsDebugSrcreen = true;
     }
 
-    inline void MF_SetScreenOff()                       // Setter; M_IsDebugSrcreenOn
+    inline void MF_Set_ScreenOff()                       // Setter; M_IsDebugSrcreenOn
     {
         M_IsDebugSrcreen = false;
     }

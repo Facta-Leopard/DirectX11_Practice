@@ -31,28 +31,28 @@ public:
     void DetachGroups();                                                                // 소멸자 생성 이전 사용할 순환참조 방지용 함수
 
 
-    inline E_STAGE_NUMBER MF_GetStageNumber()                                           // Getter; 처음 만들어질 때 정해지는 부분이므로, Setter는 따로 지정하지 안음
+    inline E_STAGE_NUMBER MF_Get_StageNumber()                                           // Getter; 처음 만들어질 때 정해지는 부분이므로, Setter는 따로 지정하지 안음
     {
         return L_M_StageNumber;
     }
 
-    inline E_STAGE_STATE MF_GetStageState()                                             // Getter
+    inline E_STAGE_STATE MF_Get_StageState()                                             // Getter
     {
         return M_StageState;
     }
 
-    inline void MF_SetStageStage(E_STAGE_STATE _StageState)                             // Setter
+    inline void MF_Set_StageStage(E_STAGE_STATE _StageState)                             // Setter
     {
         M_StageState = _StageState;
     }
 
 
-    inline C_Group* MF_GetGroups()                                                      // Getter
+    inline C_Group* MF_Get_Groups()                                                      // Getter
     {
         return P_M_Group_s[_GROUP_END - 1];                                             // Index를 벗어난 읽기 오류 디버깅
     }
 
-    inline C_Group* MF_SetGroupInGroups(C_Group* _Group, E_GROUP_TYPE _GroupType)       // Setter; 명명규칙에 벗어나지 않도록 헤더에 기재
+    inline C_Group* MF_Set_GroupInGroups(C_Group* _Group, E_GROUP_TYPE _GroupType)       // Setter; 명명규칙에 벗어나지 않도록 헤더에 기재
     {
         for (size_t i = 0; i < _GROUP_END; i++)
         {

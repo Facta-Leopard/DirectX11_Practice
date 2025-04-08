@@ -20,12 +20,12 @@ public:
 	virtual C_Entity* MF_Clone() = 0;		// Clone Function; Virtual
 
 
-	inline UINT MF_GetEntityID()			// Getter; M_EntityID
+	inline UINT MF_Get_EntityID()			// Getter; M_EntityID
 	{
 		return M_EntityID;
 	}
 
-	inline wstring MF_GetName()				// Getter; M_Name
+	inline wstring MF_Get_Name()				// Getter; M_Name
 	{
 		return M_Name;
 	}

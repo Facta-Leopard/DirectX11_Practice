@@ -47,50 +47,50 @@ public:
 
     void MF_TickAfter();                                                        // 후처리 전용 Tick
 
-    inline E_GROUP_TYPE MF_GetGroupType()                                       // Getter
+    inline E_GROUP_TYPE MF_Get_GroupType()                                       // Getter
     {
         return M_GroupType;
     }
 
-    inline void MF_SetGroupIndex(E_GROUP_TYPE _GroupType)                       // Setter
+    inline void MF_Set_GroupIndex(E_GROUP_TYPE _GroupType)                       // Setter
     {
         M_GroupType = _GroupType;
     }
 
-    inline C_Object* MF_GetParentObject()                                       // Getter
+    inline C_Object* MF_Get_ParentObject()                                       // Getter
     {
         return M_ParentObejct;
     }
 
-    inline C_Component* MF_GetComponent(E_COMPONENT_TYPE _COMPONENTTYPE)        // Getter; 반환값을 강제로 Down Casting 해야함; 향후, Down Casting Automaically Logic 구성예정
+    inline C_Component* MF_Get_Component(E_COMPONENT_TYPE _COMPONENTTYPE)        // Getter; 반환값을 강제로 Down Casting 해야함; 향후, Down Casting Automaically Logic 구성예정
     {
         return P_M_Component_s[_COMPONENTTYPE];
     }
 
-    inline C_RenderComponent* MF_GetRenderComponent()                           // Getter; 향후 C_Component나 C_ScriptComponet 형식처럼 바꿀지 생각해 보는 것이 좋겠음
+    inline C_RenderComponent* MF_Get_RenderComponent()                           // Getter; 향후 C_Component나 C_ScriptComponet 형식처럼 바꿀지 생각해 보는 것이 좋겠음
     {
         return P_M_RenderComponent;
     }
 
-    inline C_ScriptComponent* MF_GetScriptComponent(E_SCRIPT_TYPE _SCRIPTTYPE)  // Getter; 반환값을 강제로 Down Casting 해야함; 향후, Down Casting Automaically Logic 구성예정
+    inline C_ScriptComponent* MF_Get_ScriptComponent(E_SCRIPT_TYPE _SCRIPTTYPE)  // Getter; 반환값을 강제로 Down Casting 해야함; 향후, Down Casting Automaically Logic 구성예정
     {
         return P_M_Script_s[_SCRIPTTYPE];
     }
 
     // 등록관련
     //// Object 등록관련
-    void MF_AttachObjectToParentObject(C_Object* _Object);                      // Attach; 들어오는 오브젝트를 부모오브젝트에 등록
+    void MF_Attach_ObjectToParentObject(C_Object* _Object);                      // Attach; 들어오는 오브젝트를 부모오브젝트에 등록
 
-    void MF_DetachMyselfFromParentObject();                                     // Detach; 부모오브젝트에서 자신이 등록된 상태 해제
+    void MF_Detach_MyselfFromParentObject();                                     // Detach; 부모오브젝트에서 자신이 등록된 상태 해제
 
-    void MF_AttachObjectToChildObject(C_Object* _Object);                       // Attach; 들어오는 오브젝트를 자식오브젝트 목록에 등록
+    void MF_Attach_ObjectToChildObject(C_Object* _Object);                       // Attach; 들어오는 오브젝트를 자식오브젝트 목록에 등록
 
-    void MF_DetachMyselfFromChildObject();                                      // Detach; 자식오브젝트에 등록된 본인의 부모등록 상태 해제
+    void MF_Detach_MyselfFromChildObject();                                      // Detach; 자식오브젝트에 등록된 본인의 부모등록 상태 해제
 
-    void MF_DetachDeadObjectFromChildObject();                                  // Detach; 자식오브젝트 중 죽은 자식을 제거하는 함수;
+    void MF_Detach_DeadObjectFromChildObject();                                  // Detach; 자식오브젝트 중 죽은 자식을 제거하는 함수;
 
     //// Component 관련
-    void MF_AttachComponent(C_Component* _Component);                           // Attach; 컴포넌트 요소 등록
+    void MF_Attach_Component(C_Component* _Component);                           // Attach; 컴포넌트 요소 등록
 
     //// 
     void MF_ChildTick();                                                        // 자식오브젝트 tick() 실행; 한 계층 아래만 실행

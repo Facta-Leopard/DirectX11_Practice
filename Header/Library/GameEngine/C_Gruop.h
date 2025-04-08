@@ -38,20 +38,20 @@ public:
         STL_M_AllObject.push_back(_Object);
     }
 
-    inline vector<C_Object*> MF_GetAllObjectFromGroup()                     // Getter
+    inline vector<C_Object*> MF_Get_AllObjectFromGroup()                     // Getter
     {
         return STL_M_AllObject;
     }
 
     // STL_M_ParentObject 관련
-    inline vector<C_Object*> MF_GetParentObjectFromGroup()                   // Getter
+    inline vector<C_Object*> MF_Get_ParentObjectFromGroup()                   // Getter
     {
         return STL_M_ParentObject;
     }
 
     // STL_M_AllObject 관련
-    void MF_DetachObjectFromAllObject(C_Object* _Object);                    // Detach; 문법 유의! 벡터 계열 삭제관련 문법 유의!
+    void MF_Detach_ObjectFromAllObject(C_Object* _Object);                    // Detach; 문법 유의! 벡터 계열 삭제관련 문법 유의!
 
     // STL_M_ParentObject 관련
-    void MF_AttachObjectToParentObject(C_Object* _Object);                   // Attach; 
+    void MF_Attach_ObjectToParentObject(C_Object* _Object);                   // Attach; 
 };

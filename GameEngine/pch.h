@@ -33,5 +33,7 @@
 
 #include "component.h"
 
+#include "C_Device.h"
+
 
 #endif //PCH_H

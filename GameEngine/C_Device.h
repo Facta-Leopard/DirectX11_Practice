@@ -12,7 +12,7 @@ private:
 	Vector2							M_V2_RenderTargetResolution;			// Vector2
 
 	ComPtr<ID3D11Device>			CP_M_DX_Device;							// ComPtr<ID3D11Device>
-	ComPtr<ID3D11DeviceContext>		CP_M_DX_Context;							// ComPtr<ID3D11DeviceContext>
+	ComPtr<ID3D11DeviceContext>		CP_M_DX_DeviceContext;						// ComPtr<ID3D11DeviceContext>; 별도 클래스로 구성하려 했으나, 가독성 문제로 식별자만 명칭을 바꿈
 
 	ComPtr<IDXGISwapChain>			CP_M_DX_SwapChain;						// ComPtr<IDXGISwapChain>
 
@@ -31,35 +31,43 @@ private:
 	ComPtr<ID3D11SamplerState>				CP_M_DX_Sampler[2];											// ComPtr<ID3D11SamplerState>
 
 	// WinAPI를 활용하니까 에러검출용 반환값인 HRESULT로 통일하자
-public:
+protected:
 	HRESULT MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
 
 	HRESULT MF_ClearTarget();
 	HRESULT MF_Present();
 
-private:
-	HRESULT MF_CreateSwapChain();
-	HRESULT MF_CreateView();
-	HRESULT MF_CreateConstBuffer();
-	HRESULT MF_CreateRasterizerState();
-	HRESULT MF_CreateDepthStencilState();
-	HRESULT MF_CreateBlendState();
-	HRESULT MF_CreateSamplerState();
-
 public:
-	inline ComPtr<ID3D11Device> MF_GetDevice()												// Getter; CP_M_DX_Device
+	inline ComPtr<ID3D11Device> MF_Get_Device()												// Getter; CP_M_DX_Device
 	{
 		return CP_M_DX_Device;
 	}
-	inline ComPtr<ID3D11DeviceContext> MF_GetContext()										// Getter; CP_M_DX_Context
+	inline ComPtr<ID3D11DeviceContext> MF_Get_DeviceContext()										// Getter; CP_M_DX_DeviceContext
 	{
-		return CP_M_DX_Context;
+		return CP_M_DX_DeviceContext;
 	}
 
+protected:
+	HRESULT MF_CreateSwapChain();
+
+	HRESULT MF_CreateView();
+
+	HRESULT MF_CreateConstBuffer();
+
+	HRESULT MF_CreateRasterizerState();
+
+	HRESULT MF_CreateDepthStencilState();
+
+	HRESULT MF_CreateBlendState();
+
+	HRESULT MF_CreateSamplerState();
+
+
+
 	// 향후 정의예정
-	// C_ConstBuffer* MF_GetConstBuffer(CONSTRUCTUREBUFFER_TYPE _Type) { return MD_ConstructureBuffer[(UINT)_Type]; }
-	// Vector2 MF_GetRenderResolution() { return MV2_RenderTargetResolution; }
-	// ComPtr<ID3D11RasterizerState> MF_GetRSState(RASTERIZERSTATE_TYPE _Type) { return CPMEC_RasterizerState[(UINT)_Type]; }
-	// ComPtr<ID3D11DepthStencilState> MF_GetDSState(DEPTHSTENCILSTATE_TYPE _Type) { return CPMEC_DepthStencilState[(UINT)_Type]; }
-	// ComPtr<ID3D11BlendState>	MF_GetBSState(BLENDSTATE_TYPE _Type) { return CPMEC_BlendState[(UINT)_Type]; }
+	// C_ConstBuffer* MF_Get_ConstBuffer(CONSTRUCTUREBUFFER_TYPE _Type) { return MD_ConstructureBuffer[(UINT)_Type]; }
+	// Vector2 MF_Get_RenderResolution() { return MV2_RenderTargetResolution; }
+	// ComPtr<ID3D11RasterizerState> MF_Get_RSState(RASTERIZERSTATE_TYPE _Type) { return CPMEC_RasterizerState[(UINT)_Type]; }
+	// ComPtr<ID3D11DepthStencilState> MF_Get_DSState(DEPTHSTENCILSTATE_TYPE _Type) { return CPMEC_DepthStencilState[(UINT)_Type]; }
+	// ComPtr<ID3D11BlendState>	MF_Get_BSState(BLENDSTATE_TYPE _Type) { return CPMEC_BlendState[(UINT)_Type]; }
 };

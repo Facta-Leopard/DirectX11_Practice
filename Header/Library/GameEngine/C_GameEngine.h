@@ -26,33 +26,33 @@ public:
 	void MF_Prograss();
 
 
-	inline HWND MF_GetWindowHandle()														// Getter; 
+	inline HWND MF_Get_WindowHandle()														// Getter; 
 	{
 		return M_H_WindowHandle;
 	}
 
-	inline  Vector2 MF_GetResolution()														// Getter; 
+	inline  Vector2 MF_Get_Resolution()														// Getter; 
 	{
 		return M_V2_Resolution;
 	}
 
-	inline void MF_SetResolution(Vector2 _Resolution)										// Setter; M_V2_Resolution; Overloaded
+	inline void MF_Set_Resolution(Vector2 _Resolution)										// Setter; M_V2_Resolution; Overloaded
 	{
 		M_V2_Resolution = _Resolution;
 	}
 
-	inline void MF_SetResolution(float _Resolution_X, float _Resolution_Y)					// Setter; M_V2_Resolution; Overloaded
+	inline void MF_Set_Resolution(float _Resolution_X, float _Resolution_Y)					// Setter; M_V2_Resolution; Overloaded
 	{
 		M_V2_Resolution.x = _Resolution_X;
 		M_V2_Resolution.y = _Resolution_Y;
 	}
 
-	inline UINT MF_GetIDCount()																// Getter; M_IDCount
+	inline UINT MF_Get_IDCount()																// Getter; M_IDCount
 	{
 		return M_IDCount;
 	}
 
-	inline void MF_SetIDCount(UINT _Count)													// Setter; M_IDCount
+	inline void MF_Set_IDCount(UINT _Count)													// Setter; M_IDCount
 	{
 		M_IDCount = _Count;
 	}

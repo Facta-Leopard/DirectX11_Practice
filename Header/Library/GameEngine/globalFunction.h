@@ -18,7 +18,7 @@ inline bool GF_Toggle(bool _input)
 	}
 }
 
-//향후, 구현예정이었으나 방향 바꿈; C_Component의 다형성을 이용해 자기자신 반환 함수 구현; C_Component::MF_GetMyself()
+//향후, 구현예정이었으나 방향 바꿈; C_Component의 다형성을 이용해 자기자신 반환 함수 구현; C_Component::MF_Get_Myself()
 //// Component 분류를 위한 Switch문
 //{
 //	inline C_Transform GF_ComponentTypeCheck(C_Component * _Component)
@@ -30,7 +30,7 @@ inline bool GF_Toggle(bool _input)
 //		}
 //		C_Component* T_Component = _Component;
 //
-//		E_COMPONENT_TYPE T_ComponentType = T_Component->MF_GetComponentType();
+//		E_COMPONENT_TYPE T_ComponentType = T_Component->MF_Get_ComponentType();
 //
 //		switch (T_ComponentType)
 //		{

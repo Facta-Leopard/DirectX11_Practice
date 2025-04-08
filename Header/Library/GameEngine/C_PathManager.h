@@ -20,22 +20,22 @@ public:
 
     // 유의: 배열을 버퍼로 읽을 때는 포인터로 하여야 함!
     // 배열은 포인터로 표현이 가능!
-    inline wchar_t* MF_GetProjectPath_s()                         // Getter; M_ProjectPath_s
+    inline wchar_t* MF_Get_ProjectPath_s()                         // Getter; M_ProjectPath_s
     {
         return M_ProjectPath_s;
     }
 
-    inline wchar_t* MF_GetSolutionPath_s()                        // Getter; M_SolutionPath_s
+    inline wchar_t* MF_Get_SolutionPath_s()                        // Getter; M_SolutionPath_s
     {
         return M_SolutionPath_s;
     }
 
-    inline wchar_t* MF_GetResourcePath_s()                        // Getter; M_ResourcePath_s
+    inline wchar_t* MF_Get_ResourcePath_s()                        // Getter; M_ResourcePath_s
     {
         return M_ResourcePath_s;
     }
 
-    inline wchar_t* MF_GetSaveAndLoadPath_s()                     // Getter; M_SaveAndLoadPath_s
+    inline wchar_t* MF_Get_SaveAndLoadPath_s()                     // Getter; M_SaveAndLoadPath_s
     {
         return M_SaveAndLoadPath_s;
     }

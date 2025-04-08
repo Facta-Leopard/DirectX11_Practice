@@ -17,7 +17,7 @@ public:
     void Update();
 
 public:
-    C_Stage* MF_GetCurrentStage()
+    C_Stage* MF_Get_CurrentStage()
     {
         return P_M_CurrentStage;
     }

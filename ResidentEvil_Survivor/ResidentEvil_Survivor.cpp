@@ -54,7 +54,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // 엔진 초기화
-    C_GameEngine::SF_GetInstance()->MF_Initialize(G_H_Instance, 800, 600);
+    C_GameEngine::SF_Get_Instance()->MF_Initialize(G_H_Instance, 800, 600);
 
     // 에디터 카메라 관리자 초기화
 
@@ -86,7 +86,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         else
         {
             // 게임엔진 루프 호출
-            C_GameEngine::SF_GetInstance()->MF_Prograss();
+            C_GameEngine::SF_Get_Instance()->MF_Prograss();
 
             // 에디터 카메라 루프 호출
 

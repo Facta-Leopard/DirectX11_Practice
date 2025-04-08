@@ -27,7 +27,7 @@ private:
 
 public:
 	// 유의!! static인 멤버를 getter로 땡겨오려면 getter도 static이어야 함!
-	static T* SF_GetInstance()
+	static T* SF_Get_Instance()
 	{
 		if (nullptr == S_Instance)
 		{

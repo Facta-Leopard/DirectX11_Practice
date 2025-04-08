@@ -24,7 +24,7 @@ public:
 
     virtual void MF_Render() override;
 
-    virtual C_MeshRender* MF_GetMyself() override
+    virtual C_MeshRender* MF_Get_Myself() override
     {
         return this;
     };

@@ -38,11 +38,11 @@ void C_Group::MF_TickAfter()
 }
 
 
-void C_Group::MF_DetachObjectFromAllObject(C_Object* _Object)					// 유의! 벡터에서 지울 때 문법 주의!
+void C_Group::MF_Detach_ObjectFromAllObject(C_Object* _Object)					// 유의! 벡터에서 지울 때 문법 주의!
 {
 	if (nullptr == _Object)						// 방어코드
 	{
-		POPUP_DEBUG(L"_Object Is Nullptr", L"in C_Group::MF_DetachObjectFromAllObject(), nullptr == _Object")
+		POPUP_DEBUG(L"_Object Is Nullptr", L"in C_Group::MF_Detach_ObjectFromAllObject(), nullptr == _Object")
 		return;
 	}
 
@@ -61,11 +61,11 @@ void C_Group::MF_DetachObjectFromAllObject(C_Object* _Object)					// 유의! 벡터�
 	}
 }
 
-void C_Group::MF_AttachObjectToParentObject(C_Object* _Object)
+void C_Group::MF_Attach_ObjectToParentObject(C_Object* _Object)
 {
 	if (nullptr == _Object)						// 방어코드
 	{
-		POPUP_DEBUG(L"_Object Is Nullptr", L"in C_Group::MF_AttachObjectToParentObject(), nullptr == _Object")
+		POPUP_DEBUG(L"_Object Is Nullptr", L"in C_Group::MF_Attach_ObjectToParentObject(), nullptr == _Object")
 			return;
 	}
 

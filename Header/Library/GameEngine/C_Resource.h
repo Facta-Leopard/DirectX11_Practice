@@ -31,20 +31,25 @@ public:
     }
 
 public:
-    inline E_RESOURCE_TYPE MF_GetResourceType()                // Getter; M_E_ResouceType
+    inline E_RESOURCE_TYPE MF_Get_ResourceType()                // Getter; M_E_ResouceType
     {
         return M_E_ResouceType;
     }
 
-    inline wstring MF_GetPathKey()                             // Getter; M_PathKey
+    inline wstring MF_Get_PathKey()                             // Getter; M_PathKey
     {
         return M_PathKey;
     }
 
-    inline wstring MF_SetPathKey(const wstring& _PathKey)      // Setter
+    inline wstring MF_Set_PathKey(const wstring& _PathKey)      // Setter
     {
         M_PathKey = _PathKey;
     }
+
+
+
+
+
 
     // 향후, Save 및 Load는 별도 구성
     // HRESULT MF_Save(const wstring& _PathKey);

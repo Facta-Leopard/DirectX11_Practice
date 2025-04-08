@@ -23,6 +23,6 @@ public:
 
     virtual void MF_Render() override;
 
-    virtual C_ParticleRender* MF_GetMyself() override { return this; }
+    virtual C_ParticleRender* MF_Get_Myself() override { return this; }
 };
 

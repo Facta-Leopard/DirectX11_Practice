@@ -23,7 +23,7 @@ public:
 
     virtual void MF_Render() override;
 
-    virtual C_FlipbookRender* MF_GetMyself() override
+    virtual C_FlipbookRender* MF_Get_Myself() override
     {
         return this;
     };

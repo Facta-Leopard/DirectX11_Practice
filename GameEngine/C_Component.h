@@ -33,7 +33,7 @@ public:
 
     virtual void MF_ComponentTickAfter() = 0;                       // 상속받는 클래스의 작동함수 작성을 강제하기 위해서 추상화 설정
 
-    virtual C_Component* MF_GetMyself()                             // Return This Point By Vitual and Polymorph; 다형성을 이용한 자기자신 반환함수
+    virtual C_Component* MF_Get_Myself()                             // Return This Point By Vitual and Polymorph; 다형성을 이용한 자기자신 반환함수
     {
         if (_COMPONENT_SCRIPT == this->L_M_ComponentType)           // 방어코드
         {
@@ -49,7 +49,7 @@ public:
     virtual void MF_Prepare() = 0;                                  // 상속받는 클래스의 작동함수 작성을 강제하기 위해서 추상화 설정
 
 public:
-    inline E_COMPONENT_TYPE MF_GetComponentType()                   // Getter
+    inline E_COMPONENT_TYPE MF_Get_ComponentType()                   // Getter
     {
         return L_M_ComponentType;
     }

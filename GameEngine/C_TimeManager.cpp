@@ -41,7 +41,7 @@ void C_TimeManager::MF_Update()
 	M_OneSecondTime += M_DeltaTime;								// 누적시간 계산
 	if (1.f <= M_OneSecondTime)
 	{
-		HWND T_H_WindowHandle = C_GameEngine::SF_GetInstance()->MF_GetWindowHandle();
+		HWND T_H_WindowHandle = C_GameEngine::SF_Get_Instance()->MF_Get_WindowHandle();
 		wchar_t T_WindowTitleSubjectBuffer_s[255] = {};
 
 		swprintf_s(T_WindowTitleSubjectBuffer_s, 255, L"FPS : %d, DeltaTime : %f", M_FPS, M_DeltaTime);		// 임시 버퍼에 델타타임 문자열 기재

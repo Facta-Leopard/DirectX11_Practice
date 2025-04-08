@@ -304,7 +304,7 @@
       <Filter>8. Stage</Filter>
     </ClInclude>
     <ClInclude Include="C_Texture.h">
-      <Filter>Relic\헤더 파일</Filter>
+      <Filter>3. Resource\31. Resource\314. Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -411,7 +411,7 @@
       <Filter>8. Stage</Filter>
     </ClCompile>
     <ClCompile Include="C_Texture.cpp">
-      <Filter>Relic\소스 파일</Filter>
+      <Filter>3. Resource\31. Resource\314. Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
