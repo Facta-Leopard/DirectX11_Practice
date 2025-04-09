@@ -1,4 +1,7 @@
 ﻿  C_Texture.cpp
+  C_TileRender.cpp
+  globalFunction.cpp
+  코드를 생성하고 있습니다...
   GameEngine.vcxproj -> \\Mac\Home\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
   통합관리를 위한 파일 복사용 배치파일 실행
   .\C_CameraComponent.h

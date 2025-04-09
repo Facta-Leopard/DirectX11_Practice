@@ -1,5 +1,9 @@
 #pragma once
 
+#include "C_Singleton.h"
+
+#include "global.h"
+
 class C_GameEngine :
 	public C_Singleton<C_GameEngine>
 {

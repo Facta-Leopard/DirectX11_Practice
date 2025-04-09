@@ -1,6 +1,17 @@
 #include "pch.h"
 #include "C_Device.h"
 
+C_Device::C_Device()
+    : M_H_Window(nullptr)
+{
+
+}
+
+C_Device::~C_Device()
+{
+
+}
+
 HRESULT C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
 {
 
@@ -21,20 +32,20 @@ HRESULT C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
     }
 
     // Swapchain 생성
-    if (FAILED(MF_CreateSwapChain()))
+    if (FAILED(MF_Create_SwapChain()))
     {
         POPUP_DEBUG(L"Swapchain Creating Failed", L"in C_Device::MF_CreateSwapChain(), Failed");
         return E_FAIL;
     }
 
     // View 생성
-    if (FAILED(MF_CreateView()))
+    if (FAILED(MF_Create_View()))
     {
         POPUP_DEBUG(L"View Creating Failed", L"in C_Device::MF_CreateSwapChain(), Failed");
         return E_FAIL;
     }
 
-    // 화면 크기 조정시 관여하는 bool값으로, 다시 버퍼 생성하지 않게 하는 것을 추가할 수도 있으니 코드 블록 구분해 둠
+    // 향후, 화면 크기 조정시 관여하는 bool값으로 다시 버퍼 생성하지 않게 하는 것을 추가할 수도 있으니 코드 블록 구분해 둠
     {
 
     }
@@ -52,7 +63,7 @@ HRESULT C_Device::MF_Present()
 	return E_NOTIMPL;
 }
 
-HRESULT C_Device::MF_CreateSwapChain()
+HRESULT C_Device::MF_Create_SwapChain()
 {
     // 스왑체인을 만들면, 기본적으로 렌더타겟 버퍼가 생김
     DXGI_SWAP_CHAIN_DESC Desc = {};
@@ -91,7 +102,7 @@ HRESULT C_Device::MF_CreateSwapChain()
     return S_OK;
 }
 
-HRESULT C_Device::MF_CreateView()
+HRESULT C_Device::MF_Create_View()
 {
     // 백 버퍼로 사용할 버퍼 생성
     ComPtr<ID3D11Texture2D> CP_T_DX_RenderTargetTexure = nullptr;
@@ -112,27 +123,29 @@ HRESULT C_Device::MF_CreateView()
     return S_OK;
 }
 
-HRESULT C_Device::MF_CreateConstBuffer()
+
+
+HRESULT C_Device::MF_Create_ConstBuffer()
 {
 	return E_NOTIMPL;
 }
 
-HRESULT C_Device::MF_CreateRasterizerState()
+HRESULT C_Device::MF_Create_RasterizerState()
 {
 	return E_NOTIMPL;
 }
 
-HRESULT C_Device::MF_CreateDepthStencilState()
+HRESULT C_Device::MF_Create_DepthStencilState()
 {
 	return E_NOTIMPL;
 }
 
-HRESULT C_Device::MF_CreateBlendState()
+HRESULT C_Device::MF_Create_BlendState()
 {
 	return E_NOTIMPL;
 }
 
-HRESULT C_Device::MF_CreateSamplerState()
+HRESULT C_Device::MF_Create_SamplerState()
 {
 	return E_NOTIMPL;
 }

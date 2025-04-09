@@ -1,4 +1,7 @@
 #pragma once
+
+#include "C_Singleton.h"
+
 #include "global.h"
 
 class C_InputManager :

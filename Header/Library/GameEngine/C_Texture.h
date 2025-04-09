@@ -9,6 +9,9 @@ class C_Texture :
 public:
     C_Texture(E_RESOURCE_TYPE _RESOURCETYPE);
 
+protected:
+    C_Texture(const C_Texture&) = delete;             // C_Texture는 고유하여야 하므로, 복사생성자 작동 방지
+
 public:
     ~C_Texture();
 
@@ -19,7 +22,7 @@ protected:
 
     //// Resource 관리용
     ComPtr<ID3D11Texture2D>             CP_M_D_Texture2D;                   // ComPtr<ID3D11Texture2D>; GPU Buffer
-    D3D11_TEXTURE2D_DESC                M_D_TextureDesc;                    // D3D11_TEXTURE2D_DESC; Texture FLag
+    D3D11_TEXTURE2D_DESC                M_D_TextureDesc;                    // D3D11_TEXTURE2D_DESC; Texture FLag; 유의! 여기 구조체 정보에 따라 CPU 및 GPU가 텍스처를 대하는 방식이 달라짐
 
     // View 관리용
     //// Render 관련
@@ -28,13 +31,16 @@ protected:
 
     //// ShaderResource 전용
     ComPtr<ID3D11ShaderResourceView>    CP_M_D_ShaderResourceView;          // ComPtr<ID3D11ShaderResourceView>
-    int                                 M_tRegisterNumber;              // int; 유의! 음수 값(-1)은 최근에 사용한 t레지스터가 없다는 의미!, 양수 값은 사용한 t레지스터 숫자를 나타냄
+    int                                 M_tRegisterNumber;                  // int; 유의! 음수 값(-1)은 최근에 사용한 t레지스터가 없다는 의미!, 양수 값은 사용한 t레지스터 숫자를 나타냄
 
     //// UnorderedAccess 전용
     ComPtr<ID3D11UnorderedAccessView>   CP_M_D_UnorderedAccessView;         // ComPtr<Id311UnorderedAccessView>; Texel로 쓰기 위한 용도
-    int                                 M_uRegisterNumber;              // int; 유의! 음수 값(-1)은 최근에 사용한 u레지스터가 없다는 의미!, 양수 값은 사용한 u레지스터 숫자를 나타냄
+    int                                 M_uRegisterNumber;                  // int; 유의! 음수 값(-1)은 최근에 사용한 u레지스터가 없다는 의미!, 양수 값은 사용한 u레지스터 숫자를 나타냄
 
 public:
+
+    // 부모 클래스인 C_Resource 클론을 통한 복사방지 해둠
+
     UINT MF_Get_TextureWidth()                                                                // Getter; Texture 너비 반환
     {
         return M_D_TextureDesc.Width;
@@ -56,7 +62,16 @@ protected:
 
     void MF_Unbind_UnorderedAccessViewFromComputeByuRegister();                               // 언오더엑세스 뷰를 u레지스터에서 바인딩을 해제하는 함수
 
+protected:
+    HRESULT MF_Set_Description(DXGI_FORMAT _Fomat, UINT _Width, UINT _Height,                 // Setter; Overload; Description 기본설정용
+        UINT _Flag, D3D11_USAGE _Usage);
+
+    HRESULT MF_Set_Description(ComPtr<ID3D11Texture2D> _Texture);                                     // Setter; Overload; Texure를 받으면 Description를 복사하여 새롭게 뷰 생성
+
+    HRESULT MF_Set_Description(D3D11_TEXTURE2D_DESC _Description);                            // Setter; Overload; Description를 받으면 새롭게 뷰 생성
 
 
+
+    // 향후, Save 및 Load 기능 구현예정
 };
 

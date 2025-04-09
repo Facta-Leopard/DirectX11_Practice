@@ -1,6 +1,7 @@
 #pragma once
 
-#include"pch.h"
+#include "global.h"
+#include "C_Texture.h"
 
 class C_Device: public C_Singleton<C_Device>
 {
@@ -8,19 +9,18 @@ class C_Device: public C_Singleton<C_Device>
 	SINGLE(C_Device)
 
 private:
-	HWND							M_H_Window;								// HWND
-	Vector2							M_V2_RenderTargetResolution;			// Vector2
+	HWND									M_H_Window;													// HWND
+	Vector2									M_V2_RenderTargetResolution;								// Vector2
 
-	ComPtr<ID3D11Device>			CP_M_DX_Device;							// ComPtr<ID3D11Device>
-	ComPtr<ID3D11DeviceContext>		CP_M_DX_DeviceContext;						// ComPtr<ID3D11DeviceContext>; 별도 클래스로 구성하려 했으나, 가독성 문제로 식별자만 명칭을 바꿈
+	ComPtr<ID3D11Device>					CP_M_DX_Device;												// ComPtr<ID3D11Device>
+	ComPtr<ID3D11DeviceContext>				CP_M_DX_DeviceContext;										// ComPtr<ID3D11DeviceContext>; 별도 클래스로 구성하려 했으나, 가독성 문제로 식별자만 명칭을 바꿈
 
-	ComPtr<IDXGISwapChain>			CP_M_DX_SwapChain;						// ComPtr<IDXGISwapChain>
+	ComPtr<IDXGISwapChain>					CP_M_DX_SwapChain;											// ComPtr<IDXGISwapChain>
 
-	// 향후 C_Texture 정의예정
 	// 기존 학습시 정의한 ptr 클래스는 이중포인터를 사용하기 위한 ComPtr의 열화판이고,
 	// 이중포인터는 COM과 같은 DirectX 객체들에서만 쓰므로, 그냥 스마트 포인터로 전부 개조해서 쓰자
-	// shared_ptr<C_Texture>					SP_M_DX_RenderTargetTexture;
-	// shared_ptr<C_Texture>					SP_M_DX_DepthStencilTexture;
+	shared_ptr<C_Texture>					SP_M_DX_RenderTargetTexture;
+	shared_ptr<C_Texture>					SP_M_DX_DepthStencilTexture;
 
 	// CConstBuffer* MD_ConstructureBuffer[(UINT)CB_TYPE::END];
 
@@ -38,29 +38,30 @@ protected:
 	HRESULT MF_Present();
 
 public:
-	inline ComPtr<ID3D11Device> MF_Get_Device()												// Getter; CP_M_DX_Device
+	inline ID3D11Device* MF_Get_Device()  																// Getter; 생성된 Device; CP_M_DX_Device.Get()
 	{
-		return CP_M_DX_Device;
+		return CP_M_DX_Device.Get();
 	}
-	inline ComPtr<ID3D11DeviceContext> MF_Get_DeviceContext()										// Getter; CP_M_DX_DeviceContext
+
+	inline ID3D11DeviceContext* MF_Get_DeviceContext()  												// Getter; 생성된 DeviceContext; CP_M_DX_Device.Get()
 	{
-		return CP_M_DX_DeviceContext;
+		return CP_M_DX_DeviceContext.Get();
 	}
 
 protected:
-	HRESULT MF_CreateSwapChain();
+	HRESULT MF_Create_SwapChain();
 
-	HRESULT MF_CreateView();
+	HRESULT MF_Create_View();
 
-	HRESULT MF_CreateConstBuffer();
+	HRESULT MF_Create_ConstBuffer();
 
-	HRESULT MF_CreateRasterizerState();
+	HRESULT MF_Create_RasterizerState();
 
-	HRESULT MF_CreateDepthStencilState();
+	HRESULT MF_Create_DepthStencilState();
 
-	HRESULT MF_CreateBlendState();
+	HRESULT MF_Create_BlendState();
 
-	HRESULT MF_CreateSamplerState();
+	HRESULT MF_Create_SamplerState();
 
 
 
