@@ -72,16 +72,24 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>$(ProjectName)_Debug</TargetName>
-    <OutDir>$(SolutionDir)\Library\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)Library\$(ProjectName)\</OutDir>
     <LibraryPath>$(SolutionDir)Library\;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(SolutionDir)Header\Library\;$(ExternalIncludePath)</ExternalIncludePath>
     <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)\Library\$(ProjectName)\</OutDir>
+    <OutDir>$(SolutionDir)Library\$(ProjectName)\</OutDir>
     <LibraryPath>$(SolutionDir)Library\;$(LibraryPath)</LibraryPath>
     <ExternalIncludePath>$(SolutionDir)Header\Library\;$(ExternalIncludePath)</ExternalIncludePath>
     <IncludePath>$(ProjectDir);$(IncludePath)</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LibraryPath>$(SolutionDir)Library\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Library\$(ProjectName)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LibraryPath>$(SolutionDir)Library\;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Library\$(ProjectName)\</OutDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

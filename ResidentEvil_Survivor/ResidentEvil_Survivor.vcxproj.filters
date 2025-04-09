@@ -25,6 +25,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="9. IMGUI\90. IMGUI Library">
+      <UniqueIdentifier>{7a06fe91-1f49-4ff9-93e7-d42e03a7b62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. IMGUI\91. Base">
+      <UniqueIdentifier>{e7584198-4440-4592-848e-28d4a879cb02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -40,28 +46,31 @@
       <Filter>1. Foundation</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imconfig.h">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imgui.h">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imgui_impl_dx11.h">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imgui_impl_win32.h">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imgui_internal.h">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imstb_rectpack.h">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imstb_textedit.h">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imstb_truetype.h">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+    </ClInclude>
+    <ClInclude Include="C_UI.h">
+      <Filter>9. IMGUI\91. Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -72,25 +81,28 @@
       <Filter>0. Main</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui.cpp">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_demo.cpp">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_draw.cpp">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_impl_dx11.cpp">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_impl_win32.cpp">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_tables.cpp">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_widgets.cpp">
-      <Filter>9. IMGUI</Filter>
+      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+    </ClCompile>
+    <ClCompile Include="C_UI.cpp">
+      <Filter>9. IMGUI\91. Base</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
