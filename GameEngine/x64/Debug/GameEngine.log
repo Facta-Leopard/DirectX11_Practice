@@ -1,42 +1,4 @@
-﻿  pch.cpp
-  C_CameraComponent.cpp
-  C_CameraScript.cpp
-  C_Collider2D.cpp
-  C_CollisionManager.cpp
-  C_Component.cpp
-  C_DebugManager.cpp
-  C_Device.cpp
-  C_Entity.cpp
-  C_FlipbookRender.cpp
-  C_GameEngine.cpp
-  C_Gruop.cpp
-  C_InputManager.cpp
-  C_Light2D.cpp
-  C_MeshRender.cpp
-  C_MoveScript.cpp
-  C_NPCScript.cpp
-  C_Object.cpp
-  C_ParticleRender.cpp
-  C_PathManager.cpp
-  C_RenderComponent.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  C_RenderManager.cpp
-  C_Resource.cpp
-  C_ResourceManager.cpp
-  C_RigidScript.cpp
-  C_ScriptComponent.cpp
-  C_SpriteRender.cpp
-  C_Stage.cpp
-  C_StageManager.cpp
-  C_StateScript.cpp
-  C_TaskManager.cpp
-  C_Texture.cpp
-  C_TileRender.cpp
-  C_TimeManager.cpp
-  C_Transform.cpp
-  globalFunction.cpp
-  코드를 생성하고 있습니다...
+﻿  C_StageManager.cpp
   GameEngine.vcxproj -> \\Mac\Home\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
   통합관리를 위한 파일 복사용 배치파일 실행
   .\C_CameraComponent.h
@@ -54,6 +16,7 @@
   .\global.h
   .\C_DebugManager.h
   .\C_Texture.h
+  .\C_Sound.h
   .\SimpleMath.h
   .\C_RenderComponent.h
   .\globalFunction.h
@@ -75,13 +38,13 @@
   .\C_CameraScript.h
   .\C_FlipbookRender.h
   .\C_TaskManager.h
-  .\C_Gruop.h
   .\C_ParticleRender.h
   .\C_Object.h
   .\globalVariable.h
   .\C_StateScript.h
   .\C_Entity.h
-  42개 파일이 복사되었습니다.
+  .\C_Group.h
+  43개 파일이 복사되었습니다.
   .\SimpleMath.inl
   1개 파일이 복사되었습니다.
   지정된 경로를 찾을 수 없습니다.

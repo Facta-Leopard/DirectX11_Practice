@@ -1,12 +1,13 @@
 #include "pch.h"
+
 #include "C_Object.h"
 
 C_Object::C_Object()
 	: C_Entity()
-	, M_GroupType(_GROUP_END)
+	, M_GroupIndex(_GROUP_END)
 	, M_IsLive(true)
 	, M_ParentObejct(nullptr)
-	, STL_M_ChildObejct{}
+	, STL_P_M_ChildObejct{}
 	, P_M_Component_s{}
 	, P_M_RenderComponent(nullptr)
 	, P_M_Script_s{}
@@ -16,10 +17,10 @@ C_Object::C_Object()
 
 C_Object::C_Object(const C_Object& _Origin)
 	: C_Entity(_Origin)
-	, M_GroupType(_Origin.M_GroupType)
+	, M_GroupIndex(_Origin.M_GroupIndex)
 	, M_IsLive(_Origin.M_IsLive)
 	, M_ParentObejct(nullptr)									// 복사해서 붙여야 할 수도 있으므로 nullptr
-	, STL_M_ChildObejct{}
+	, STL_P_M_ChildObejct{}
 	, P_M_Component_s{}
 	, P_M_RenderComponent(_Origin.P_M_RenderComponent)			// 기본적으로 렌더링하는 요소 복사
 	, P_M_Script_s{}
@@ -48,7 +49,7 @@ C_Object::C_Object(const C_Object& _Origin)
 	}
 
 	// 자식 오브젝트 깊은 복사
-	for (vector<C_Object*>::iterator T_Iterator = STL_M_ChildObejct.begin(); T_Iterator < STL_M_ChildObejct.end(); T_Iterator++)
+	for (vector<C_Object*>::iterator T_Iterator = STL_P_M_ChildObejct.begin(); T_Iterator < STL_P_M_ChildObejct.end(); T_Iterator++)
 	{
 		if (nullptr == *T_Iterator)			   // 방어코드; 
 		{
@@ -57,7 +58,7 @@ C_Object::C_Object(const C_Object& _Origin)
 		
 		C_Object* T_Object = (*T_Iterator)->MF_Clone();
 
-		STL_M_ChildObejct.push_back(T_Object);
+		STL_P_M_ChildObejct.push_back(T_Object);
 	}
 }
 
@@ -65,12 +66,12 @@ C_Object::~C_Object()
 {
 	DELETEALL_FIXEDARRAY_HEAP(P_M_Component_s, _COMPONENT_END)
 	DELETEALL_FIXEDARRAY_HEAP(P_M_Script_s, _SCRIPT_END)
-	DELETEALL_STL(STL_M_ChildObejct)
+	DELETEALL_STL(STL_P_M_ChildObejct)
 }
 
 void C_Object::MF_Prepare()
 {
-	// 기반료소부터 준비; C_Component -> C_ScriptComponent -> Obejct
+	// 기반요소부터 준비; C_Component -> C_ScriptComponent -> Obejct
 	//// C_Component
 	for (size_t i = 0; i < _COMPONENT_END; i++)
 	{
@@ -92,7 +93,7 @@ void C_Object::MF_Prepare()
 	}
 
 	//// STL_M_ChildObejct
-	for (vector<C_Object*>::iterator T_Iterator = STL_M_ChildObejct.begin(); T_Iterator < STL_M_ChildObejct.end(); T_Iterator++)
+	for (vector<C_Object*>::iterator T_Iterator = STL_P_M_ChildObejct.begin(); T_Iterator < STL_P_M_ChildObejct.end(); T_Iterator++)
 	{
 		if (nullptr == *T_Iterator)			   // 방어코드; 
 		{
@@ -145,7 +146,7 @@ void C_Object::MF_Detach_MyselfFromParentObject()
 		return;
 	}
 
-	vector<C_Object*> STL_T_ChildObject = M_ParentObejct->STL_M_ChildObejct;
+	vector<C_Object*> STL_T_ChildObject = M_ParentObejct->STL_P_M_ChildObejct;
 
 	for (vector<C_Object*>::iterator T_Iterator = STL_T_ChildObject.begin(); T_Iterator < STL_T_ChildObject.end(); T_Iterator++)
 	{
@@ -171,17 +172,17 @@ void C_Object::MF_Attach_ObjectToChildObject(C_Object* _Object)
 	_Object->M_ParentObejct = this;
 
 	// 자식오브젝트에 포함
-	STL_M_ChildObejct.push_back(_Object);
+	STL_P_M_ChildObejct.push_back(_Object);
 }
 
 void C_Object::MF_Detach_MyselfFromChildObject()
 {
-	if (STL_M_ChildObejct.empty())				// 방어코드; 자식오브젝트들이 없을 경우 방지
+	if (STL_P_M_ChildObejct.empty())				// 방어코드; 자식오브젝트들이 없을 경우 방지
 	{
 			return;
 	}
 
-	vector<C_Object*> STL_T_ChildObject = M_ParentObejct->STL_M_ChildObejct;
+	vector<C_Object*> STL_T_ChildObject = M_ParentObejct->STL_P_M_ChildObejct;
 
 	for (vector<C_Object*>::iterator T_Iterator = STL_T_ChildObject.begin(); T_Iterator < STL_T_ChildObject.end(); T_Iterator++)
 	{
@@ -196,8 +197,8 @@ void C_Object::MF_Detach_MyselfFromChildObject()
 
 void C_Object::MF_Detach_DeadObjectFromChildObject()										// 유의! 이터레이터 erase 문법 유의!
 {
-	vector<C_Object*>::iterator T_Iterator = STL_M_ChildObejct.begin();					// 유의! 이터레이터 erase 문법 유의!
-	for (T_Iterator = STL_M_ChildObejct.begin(); T_Iterator < STL_M_ChildObejct.end();) // 유의! 이터레이터 erase 문법 유의!
+	vector<C_Object*>::iterator T_Iterator = STL_P_M_ChildObejct.begin();					// 유의! 이터레이터 erase 문법 유의!
+	for (T_Iterator = STL_P_M_ChildObejct.begin(); T_Iterator < STL_P_M_ChildObejct.end();) // 유의! 이터레이터 erase 문법 유의!
 	{
 		if ((*T_Iterator)->M_IsLive)													// 유의! 이터레이터 erase 문법 유의!
 		{
@@ -205,7 +206,7 @@ void C_Object::MF_Detach_DeadObjectFromChildObject()										// 유의! 이터레이�
 		}
 		else
 		{
-			STL_M_ChildObejct.erase(T_Iterator);
+			STL_P_M_ChildObejct.erase(T_Iterator);
 		}
 	}
 }
@@ -225,7 +226,7 @@ void C_Object::MF_Attach_Component(C_Component* _Component)
 
 void C_Object::MF_ChildTick()
 {
-	for (vector<C_Object*>::iterator T_Iterator = STL_M_ChildObejct.begin(); T_Iterator < STL_M_ChildObejct.end(); T_Iterator++)
+	for (vector<C_Object*>::iterator T_Iterator = STL_P_M_ChildObejct.begin(); T_Iterator < STL_P_M_ChildObejct.end(); T_Iterator++)
 	{
 		if (nullptr == *T_Iterator)			// 방어코드; 
 		{

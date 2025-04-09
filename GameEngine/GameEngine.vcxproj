@@ -180,7 +180,7 @@
     <ClInclude Include="C_Device.h" />
     <ClInclude Include="C_Entity.h" />
     <ClInclude Include="C_FlipbookRender.h" />
-    <ClInclude Include="C_Gruop.h" />
+    <ClInclude Include="C_Group.h" />
     <ClInclude Include="C_InputManager.h" />
     <ClInclude Include="C_Light2D.h" />
     <ClInclude Include="C_MeshRender.h" />
@@ -196,6 +196,7 @@
     <ClInclude Include="C_RigidScript.h" />
     <ClInclude Include="C_ScriptComponent.h" />
     <ClInclude Include="C_Singleton.h" />
+    <ClInclude Include="C_Sound.h" />
     <ClInclude Include="C_SpriteRender.h" />
     <ClInclude Include="C_Stage.h" />
     <ClInclude Include="C_StageManager.h" />
@@ -226,7 +227,7 @@
     <ClCompile Include="C_Entity.cpp" />
     <ClCompile Include="C_FlipbookRender.cpp" />
     <ClCompile Include="C_GameEngine.cpp" />
-    <ClCompile Include="C_Gruop.cpp" />
+    <ClCompile Include="C_Group.cpp" />
     <ClCompile Include="C_InputManager.cpp" />
     <ClCompile Include="C_Light2D.cpp" />
     <ClCompile Include="C_MeshRender.cpp" />
@@ -241,6 +242,7 @@
     <ClCompile Include="C_ResourceManager.cpp" />
     <ClCompile Include="C_RigidScript.cpp" />
     <ClCompile Include="C_ScriptComponent.cpp" />
+    <ClCompile Include="C_Sound.cpp" />
     <ClCompile Include="C_SpriteRender.cpp" />
     <ClCompile Include="C_Stage.cpp" />
     <ClCompile Include="C_StageManager.cpp" />

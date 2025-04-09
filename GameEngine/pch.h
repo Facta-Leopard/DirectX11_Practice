@@ -13,8 +13,6 @@
 
 #include "define.h"
 
-#include "C_GameEngine.h"
-
 // 관리자
 #include "C_InputManager.h"
 #include "C_PathManager.h"
@@ -23,7 +21,6 @@
 #include "C_CollisionManager.h"
 #include "C_StageManager.h"
 #include "C_RenderManager.h"
-#include "C_DebugManager.h"
 #ifdef _DEBUG
 #include "C_DebugManager.h"
 #endif // DEBUG
@@ -38,5 +35,6 @@
 
 #include "C_Device.h"
 
+#include "C_GameEngine.h"
 
 #endif //PCH_H

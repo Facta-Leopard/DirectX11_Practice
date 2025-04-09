@@ -1,6 +1,6 @@
 #pragma once
 #include "C_Entity.h"
-#include "C_Gruop.h"
+#include "C_Group.h"
 
 class C_Stage :
     public C_Entity
@@ -16,7 +16,7 @@ public:
 protected:
     const E_STAGE_NUMBER            L_M_StageNumber;                // E_STAGE_NUMBER; Stage 종류
     E_STAGE_STATE                   M_StageState;                   // E_STAGE_STATE; Play, Pause, Stop
-    C_Group*                        P_M_Group_s[_GROUP_END];        // C_Group*;
+    C_Group*                        P_M_Group_s[_GROUP_END];        // C_Group;
 
 public:
     virtual C_Stage* MF_Clone() override final { return nullptr; }                      // 굳이, 쓸 일이 없을 것 같아서 사용 금지; 대입연산자를 굳이 막진 않음
@@ -49,7 +49,7 @@ public:
 
     inline C_Group* MF_Get_Groups()                                                      // Getter
     {
-        return P_M_Group_s[_GROUP_END - 1];                                             // Index를 벗어난 읽기 오류 디버깅
+        return P_M_Group_s[_GROUP_END - 1];                                              // Index를 벗어난 읽기 오류 디버깅
     }
 
     inline C_Group* MF_Set_GroupInGroups(C_Group* _Group, E_GROUP_TYPE _GroupType)       // Setter; 명명규칙에 벗어나지 않도록 헤더에 기재

@@ -46,30 +46,6 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="9. Manager\4. ResourceManager">
-      <UniqueIdentifier>{140763fd-905f-42c3-8cdc-4a14b77dbac1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="9. Manager\2. PathManager">
-      <UniqueIdentifier>{1d4dfa96-4378-48e3-8af8-af313942aec2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="9. Manager\3. TimeManager">
-      <UniqueIdentifier>{b81dc62a-d531-4ae4-9587-9b645626b921}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="9. Manager\1. InputManager">
-      <UniqueIdentifier>{57df4c13-da2a-4506-936a-a0d8152429b5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="9. Manager\9. DebugManager">
-      <UniqueIdentifier>{a202515e-1d01-4913-b098-3950f5ededba}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="9. Manager\8. RenderManager">
-      <UniqueIdentifier>{92497537-c72e-4151-a81a-b560eff9300b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="9. Manager\5. CollisionManager">
-      <UniqueIdentifier>{5becc875-c0bc-4702-8623-ac516eac2760}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="9. Manager\6. StageManager">
-      <UniqueIdentifier>{15033842-a9f2-4899-97a4-69b89a19f5aa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3. Resource\31. Resource\310. Resource">
       <UniqueIdentifier>{642537bf-0f55-48dc-a07b-398ad9348484}</UniqueIdentifier>
     </Filter>
@@ -93,9 +69,6 @@
     </Filter>
     <Filter Include="3. Resource\31. Resource\319. Prefab">
       <UniqueIdentifier>{68702963-2237-465a-a296-4a7e4dc1b1e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\318. Sound">
-      <UniqueIdentifier>{32352a10-cb8e-4575-b577-e010bb0307a4}</UniqueIdentifier>
     </Filter>
     <Filter Include="3. Resource\32. Object">
       <UniqueIdentifier>{2a67f850-fca8-451c-83ee-d04bc0f39ce5}</UniqueIdentifier>
@@ -178,6 +151,33 @@
     <Filter Include="9. Manager\90. TaskManager">
       <UniqueIdentifier>{ec84cace-9f9a-43e5-9bc2-241086247b8d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="9. Manager\91. InputManager">
+      <UniqueIdentifier>{57df4c13-da2a-4506-936a-a0d8152429b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\92. PathManager">
+      <UniqueIdentifier>{1d4dfa96-4378-48e3-8af8-af313942aec2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\93. TimeManager">
+      <UniqueIdentifier>{b81dc62a-d531-4ae4-9587-9b645626b921}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\94. ResourceManager">
+      <UniqueIdentifier>{140763fd-905f-42c3-8cdc-4a14b77dbac1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\95. CollisionManager">
+      <UniqueIdentifier>{5becc875-c0bc-4702-8623-ac516eac2760}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\96. StageManager">
+      <UniqueIdentifier>{15033842-a9f2-4899-97a4-69b89a19f5aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\97. RenderManager">
+      <UniqueIdentifier>{92497537-c72e-4151-a81a-b560eff9300b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. Manager\99. DebugManager">
+      <UniqueIdentifier>{a202515e-1d01-4913-b098-3950f5ededba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Resource\318. Sound">
+      <UniqueIdentifier>{ff196e5e-15a8-404d-b521-585b932efef4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Singleton.h">
@@ -217,28 +217,28 @@
       <Filter>0. Foundation\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="C_ResourceManager.h">
-      <Filter>9. Manager\4. ResourceManager</Filter>
+      <Filter>9. Manager\94. ResourceManager</Filter>
     </ClInclude>
     <ClInclude Include="C_InputManager.h">
-      <Filter>9. Manager\1. InputManager</Filter>
+      <Filter>9. Manager\91. InputManager</Filter>
     </ClInclude>
     <ClInclude Include="C_PathManager.h">
-      <Filter>9. Manager\2. PathManager</Filter>
+      <Filter>9. Manager\92. PathManager</Filter>
     </ClInclude>
     <ClInclude Include="C_TimeManager.h">
-      <Filter>9. Manager\3. TimeManager</Filter>
+      <Filter>9. Manager\93. TimeManager</Filter>
     </ClInclude>
     <ClInclude Include="C_DebugManager.h">
-      <Filter>9. Manager\9. DebugManager</Filter>
+      <Filter>9. Manager\99. DebugManager</Filter>
     </ClInclude>
     <ClInclude Include="C_RenderManager.h">
-      <Filter>9. Manager\8. RenderManager</Filter>
+      <Filter>9. Manager\97. RenderManager</Filter>
     </ClInclude>
     <ClInclude Include="C_CollisionManager.h">
-      <Filter>9. Manager\5. CollisionManager</Filter>
+      <Filter>9. Manager\95. CollisionManager</Filter>
     </ClInclude>
     <ClInclude Include="C_StageManager.h">
-      <Filter>9. Manager\6. StageManager</Filter>
+      <Filter>9. Manager\96. StageManager</Filter>
     </ClInclude>
     <ClInclude Include="C_Resource.h">
       <Filter>3. Resource\31. Resource\310. Resource</Filter>
@@ -300,7 +300,7 @@
     <ClInclude Include="C_MoveScript.h">
       <Filter>6. ScriptComponent\63. MoveScript</Filter>
     </ClInclude>
-    <ClInclude Include="C_Gruop.h">
+    <ClInclude Include="C_Group.h">
       <Filter>7. Group</Filter>
     </ClInclude>
     <ClInclude Include="C_Stage.h">
@@ -311,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="C_TaskManager.h">
       <Filter>9. Manager\90. TaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Sound.h">
+      <Filter>3. Resource\31. Resource\318. Sound</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -327,28 +330,28 @@
       <Filter>0. Foundation\00. PreCompiled Header</Filter>
     </ClCompile>
     <ClCompile Include="C_ResourceManager.cpp">
-      <Filter>9. Manager\4. ResourceManager</Filter>
+      <Filter>9. Manager\94. ResourceManager</Filter>
     </ClCompile>
     <ClCompile Include="C_InputManager.cpp">
-      <Filter>9. Manager\1. InputManager</Filter>
+      <Filter>9. Manager\91. InputManager</Filter>
     </ClCompile>
     <ClCompile Include="C_PathManager.cpp">
-      <Filter>9. Manager\2. PathManager</Filter>
+      <Filter>9. Manager\92. PathManager</Filter>
     </ClCompile>
     <ClCompile Include="C_TimeManager.cpp">
-      <Filter>9. Manager\3. TimeManager</Filter>
+      <Filter>9. Manager\93. TimeManager</Filter>
     </ClCompile>
     <ClCompile Include="C_DebugManager.cpp">
-      <Filter>9. Manager\9. DebugManager</Filter>
+      <Filter>9. Manager\99. DebugManager</Filter>
     </ClCompile>
     <ClCompile Include="C_RenderManager.cpp">
-      <Filter>9. Manager\8. RenderManager</Filter>
+      <Filter>9. Manager\97. RenderManager</Filter>
     </ClCompile>
     <ClCompile Include="C_CollisionManager.cpp">
-      <Filter>9. Manager\5. CollisionManager</Filter>
+      <Filter>9. Manager\95. CollisionManager</Filter>
     </ClCompile>
     <ClCompile Include="C_StageManager.cpp">
-      <Filter>9. Manager\6. StageManager</Filter>
+      <Filter>9. Manager\96. StageManager</Filter>
     </ClCompile>
     <ClCompile Include="C_Resource.cpp">
       <Filter>3. Resource\31. Resource\310. Resource</Filter>
@@ -410,7 +413,7 @@
     <ClCompile Include="C_MoveScript.cpp">
       <Filter>6. ScriptComponent\63. MoveScript</Filter>
     </ClCompile>
-    <ClCompile Include="C_Gruop.cpp">
+    <ClCompile Include="C_Group.cpp">
       <Filter>7. Group</Filter>
     </ClCompile>
     <ClCompile Include="C_Stage.cpp">
@@ -421,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="C_TaskManager.cpp">
       <Filter>9. Manager\90. TaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Sound.cpp">
+      <Filter>3. Resource\31. Resource\318. Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

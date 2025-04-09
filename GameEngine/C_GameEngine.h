@@ -50,7 +50,7 @@ public:
 		M_V2_Resolution.y = _Resolution_Y;
 	}
 
-	inline FMOD::System* Get_FMODSystem()													// Getter; P_M_F_System
+	inline FMOD::System* MF_Get_FMODSystem()													// Getter; P_M_F_System
 	{
 		return P_M_F_System;
 	}

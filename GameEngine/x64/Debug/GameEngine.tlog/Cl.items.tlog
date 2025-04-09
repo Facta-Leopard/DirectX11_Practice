@@ -8,7 +8,7 @@
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Entity.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Entity.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_FlipbookRender.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_FlipbookRender.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_GameEngine.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_GameEngine.obj
-\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Gruop.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Gruop.obj
+\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Group.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Group.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_InputManager.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_InputManager.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Light2D.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Light2D.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_MeshRender.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_MeshRender.obj
@@ -23,6 +23,7 @@
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_ResourceManager.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_ResourceManager.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_RigidScript.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_RigidScript.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_ScriptComponent.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_ScriptComponent.obj
+\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Sound.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Sound.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_SpriteRender.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_SpriteRender.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Stage.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Stage.obj
 \\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\C_StageManager.cpp;\\Mac\Home\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_StageManager.obj

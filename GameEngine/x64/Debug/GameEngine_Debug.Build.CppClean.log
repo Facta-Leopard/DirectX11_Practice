@@ -12,7 +12,7 @@
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_meshrender.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_light2d.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_inputmanager.obj
-\\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_gruop.obj
+\\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_group.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_gameengine.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_flipbookrender.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_entity.obj
@@ -33,6 +33,7 @@
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_stagemanager.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_stage.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_spriterender.obj
+\\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_sound.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_scriptcomponent.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_rigidscript.obj
 \\mac\home\desktop\github\directx11_practice\gameengine\x64\debug\c_resourcemanager.obj

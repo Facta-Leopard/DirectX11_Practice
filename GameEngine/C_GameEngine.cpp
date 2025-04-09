@@ -4,6 +4,9 @@ C_GameEngine::C_GameEngine()
     : M_H_Instance(nullptr)
     , M_H_WindowHandle(nullptr)
     , M_V2_Resolution(0.f, 0.f)
+
+    , P_M_F_System(nullptr)
+
     , M_IDCount(0)
 {
 }
@@ -48,11 +51,10 @@ void C_GameEngine::MF_Prograss()
     C_TaskManager::SF_Get_Instance()->MF_Update();
     C_InputManager::SF_Get_Instance()->MF_Update();
     C_TimeManager::SF_Get_Instance()->MF_Update();
-    // Resource는 업데이트 할 필요가 없으므로 생략
+    // ResourceManager는 업데이트 할 필요가 없으므로 생략
     C_CollisionManager::SF_Get_Instance()->MF_Update();
     C_StageManager::SF_Get_Instance()->MF_Update();
     C_RenderManager::SF_Get_Instance()->MF_Update();
-    C_DebugManager::SF_Get_Instance()->MF_Update();
     C_TaskManager::SF_Get_Instance()->MF_Update();
     
 #ifdef _DEBUG

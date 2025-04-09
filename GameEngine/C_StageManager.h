@@ -21,5 +21,7 @@ public:
     {
         return P_M_CurrentStage;
     }
+
+    // 향후, 스테이지 체인지 부분 함수 만든 후에 테스크 관리자로 정의할 예정
 };
 

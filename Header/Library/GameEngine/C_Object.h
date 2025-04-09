@@ -3,14 +3,13 @@
 #include "define.h"
 
 #include "C_Entity.h"
-
-class C_Component;
-class C_RenderComponent;
-class C_ScriptComponent;
+#include "component.h"
 
 class C_Object :
     public C_Entity
 {
+    friend class C_Group;
+
 public:
     C_Object();
 
@@ -23,12 +22,12 @@ public:
 protected:
     // 효율성을 위해 멤버들을 Heap으로 관리
     // Myself
-    E_GROUP_TYPE                        M_GroupType;                                // E_GROUP_NUMBER; 본인이 속한 그룹을 표시
+    E_GROUP_TYPE                        M_GroupIndex;                                // E_GROUP_NUMBER; 본인이 속한 그룹을 표시
     bool                                M_IsLive;                                   // bool; 본인이 죽었는지 여부
 
     // Object
     C_Object*                           M_ParentObejct;                              // C_Object*
-    vector<C_Object*>                   STL_M_ChildObejct;                           // vector<C_Object*>
+    vector<C_Object*>                   STL_P_M_ChildObejct;                           // vector<C_Object*>
 
 
     // Component
@@ -49,17 +48,22 @@ public:
 
     inline E_GROUP_TYPE MF_Get_GroupType()                                       // Getter
     {
-        return M_GroupType;
+        return M_GroupIndex;
     }
 
-    inline void MF_Set_GroupIndex(E_GROUP_TYPE _GroupType)                       // Setter
+    inline void MF_Set_GroupIndex(E_GROUP_TYPE _M_GroupIndex)                       // Setter
     {
-        M_GroupType = _GroupType;
+        M_GroupIndex = _M_GroupIndex;
     }
 
-    inline C_Object* MF_Get_ParentObject()                                       // Getter
+    inline C_Object* MF_Get_ParentObjects()                                       // Getter
     {
         return M_ParentObejct;
+    }
+
+    inline vector<C_Object*> MF_Get_ChildObjects()                                       // Getter
+    {
+        return STL_P_M_ChildObejct;
     }
 
     inline C_Component* MF_Get_Component(E_COMPONENT_TYPE _COMPONENTTYPE)        // Getter; 반환값을 강제로 Down Casting 해야함; 향후, Down Casting Automaically Logic 구성예정
