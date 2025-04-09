@@ -82,7 +82,7 @@ void C_Object::MF_Prepare()
 	}
 
 	//// C_ScriptComponent
-	for (size_t i = 0; i < _COMPONENT_END; i++)
+	for (size_t i = 0; i < _SCRIPT_END; i++)
 	{
 		if (nullptr == P_M_Script_s)			// 방어코드; 
 		{

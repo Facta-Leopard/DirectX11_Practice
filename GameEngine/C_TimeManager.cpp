@@ -19,10 +19,13 @@ C_TimeManager::~C_TimeManager()
 
 }
 
-void C_TimeManager::MF_Initialize()
+HRESULT C_TimeManager::MF_Initialize()
 {
 	QueryPerformanceFrequency(&M_CurrentFrequency);				// 현재 1초당 카운팅 값; 하드웨어 고정된 값
 	QueryPerformanceCounter(&M_TotalFrequencyBefore);			// 현재까지 누적된 카운팅 값
+
+	// 굳이 실패할 형태가 아니지만, 다른 관리자들과의 통일성을 위해 HRESULT 값 반환
+	return S_OK;
 }
 
 void C_TimeManager::MF_Update()

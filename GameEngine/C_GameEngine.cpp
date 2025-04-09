@@ -12,7 +12,7 @@ C_GameEngine::~C_GameEngine()
 {
 }
 
-void C_GameEngine::MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _ResoulutionY)
+HRESULT C_GameEngine::MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _ResoulutionY)
 {
     // 메인 프로그램 인자 전달
     M_H_Instance = _HInstance;
@@ -23,38 +23,41 @@ void C_GameEngine::MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _
     MF_CreateWindow();
 
 	// 관리자 생성 및 초기화
-    // 향후, 추가 구현 예정
     C_InputManager::SF_Get_Instance()->MF_Initialize();
     C_PathManager::SF_Get_Instance()->MF_Initialize();
     C_TimeManager::SF_Get_Instance()->MF_Initialize();
+    C_ResourceManager::SF_Get_Instance()->MF_Initialize();
+    C_CollisionManager::SF_Get_Instance()->MF_Initialize();
+    C_StageManager::SF_Get_Instance()->MF_Initialize();
+    C_RenderManager::SF_Get_Instance()->MF_Initialize();
+    C_TaskManager::SF_Get_Instance()->MF_Initialize();
 
-    // C_RenderManager::SF_Get_Instance()->MF_Initialize();
-
-#ifdef DEBUG
+#ifdef _DEBUG
     C_DebugManager::SF_Get_Instance()->MF_Initialize();
 #endif // DEBUG
  
     // 객체 구별용 ID값 초기화
     M_IDCount = 0;
+
+    return S_OK;
 }
 
 void C_GameEngine::MF_Prograss()
 {
     // 관리자 Update
-    // 향후, 추가 구현 예정
-    // TaskManager::SF_Get_Instance()->MF_Update();
+    C_TaskManager::SF_Get_Instance()->MF_Update();
     C_InputManager::SF_Get_Instance()->MF_Update();
-
     C_TimeManager::SF_Get_Instance()->MF_Update();
-
+    // Resource는 업데이트 할 필요가 없으므로 생략
+    C_CollisionManager::SF_Get_Instance()->MF_Update();
+    C_StageManager::SF_Get_Instance()->MF_Update();
     C_RenderManager::SF_Get_Instance()->MF_Update();
-
+    C_DebugManager::SF_Get_Instance()->MF_Update();
+    C_TaskManager::SF_Get_Instance()->MF_Update();
     
 #ifdef _DEBUG
     C_DebugManager::SF_Get_Instance()->MF_Update();
 #endif // DEBUG
-
-
 }
 
 void C_GameEngine::MF_CreateWindow()

@@ -1,6 +1,6 @@
 #pragma once
 #include "C_Singleton.h"
-#include "define.h"
+#include "global.h"
 
 class C_DebugManager :
     public C_Singleton<C_DebugManager>
@@ -13,7 +13,7 @@ protected:
     //향후, Object관련 생성 예정
 
 public:
-    void MF_Initialize();
+    HRESULT MF_Initialize();
 
     void MF_Update();
 

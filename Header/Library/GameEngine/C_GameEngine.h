@@ -25,7 +25,7 @@ private:
 	void MF_CreateWindow();
 
 public:
-	void MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _ResoulutionY);		// 초기화 함수
+	HRESULT MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _ResoulutionY);		// 초기화 함수
 
 	void MF_Prograss();
 
@@ -51,14 +51,14 @@ public:
 		M_V2_Resolution.y = _Resolution_Y;
 	}
 
-	inline UINT MF_Get_IDCount()																// Getter; M_IDCount
+	inline UINT MF_Get_IDCount()															// Getter; M_IDCount
 	{
 		return M_IDCount;
 	}
 
-	inline void MF_Set_IDCount(UINT _Count)													// Setter; M_IDCount
+	inline void MF_Set_IDCount(UINT _Count)													// Setter; M_IDCount++; 객체 구별용 아이디이므로, 반환값을 ++함
 	{
-		M_IDCount = _Count;
+		M_IDCount = _Count++;
 	}
 
 	// 향후, 구현 예정

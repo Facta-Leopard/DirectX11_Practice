@@ -43,7 +43,7 @@ C_InputManager::~C_InputManager()
 
 }
 
-void C_InputManager::MF_Initialize()
+HRESULT C_InputManager::MF_Initialize()
 {
 	// 키보드 초기화
 	// E_KEYTYPE을 vector 자료형의 순서에 맞추는 트릭을 써서 초기화
@@ -59,6 +59,7 @@ void C_InputManager::MF_Initialize()
 	if (NULL == GetCursorPos(&T_MousePos))					// 마우스 절대좌표 가져오는 WInAPI Function 사용
 	{
 		POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_InputManager::MF_Initialize(), NULL == GetCursorPos()");
+		return E_FAIL;
 	}
 
 	HWND T_H_Window = C_GameEngine::SF_Get_Instance()->MF_Get_WindowHandle();
@@ -66,6 +67,7 @@ void C_InputManager::MF_Initialize()
 	if (NULL == ScreenToClient(T_H_Window, &T_MousePos))	// 마우스 좌표를 창 기준으로 상대좌표로 변환해주는 WinAPI Function 사용
 	{
 		POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_InputManager::MF_Initialize(), NULL == ScreenToClient()");
+		return E_FAIL;
 	}
 
 	Vector2 T_Mousepos = (Vector2)(C_GameEngine::SF_Get_Instance()->MF_Get_Resolution());
@@ -75,6 +77,8 @@ void C_InputManager::MF_Initialize()
 	// M_DS_MouseInfo.M_MousePos = (Vector2)((float)T_MousePos.x, (float)T_MousePos.y);				// 이렇게 하면 초기 값이 창 생기는 위치를 벗어나면 화면 컨트롤 불가	
 	M_DS_MouseInfo.M_MousePosBefore = T_Mousepos;													// 현재 마우스 좌표 초기좌표 해상도 절반으로 강제 설정
 	// M_DS_MouseInfo.M_MousePosBefore = (Vector2)((float)T_MousePos.x, (float)T_MousePos.y);		// 이렇게 하면 초기 값이 창 생기는 위치를 벗어나면 화면 컨트롤 불가
+
+	return S_OK;
 }
 
 void C_InputManager::MF_Update()

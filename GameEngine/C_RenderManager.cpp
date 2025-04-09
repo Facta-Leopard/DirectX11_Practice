@@ -11,8 +11,9 @@ C_RenderManager::~C_RenderManager()
 
 }
 
-void C_RenderManager::MF_Initialize()
+HRESULT C_RenderManager::MF_Initialize()
 {
+	return E_NOTIMPL;
 }
 
 void C_RenderManager::MF_Update()

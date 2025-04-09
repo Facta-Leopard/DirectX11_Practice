@@ -1,6 +1,6 @@
 #pragma once
 #include "C_Singleton.h"
-#include "define.h"
+#include "global.h"
 
 class C_TimeManager :
     public C_Singleton<C_TimeManager>
@@ -28,7 +28,7 @@ protected:
     UINT                M_FPS;                      // UINT
 
 public:
-    void MF_Initialize();
+    HRESULT MF_Initialize();
 
     void MF_Update();
 

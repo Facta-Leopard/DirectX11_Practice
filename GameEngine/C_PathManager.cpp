@@ -15,7 +15,7 @@ C_PathManager::~C_PathManager()
 
 }
 
-void C_PathManager::MF_Initialize()
+HRESULT C_PathManager::MF_Initialize()
 {
 	constexpr int T_BufferSize = 255;				// 버퍼로 사용할 임의의 버퍼크기 설정; 기존 하이브러리 호환성으로 인하여 255로 고정함;
 	wchar_t T_Literals[T_BufferSize] = {};			// 문자열 배열 선언 및 초기화
@@ -45,5 +45,5 @@ void C_PathManager::MF_Initialize()
 
 	// 향후, SaveAndLoad 폴더 위치 경로 계산
 
-
+	return S_OK;
 }

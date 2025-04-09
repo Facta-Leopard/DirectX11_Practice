@@ -1,6 +1,5 @@
 #pragma once
 #include "C_Singleton.h"
-#include "define.h"
 
 class C_RenderManager :
     public C_Singleton< C_RenderManager>
@@ -11,7 +10,7 @@ protected:
     // 향후 추가 구현 예정
 
 public:
-    void MF_Initialize();
+    HRESULT MF_Initialize();
 
     void MF_Update();
 

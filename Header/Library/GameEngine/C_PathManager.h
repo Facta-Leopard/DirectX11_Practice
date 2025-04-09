@@ -15,7 +15,7 @@ protected:
     wchar_t     M_SaveAndLoadPath_s[255];                 // 향후, 정리 필요; Save And Load Directory Address
 
 public:
-    void MF_Initialize();
+    HRESULT MF_Initialize();
 
 
     // 유의: 배열을 버퍼로 읽을 때는 포인터로 하여야 함!

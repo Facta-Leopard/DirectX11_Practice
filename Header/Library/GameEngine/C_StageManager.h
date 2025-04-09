@@ -12,9 +12,9 @@ public:
     C_Stage*                    P_M_CurrentStage;                   // 현재 선택된 레벨
 
 public:
-    void Initialize();
+    HRESULT MF_Initialize();
 
-    void Update();
+    void MF_Update();
 
 public:
     C_Stage* MF_Get_CurrentStage()

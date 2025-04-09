@@ -175,6 +175,9 @@
     <Filter Include="3. Resource\32. Object\321. CameraObject">
       <UniqueIdentifier>{a42e632c-3c3b-4479-ad74-59222926c5a9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="9. Manager\90. TaskManager">
+      <UniqueIdentifier>{ec84cace-9f9a-43e5-9bc2-241086247b8d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Singleton.h">
@@ -306,6 +309,9 @@
     <ClInclude Include="C_Texture.h">
       <Filter>3. Resource\31. Resource\314. Texture</Filter>
     </ClInclude>
+    <ClInclude Include="C_TaskManager.h">
+      <Filter>9. Manager\90. TaskManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
@@ -412,6 +418,9 @@
     </ClCompile>
     <ClCompile Include="C_Texture.cpp">
       <Filter>3. Resource\31. Resource\314. Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="C_TaskManager.cpp">
+      <Filter>9. Manager\90. TaskManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

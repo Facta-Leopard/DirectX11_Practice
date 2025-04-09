@@ -41,6 +41,7 @@
 
 ### Platform or API Specific Types
 - **`H`**: Prefix for Windows HANDLE types.
+- **`F`**: Prefix for FMOD classes in FMOD Library.
 - **`DX`**: Prefix for DirectX-specific classes.
 
 ---

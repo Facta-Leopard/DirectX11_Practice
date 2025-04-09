@@ -200,6 +200,7 @@
     <ClInclude Include="C_Stage.h" />
     <ClInclude Include="C_StageManager.h" />
     <ClInclude Include="C_StateScript.h" />
+    <ClInclude Include="C_TaskManager.h" />
     <ClInclude Include="C_Texture.h" />
     <ClInclude Include="C_TileRender.h" />
     <ClInclude Include="C_TimeManager.h" />
@@ -244,6 +245,7 @@
     <ClCompile Include="C_Stage.cpp" />
     <ClCompile Include="C_StageManager.cpp" />
     <ClCompile Include="C_StateScript.cpp" />
+    <ClCompile Include="C_TaskManager.cpp" />
     <ClCompile Include="C_Texture.cpp" />
     <ClCompile Include="C_TileRender.cpp" />
     <ClCompile Include="C_TimeManager.cpp" />

@@ -14,9 +14,9 @@ C_DebugManager::~C_DebugManager()
 
 }
 
-void C_DebugManager::MF_Initialize()
+HRESULT C_DebugManager::MF_Initialize()
 {
-
+	return E_NOTIMPL;
 }
 
 void C_DebugManager::MF_Update()

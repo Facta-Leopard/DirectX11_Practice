@@ -19,10 +19,15 @@
 #include "C_InputManager.h"
 #include "C_PathManager.h"
 #include "C_TimeManager.h"
+#include "C_ResourceManager.h"
+#include "C_CollisionManager.h"
+#include "C_StageManager.h"
 #include "C_RenderManager.h"
+#include "C_DebugManager.h"
 #ifdef _DEBUG
 #include "C_DebugManager.h"
 #endif // DEBUG
+#include "C_TaskManager.h"
 
 // Resourece
 #include "C_Entity.h"
