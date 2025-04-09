@@ -79,18 +79,17 @@ HRESULT C_Texture::MF_Set_Description(DXGI_FORMAT _Fomat, UINT _Width, UINT _Hei
 	M_D_TextureDesc.Height = _Height;								// 텍스처의 높이
 	M_D_TextureDesc.BindFlags = _Flag;								// 텍스처에 사용할 옵션 플래그; 대표적 플래그 -> D3D11_BIND_DEPTH_STENCIL | D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE	| D3D11_BIND_UNORDERED_ACCESS
 
-
 	M_D_TextureDesc.Usage = _Usage;									// 텍스처 사용 방식; D3D11_USAGE_DYNAMIC = CPU는 쓰기만 가능, GPU는 읽기만 가능 | D3D11_USAGE_IMMUTABLE = 생성 이후 절대 변경 불가! | D3D11_USAGE_STAGING = CPU와 GPU간 중간 저장소
-	M_D_TextureDesc.CPUAccessFlags;									// 상기의 Usage일 경우에만 사용가능한 트리거 플래그; D3D11_CPU_ACCESS_WRITE = CPU 쓰기 권한 부여
+	M_D_TextureDesc.CPUAccessFlags = 0;								// 상기의 Usage일 경우에만 사용가능한 트리거 플래그; D3D11_CPU_ACCESS_WRITE = CPU 쓰기 권한 부여
 	 
-	M_D_TextureDesc.MipLevels;										// MIPMAP 사용관련; 해상도가 낮은 텍스처를 쓸 것인지 여부; 0 = 자동으로 밉맵 계산 | 1 = 사용하지 않음
+	M_D_TextureDesc.MipLevels = 1;									// MIPMAP 사용관련; 해상도가 낮은 텍스처를 쓸 것인지 여부; 0 = 자동으로 밉맵 계산 | 1 = 사용하지 않음
 
+	M_D_TextureDesc.SampleDesc.Count = 1;							// 멀티 샘플링 설정; MSAA x2, x4, x8
 	M_D_TextureDesc.SampleDesc.Quality = 0;							// 샘플링 수준 설정;
-	M_D_TextureDesc.SampleDesc.Count;								// 멀티 샘플링 설정; MSAA x2, x4, x8
 
-
-	HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateTexture2D(&M_D_TextureDesc, nullptr, CP_M_D_Texture2D.GetAddressOf());
-	if (T_CreatTexture2D)
+	// 유의! D3D11_TEXTURE2D_DESC가 바뀌거나 하면, 무조건 Texture를 다시 만들어야 함
+	HRESULT T_CreateTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateTexture2D(&M_D_TextureDesc, nullptr, CP_M_D_Texture2D.GetAddressOf());
+	if (FAILED(T_CreateTexture2D))
 	{
 		POPUP_DEBUG(L"C_Texture::MF_Set_Description Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->->MF_Get_Device()->CreateTexture2D() Failed")
 
@@ -100,8 +99,8 @@ HRESULT C_Texture::MF_Set_Description(DXGI_FORMAT _Fomat, UINT _Width, UINT _Hei
 	// 뎁스 스텐실 뷰 생성; 유의! 다른 플래그와 섞어서 쓸 수 없이 단일로만 써야함!
 	if (M_D_TextureDesc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
 	{
-		HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_DepthStencilView.GetAddressOf());
-		if (true)
+		HRESULT T_CreateDepthStencilView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_DepthStencilView.GetAddressOf());
+		if (FAILED(T_CreateDepthStencilView))
 		{
 			POPUP_DEBUG(L"C_Texture::MF_Set_Description Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView() Failed")
 
@@ -113,8 +112,8 @@ HRESULT C_Texture::MF_Set_Description(DXGI_FORMAT _Fomat, UINT _Width, UINT _Hei
 		// 렌더 타겟 뷰 생성; 유의! D3D11_BIND_DEPTH_STENCIL과는 병행불가
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateRenderTargetView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_RenderTagetView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateRenderTargetView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateRenderTargetView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_RenderTagetView.GetAddressOf());
+			if FAILED((T_CreateRenderTargetView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->->MF_Get_Device()->CreateRenderTargetView() Failed")
 
@@ -125,8 +124,8 @@ HRESULT C_Texture::MF_Set_Description(DXGI_FORMAT _Fomat, UINT _Width, UINT _Hei
 		// 쉐이더 리소스 뷰 생성
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_ShaderResourceView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateShaderResourceView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_ShaderResourceView.GetAddressOf());
+			if FAILED((T_CreateShaderResourceView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView() Failed")
 
@@ -134,10 +133,11 @@ HRESULT C_Texture::MF_Set_Description(DXGI_FORMAT _Fomat, UINT _Width, UINT _Hei
 			}
 		}
 
+		// 언오더 엑세스 뷰 생성
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_UnorderedAccessView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateUnorderedAccessView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_UnorderedAccessView.GetAddressOf());
+			if FAILED((T_CreateUnorderedAccessView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView() Failed")
 
@@ -154,11 +154,20 @@ HRESULT C_Texture::MF_Set_Description(ComPtr<ID3D11Texture2D> _Texture)
 	CP_M_D_Texture2D = _Texture;
 	CP_M_D_Texture2D->GetDesc(&M_D_TextureDesc);
 
+	// 유의! D3D11_TEXTURE2D_DESC가 바뀌거나 하면, 무조건 Texture를 다시 만들어야 함
+	HRESULT T_CreateTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateTexture2D(&M_D_TextureDesc, nullptr, CP_M_D_Texture2D.GetAddressOf());
+	if (FAILED(T_CreateTexture2D))
+	{
+		POPUP_DEBUG(L"C_Texture::MF_Set_Description(ComPtr<ID3D11Texture2D> _Texture) Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->->MF_Get_Device()->CreateTexture2D() Failed")
+
+			return E_FAIL;
+	}
+
 	// 뎁스 스텐실 뷰 생성; 유의! 다른 플래그와 섞어서 쓸 수 없이 단일로만 써야함!
 	if (M_D_TextureDesc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
 	{
-		HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_DepthStencilView.GetAddressOf());
-		if (true)
+		HRESULT T_CreateDepthStencilView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_DepthStencilView.GetAddressOf());
+		if (FAILED(T_CreateDepthStencilView))
 		{
 			POPUP_DEBUG(L"C_Texture::MF_Set_Description(ComPtr<ID3D11Texture2D> _Texture) Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView() Failed")
 
@@ -170,8 +179,8 @@ HRESULT C_Texture::MF_Set_Description(ComPtr<ID3D11Texture2D> _Texture)
 		// 렌더 타겟 뷰 생성; 유의! D3D11_BIND_DEPTH_STENCIL과는 병행불가
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateRenderTargetView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_RenderTagetView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateRenderTargetView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateRenderTargetView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_RenderTagetView.GetAddressOf());
+			if (FAILED(T_CreateRenderTargetView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description(ComPtr<ID3D11Texture2D>) _Texture)", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->->MF_Get_Device()->CreateRenderTargetView() Failed")
 
@@ -182,8 +191,8 @@ HRESULT C_Texture::MF_Set_Description(ComPtr<ID3D11Texture2D> _Texture)
 		// 쉐이더 리소스 뷰 생성
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_ShaderResourceView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateShaderResourceView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_ShaderResourceView.GetAddressOf());
+			if (FAILED(T_CreateShaderResourceView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView() Failed")
 
@@ -191,30 +200,40 @@ HRESULT C_Texture::MF_Set_Description(ComPtr<ID3D11Texture2D> _Texture)
 			}
 		}
 
+		// 언오더 엑세스 뷰 생성
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_UnorderedAccessView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateUnorderedAccessView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_UnorderedAccessView.GetAddressOf());
+			if FAILED((T_CreateUnorderedAccessView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView() Failed")
 
 					return E_FAIL;
 			}
 		}
-
-		return S_OK;
 	}
+
+	return S_OK;
 }
 
 HRESULT C_Texture::MF_Set_Description(D3D11_TEXTURE2D_DESC _Description)
 {
 	M_D_TextureDesc = _Description;
 
+	// 유의! D3D11_TEXTURE2D_DESC가 바뀌거나 하면, 무조건 Texture를 다시 만들어야 함
+	HRESULT T_CreateTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateTexture2D(&M_D_TextureDesc, nullptr, CP_M_D_Texture2D.GetAddressOf());
+	if (FAILED(T_CreateTexture2D))
+	{
+		POPUP_DEBUG(L"C_Texture::MF_Set_Description Failed(D3D11_TEXTURE2D_DESC _Description)", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->->MF_Get_Device()->CreateTexture2D() Failed")
+
+			return E_FAIL;
+	}
+
 	// 뎁스 스텐실 뷰 생성; 유의! 다른 플래그와 섞어서 쓸 수 없이 단일로만 써야함!
 	if (M_D_TextureDesc.BindFlags & D3D11_BIND_DEPTH_STENCIL)
 	{
-		HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_DepthStencilView.GetAddressOf());
-		if (true)
+		HRESULT T_CreateDepthStencilView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_DepthStencilView.GetAddressOf());
+		if FAILED((T_CreateDepthStencilView))
 		{
 			POPUP_DEBUG(L"C_Texture::MF_Set_Description(D3D11_TEXTURE2D_DESC _Description) Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateDepthStencilView() Failed")
 
@@ -226,8 +245,8 @@ HRESULT C_Texture::MF_Set_Description(D3D11_TEXTURE2D_DESC _Description)
 		// 렌더 타겟 뷰 생성; 유의! D3D11_BIND_DEPTH_STENCIL과는 병행불가
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_RENDER_TARGET)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateRenderTargetView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_RenderTagetView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateRenderTargetView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateRenderTargetView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_RenderTagetView.GetAddressOf());
+			if (FAILED(T_CreateRenderTargetView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description(D3D11_TEXTURE2D_DESC _Description) _Texture)", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->->MF_Get_Device()->CreateRenderTargetView() Failed")
 
@@ -238,8 +257,8 @@ HRESULT C_Texture::MF_Set_Description(D3D11_TEXTURE2D_DESC _Description)
 		// 쉐이더 리소스 뷰 생성
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_SHADER_RESOURCE)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_ShaderResourceView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateShaderResourceView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_ShaderResourceView.GetAddressOf());
+			if (FAILED(T_CreateShaderResourceView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description(D3D11_TEXTURE2D_DESC _Description) Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateShaderResourceView() Failed")
 
@@ -247,17 +266,18 @@ HRESULT C_Texture::MF_Set_Description(D3D11_TEXTURE2D_DESC _Description)
 			}
 		}
 
+		// 언오더 엑세스 뷰 생성
 		if (M_D_TextureDesc.BindFlags & D3D11_BIND_UNORDERED_ACCESS)
 		{
-			HRESULT T_CreatTexture2D = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_UnorderedAccessView.GetAddressOf());
-			if (true)
+			HRESULT T_CreateUnorderedAccessView = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView(CP_M_D_Texture2D.Get(), nullptr, CP_M_D_UnorderedAccessView.GetAddressOf());
+			if (FAILED(T_CreateUnorderedAccessView))
 			{
 				POPUP_DEBUG(L"C_Texture::MF_Set_Description(D3D11_TEXTURE2D_DESC _Description) Failed", L"in C_Texture::MF_Set_Description, C_Device::SF_Get_Instance()->MF_Get_Device()->CreateUnorderedAccessView() Failed")
 
 					return E_FAIL;
 			}
 		}
-
-		return S_OK;
 	}
+
+	return S_OK;
 }
