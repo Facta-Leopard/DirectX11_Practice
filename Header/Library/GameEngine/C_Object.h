@@ -8,8 +8,6 @@
 class C_Object :
     public C_Entity
 {
-    friend class C_Group;
-
 public:
     C_Object();
 
@@ -57,7 +55,7 @@ public:
     void MF_Render();                                                            // Rendering 목적; 별도의 카메라 오브젝트 및 카메라 컴포넌트 함수를 이용
 
 public:
-    inline E_GROUP_TYPE MF_Get_GroupType()                                       // Getter
+    inline E_GROUP_TYPE MF_Get_GroupType()                                       // Getter; E_GROUP_TYPE은 enum구조로 내부는 그룹 명칭이 숫자인 구조임
     {
         return M_GroupIndex;
     }
@@ -216,117 +214,109 @@ public:
         return (C_ParticleRender*)P_M_Component_s[_COMPONENT_PARTICLE_RENDER];
     }
 
-    //// C_ScriptComponent 타입에 대한 특수화
+    //// C_RenderComponent 타입에 대한 특수화
     template <>
-    C_ScriptComponent* MF_Get_ComponentByReturnType<C_ScriptComponent>()          // C_ScriptComponent*
+    C_RenderComponent* MF_Get_ComponentByReturnType<C_RenderComponent>()          // C_RenderComponent*
     {
-        if (nullptr == P_M_Component_s[_COMPONENT_SCRIPT])                  // 방어코드
+        if (nullptr == P_M_RenderComponent)             // 방어코드
         {
-            POPUP_DEBUG(L"nullptr == P_M_Component_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Component_s[_COMPONENT_SCRIPT]");
+            POPUP_DEBUG(L"nullptr == P_M_RenderComponent", L"in C_RenderComponent* MF_Get_ComponentByReturnType<C_RenderComponent>(), nullptr == P_M_RenderComponent");
         }
-        return (C_ScriptComponent*)P_M_Component_s[_COMPONENT_SCRIPT];
+        return (C_RenderComponent*)P_M_RenderComponent;
     }
 
+    //// C_ScriptComponent 타입에 대한 특수화
     ////// C_RigidScript 타입에 대한 특수화
     template <>
     C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>()                  // C_RigidScript*
     {
-        if (nullptr == P_M_Component_s[_COMPONENT_SCRIPT])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_RIGID])                  // 방어코드
         {
-            POPUP_DEBUG(L"nullptr == P_M_Component_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Component_s[_COMPONENT_SCRIPT]");
+            POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_RIGID]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_RIGID]");
         }
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Component_s[_COMPONENT_SCRIPT])->MF_Get_ScriptType();
+        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_RIGID])->MF_Get_ScriptType();
 
         if (T_ScriptType != _SCRIPT_RIGID)                                  // 방어코드
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_RIGID", L"in C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>(), T_ScriptType != _SCRIPT_RIGID")
         }
-        return (C_RigidScript*)P_M_Component_s[_COMPONENT_SCRIPT];
+        return (C_RigidScript*)P_M_Script_s[_SCRIPT_RIGID];
     }
 
     ////// C_StateScript 타입에 대한 특수화
     template <>
     C_StateScript* MF_Get_ComponentByReturnType<C_StateScript>()                  // C_StateScript*
     {
-        if (nullptr == P_M_Component_s[_COMPONENT_SCRIPT])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_STATE])                  // 방어코드
         {
-            POPUP_DEBUG(L"nullptr == P_M_Component_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Component_s[_COMPONENT_SCRIPT]");
+            POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_STATE]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_STATE]");
         }
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Component_s[_COMPONENT_SCRIPT])->MF_Get_ScriptType();
+        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_STATE])->MF_Get_ScriptType();
 
         if (T_ScriptType != _SCRIPT_STATE)                                  // 방어코드
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_STATE", L"in C_StateScript* MF_Get_ComponentByReturnType<C_StateScript>(), T_ScriptType != _SCRIPT_STATE")
         }
-        return (C_StateScript*)P_M_Component_s[_COMPONENT_SCRIPT];
+        return (C_StateScript*)P_M_Script_s[_SCRIPT_STATE];
     }
 
     ////// C_MoveScript 타입에 대한 특수화
     template <>
     C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>()                    // C_MoveScript*
     {
-        if (nullptr == P_M_Component_s[_COMPONENT_SCRIPT])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_MOVE])                  // 방어코드
         {
-            POPUP_DEBUG(L"nullptr == P_M_Component_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Component_s[_COMPONENT_SCRIPT]");
+            POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_MOVE]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_MOVE]");
         }
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Component_s[_COMPONENT_SCRIPT])->MF_Get_ScriptType();
+        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_MOVE])->MF_Get_ScriptType();
 
         if (T_ScriptType != _SCRIPT_MOVE)                                   // 방어코드
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_MOVE", L"in C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>(), T_ScriptType != _SCRIPT_MOVE")
         }
-        return (C_MoveScript*)P_M_Component_s[_COMPONENT_SCRIPT];
+        return (C_MoveScript*)P_M_Script_s[_SCRIPT_MOVE];
     }
 
     ////// C_NPCScript 타입에 대한 특수화
     template <>
     C_NPCScript* MF_Get_ComponentByReturnType<C_NPCScript>()                      // C_NPCScript*
     {
-        if (nullptr == P_M_Component_s[_COMPONENT_SCRIPT])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_NPC])                  // 방어코드
         {
-            POPUP_DEBUG(L"nullptr == P_M_Component_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Component_s[_COMPONENT_SCRIPT]");
+            POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_NPC]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_NPC]");
         }
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Component_s[_COMPONENT_SCRIPT])->MF_Get_ScriptType();
+        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_NPC])->MF_Get_ScriptType();
 
         if (T_ScriptType != _SCRIPT_NPC)                                    // 방어코드
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_NPC", L"in C_NPCScript* MF_Get_ComponentByReturnType<C_NPCScript>(), T_ScriptType != _SCRIPT_NPC")
         }
-        return (C_NPCScript*)P_M_Component_s[_COMPONENT_SCRIPT];
+        return (C_NPCScript*)P_M_Script_s[_SCRIPT_NPC];
     }
 
     ////// C_CameraScript 타입에 대한 특수화
     template <>
     C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>()                // C_CameraScript*
     {
-        if (nullptr == P_M_Component_s[_COMPONENT_SCRIPT])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_CAMERA])                  // 방어코드
         {
-            POPUP_DEBUG(L"nullptr == P_M_Component_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Component_s[_COMPONENT_SCRIPT]");
+            POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_CAMERA]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_CAMERA]");
         }
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Component_s[_COMPONENT_SCRIPT])->MF_Get_ScriptType();
+        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_CAMERA])->MF_Get_ScriptType();
 
         if (T_ScriptType != _SCRIPT_CAMERA)                                 // 방어코드
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_CAMERA", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), T_ScriptType != _SCRIPT_CAMERA")
         }
-        return (C_CameraScript*)P_M_Component_s[_COMPONENT_SCRIPT];
+        return (C_CameraScript*)P_M_Script_s[_SCRIPT_CAMERA];
     }
 
-    //// C_RenderComponent 타입에 대한 특수화
-    template <>
-    C_RenderComponent* MF_Get_ComponentByReturnType<C_RenderComponent>()          // C_RenderComponent*
-    {
-        if (nullptr == P_M_Component_s[_COMPONENT_MESH_RENDER])             // 방어코드
-        {
-            POPUP_DEBUG(L"nullptr == P_M_Component_s[_COMPONENT_MESH_RENDER]", L"in C_RenderComponent* MF_Get_ComponentByReturnType<C_RenderComponent>(), nullptr == P_M_Component_s[_COMPONENT_MESH_RENDER]");
-        }
-        return (C_RenderComponent*)P_M_Component_s[_COMPONENT_RENDER];
-    }
+
 
 
 

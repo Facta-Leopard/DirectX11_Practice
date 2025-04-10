@@ -4,25 +4,28 @@
 
 C_Group::C_Group()
 	: C_Entity()
-	, M_GroupIndex(_GROUP_END)
+	, M_GroupIndex(_GROUP_NONE)
 	, STL_P_M_AllObject{}
 	, STL_P_M_ParentObject{}
+	, STL_P_M_Calculation{}
 {
 }
 
 C_Group::C_Group(const C_Group& _Origin)
 	: C_Entity(_Origin)
 	, M_GroupIndex(_Origin.M_GroupIndex)
+	, STL_P_M_Calculation{}
 {
 	for (size_t i = 0; i < _Origin.STL_P_M_ParentObject.size(); ++i)
 	{
 		C_Object* T_CloneObject = _Origin.STL_P_M_ParentObject[i]->MF_Clone();
-		MF_Attach_ObjectToParentObjects(T_CloneObject, false);
+		MF_Attach_ObjectToParentObject(T_CloneObject, false);
 	}
 }
 
 C_Group::~C_Group()
 {
+	DELETEALL_STL(STL_P_M_Calculation)
 }
 
 void C_Group::MF_Prepare()
@@ -78,37 +81,30 @@ void C_Group::MF_Detach_ObjectFromAllObject(C_Object* _Object)					// 유의! 벡터
 	}
 }
 
-void C_Group::MF_Attach_ObjectToParentObjects(C_Object* _Object, bool _IsChildTogether)
+void C_Group::MF_Attach_ObjectToParentObject(C_Object* _Object, bool _IsChildTogether)
 {
 	if (nullptr == _Object)						// 방어코드
 	{
 		POPUP_DEBUG(L"_Object Is Nullptr", L"in C_Group::MF_Attach_ObjectToParentObject(), nullptr == _Object")
-			return;
+		return;
 	}
 
-	STL_P_M_ParentObject.push_back(_Object);
-	_Object->M_GroupIndex = M_GroupIndex;
+	STL_P_M_Calculation.clear();
+	_Object->MF_Set_GroupIndex(M_GroupIndex);
+	STL_P_M_Calculation.push_back(_Object);
 
-	// 자식을 보유했을 경우, 자식도 해당 레이어 소속으로 변경한다.
-	static list<C_Object*> T_Queue;
-	T_Queue.clear();
-	T_Queue.push_back(_Object);
-
-	while (!T_Queue.empty())
+	while (!STL_P_M_Calculation.empty())
 	{
-		C_Object* T_Object = T_Queue.front();
-		T_Queue.pop_front();
+		C_Object* T_Object = STL_P_M_Calculation.front();
+		STL_P_M_Calculation.pop_front();
 
-		const vector<C_Object*>& T_STL_ChildObject = T_Object->MF_Get_ChildObjects();
+		const vector<C_Object*>& T_STL_ChildObject = T_Object->MF_Get_ChildObjects();	// 향후, 깊은 복사를 해서 복사비용 오버헤드를 발생시키는 형식을 참조 형식(const type&)으로 개선하기 위해 붏어 봐야할 필요성이 있음
 		for (size_t i = 0; i < T_STL_ChildObject.size(); ++i)
 		{
-			T_Queue.push_back(T_STL_ChildObject[i]);
+			STL_P_M_Calculation.push_back(T_STL_ChildObject[i]);
 		}
 
-		// 최상위 부모 오브젝트 
-		// or 자식오브젝트여도, 자식까지 같이 이동하기로 한 경우 
-		// or 최상위부모오브젝트x, 자식이동x 더라도 소속이 없는 오브젝트인 경우
-		if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->M_GroupIndex == -1)
+		if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupType() == _GROUP_NONE)
 		{
 			T_Object->MF_Set_GroupIndex(M_GroupIndex);
 		}

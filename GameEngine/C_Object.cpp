@@ -4,7 +4,7 @@
 
 C_Object::C_Object()
 	: C_Entity()
-	, M_GroupIndex(_GROUP_END)
+	, M_GroupIndex(_GROUP_NONE)
 	, M_IsLive(true)
 	, M_ParentObejct(nullptr)
 	, STL_P_M_ChildObejct{}

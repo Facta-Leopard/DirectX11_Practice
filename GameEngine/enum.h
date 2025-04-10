@@ -181,7 +181,9 @@ enum E_GROUP_TYPE
 	_GROUP_OBJECT_INTERACTABLE,
 	_GROUP_OBJECT_UNINTERACTABLE,
 
-	_GROUP_END
+	_GROUP_END,
+
+	_GROUP_NONE,						// 유의! C_Object 내부 M_GroupIndex 복사관련; 향후, 문제 발생시에 void C_Group::MF_Attach_ObjectToParentObject(C_Object* _Object, bool _IsChildTogether) 내부의 if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupType() == _GROUP_END) 부분을 확인할 것
 };
 
 
