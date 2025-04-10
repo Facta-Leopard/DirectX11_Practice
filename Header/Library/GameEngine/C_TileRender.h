@@ -23,9 +23,5 @@ public:
 
     virtual void MF_Render() override;
 
-    virtual C_TileRender* MF_Get_Myself() override
-    {
-        return this;
-    };
 };
 

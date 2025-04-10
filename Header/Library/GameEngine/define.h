@@ -3,6 +3,7 @@
 // 존나 그지같은 문법이네
 
 // WinAPI 메시지 박스를 간단히 쓰기 위함
+//// 향후, 로그기록 추가도 같이 할 수 있도록 하면 좋을 듯
 #ifdef _DEBUG
 #define POPUP_DEBUG(title, message) MessageBox(nullptr, message, title, MB_OK | MB_ICONINFORMATION);
 #endif
@@ -52,12 +53,12 @@ for (auto& Element : STL)       \
 STL.clear();
 
 //// Fixed Array Version
-#define DELETEALL_FIXEDARRAY_HEAP(FixedArray, _END)    \
-for (int i = 0; i < _END; ++i)                      \
-{                                                   \
-    if (FixedArray[i] != nullptr)                   \
-    {                                               \
-        delete FixedArray[i];                       \
-        FixedArray[i] = nullptr;                    \
-    }                                               \
+#define DELETEALL_FIXEDARRAY_HEAP(FixedArray, _END)     \
+for (int i = 0; i < _END; ++i)                          \
+{                                                       \
+    if (FixedArray[i] != nullptr)                       \
+    {                                                   \
+        delete FixedArray[i];                           \
+        FixedArray[i] = nullptr;                        \
+    }                                                   \
 }

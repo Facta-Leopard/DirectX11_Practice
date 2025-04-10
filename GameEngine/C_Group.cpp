@@ -108,7 +108,7 @@ void C_Group::MF_Attach_ObjectToParentObjects(C_Object* _Object, bool _IsChildTo
 		// 최상위 부모 오브젝트 
 		// or 자식오브젝트여도, 자식까지 같이 이동하기로 한 경우 
 		// or 최상위부모오브젝트x, 자식이동x 더라도 소속이 없는 오브젝트인 경우
-		if (nullptr == T_Object->MF_Get_ParentObjects() || _IsChildTogether || T_Object->M_GroupIndex == -1)
+		if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->M_GroupIndex == -1)
 		{
 			T_Object->MF_Set_GroupIndex(M_GroupIndex);
 		}

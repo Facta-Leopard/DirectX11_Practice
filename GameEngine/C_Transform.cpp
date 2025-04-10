@@ -52,11 +52,11 @@ Vector3 C_Transform::MF_ConvertWorldMatrixToVectorScale()
 {
 	C_Object* P_T_ParantObject = MF_Get_OwnerObject()->MF_Get_ParentObject();
 	
-	int T_Scale = M_IsScaleDependent;
+	bool T_Scale = M_IsScaleDependent;
 
-	while (nullptr != P_T_ParantObject)
+	while ((nullptr != P_T_ParantObject) && T_Scale)				// 방어코드
 	{
-		T_Scale *= P_T_ParantObject->MF_Get_ComponentBy();
+		C_Transform* T_Transform = P_T_ParantObject->MF_Get_ComponentByReturnType<C_Transform>();
 
 	}
 

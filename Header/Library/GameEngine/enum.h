@@ -209,14 +209,14 @@ enum E_COMPONENT_TYPE
 	_COMPONENT_RENDER,					// 자기자신 반환 추상함수 방어코드용
 };
 
-enum E_SCRIPT_TYPE
+enum E_SCRIPT_TYPE										// 유의! enum 변동 있을 시, template <typename T_Template> T_Template* MF_Get_ComponentByReturnType() 템플릿 특수화 추가 필요
 {
 	_SCRIPT_RIGID,						// 강체관련
 	_SCRIPT_STATE,						// 상태관련
 	_SCRIPT_MOVE,						// 이동관련
 	_SCRIPT_NPC,						// 반응관련
 
-	_SCRIPT_CAMERA,					// 카메라관련
+	_SCRIPT_CAMERA,						// 카메라관련
 
 	_SCRIPT_END,
 };
