@@ -50,6 +50,9 @@ To maintain consistency and readability, all class members should follow the ord
 15. **Modularized private/internal methods**  (if applicable)
     - Small helper methods and decomposed logic units.
 
+16. **Template methods** (if applicable)
+    - Declare all function templates at the end of the class definition.
+
 ### it is important to maintain clear separation based on access specifiers.
 
 - For example, if there are multiple public members within the public section, or if there are redundant members in the protected or private sections, each section should still be clearly separated.
