@@ -25,84 +25,156 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="9. IMGUI\90. IMGUI Library">
+    <Filter Include="1. Foundation\19. IMGUI Library">
       <UniqueIdentifier>{7a06fe91-1f49-4ff9-93e7-d42e03a7b62f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Foundation\11. Header">
+      <UniqueIdentifier>{d950404f-f9f2-41f8-a2a3-18f6ee10d7fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="1. Foundation\10. PreCompiledHeader">
+      <UniqueIdentifier>{0185d3bc-7110-4468-b465-3bfbe84ebc3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. IMGUI\90. Node">
+      <UniqueIdentifier>{434541d2-ea2e-41b5-a863-ffd46d3639d1}</UniqueIdentifier>
     </Filter>
     <Filter Include="9. IMGUI\91. Base">
       <UniqueIdentifier>{e7584198-4440-4592-848e-28d4a879cb02}</UniqueIdentifier>
     </Filter>
+    <Filter Include="9. IMGUI\92. MenuUI">
+      <UniqueIdentifier>{91722ad0-828b-4a8d-bc72-94063f0c93bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. IMGUI\93. InspectorUI">
+      <UniqueIdentifier>{7a2eb396-9000-4745-8eea-5a3fb8d23f5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. IMGUI\94. OutlinerUI">
+      <UniqueIdentifier>{2a9c102f-f240-4513-8b18-1fc5d47c392c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. IMGUI\99. ResourceUI">
+      <UniqueIdentifier>{675725e7-d8e7-4fed-ab5d-986d9effc256}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. IMGUI\98. ListUI">
+      <UniqueIdentifier>{03308f3b-c344-48f0-a635-571a97facc80}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. IMGUI\96. RenderComponentUI">
+      <UniqueIdentifier>{67b8908b-8338-4f32-90a2-3478f82478ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. IMGUI\95. ComponentUI">
+      <UniqueIdentifier>{c0c021e9-8faf-43e8-a45f-69915b983fa6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="framework.h">
-      <Filter>1. Foundation</Filter>
-    </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>1. Foundation</Filter>
-    </ClInclude>
-    <ClInclude Include="Resource.h">
-      <Filter>1. Foundation</Filter>
-    </ClInclude>
-    <ClInclude Include="targetver.h">
-      <Filter>1. Foundation</Filter>
-    </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imconfig.h">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imgui.h">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imgui_impl_dx11.h">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imgui_impl_win32.h">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imgui_internal.h">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imstb_rectpack.h">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imstb_textedit.h">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="..\Header\IMGUI\imstb_truetype.h">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClInclude>
     <ClInclude Include="C_UI.h">
       <Filter>9. IMGUI\91. Base</Filter>
     </ClInclude>
+    <ClInclude Include="framework.h">
+      <Filter>1. Foundation\11. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Resource.h">
+      <Filter>1. Foundation\11. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>1. Foundation\11. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>1. Foundation\10. PreCompiledHeader</Filter>
+    </ClInclude>
+    <ClInclude Include="C_MenuUI.h">
+      <Filter>9. IMGUI\92. MenuUI</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Node.h">
+      <Filter>9. IMGUI\90. Node</Filter>
+    </ClInclude>
+    <ClInclude Include="C_InspectorUI.h">
+      <Filter>9. IMGUI\93. InspectorUI</Filter>
+    </ClInclude>
+    <ClInclude Include="C_OutlinerUI.h">
+      <Filter>9. IMGUI\94. OutlinerUI</Filter>
+    </ClInclude>
+    <ClInclude Include="C_ResourceUI.h">
+      <Filter>9. IMGUI\99. ResourceUI</Filter>
+    </ClInclude>
+    <ClInclude Include="C_RenderComponentUI.h">
+      <Filter>9. IMGUI\96. RenderComponentUI</Filter>
+    </ClInclude>
+    <ClInclude Include="C_ComponentUI.h">
+      <Filter>9. IMGUI\95. ComponentUI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="pch.cpp">
-      <Filter>1. Foundation</Filter>
-    </ClCompile>
     <ClCompile Include="ResidentEvil_Survivor.cpp">
       <Filter>0. Main</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui.cpp">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_demo.cpp">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_draw.cpp">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_impl_dx11.cpp">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_impl_win32.cpp">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_tables.cpp">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="..\Header\IMGUI\imgui_widgets.cpp">
-      <Filter>9. IMGUI\90. IMGUI Library</Filter>
+      <Filter>1. Foundation\19. IMGUI Library</Filter>
     </ClCompile>
     <ClCompile Include="C_UI.cpp">
       <Filter>9. IMGUI\91. Base</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>1. Foundation\10. PreCompiledHeader</Filter>
+    </ClCompile>
+    <ClCompile Include="C_MenuUI.cpp">
+      <Filter>9. IMGUI\92. MenuUI</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Node.cpp">
+      <Filter>9. IMGUI\90. Node</Filter>
+    </ClCompile>
+    <ClCompile Include="C_InspectorUI.cpp">
+      <Filter>9. IMGUI\93. InspectorUI</Filter>
+    </ClCompile>
+    <ClCompile Include="C_OutlinerUI.cpp">
+      <Filter>9. IMGUI\94. OutlinerUI</Filter>
+    </ClCompile>
+    <ClCompile Include="C_ResourceUI.cpp">
+      <Filter>9. IMGUI\99. ResourceUI</Filter>
+    </ClCompile>
+    <ClCompile Include="C_RenderComponentUI.cpp">
+      <Filter>9. IMGUI\96. RenderComponentUI</Filter>
+    </ClCompile>
+    <ClCompile Include="C_ComponentUI.cpp">
+      <Filter>9. IMGUI\95. ComponentUI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -76,49 +76,6 @@
 
 ---
 
-## Class Member Declaration Order
-
-To maintain consistency and readability, all class members should follow the order below:
-
-1. **`friend` declarations**  
-   - Use only when necessary, to grant specific access privileges.
-
-2. **Constructors**  
-   - Default and parameterized constructors.
-
-3. **Copy constructors**  
-   - Copy and move constructors.
-
-4. **Destructor**  
-   - Prefer virtual destructor when polymorphism is used.
-
-5. **Singleton macros (if applicable)**  
-   - For singleton-style classes.
-
-6. **Member variables**  
-   - All member variables prefixed with `M_`.
-
-7. **Clone method**  
-   - Example: `MF_Clone()` for duplicating the instance.
-
-8. **Abstract methods (`virtual`)**  
-   - All pure virtual functions declared here.
-
-9. **Initialization and frame-based methods**  
-   - `MF_Initialize()`, `MF_Prepare()`,  
-     followed by `MF_Progress()`, `MF_Update()`, `MF_Tick()`.
-
-10. **Getters and Setters**  
-    - `MF_GetX()`, `MF_SetY()` style accessors.
-
-11. **Public/Internal methods**  
-    - Main logic and behavior functions.
-
-12. **Modularized private/internal methods**  
-    - Small helper methods and decomposed logic units.
-
----
-
 ## Examples
 
 ```cpp

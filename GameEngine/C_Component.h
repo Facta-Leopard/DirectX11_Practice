@@ -41,7 +41,7 @@ public:
         }
         if (_COMPONENT_RENDER == this->L_M_ComponentType)           // 방어코드
         {
-            POPUP_DEBUG(L"Return This Is Script Component", L"in C_Component::GetMyself, _COMPONENT_RENDER == this->L_M_ComponentType")
+            POPUP_DEBUG(L"Return This Is Render Component", L"in C_Component::GetMyself, _COMPONENT_RENDER == this->L_M_ComponentType")
         }
         return this; 
     }

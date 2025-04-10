@@ -1,6 +1,9 @@
 .vs/
+*.vcxproj.user
 *.user
 *.suo
+*.ncb
+*.log
 
 
 *.pch
@@ -8,18 +11,19 @@
 *.ipch
 
 
-x64/
-x86/
-Debug/
-Release/
 *.obj
 *.pdb
 *.exe
 *.ilk
-*.log
+*.idb
 
 
+x64/
+x86/
+Debug/
+Release/
 ResidentEvil_Survivor/Resource/
 
 
-*.vcxproj.user
+.DS_Store
+

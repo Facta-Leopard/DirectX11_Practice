@@ -175,6 +175,13 @@
     <ClInclude Include="..\Header\IMGUI\imstb_rectpack.h" />
     <ClInclude Include="..\Header\IMGUI\imstb_textedit.h" />
     <ClInclude Include="..\Header\IMGUI\imstb_truetype.h" />
+    <ClInclude Include="C_ComponentUI.h" />
+    <ClInclude Include="C_InspectorUI.h" />
+    <ClInclude Include="C_MenuUI.h" />
+    <ClInclude Include="C_Node.h" />
+    <ClInclude Include="C_OutlinerUI.h" />
+    <ClInclude Include="C_RenderComponentUI.h" />
+    <ClInclude Include="C_ResourceUI.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Resource.h" />
@@ -189,6 +196,13 @@
     <ClCompile Include="..\Header\IMGUI\imgui_impl_win32.cpp" />
     <ClCompile Include="..\Header\IMGUI\imgui_tables.cpp" />
     <ClCompile Include="..\Header\IMGUI\imgui_widgets.cpp" />
+    <ClCompile Include="C_ComponentUI.cpp" />
+    <ClCompile Include="C_InspectorUI.cpp" />
+    <ClCompile Include="C_MenuUI.cpp" />
+    <ClCompile Include="C_Node.cpp" />
+    <ClCompile Include="C_OutlinerUI.cpp" />
+    <ClCompile Include="C_RenderComponentUI.cpp" />
+    <ClCompile Include="C_ResourceUI.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
