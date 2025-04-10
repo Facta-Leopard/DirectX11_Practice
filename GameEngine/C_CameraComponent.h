@@ -22,7 +22,7 @@ public:
 
     virtual void MF_ComponentTickAfter() override;
 
-    virtual C_CameraComponent* MF_Get_Myself() override
+    virtual C_CameraComponent* MF_Get_ComponentMyself() override
     {
         return this;
     };

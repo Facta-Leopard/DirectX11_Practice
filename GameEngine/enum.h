@@ -216,7 +216,7 @@ enum E_SCRIPT_TYPE
 	_SCRIPT_MOVE,						// 이동관련
 	_SCRIPT_NPC,						// 반응관련
 
-	_SCRIPT_CAMERA,					// 카메라관련
+	_SCRIPT_CAMERA,						// 카메라관련
 
 	_SCRIPT_END,
 };

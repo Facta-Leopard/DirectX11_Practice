@@ -1,91 +1,16 @@
 ﻿  pch.cpp
-  C_CameraComponent.cpp
-  C_CameraScript.cpp
-  C_Collider2D.cpp
-  C_CollisionManager.cpp
-  C_Component.cpp
-  C_DebugManager.cpp
-  C_Device.cpp
-  C_Entity.cpp
-  C_FlipbookRender.cpp
-  C_GameEngine.cpp
-  C_Group.cpp
-  C_InputManager.cpp
-  C_Light2D.cpp
-  C_MeshRender.cpp
-  C_MoveScript.cpp
-  C_NPCScript.cpp
-  C_Object.cpp
-  C_ParticleRender.cpp
-  C_PathManager.cpp
-  C_RenderComponent.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  C_RenderManager.cpp
-  C_Resource.cpp
-  C_ResourceManager.cpp
-  C_RigidScript.cpp
-  C_ScriptComponent.cpp
-  C_Sound.cpp
-  C_SpriteRender.cpp
-  C_Stage.cpp
-  C_StageManager.cpp
-  C_StateScript.cpp
-  C_TaskManager.cpp
-  C_Texture.cpp
-  C_TileRender.cpp
-  C_TimeManager.cpp
-  C_Transform.cpp
-  globalFunction.cpp
-  코드를 생성하고 있습니다...
-  GameEngine.vcxproj -> C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
-  통합관리를 위한 파일 복사용 배치파일 실행
-  .\component.h
-  .\C_CameraComponent.h
-  .\C_CameraScript.h
-  .\C_Collider2D.h
-  .\C_CollisionManager.h
-  .\C_Component.h
-  .\C_DebugManager.h
-  .\C_Device.h
-  .\C_Entity.h
-  .\C_FlipbookRender.h
-  .\C_GameEngine.h
-  .\C_Group.h
-  .\C_InputManager.h
-  .\C_Light2D.h
-  .\C_MeshRender.h
-  .\C_MoveScript.h
-  .\C_NPCScript.h
-  .\C_Object.h
-  .\C_ParticleRender.h
-  .\C_PathManager.h
-  .\C_RenderComponent.h
-  .\C_RenderManager.h
-  .\C_Resource.h
-  .\C_ResourceManager.h
-  .\C_RigidScript.h
-  .\C_ScriptComponent.h
-  .\C_Singleton.h
-  .\C_Sound.h
-  .\C_SpriteRender.h
-  .\C_Stage.h
-  .\C_StageManager.h
-  .\C_StateScript.h
-  .\C_TaskManager.h
-  .\C_Texture.h
-  .\C_TileRender.h
-  .\C_TimeManager.h
-  .\C_Transform.h
-  .\define.h
-  .\enum.h
-  .\global.h
-  .\globalFunction.h
-  .\globalVariable.h
-  .\SimpleMath.h
-  43개 파일이 복사되었습니다.
-  .\SimpleMath.inl
-  1개 파일이 복사되었습니다.
-  지정된 경로를 찾을 수 없습니다.
-  파일을 찾을 수 없습니다-*.fx
-  0개 파일이 복사되었습니다.
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_MeshRender.h(27,27): error C3668: 'C_MeshRender::MF_Get_Myself': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_SpriteRender.h(26,29): error C3668: 'C_SpriteRender::MF_Get_Myself': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_FlipbookRender.h(26,31): error C3668: 'C_FlipbookRender::MF_Get_Myself': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_TileRender.h(26,27): error C3668: 'C_TileRender::MF_Get_Myself': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_ParticleRender.h(26,31): error C3668: 'C_ParticleRender::MF_Get_Myself': 재정의 지정자 'override'가 있는 메서드가 기본 클래스 메서드를 재정의하지 않았습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  

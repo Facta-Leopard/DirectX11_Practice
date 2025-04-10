@@ -26,5 +26,11 @@ public:
     virtual void MF_ComponentTickAfter() override {}        // 상속받은 작동함수 추상화 오버라이드 불능 설정
 
     virtual void MF_ScriptTick() = 0;                       // 상속받는 클래스의 작동함수 작성을 강제하기 위해서 추상화 설정
+
+public:
+    E_SCRIPT_TYPE MF_Get_ScriptType()                       // Getter; 유의! C_Object의 Template Function과 관련있으므로, 수정시 주의!
+    {
+        return M_ScrptType;
+    }
 };
 

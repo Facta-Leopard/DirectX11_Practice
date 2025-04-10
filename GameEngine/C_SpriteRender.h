@@ -23,10 +23,5 @@ public:
 
     virtual void MF_Render() override;
 
-    virtual C_SpriteRender* MF_Get_Myself() override
-    {
-        return this;
-    };
-
 };
 

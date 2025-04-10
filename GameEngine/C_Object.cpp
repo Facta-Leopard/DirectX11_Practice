@@ -126,6 +126,60 @@ void C_Object::MF_TickAfter()
 	MF_Detach_DeadObjectFromChildObject();
 }
 
+void C_Object::MF_ChildTick()
+{
+	for (vector<C_Object*>::iterator T_Iterator = STL_P_M_ChildObejct.begin(); T_Iterator < STL_P_M_ChildObejct.end(); T_Iterator++)
+	{
+		if (nullptr == *T_Iterator)			// 방어코드; 
+		{
+			continue;
+		}
+		(*T_Iterator)->MF_Tick();
+	}
+}
+
+void C_Object::MF_ComponentTick()
+{
+	for (size_t i = 0; i < _COMPONENT_END; i++)
+	{
+		if (nullptr == P_M_Component_s)			// 방어코드; 
+		{
+			continue;
+		}
+		P_M_Component_s[i]->MF_ComponentTick();
+	}
+}
+
+void C_Object::MF_ComponentTickAfter()
+{
+	for (size_t i = 0; i < _COMPONENT_END; i++)
+	{
+		if (nullptr == P_M_Component_s)			// 방어코드; 
+		{
+			continue;
+		}
+		P_M_Component_s[i]->MF_ComponentTickAfter();
+	}
+}
+
+void C_Object::MF_ScriptTick()
+{
+	for (size_t i = 0; i < _SCRIPT_END; i++)
+	{
+		if (nullptr == P_M_Script_s[i])			// 방어코드;
+		{
+			continue;
+		}
+		P_M_Script_s[i]->MF_ScriptTick();
+	}
+}
+
+void C_Object::MF_Render()
+{
+	// 향후, C_RenderComponent 구현해야 함
+	// P_M_RenderComponent->MF_Render();
+}
+
 void C_Object::MF_Attach_ObjectToParentObject(C_Object* _Object)
 {
 	if (nullptr == _Object)						// 방어코드; 들어오는 오브젝트가 nullptr일 경우 방지
@@ -224,56 +278,4 @@ void C_Object::MF_Attach_Component(C_Component* _Component)
 	P_M_Component_s[T_COMPONENT_TYPE] = _Component;
 }
 
-void C_Object::MF_ChildTick()
-{
-	for (vector<C_Object*>::iterator T_Iterator = STL_P_M_ChildObejct.begin(); T_Iterator < STL_P_M_ChildObejct.end(); T_Iterator++)
-	{
-		if (nullptr == *T_Iterator)			// 방어코드; 
-		{
-			continue;
-		}
-		(*T_Iterator)->MF_Tick();
-	}
-}
 
-void C_Object::MF_ComponentTick()
-{
-	for (size_t i = 0; i < _COMPONENT_END; i++)
-	{
-		if (nullptr == P_M_Component_s)			// 방어코드; 
-		{
-			continue;
-		}
-		P_M_Component_s[i]->MF_ComponentTick();
-	}
-}
-
-void C_Object::MF_ComponentTickAfter()
-{
-	for (size_t i = 0; i < _COMPONENT_END; i++)
-	{
-		if (nullptr == P_M_Component_s)			// 방어코드; 
-		{
-			continue;
-		}
-		P_M_Component_s[i]->MF_ComponentTickAfter();
-	}
-}
-
-void C_Object::MF_ScriptTick()
-{
-	for (size_t i = 0; i < _SCRIPT_END; i++)
-	{
-		if (nullptr == P_M_Script_s[i])			// 방어코드;
-		{
-			continue;
-		}
-		P_M_Script_s[i]->MF_ScriptTick();
-	}
-}
-
-void C_Object::MF_Render()
-{
-	// 향후, C_RenderComponent 구현해야 함
-	// P_M_RenderComponent->MF_Render();
-}

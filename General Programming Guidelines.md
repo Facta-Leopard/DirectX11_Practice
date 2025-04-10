@@ -16,7 +16,7 @@ To maintain consistency and readability, all class members should follow the ord
 4. **Destructor**  
    - Prefer virtual destructor when polymorphism is used.
 
-5. **Singleton macros (if applicable)**  
+5. **Singleton macros** (if applicable)  
    - For singleton-style classes.
 
 6. **Member variables**  (if applicable)
@@ -25,24 +25,36 @@ To maintain consistency and readability, all class members should follow the ord
 7. **Clone method**  (if applicable)
    - Example: `MF_Clone()` for duplicating the instance.
 
-8. **Abstract methods (`virtual`)**  (if applicable)
+8. **Callback functions** (if applicable)
+   - Functions acting as callbacks should follow the naming convention `MF_CallBack_`. The name should end with `MF_CallBack_` to indicate its role as a callback function. This ensures clarity in identifying callback-specific logic.
+
+9. **Abstract methods (`virtual`)**  (if applicable)
    - All pure virtual functions declared here.
 
-9. **Binding-related** methods (if applicable)
+10. **Binding-related** methods (if applicable)
    - Functions related to GPU register bindings, such as MF_Bind_Transform(), MF_Bind_Texture(), and so on.
 
-10. **Initialization and frame-based methods**  (if applicable)
+11. **Initialization and frame-based methods**  (if applicable)
    - `MF_Initialize()`, `MF_Prepare()`,  
      followed by `MF_Progress()`, `MF_Update()`, `MF_Tick()`.
 
-11. **Getters and Setters**  (if applicable)
-    - `MF_GetX()`, `MF_SetY()` style accessors.
+12. **Getters and Setters**  
+    - For all Getters and Setters, use the inline keyword to optimize performance, reduce function call overhead, and maintain the naming convention `MF_GetX()` and `MF_SetY()`.
 
-12. **Public/Internal methods**  
+13. **Attach and Detach functions**
+    - Functions to attach or detach elements or components should follow the naming convention MF_Attach_ and MF_Detach_.
+
+14. **Public/Internal methods**  
     - Main logic and behavior functions.
 
-13. **Modularized private/internal methods**  (if applicable)
+15. **Modularized private/internal methods**  (if applicable)
     - Small helper methods and decomposed logic units.
+
+### it is important to maintain clear separation based on access specifiers.
+
+- For example, if there are multiple public members within the public section, or if there are redundant members in the protected or private sections, each section should still be clearly separated.
+
+- Even in cases of redundancy, ensure that access specifiers are used clearly to maintain consistency and readability in the class structure.
 
 ---
 

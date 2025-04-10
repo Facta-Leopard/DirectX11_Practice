@@ -22,7 +22,7 @@
 #include "C_MoveScript.h"
 #include "C_NPCScript.h"
 
-#include "C_CameraComponent.h"
+#include "C_CameraScript.h"
 
 
 // 향후, 더 추가예정

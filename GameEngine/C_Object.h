@@ -23,11 +23,11 @@ protected:
     // 효율성을 위해 멤버들을 Heap으로 관리
     // Myself
     E_GROUP_TYPE                        M_GroupIndex;                                // E_GROUP_NUMBER; 본인이 속한 그룹을 표시
-    bool                                M_IsLive;                                   // bool; 본인이 죽었는지 여부
+    bool                                M_IsLive;                                    // bool; 본인이 죽었는지 여부
 
     // Object
     C_Object*                           M_ParentObejct;                              // C_Object*
-    vector<C_Object*>                   STL_P_M_ChildObejct;                           // vector<C_Object*>
+    vector<C_Object*>                   STL_P_M_ChildObejct;                         // vector<C_Object*>
 
 
     // Component
@@ -40,28 +40,39 @@ public:
     CLONE(C_Object)
 
 public:
-    void MF_Prepare();                                                          // 초기화 함수; 기반료소부터 준비; C_Component -> C_ScriptComponent -> Obejct
+    void MF_Prepare();                                                           // 초기화 함수; 기반료소부터 준비; C_Component -> C_ScriptComponent -> Obejct
 
-    void MF_Tick();                                                             // Tick 구분이유; 향후, Metal의 Compute Fragement로 컨버전하는 것도 생각하고 있음
+    void MF_Tick();                                                              // Tick 구분이유; 향후, Metal의 Compute Fragement로 컨버전하는 것도 생각하고 있음
 
-    void MF_TickAfter();                                                        // 후처리 전용 Tick
+    void MF_TickAfter();                                                         // 후처리 전용 Tick
 
+    void MF_ChildTick();                                                         // 자식오브젝트 tick() 실행; 한 계층 아래만 실행
+
+    void MF_ComponentTick();                                                     // C_RenderComponent를 작동시키기 위한 목적(단, ScriptComponent 제외)
+
+    void MF_ComponentTickAfter();                                                // C_RenderComponent를 작동시키기 위한 목적(단, ScriptComponent 제외)
+
+    void MF_ScriptTick();                                                        // C_ScriptComponent만 작동 목적
+
+    void MF_Render();                                                            // Rendering 목적; 별도의 카메라 오브젝트 및 카메라 컴포넌트 함수를 이용
+
+public:
     inline E_GROUP_TYPE MF_Get_GroupType()                                       // Getter
     {
         return M_GroupIndex;
     }
 
-    inline void MF_Set_GroupIndex(E_GROUP_TYPE _M_GroupIndex)                       // Setter
+    inline void MF_Set_GroupIndex(E_GROUP_TYPE _M_GroupIndex)                    // Setter
     {
         M_GroupIndex = _M_GroupIndex;
     }
 
-    inline C_Object* MF_Get_ParentObjects()                                       // Getter
+    inline C_Object* MF_Get_ParentObject()                                       // Getter
     {
         return M_ParentObejct;
     }
 
-    inline vector<C_Object*> MF_Get_ChildObjects()                                       // Getter
+    inline vector<C_Object*> MF_Get_ChildObjects()                               // Getter
     {
         return STL_P_M_ChildObejct;
     }
@@ -96,16 +107,112 @@ public:
     //// Component 관련
     void MF_Attach_Component(C_Component* _Component);                           // Attach; 컴포넌트 요소 등록
 
-    //// 
-    void MF_ChildTick();                                                        // 자식오브젝트 tick() 실행; 한 계층 아래만 실행
+    // Template 관련
+    template<typename Template>
+    Template* MF_Get_ReturnTypeBy(E_COMPONENT_TYPE _ComponentType)                      // Template; 유의! C++ 17의 if constexpr을 통해서 구현한 것! C++ 17 이상에서만 사용가능!;
+    {
+        switch (_ComponentType)
+        {
+        case _COMPONENT_TRANSFORM:
+            if constexpr (C_Transform == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_TRANSFORM];
+            break;
+        case _COMPONENT_COLLIDER_2D:
+            else if constexpr (C_Collider2D == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_COLLIDER_2D];
+            break;
+        case _COMPONENT_LIGHT_2D:
+            else if constexpr (C_Light2D == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_LIGHT_2D];
+            break;
+        case _COMPONENT_CAMERA:
+            else if constexpr (C_CameraComponent == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_CAMERA];
+            break;
+        case _COMPONENT_MESH_RENDER:
+            else if constexpr (C_MeshRender == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_MESH_RENDER];
+            break;
+        case _COMPONENT_SPRITE_RENDER:
+            else if constexpr (C_SpriteRender == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_SPRITE_RENDER];
+            break;
+        case _COMPONENT_FLIPBOOK_RENDER:
+            else if constexpr (C_FlipbookRender == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_FLIPBOOK_RENDER];
+            break;
+        case _COMPONENT_TILE_RENDER:
+            else if constexpr (C_TileRender == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_TILE_RENDER];
+            break;
+        case _COMPONENT_PARTICLE_RENDER:
+            else if constexpr (C_ParticleRender == Template)
+                return (Template*)P_M_Component_s[_COMPONENT_PARTICLE_RENDER];
+            break;
+        case _COMPONENT_SCRIPT:
+            if constexpr (C_ScriptComponent == Template)               // 유의! ScriptComponent가 추가될 만들시에, 이 내용 다시 고려해봐야함
+            {
+                E_SCRIPT_TYPE T_ScriptType = (C_ScriptComponent*)Template1->MF_GetScriptType();
+                switch (T_ScriptType)
+                {
+                case _SCRIPT_RIGID:
+                    if constexpr (C_RigidScript == Template)
+                        return (Template*)P_M_Component_s[_COMPONENT_SCRIPT];
+                    break;
+                case _SCRIPT_STATE:
+                    if constexpr (C_StateScript == Template)
+                        return (Template*)P_M_Component_s[_COMPONENT_SCRIPT];
+                    break;
+                case _SCRIPT_MOVE:
+                    if constexpr (C_MoveScript == Template)
+                        return (Template*)P_M_Component_s[_COMPONENT_SCRIPT];
+                    break;
+                case _SCRIPT_NPC:
+                    if constexpr (C_NPCScript == Template)
+                        return (Template*)P_M_Component_s[_COMPONENT_SCRIPT];
+                    break;
+                case _SCRIPT_CAMERA:
+                    if constexpr (C_CameraScript == Template)
+                        return (Template*)P_M_Component_s[_COMPONENT_SCRIPT];
+                    break;
+                case _SCRIPT_END:
+                default:
+                    POPUP(L"C_ScriptComponent == Template", L"in Template1* MF_Get_ReturnTypeBy(E_COMPONENT_TYPE _ComponentType) on C_Object, C_ScriptComponent == Template Needed ReCoding")
+                        return nullptr;
+                }
+            }
+            break;
+        case _COMPONENT_RENDER:
+        case _COMPONENT_END:
+        default:
+            break;
+        }
 
-    void MF_ComponentTick();                                                    // C_RenderComponent를 작동시키기 위한 목적(단, ScriptComponent 제외)
 
-    void MF_ComponentTickAfter();                                               // C_RenderComponent를 작동시키기 위한 목적(단, ScriptComponent 제외)
 
-    void MF_ScriptTick();                                                       // C_ScriptComponent만 작동 목적
 
-    void MF_Render();                                                           // Rendering 목적; 별도의 카메라 오브젝트 및 카메라 컴포넌트 함수를 이용
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        else
+        {
+            POPUP_DEBUG(L"Component Type Is Mismatch ", L"in T* MF_Get_ReturnTypeBy(E_COMPONENT_TYPE _ComponentType) on C_Object Class, Component Type Is Mismatch")
+            assert(true)
+            return nullptr;
+        }
+    }
 
 };
 
