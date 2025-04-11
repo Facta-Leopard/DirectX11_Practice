@@ -10,7 +10,7 @@ C_Stage::C_Stage(E_STAGE_NUMBER _StageNumber)
 	for (size_t i = 0; i < _GROUP_END; ++i)
 	{
 		P_M_Group_s[i] = new C_Group;
-		P_M_Group_s[i]->MF_Set_GroupIndex((E_GROUP_TYPE)i);
+		P_M_Group_s[i]->MF_Set_GroupIndex((E_GROUP_INDEX)i);
 	}
 }
 

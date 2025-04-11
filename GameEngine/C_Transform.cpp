@@ -19,6 +19,14 @@ C_Transform::C_Transform()
 
 C_Transform::C_Transform(const C_Transform& _Origin)
 	: C_Component(_Origin)
+	, Vec3_M_RelativePosition(_Origin.Vec3_M_RelativeDirection)
+	, Vec3_M_RelativeScale(_Origin.Vec3_M_RelativeScale)
+	, Vec3_M_RelativeRotation(_Origin.Vec3_M_RelativeRotation)
+	, Vec3_M_RelativeDirection(_Origin.Vec3_M_RelativeDirection)
+	, M_IsScaleDependent(false)
+
+	, MAT_M_WorldMatrix{_Origin.MAT_M_WorldMatrix}
+	, Vec3_WorldMatrixDirection(_Origin.Vec3_WorldMatrixDirection)
 {
 }
 
@@ -26,7 +34,7 @@ C_Transform::~C_Transform()
 {
 }
 
-void C_Transform::MF_Prepare()
+void C_Transform::MF_Prepare()						// 초기화 함수; 향후, 함수들 통일성을 위해 생성자에서 모듈로 써서 초기화하는 방법으로 전환도 생각하는 것이 좋을 듯
 {
 }
 

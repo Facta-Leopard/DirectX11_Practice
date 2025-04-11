@@ -22,9 +22,5 @@ public:
 
     virtual void MF_ComponentTickAfter() override;
 
-    virtual C_Collider2D* MF_Get_ComponentMyself() override
-    {
-        return this;
-    };
 };
 

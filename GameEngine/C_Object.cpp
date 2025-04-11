@@ -5,6 +5,7 @@
 C_Object::C_Object()
 	: C_Entity()
 	, M_GroupIndex(_GROUP_NONE)
+	, M_ObjectType(_OBJECT_END)
 	, M_IsLive(true)
 	, M_ParentObejct(nullptr)
 	, STL_P_M_ChildObejct{}
@@ -18,6 +19,7 @@ C_Object::C_Object()
 C_Object::C_Object(const C_Object& _Origin)
 	: C_Entity(_Origin)
 	, M_GroupIndex(_Origin.M_GroupIndex)
+	, M_ObjectType(_Origin.M_ObjectType)
 	, M_IsLive(_Origin.M_IsLive)
 	, M_ParentObejct(nullptr)									// 복사해서 붙여야 할 수도 있으므로 nullptr
 	, STL_P_M_ChildObejct{}

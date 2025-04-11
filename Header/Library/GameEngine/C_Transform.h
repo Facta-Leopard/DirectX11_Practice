@@ -26,11 +26,6 @@ protected:
 public:
     CLONE(C_Transform)
 
-    virtual C_Transform* MF_Get_ComponentMyself() override                              // 자기자신을 타입에 맞게 반환하는 함수
-    {
-        return this;
-    };
-
 public:
     virtual void MF_Prepare() override;                                                 // 초기화 함수
 

@@ -72,7 +72,7 @@ void C_Group::MF_Detach_ObjectFromAllObject(C_Object* _Object)					// 유의! 벡터
 	{
 		if (*STL_T_Iterator == _Object)
 		{
-			STL_P_M_AllObject.erase(STL_T_Iterator);
+			STL_T_Iterator = STL_P_M_AllObject.erase(STL_T_Iterator);				// 논리 로직 수정완료; 유의! Row 형식의 STL은 erase 같이 제거 해서 당기는 형식인 경우에는 이터레이터 반환되는 부분을 조심해야 함; 여기서는 이터레이터를 반환하지 않아서 다음 이터레이터로 옮겨지지 않았음;
 		}
 		else
 		{
@@ -104,7 +104,7 @@ void C_Group::MF_Attach_ObjectToParentObject(C_Object* _Object, bool _IsChildTog
 			STL_P_M_Calculation.push_back(T_STL_ChildObject[i]);
 		}
 
-		if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupType() == _GROUP_NONE)
+		if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupIndex() == _GROUP_NONE)
 		{
 			T_Object->MF_Set_GroupIndex(M_GroupIndex);
 		}

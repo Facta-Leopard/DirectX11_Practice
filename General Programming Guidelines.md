@@ -32,7 +32,7 @@ To maintain consistency and readability, all class members should follow the ord
    - All pure virtual functions declared here.
 
 10. **Binding-related** methods (if applicable)
-   - Functions related to GPU register bindings, such as MF_Bind_Transform(), MF_Bind_Texture(), and so on.
+   - Functions related to GPU register bindings, such as `MF_Bind()`, `MF_Bind()`, and so on.
 
 11. **Initialization and frame-based methods**  (if applicable)
    - `MF_Initialize()`, `MF_Prepare()`,  
@@ -42,7 +42,7 @@ To maintain consistency and readability, all class members should follow the ord
     - For all Getters and Setters, use the inline keyword to optimize performance, reduce function call overhead, and maintain the naming convention `MF_GetX()` and `MF_SetY()`.
 
 13. **Attach and Detach functions**
-    - Functions to attach or detach elements or components should follow the naming convention MF_Attach_ and MF_Detach_.
+    - Functions to attach or detach elements or components should follow the naming convention `MF_Attach_` and `MF_Detach_`.
 
 14. **Public/Internal methods**  
     - Main logic and behavior functions.

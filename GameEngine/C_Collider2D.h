@@ -13,6 +13,11 @@ protected:
 public:
     ~C_Collider2D();
 
+protected:
+    Vector3                         M_ColliderScale;
+
+    Vector3                         M_OverLapCount
+
 public:
     CLONE(C_Collider2D)
 
@@ -22,9 +27,7 @@ public:
 
     virtual void MF_ComponentTickAfter() override;
 
-    virtual C_Collider2D* MF_Get_ComponentMyself() override
-    {
-        return this;
-    };
+public:
+
 };
 

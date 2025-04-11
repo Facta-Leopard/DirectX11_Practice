@@ -20,19 +20,20 @@ public:
 protected:
     // 효율성을 위해 멤버들을 Heap으로 관리
     // Myself
-    E_GROUP_TYPE                        M_GroupIndex;                                // E_GROUP_NUMBER; 본인이 속한 그룹을 표시
+    E_GROUP_INDEX                       M_GroupIndex;                                // E_GROUP_NUMBER; 본인이 속한 그룹을 표시
+    E_OBJECT_TYPE                       M_ObjectType;                                // E_OBJECT_TYPE; 개선하는 부분으로 충돌부분을 계층적 검사를 위함
     bool                                M_IsLive;                                    // bool; 본인이 죽었는지 여부
 
     // Object
-    C_Object* M_ParentObejct;                              // C_Object*
+    C_Object*                           M_ParentObejct;                              // C_Object*
     vector<C_Object*>                   STL_P_M_ChildObejct;                         // vector<C_Object*>
 
 
     // Component
-    C_Component* P_M_Component_s[_COMPONENT_END];             // C_Component*
-    C_RenderComponent* P_M_RenderComponent;                         // C_RenderComponent*
+    C_Component*                        P_M_Component_s[_COMPONENT_END];             // C_Component*
+    C_RenderComponent*                  P_M_RenderComponent;                         // C_RenderComponent*; 향후, 자료형 형식으로 해서 선택식으로 하면, 중간에 확 바뀌는 그런 효과를 줄 수 있지 않을까 고민해보자.
 
-    C_ScriptComponent* P_M_Script_s[_SCRIPT_END];                   // C_Script*
+    C_ScriptComponent*                  P_M_Script_s[_SCRIPT_END];                   // C_Script*
 
 public:
     CLONE(C_Object)
@@ -55,12 +56,12 @@ public:
     void MF_Render();                                                            // Rendering 목적; 별도의 카메라 오브젝트 및 카메라 컴포넌트 함수를 이용
 
 public:
-    inline E_GROUP_TYPE MF_Get_GroupType()                                       // Getter; E_GROUP_TYPE은 enum구조로 내부는 그룹 명칭이 숫자인 구조임
+    inline E_GROUP_INDEX MF_Get_GroupIndex()                                     // Getter; E_GROUP_TYPE은 enum구조로 내부는 그룹 명칭이 숫자인 구조임
     {
         return M_GroupIndex;
     }
 
-    inline void MF_Set_GroupIndex(E_GROUP_TYPE _M_GroupIndex)                    // Setter
+    inline void MF_Set_GroupIndex(E_GROUP_INDEX _M_GroupIndex)                   // Setter
     {
         M_GroupIndex = _M_GroupIndex;
     }
@@ -218,7 +219,7 @@ public:
     template <>
     C_RenderComponent* MF_Get_ComponentByReturnType<C_RenderComponent>()          // C_RenderComponent*
     {
-        if (nullptr == P_M_RenderComponent)             // 방어코드
+        if (nullptr == P_M_RenderComponent)                                 // 방어코드
         {
             POPUP_DEBUG(L"nullptr == P_M_RenderComponent", L"in C_RenderComponent* MF_Get_ComponentByReturnType<C_RenderComponent>(), nullptr == P_M_RenderComponent");
         }
@@ -230,7 +231,7 @@ public:
     template <>
     C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>()                  // C_RigidScript*
     {
-        if (nullptr == P_M_Script_s[_SCRIPT_RIGID])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_RIGID])                         // 방어코드
         {
             POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_RIGID]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_RIGID]");
         }
@@ -248,7 +249,7 @@ public:
     template <>
     C_StateScript* MF_Get_ComponentByReturnType<C_StateScript>()                  // C_StateScript*
     {
-        if (nullptr == P_M_Script_s[_SCRIPT_STATE])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_STATE])                         // 방어코드
         {
             POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_STATE]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_STATE]");
         }
@@ -266,7 +267,7 @@ public:
     template <>
     C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>()                    // C_MoveScript*
     {
-        if (nullptr == P_M_Script_s[_SCRIPT_MOVE])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_MOVE])                          // 방어코드
         {
             POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_MOVE]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_MOVE]");
         }
@@ -284,7 +285,7 @@ public:
     template <>
     C_NPCScript* MF_Get_ComponentByReturnType<C_NPCScript>()                      // C_NPCScript*
     {
-        if (nullptr == P_M_Script_s[_SCRIPT_NPC])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_NPC])                           // 방어코드
         {
             POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_NPC]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_NPC]");
         }
@@ -302,7 +303,7 @@ public:
     template <>
     C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>()                // C_CameraScript*
     {
-        if (nullptr == P_M_Script_s[_SCRIPT_CAMERA])                  // 방어코드
+        if (nullptr == P_M_Script_s[_SCRIPT_CAMERA])                        // 방어코드
         {
             POPUP_DEBUG(L"nullptr == P_M_Script_s[_SCRIPT_CAMERA]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_SCRIPT_CAMERA]");
         }

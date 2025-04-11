@@ -52,7 +52,7 @@ public:
         return P_M_Group_s[_GROUP_END - 1];                                             // 향후, _GROUP_END - 1 부분 다시 생각해볼 것; Index를 벗어난 읽기 오류 디버깅
     }
 
-    inline C_Group* MF_Set_GroupInGroups(C_Group* _Group, E_GROUP_TYPE _GroupType)      // Setter; 명명규칙에 벗어나지 않도록 헤더에 기재
+    inline C_Group* MF_Set_GroupInGroups(C_Group* _Group, E_GROUP_INDEX _GroupType)     // Setter; 명명규칙에 벗어나지 않도록 헤더에 기재
     {
         for (size_t i = 0; i < _GROUP_END; i++)
         {

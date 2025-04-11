@@ -170,12 +170,12 @@ enum E_STAGE_STATE
 
 
 //// about Group
-enum E_GROUP_TYPE
+enum E_GROUP_INDEX
 {
-	_GROUP_PLAYER,
+	_GROUP_PLAYER,					// 향후, RTS 장르에서도 적용할 수 있도록, 좀 더 세분하는 것이 어떨지 생각해보자.
 	_GROUP_PLAYER_MISSILE,
 
-	_GROUP_ENEMY,
+	_GROUP_ENEMY,					// 향후, ENEMY가 아닌 PLAYER를 세분해서 각 자 적대화 하는 형식이 어떻지 생각해보자.
 	_GROUP_ENEMY_MISSOLE,
 
 	_GROUP_OBJECT_INTERACTABLE,
@@ -186,6 +186,17 @@ enum E_GROUP_TYPE
 	_GROUP_NONE,						// 유의! C_Object 내부 M_GroupIndex 복사관련; 향후, 문제 발생시에 void C_Group::MF_Attach_ObjectToParentObject(C_Object* _Object, bool _IsChildTogether) 내부의 if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupType() == _GROUP_END) 부분을 확인할 것
 };
 
+enum E_OBJECT_TYPE					// 유의! 충돌검사 계층적 검사로 코드 개선하기 위한 enum으로 충돌체와 관련이 있음; 향후, 충돌 체크방식을 개선한 이 방식이 더 효율적인지 확인해보는 것이 좋겠다.
+{
+	_OBJECT_CHARACTER,				// 향후, 몸통이나 이런 종류로 세분하는 것이 좋을 듯.
+	_OBJECT_WEAPON,					// 향후, 별도로 종류를 세분하는 것은 어떨지 생각해보는 것이 좋겠다. 밀리와 레인지, 또는 직접 총, 활, 칼, 창 등의 구분이라던가..
+	_OBJECT_ARMOR,					// 향후, 방패나 경갑, 중갑 등 분류하는 것은 어떨지 생각해보는 것이 좋겠다.
+	_OBJECT_GENERIC,
+
+	_OBJECT_END,
+
+
+};
 
 //// about Component
 enum E_COMPONENT_TYPE
@@ -211,6 +222,8 @@ enum E_COMPONENT_TYPE
 	_COMPONENT_RENDER,					// 자기자신 반환 추상함수 방어코드용
 };
 
+
+
 enum E_SCRIPT_TYPE										// 유의! enum 변동 있을 시, template <typename T_Template> T_Template* MF_Get_ComponentByReturnType() 템플릿 특수화 추가 필요
 {
 	_SCRIPT_RIGID,						// 강체관련
@@ -222,7 +235,6 @@ enum E_SCRIPT_TYPE										// 유의! enum 변동 있을 시, template <typename T_Tem
 
 	_SCRIPT_END,
 };
-
 
 //// about Resourece
 enum E_RESOURCE_TYPE

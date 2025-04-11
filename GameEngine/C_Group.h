@@ -19,7 +19,7 @@ public:
 	~C_Group();
 
 protected:
-	E_GROUP_TYPE                        M_GroupIndex;						// E_GROUP_NUMBER; 분류를 위한 그룹
+	E_GROUP_INDEX                       M_GroupIndex;						// E_GROUP_NUMBER; 분류를 위한 그룹
 
 	// Object를 관리하기 위한 Member Variable
 	vector<C_Object*>                   STL_P_M_AllObject;					// vector<C_Object*>; 성능이점을 갖기위한 구조, MF_Render()를 별도로 사용하기 위함
@@ -39,12 +39,12 @@ public:
 	void MF_TickAfter();																	  // Group 내 모든 부모 오브젝트 TickAfter() 실행
 
 public:
-	inline E_GROUP_TYPE MF_Set_GroupIndex()													  // Getter; E_GROUP_TYPE 관련
+	inline E_GROUP_INDEX MF_Set_GroupIndex()												  // Getter; E_GROUP_TYPE 관련
 	{
 		return M_GroupIndex;
 	}
 
-	inline void MF_Set_GroupIndex(E_GROUP_TYPE _GroupIndex)									  // Setter
+	inline void MF_Set_GroupIndex(E_GROUP_INDEX _GroupIndex)								  // Setter
 	{
 		M_GroupIndex = _GroupIndex;
 	}
