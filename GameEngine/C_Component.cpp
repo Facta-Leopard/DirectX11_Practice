@@ -17,5 +17,6 @@ C_Component::C_Component(const C_Component& _Origin)
 
 C_Component::~C_Component()
 {
-
+	// 향후, 상호참조 문제는 없을 것으로 보이나 메모리 누수가 있는지 테스트 해보는 게 좋을 듯
+	// 만약, 있다면 P_M_OwnerObject == nullptr 로직 등을 추가하자
 }

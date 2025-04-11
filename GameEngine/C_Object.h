@@ -75,16 +75,6 @@ public:
         M_ObjectType = _ObjectType;
     }
 
-    inline bool MF_Get_IsLive()                                                 // Getter
-    {
-        return M_IsLive;
-    }
-
-    inline void MF_Set_IsLive(bool _IsLive)                                     // Setter
-    {
-        M_IsLive = _IsLive;
-    }
-
     inline C_Object* MF_Get_ParentObject()                                       // Getter
     {
         return M_ParentObejct;

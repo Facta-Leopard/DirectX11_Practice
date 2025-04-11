@@ -15,6 +15,10 @@ C_FSMScript::~C_FSMScript()
 {
 }
 
+void C_FSMScript::MF_Prepare()
+{
+}
+
 void C_FSMScript::MF_ScriptTick()
 {
 }

@@ -18,7 +18,7 @@ protected:
     C_Component(const C_Component& _Origin);
 
 public:
-    virtual ~C_Component();
+    virtual ~C_Component();                                 // 향후, 상호참조 문제는 없을 것으로 보이나 메모리 누수가 있는지 테스트 해보는 게 좋을 듯
 
 protected:
     const E_COMPONENT_TYPE          L_M_ComponentType;              // const E_COMPONENT_TYPE; 본인이 무슨 타입인지 생성될 때 정해지도록 하기 위함

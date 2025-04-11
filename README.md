@@ -4,9 +4,19 @@
 
 ---
 
-Components are for data, scripts are for logic.
+## Components are for data, scripts are for logic.
 
 I chose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
+
+## Branch Split Rule
+
+If a function has 4 or more if or else if statements, and it may add more in the future, then you should split the logic into separate functions.
+
+Too many conditions make it hard for the CPU to predict, which can slow things down.
+
+Splitting into functions makes the code cleaner and easier to update.
+
+Function call cost is small, but bad branch prediction is expensive.
 
 ---
 
