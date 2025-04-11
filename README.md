@@ -4,6 +4,12 @@
 
 ---
 
+Components are for data, scripts are for logic.
+
+I chose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
+
+---
+
 ## 1. Class Member Declaration Order
 
 To maintain consistency and readability, all class members should follow the order below:

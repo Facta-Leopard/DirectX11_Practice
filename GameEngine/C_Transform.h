@@ -27,7 +27,7 @@ public:
     CLONE(C_Transform)
 
 public:
-    virtual void MF_Prepare() override;                                                 // 초기화 함수
+    virtual void MF_Prepare() {}				                                		// 초기화 함수; 향후, 함수들 통일성을 위해 생성자에서 모듈로 써서 초기화하는 방법으로 전환도 생각하는 것이 좋을 듯
 
     virtual void MF_ComponentTick() override;
 

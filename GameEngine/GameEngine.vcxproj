@@ -193,7 +193,7 @@
     <ClInclude Include="C_Light2D.h" />
     <ClInclude Include="C_MeshRender.h" />
     <ClInclude Include="C_MoveScript.h" />
-    <ClInclude Include="C_NPCScript.h" />
+    <ClInclude Include="C_FSMScript.h" />
     <ClInclude Include="C_Object.h" />
     <ClInclude Include="C_ParticleRender.h" />
     <ClInclude Include="C_PathManager.h" />
@@ -208,7 +208,7 @@
     <ClInclude Include="C_SpriteRender.h" />
     <ClInclude Include="C_Stage.h" />
     <ClInclude Include="C_StageManager.h" />
-    <ClInclude Include="C_StateScript.h" />
+    <ClInclude Include="C_StateComponent.h" />
     <ClInclude Include="C_TaskManager.h" />
     <ClInclude Include="C_Texture.h" />
     <ClInclude Include="C_TileRender.h" />
@@ -240,7 +240,7 @@
     <ClCompile Include="C_Light2D.cpp" />
     <ClCompile Include="C_MeshRender.cpp" />
     <ClCompile Include="C_MoveScript.cpp" />
-    <ClCompile Include="C_NPCScript.cpp" />
+    <ClCompile Include="C_FSMScript.cpp" />
     <ClCompile Include="C_Object.cpp" />
     <ClCompile Include="C_ParticleRender.cpp" />
     <ClCompile Include="C_PathManager.cpp" />
@@ -254,7 +254,7 @@
     <ClCompile Include="C_SpriteRender.cpp" />
     <ClCompile Include="C_Stage.cpp" />
     <ClCompile Include="C_StageManager.cpp" />
-    <ClCompile Include="C_StateScript.cpp" />
+    <ClCompile Include="C_StateComponent.cpp" />
     <ClCompile Include="C_TaskManager.cpp" />
     <ClCompile Include="C_Texture.cpp" />
     <ClCompile Include="C_TileRender.cpp" />

@@ -10,7 +10,7 @@ public:
     C_ScriptComponent(E_SCRIPT_TYPE _ScrptType);
 
 protected:
-    C_ScriptComponent(const C_ScriptComponent& _Origin);
+    C_ScriptComponent(const C_ScriptComponent& _Origin);    // 향후, 설계방식 변경 있을 시에는 복사 생성자를 막는 것이 좋을듯? 현재, 스크립트가 기능기반이지만, 매니저 형식이 아니라 별도로 객체에 붙히는 설계를 선택함
 
 public:
     ~C_ScriptComponent();

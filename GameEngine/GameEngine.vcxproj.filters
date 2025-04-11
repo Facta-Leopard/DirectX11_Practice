@@ -85,12 +85,6 @@
     <Filter Include="4. Component\40. Component">
       <UniqueIdentifier>{2e1c2f84-e26a-4313-85c6-f5cb2266a6da}</UniqueIdentifier>
     </Filter>
-    <Filter Include="4. Component\43. Light">
-      <UniqueIdentifier>{b47eb770-a1d8-46be-8c5c-0796072e98f6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="4. Component\43. Light\4321. Light2D">
-      <UniqueIdentifier>{daeee69e-ad70-4eca-80b0-1a3218f55603}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4. Component\41. Transform">
       <UniqueIdentifier>{6e2fbc35-1c38-41a9-9dba-0f33411a7508}</UniqueIdentifier>
     </Filter>
@@ -127,17 +121,8 @@
     <Filter Include="6. ScriptComponent\60. ScriptComponent">
       <UniqueIdentifier>{9d201e80-682a-475f-a40f-fd0266599f6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="6. ScriptComponent\63. MoveScript">
-      <UniqueIdentifier>{33b7f9a4-d2c1-41b4-8c20-a4000e86b26a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="6. ScriptComponent\63. NPCScript">
-      <UniqueIdentifier>{a22fdf9e-ac12-4913-be03-0737aa11e41a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="6. ScriptComponent\61. RigedScript">
       <UniqueIdentifier>{134395e4-75ab-42f6-b157-72a2dc55b433}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="6. ScriptComponent\62. StateScript">
-      <UniqueIdentifier>{0f09ceb3-4a73-4fa2-8d86-17295bdc57ae}</UniqueIdentifier>
     </Filter>
     <Filter Include="6. ScriptComponent\69. CameraScript">
       <UniqueIdentifier>{12f9b6ea-387c-4038-95af-a18e639894f0}</UniqueIdentifier>
@@ -177,6 +162,21 @@
     </Filter>
     <Filter Include="3. Resource\31. Resource\318. Sound">
       <UniqueIdentifier>{ff196e5e-15a8-404d-b521-585b932efef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\43. StateComponent">
+      <UniqueIdentifier>{91e26e34-e512-456c-acee-7de3e8f9a32e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\63. FSMScript">
+      <UniqueIdentifier>{a22fdf9e-ac12-4913-be03-0737aa11e41a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="6. ScriptComponent\62. MoveScript">
+      <UniqueIdentifier>{33b7f9a4-d2c1-41b4-8c20-a4000e86b26a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\44. Light">
+      <UniqueIdentifier>{b47eb770-a1d8-46be-8c5c-0796072e98f6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="4. Component\44. Light\4321. Light2D">
+      <UniqueIdentifier>{daeee69e-ad70-4eca-80b0-1a3218f55603}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -259,7 +259,7 @@
       <Filter>4. Component\49. Camera</Filter>
     </ClInclude>
     <ClInclude Include="C_Light2D.h">
-      <Filter>4. Component\43. Light\4321. Light2D</Filter>
+      <Filter>4. Component\44. Light\4321. Light2D</Filter>
     </ClInclude>
     <ClInclude Include="component.h">
       <Filter>0. Foundation\01. Header</Filter>
@@ -288,17 +288,14 @@
     <ClInclude Include="C_CameraScript.h">
       <Filter>6. ScriptComponent\69. CameraScript</Filter>
     </ClInclude>
-    <ClInclude Include="C_NPCScript.h">
-      <Filter>6. ScriptComponent\63. NPCScript</Filter>
+    <ClInclude Include="C_FSMScript.h">
+      <Filter>6. ScriptComponent\63. FSMScript</Filter>
     </ClInclude>
     <ClInclude Include="C_RigidScript.h">
       <Filter>6. ScriptComponent\61. RigedScript</Filter>
     </ClInclude>
-    <ClInclude Include="C_StateScript.h">
-      <Filter>6. ScriptComponent\62. StateScript</Filter>
-    </ClInclude>
     <ClInclude Include="C_MoveScript.h">
-      <Filter>6. ScriptComponent\63. MoveScript</Filter>
+      <Filter>6. ScriptComponent\62. MoveScript</Filter>
     </ClInclude>
     <ClInclude Include="C_Group.h">
       <Filter>7. Group</Filter>
@@ -314,6 +311,9 @@
     </ClInclude>
     <ClInclude Include="C_Sound.h">
       <Filter>3. Resource\31. Resource\318. Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="C_StateComponent.h">
+      <Filter>4. Component\43. StateComponent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -375,7 +375,7 @@
       <Filter>4. Component\49. Camera</Filter>
     </ClCompile>
     <ClCompile Include="C_Light2D.cpp">
-      <Filter>4. Component\43. Light\4321. Light2D</Filter>
+      <Filter>4. Component\44. Light\4321. Light2D</Filter>
     </ClCompile>
     <ClCompile Include="C_RenderComponent.cpp">
       <Filter>5. RenderComponent\60. RenderComponent</Filter>
@@ -401,17 +401,14 @@
     <ClCompile Include="C_CameraScript.cpp">
       <Filter>6. ScriptComponent\69. CameraScript</Filter>
     </ClCompile>
-    <ClCompile Include="C_NPCScript.cpp">
-      <Filter>6. ScriptComponent\63. NPCScript</Filter>
+    <ClCompile Include="C_FSMScript.cpp">
+      <Filter>6. ScriptComponent\63. FSMScript</Filter>
     </ClCompile>
     <ClCompile Include="C_RigidScript.cpp">
       <Filter>6. ScriptComponent\61. RigedScript</Filter>
     </ClCompile>
-    <ClCompile Include="C_StateScript.cpp">
-      <Filter>6. ScriptComponent\62. StateScript</Filter>
-    </ClCompile>
     <ClCompile Include="C_MoveScript.cpp">
-      <Filter>6. ScriptComponent\63. MoveScript</Filter>
+      <Filter>6. ScriptComponent\62. MoveScript</Filter>
     </ClCompile>
     <ClCompile Include="C_Group.cpp">
       <Filter>7. Group</Filter>
@@ -427,6 +424,9 @@
     </ClCompile>
     <ClCompile Include="C_Sound.cpp">
       <Filter>3. Resource\31. Resource\318. Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="C_StateComponent.cpp">
+      <Filter>4. Component\43. StateComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

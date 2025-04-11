@@ -22,7 +22,6 @@ protected:
     // Myself
     E_GROUP_INDEX                       M_GroupIndex;                                // E_GROUP_NUMBER; 본인이 속한 그룹을 표시
     E_OBJECT_TYPE                       M_ObjectType;                                // E_OBJECT_TYPE; 유의 개선하는 부분으로 충돌부분을 계층적 검사를 위한 것; 향후, 불변(const)하게 하는 것에 생각해보는 것이 좋겠음
-    bool                                M_IsLive;                                    // bool; 본인이 죽었는지 여부
 
     // Object
     C_Object*                           M_ParentObejct;                              // C_Object*
@@ -301,9 +300,9 @@ public:
         return (C_MoveScript*)P_M_Script_s[_SCRIPT_MOVE];
     }
 
-    ////// C_NPCScript 타입에 대한 특수화
+    ////// C_FSMScript 타입에 대한 특수화
     template <>
-    C_NPCScript* MF_Get_ComponentByReturnType<C_NPCScript>()                      // C_NPCScript*
+    C_FSMScript* MF_Get_ComponentByReturnType<C_FSMScript>()                      // C_FSMScript*
     {
         if (nullptr == P_M_Script_s[_SCRIPT_NPC])                           // 방어코드
         {
@@ -314,9 +313,9 @@ public:
 
         if (T_ScriptType != _SCRIPT_NPC)                                    // 방어코드
         {
-            POPUP_DEBUG(L"T_ScriptType != _SCRIPT_NPC", L"in C_NPCScript* MF_Get_ComponentByReturnType<C_NPCScript>(), T_ScriptType != _SCRIPT_NPC")
+            POPUP_DEBUG(L"T_ScriptType != _SCRIPT_NPC", L"in C_FSMScript* MF_Get_ComponentByReturnType<C_FSMScript>(), T_ScriptType != _SCRIPT_NPC")
         }
-        return (C_NPCScript*)P_M_Script_s[_SCRIPT_NPC];
+        return (C_FSMScript*)P_M_Script_s[_SCRIPT_NPC];
     }
 
     ////// C_CameraScript 타입에 대한 특수화

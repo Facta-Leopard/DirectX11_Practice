@@ -9,10 +9,10 @@ C_Transform::C_Transform()
 	, Vec3_M_RelativeDirection(0.f, 0.f, 0.f)		// 방향 초기화
 	, M_IsScaleDependent(false)							// 부모 오브젝트 연결 초기화
 	
-	, MAT_M_WorldMatrix{ 1.f, 0.f, 0.f, 0.f,		// 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화 해야함!
-						0.f, 1.f, 0.f, 0.f,
-						0.f, 0.f, 1.f, 0.f,
-						0.f, 0.f, 0.f, 1.f }
+	, MAT_M_WorldMatrix{ 1.f, 0.f, 0.f, 0.f		// 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화 해야함!
+						,0.f, 1.f, 0.f, 0.f
+						,0.f, 0.f, 1.f, 0.f
+						,0.f, 0.f, 0.f, 1.f }
 	, Vec3_WorldMatrixDirection(0.f, 0.f, 0.f)
 {
 }
@@ -40,6 +40,9 @@ void C_Transform::MF_Prepare()						// 초기화 함수; 향후, 함수들 통일성을 위해 �
 
 void C_Transform::MF_ComponentTick()
 {
+	{
+		POPUP_DEBUG(L"", L"")
+	}
 }
 
 void C_Transform::MF_ComponentTickAfter()

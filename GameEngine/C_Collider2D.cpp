@@ -24,6 +24,12 @@ void C_Collider2D::MF_Prepare()
 
 void C_Collider2D::MF_ComponentTick()
 {
+	// 스케일계산
+
+	// 독립적인지 여부에 따라 월드공간 배율에 따른 스케일 재계산 
+
+
+	// 최종
 }
 
 void C_Collider2D::MF_ComponentTickAfter()

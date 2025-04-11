@@ -1,19 +1,19 @@
 #pragma once
 #include "C_ScriptComponent.h"
-class C_StateScript :
+class C_FSMScript :
     public C_ScriptComponent
 {
 public:
-    C_StateScript();
+    C_FSMScript();
 
 protected:
-    C_StateScript(const C_StateScript& _Origin);
+    C_FSMScript(const C_FSMScript& _Origin);
 
 public:
-    ~C_StateScript();
+    ~C_FSMScript();
 
 public:
-    CLONE(C_StateScript)
+    CLONE(C_FSMScript)
 
     virtual void MF_Prepare() override;
 
