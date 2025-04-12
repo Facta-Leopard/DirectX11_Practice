@@ -21,6 +21,12 @@ Function call cost is small, but bad branch prediction is expensive.
 
 ---
 
+## About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
+
+Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
+
+---
+
 ## Ternary Operator Rule
 
 Nested ternary is allowed only inside for or while loops — my personal rule for compactness and clarity.
@@ -35,9 +41,9 @@ I decide to use getters for other classes' members and access own class's member
 
 ---
 
-## Rotation Transformation
+## About Scale and Rotation Transformation
 
-The Quaternion Method was chosen due to its significantly faster processing time.
+The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem.
 
 ### Overhead Comparison Table
 

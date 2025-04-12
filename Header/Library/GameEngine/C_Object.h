@@ -251,14 +251,9 @@ public:
     template <>
     C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>()                  // C_RigidScript*
     {
-        if (nullptr == P_M_Script_s[_COMPONENT_SCRIPT])                         // 规绢内靛
-        {
-            POPUP_DEBUG(L"nullptr == P_M_Script_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_RigidScript>(), nullptr == P_M_Script_s[_COMPONENT_SCRIPT]");
-        }
+        E_SCRIPT_TYPE T_ScriptType = P_M_Script_s[_SCRIPT_RIGID]->MF_Get_ScriptType();
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_RIGID])->MF_Get_ScriptType();
-
-        if (T_ScriptType != _SCRIPT_RIGID)                                  // 规绢内靛
+        if (_SCRIPT_RIGID != T_ScriptType)                                  // 规绢内靛
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_RIGID", L"in C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>(), T_ScriptType != _SCRIPT_RIGID")
         }
@@ -269,14 +264,9 @@ public:
     template <>
     C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>()                    // C_MoveScript*
     {
-        if (nullptr == P_M_Script_s[_COMPONENT_SCRIPT])                          // 规绢内靛
-        {
-            POPUP_DEBUG(L"nullptr == P_M_Script_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_MoveScript>(), nullptr == P_M_Script_s[_COMPONENT_SCRIPT]");
-        }
+        E_SCRIPT_TYPE T_ScriptType = P_M_Script_s[_SCRIPT_MOVE]->MF_Get_ScriptType();
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_MOVE])->MF_Get_ScriptType();
-
-        if (T_ScriptType != _SCRIPT_MOVE)                                   // 规绢内靛
+        if (_SCRIPT_MOVE != T_ScriptType)                                   // 规绢内靛
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_MOVE", L"in C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>(), T_ScriptType != _SCRIPT_MOVE")
         }
@@ -287,14 +277,9 @@ public:
     template <>
     C_FSMScript* MF_Get_ComponentByReturnType<C_FSMScript>()                      // C_FSMScript*
     {
-        if (nullptr == P_M_Script_s[_COMPONENT_SCRIPT])                           // 规绢内靛
-        {
-            POPUP_DEBUG(L"nullptr == P_M_Script_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_FSMScript>(), nullptr == P_M_Script_s[_COMPONENT_SCRIPT]");
-        }
+        E_SCRIPT_TYPE T_ScriptType = P_M_Script_s[_SCRIPT_NPC]->MF_Get_ScriptType();
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_NPC])->MF_Get_ScriptType();
-
-        if (T_ScriptType != _SCRIPT_NPC)                                    // 规绢内靛
+        if (_SCRIPT_NPC != T_ScriptType)                                    // 规绢内靛
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_NPC", L"in C_FSMScript* MF_Get_ComponentByReturnType<C_FSMScript>(), T_ScriptType != _SCRIPT_NPC")
         }
@@ -305,14 +290,9 @@ public:
     template <>
     C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>()                // C_CameraScript*
     {
-        if (nullptr == P_M_Script_s[_COMPONENT_SCRIPT])                        // 规绢内靛
-        {
-            POPUP_DEBUG(L"nullptr == P_M_Script_s[_COMPONENT_SCRIPT]", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), nullptr == P_M_Script_s[_COMPONENT_SCRIPT]");
-        }
+        E_SCRIPT_TYPE T_ScriptType = P_M_Script_s[_SCRIPT_CAMERA]->MF_Get_ScriptType();
 
-        E_SCRIPT_TYPE T_ScriptType = ((C_ScriptComponent*)P_M_Script_s[_SCRIPT_CAMERA])->MF_Get_ScriptType();
-
-        if (T_ScriptType != _SCRIPT_CAMERA)                                 // 规绢内靛
+        if (_SCRIPT_CAMERA != T_ScriptType)                                 // 规绢内靛
         {
             POPUP_DEBUG(L"T_ScriptType != _SCRIPT_CAMERA", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), T_ScriptType != _SCRIPT_CAMERA")
         }
@@ -324,4 +304,3 @@ public:
 
 
 };
-

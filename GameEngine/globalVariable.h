@@ -9,8 +9,6 @@ struct DS_KeyInfo
 };
 
 
-
-
 // about Mouse
 //// MouseLeftButton
 struct DS_MouseLeftButton
@@ -44,3 +42,14 @@ struct DS_MouseInfo
 
 	// 향후, Scroll이나 추가 버튼 추가하면 좋을 듯
 };
+
+
+
+// 방향벡트를 관리하고자 만들었으나, 검토를 계속해본 결과 배열로 관리하는 것이 오버헤드 관리 및 SIMD에 좋으므로 과감히 중도 포기함
+// 이건 뻘짓한 것을 잊지말자는 의미에서 남겨 둠..
+//struct DS_Vector3_Direction					// Vector3를 멤버 3개를 가지고 있는 구조체
+//{
+//	Vector3				M_DirectionRight;
+//	Vector3				M_DirectionUp;
+//	Vector3				M_DirectionFront;
+//};

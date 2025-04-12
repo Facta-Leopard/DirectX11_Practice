@@ -1,5 +1,8 @@
 #pragma once
 #include "C_Component.h"
+
+#include "global.h"
+
 class C_Transform
     : public C_Component
 {
@@ -13,46 +16,30 @@ public:
     virtual ~C_Transform();
 
 protected:
-    Vector3                     Vec3_M_RelativePosition;            // Vector3; 상대적인 좌표(로컬좌표)
-    Vector3                     Vec3_M_RelativeScale;               // Vector3; 상대적인 크기(로컬좌표)
-    Vector3                     Vec3_M_RelativeRotation;            // Vector3; 상대적인 회전(로컬좌표); 유의! Vector3 형식은 오일러 각 형식이므로 활용시에는 360도 각도 보정필요 및 행렬에 XMMatrixDecompose 사용해서 분리해서 쓸 때는 상관이 없으나 Radian이므로, XMConvertToDegrees()를 써서 변환필요!
-    Vector3                     Vec3_M_RelativeDirection;           // Vector3; 상대적인 방향(로컬방향)
+    Vector3                     Vec3_M_RelativeScale;                           // Vector3; 상대적인 크기(로컬좌표)
+    Vector3                     Vec3_M_RelativeRotation;                        // Vector3; 상대적인 회전(로컬좌표); 유의! Vector3 형식은 오일러 각 형식이므로 활용시에는 360도 각도 보정필요 및 행렬에 XMMatrixDecompose 사용해서 분리해서 쓸 때는 상관이 없으나 Radian이므로, XMConvertToDegrees()를 써서 변환필요!
+    Vector3                     Vec3_M_RelativePosition;                        // Vector3; 상대적인 좌표(로컬좌표); 유의! 행렬변환시 순서를 통일시키기 위해 인자 순서 변경했음!
+    Vector3                     Vec3_M_RelativeDirection_s[_DIRECTION_END];     // Vector3; 상대적인 방향(로컬방향)을 축 방향별로 배열로 가지고 있음
 
-    bool                        M_IsScaleDependent;                 // bool; 스케일 조정 관련; 부모 오브젝트의 트리 구조 관련 의존성을 담음
+    bool                        M_IsScaleDependent;                             // bool; 스케일 조정 관련; 부모 오브젝트의 트리 구조 관련 의존성을 담음
 
-    Matrix                      MAT_M_WorldMatrix;                  // Matrix; 월드공간 행렬; 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화 해야함!
-    Vector3                     Vec3_WorldMatrixDirection;          // Vector3; 월드공간 방향; 유의! 별도로 방향값만 추출해서 쓰는 이유는 카메라 및 충돌처리의 오버헤드를 줄이기 위함임; 향후, 필요시 다른 인자도 캐싱하는 것을 고려해보는 것도 좋을 듯
+    Matrix                      MAT_M_WorldMatrix;                              // Matrix; 월드공간 행렬; 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화 해야함!
+    Vector3                     Vec3_WorldMatrixDirection_s[_DIRECTION_END];    // DS_Vector3_Direction; 월드공간 방향; 유의! 별도로 방향값만 추출해서 쓰는 이유는 카메라 및 충돌처리의 오버헤드를 줄이기 위함임; 향후, 필요시 다른 인자도 캐싱하는 것을 고려해보는 것도 좋을 듯
 
 public:
     CLONE(C_Transform)
 
 public:
-    virtual void MF_Prepare() override;				                                	// 초기화 함수; 향후, 함수들 통일성을 위해 생성자에서 모듈로 써서 초기화하는 방법으로 전환도 생각하는 것이 좋을 듯
+    virtual void MF_Prepare() override;				                                	// 더미함수; 초기화 함수; 향후, 함수들 통일성을 위해 생성자에서 모듈로 써서 초기화하는 방법으로 전환도 생각하는 것이 좋을 듯
 
     virtual void MF_ComponentTick() override;
 
-    virtual void MF_ComponentTickAfter() override;
+    virtual void MF_ComponentTickAfter() override;                                      // 더미함수; 유의! 위치계산은 Narrow Phase로 쓸 일이 없음
 
 public:
     void MF_Bind_Register();                                                            // Bind; 위치값은 GPU에거 값을 바꿀 필요가 없으므로, 레지스터(b#) 사용
 
 public:
-    // RelativePosition 관련
-    inline Vector3 MF_Get_RelativePosition()                                            // Getter; Vec3_M_RelativePosition
-    {
-        return Vec3_M_RelativePosition;
-    }
-
-    inline  void MF_Set_RelativePosition(Vector3 _Vec3Position)                         // Setter; 
-    {
-        Vec3_M_RelativePosition = _Vec3Position;
-    }
-
-    inline  void MF_Set_RelativePosition(float _X, float _Y, float _Z)                  // Setter;
-    {
-        Vec3_M_RelativePosition = Vector3(_X, _Y, _Z);
-    }
-
     // RelativeScale 관련
     inline Vector3 MF_Get_RelativeScale()                                               // Getter; Vec3_M_RelativeScale
     {
@@ -85,14 +72,30 @@ public:
         Vec3_M_RelativeRotation = Vector3(_X, _Y, _Z);
     }
 
-    // RelativeDirection 관련
-    inline Vector3 MF_Get_RelativeDirection()                                           // Getter; Vec3_M_RelativeDirection
+    // RelativePosition 관련
+    inline Vector3 MF_Get_RelativePosition()                                            // Getter; Vec3_M_RelativePosition
     {
-        return Vec3_M_RelativeDirection;
+        return Vec3_M_RelativePosition;
+    }
+
+    inline  void MF_Set_RelativePosition(Vector3 _Vec3Position)                         // Setter; 
+    {
+        Vec3_M_RelativePosition = _Vec3Position;
+    }
+
+    inline  void MF_Set_RelativePosition(float _X, float _Y, float _Z)                  // Setter;
+    {
+        Vec3_M_RelativePosition = Vector3(_X, _Y, _Z);
+    }
+
+    // RelativeDirection 관련
+    inline Vector3 MF_Get_RelativeDirection(E_DIRECTION_TYPE _Direction)                                          // Getter; Vec3_M_RelativeDirection
+    {
+        return Vec3_M_RelativeDirection_s[_Direction];
     }
 
     // ScaleFactor 관련
-    inline int MF_Get_IsScaleDependent()                                                  // Getter; M_IsScaleDependent
+    inline int MF_Get_IsScaleDependent()                                                // Getter; M_IsScaleDependent
     {
         return M_IsScaleDependent;
     }
@@ -129,9 +132,9 @@ public:
     }
 
     ////// WorldMatrixDirection 관련
-    inline Vector3 MF_Get_WorldMatrixDirection()                                        // Getter; MF_ConvertWorldMatrixToVectorDirection()
+    inline Vector3 MF_Get_WorldMatrixDirection(E_DIRECTION_TYPE _Direction)             // Getter; MF_ConvertWorldMatrixToVectorDirection()
     {
-        return (Vector3)MAT_M_WorldMatrix.Translation();                                                // 유의! 
+        return Vec3_WorldMatrixDirection_s[_Direction];
     }
 
     inline  void MF_Set_WorldMatrix(Matrix _Matrix)                                     // Setter

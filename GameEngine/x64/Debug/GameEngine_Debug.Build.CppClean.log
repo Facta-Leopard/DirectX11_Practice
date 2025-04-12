@@ -23,6 +23,7 @@ c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_c
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_camerascript.obj
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_cameracomponent.obj
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\globalfunction.obj
+c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_transform.obj
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_timemanager.obj
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_tilerender.obj
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_texture.obj
@@ -37,6 +38,11 @@ c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_r
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_resourcemanager.obj
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_resource.obj
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\c_rendermanager.obj
+c:\users\rog-shteosis\desktop\github\directx11_practice\library\gameengine\gameengine_debug.lib
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\gameengine.tlog\cl.command.1.tlog
+c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\gameengine.tlog\cl.items.tlog
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\gameengine.tlog\cl.read.1.tlog
 c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\gameengine.tlog\cl.write.1.tlog
+c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\gameengine.tlog\lib-link.read.1.tlog
+c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\gameengine.tlog\lib-link.write.1.tlog
+c:\users\rog-shteosis\desktop\github\directx11_practice\gameengine\x64\debug\gameengine.tlog\lib.command.1.tlog
