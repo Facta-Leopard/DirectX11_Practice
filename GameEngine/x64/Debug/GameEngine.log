@@ -7,7 +7,6 @@
   C_DebugManager.cpp
   C_Device.cpp
   C_Entity.cpp
-  C_FSMScript.cpp
   C_FlipbookRender.cpp
   C_GameEngine.cpp
   C_Group.cpp
@@ -15,6 +14,7 @@
   C_Light2D.cpp
   C_MeshRender.cpp
   C_MoveScript.cpp
+  C_FSMScript.cpp
   C_Object.cpp
   C_ParticleRender.cpp
   C_PathManager.cpp
@@ -38,15 +38,6 @@
   C_Transform.cpp
   globalFunction.cpp
   코드를 생성하고 있습니다...
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Transform.cpp(105,11): warning C4101: 'DX_T_DirectionRight' :참조되지 않은 지역 변수입니다.
-  (소스 파일 '/C_Transform.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Transform.cpp(107,11): warning C4101: 'DX_T_DirectionFront' :참조되지 않은 지역 변수입니다.
-  (소스 파일 '/C_Transform.cpp'을(를) 컴파일하는 중)
-  
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Transform.cpp(106,11): warning C4101: 'DX_T_DirectionUP' :참조되지 않은 지역 변수입니다.
-  (소스 파일 '/C_Transform.cpp'을(를) 컴파일하는 중)
-  
   GameEngine.vcxproj -> C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
   통합관리를 위한 파일 복사용 배치파일 실행
   .\component.h

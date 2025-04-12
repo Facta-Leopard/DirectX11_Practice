@@ -255,7 +255,7 @@ public:
 
         if (_SCRIPT_RIGID != T_ScriptType)                                  // 规绢内靛
         {
-            POPUP_DEBUG(L"T_ScriptType != _SCRIPT_RIGID", L"in C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>(), T_ScriptType != _SCRIPT_RIGID")
+            POPUP_DEBUG(L"_SCRIPT_RIGID != T_ScriptType", L"in C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>(), _SCRIPT_RIGID != T_ScriptType")
         }
         return (C_RigidScript*)P_M_Script_s[_SCRIPT_RIGID];
     }
@@ -268,7 +268,7 @@ public:
 
         if (_SCRIPT_MOVE != T_ScriptType)                                   // 规绢内靛
         {
-            POPUP_DEBUG(L"T_ScriptType != _SCRIPT_MOVE", L"in C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>(), T_ScriptType != _SCRIPT_MOVE")
+            POPUP_DEBUG(L"_SCRIPT_MOVE != T_ScriptType", L"in C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>(), _SCRIPT_MOVE != T_ScriptType")
         }
         return (C_MoveScript*)P_M_Script_s[_SCRIPT_MOVE];
     }
@@ -281,7 +281,7 @@ public:
 
         if (_SCRIPT_NPC != T_ScriptType)                                    // 规绢内靛
         {
-            POPUP_DEBUG(L"T_ScriptType != _SCRIPT_NPC", L"in C_FSMScript* MF_Get_ComponentByReturnType<C_FSMScript>(), T_ScriptType != _SCRIPT_NPC")
+            POPUP_DEBUG(L"_SCRIPT_NPC != T_ScriptType", L"in C_FSMScript* MF_Get_ComponentByReturnType<C_FSMScript>(), _SCRIPT_NPC != T_ScriptType")
         }
         return (C_FSMScript*)P_M_Script_s[_SCRIPT_NPC];
     }
@@ -294,7 +294,7 @@ public:
 
         if (_SCRIPT_CAMERA != T_ScriptType)                                 // 规绢内靛
         {
-            POPUP_DEBUG(L"T_ScriptType != _SCRIPT_CAMERA", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), T_ScriptType != _SCRIPT_CAMERA")
+            POPUP_DEBUG(L"_SCRIPT_CAMERA != T_ScriptType", L"in C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>(), _SCRIPT_CAMERA != T_ScriptType")
         }
         return (C_CameraScript*)P_M_Script_s[_SCRIPT_CAMERA];
     }

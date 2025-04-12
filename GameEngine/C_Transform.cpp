@@ -15,15 +15,17 @@ C_Transform::C_Transform()
 						,0.f, 0.f, 0.f, 1.f }
 
 {
-	// 상대방향(로컬방향) 초기화
-	Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT] = {1.f, 0.f, 0.f};
-	Vec3_M_RelativeDirection_s[_DIRECTION_UP]	   = {0.f, 1.f, 0.f};
-	Vec3_M_RelativeDirection_s[_DIRECTION_FRONT] = {0.f, 0.f, 1.f};
+	// 상대방향(로컬방향) 초기화; 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
+	Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT] = { 1.f, 0.f, 0.f }
+	, Vec3_M_RelativeDirection_s[_DIRECTION_UP] = { 0.f, 1.f, 0.f }
+	, Vec3_M_RelativeDirection_s[_DIRECTION_FRONT] = { 0.f, 0.f, 1.f };
 
-	// 월드방향 초기화
-	Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT] = { 1.f, 0.f, 0.f };
-	Vec3_WorldMatrixDirection_s[_DIRECTION_UP] = { 0.f, 1.f, 0.f };
-	Vec3_WorldMatrixDirection_s[_DIRECTION_FRONT] = { 0.f, 0.f, 1.f };
+
+	// 월드방향 초기화; 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
+	Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT] = { 1.f, 0.f, 0.f }
+	, Vec3_WorldMatrixDirection_s[_DIRECTION_UP] = { 0.f, 1.f, 0.f }
+	, Vec3_WorldMatrixDirection_s[_DIRECTION_FRONT] = { 0.f, 0.f, 1.f };
+
 }
 
 C_Transform::C_Transform(const C_Transform& _Origin)
@@ -38,13 +40,16 @@ C_Transform::C_Transform(const C_Transform& _Origin)
 	, MAT_M_WorldMatrix{_Origin.MAT_M_WorldMatrix}
 	, Vec3_WorldMatrixDirection_s{}
 {
-	Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT] = _Origin.Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT];
-	Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT] = _Origin.Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT];
-	Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT] = _Origin.Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT];
+	// 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
+	Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT] = _Origin.Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT]
+	, Vec3_M_RelativeDirection_s[_DIRECTION_UP] = _Origin.Vec3_M_RelativeDirection_s[_DIRECTION_UP]
+	, Vec3_M_RelativeDirection_s[_DIRECTION_FRONT] = _Origin.Vec3_M_RelativeDirection_s[_DIRECTION_FRONT];
 
-	Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT] = _Origin.Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT];
-	Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT] = _Origin.Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT];
-	Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT] = _Origin.Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT];
+	// 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
+	Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT] = _Origin.Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT]		
+	, Vec3_WorldMatrixDirection_s[_DIRECTION_UP] = _Origin.Vec3_WorldMatrixDirection_s[_DIRECTION_UP]
+	, Vec3_WorldMatrixDirection_s[_DIRECTION_FRONT] = _Origin.Vec3_WorldMatrixDirection_s[_DIRECTION_FRONT];
+
 }
 
 C_Transform::~C_Transform()
@@ -65,6 +70,9 @@ void C_Transform::MF_ComponentTick()											// 유의! 캐싱이 많으므로, 일부러 
 	}
 #endif
 
+	// 전체적인 계산 흐름
+	// 상대 방향 초기화 → 회전행렬 생성 → 회전 결과로 월드방향 갱신 → 월드 행렬 생성 → 부모 의존성(스케일 포함 여부) 계산
+	// 
 	// 위치계산 : 스케일 -> 회전 -> 이동
 	// 스케일 행렬로 변환
 	Matrix T_Mat_Scale = XMMatrixScaling(Vec3_M_RelativeScale.x, Vec3_M_RelativeScale.y, Vec3_M_RelativeScale.z);
@@ -84,27 +92,57 @@ void C_Transform::MF_ComponentTick()											// 유의! 캐싱이 많으므로, 일부러 
 	// 월드공간 행렬 계산
 	MAT_M_WorldMatrix = T_Mat_Scale * MAT_T_Rotation * MAT_T_Translation;
 
+
+	// 방향벡터 계산
+	//// 방향벡터 초기화; 매프레임마다 고정된 값으로 설정; 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
+	Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT] = { 1.f, 0.f, 0.f }
+	, Vec3_M_RelativeDirection_s[_DIRECTION_UP] = { 0.f, 1.f, 0.f }
+	, Vec3_M_RelativeDirection_s[_DIRECTION_FRONT] = { 0.f, 0.f, 1.f };
+
+	//// AoS 구조로 설정했다가, 재검토한 결과 SoA구조보다 좋지 않으므로 다시금 갈아엎음; 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
+	Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT] = Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT] = XMVector3TransformNormal(Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT], MAT_T_Rotation)
+	, Vec3_WorldMatrixDirection_s[_DIRECTION_UP] = Vec3_M_RelativeDirection_s[_DIRECTION_UP] = XMVector3TransformNormal(Vec3_M_RelativeDirection_s[_DIRECTION_UP], MAT_T_Rotation)
+	, Vec3_WorldMatrixDirection_s[_DIRECTION_FRONT] = Vec3_M_RelativeDirection_s[_DIRECTION_FRONT] = XMVector3TransformNormal(Vec3_M_RelativeDirection_s[_DIRECTION_FRONT], MAT_T_Rotation);
+
+
 	// 부모 오브젝트 누적 계산
-	// 반복문으로 부모의 부모까지 계산하지 않는 이유는, 
+	// 유의! 반복문으로 부모의 부모까지 계산하지 않는 이유는 어차피 부모의 멤버값들이 최종결과이기 때문!
 	C_Object* P_T_ParentObject = MF_Get_OwnerObject()->MF_Get_ParentObject();
 
-	Matrix matParentScaleInv;
+	// 조건문에 사용할 임시변수 선언
+	//// 오버헤드를 줄이기 위해, 조건문 바깥에서 캐싱함
+	Matrix MAT_T_ParentScaleInverse = {};
+
+	Vector3 Vec3_T_ParentDirection[_DIRECTION_END] = {};
 
 	if (M_IsScaleDependent && (nullptr != P_T_ParentObject))			// 방어코드; 유의! 오버헤드를 줄이기 위해, 브렌치를 감소시키고자 조건문으로 방식 변경
 	{
-
 		Vector3 vParentScale = P_T_ParentObject->MF_Get_ComponentByReturnType<C_Transform>()->MF_Get_RelativeScale();
-		matParentScaleInv = XMMatrixInverse(nullptr, XMMatrixScaling(vParentScale.x, vParentScale.y, vParentScale.z));
-		MAT_M_WorldMatrix = MAT_M_WorldMatrix * matParentScaleInv * P_T_ParentObject->MF_Get_ComponentByReturnType<C_Transform>()->MF_Get_WorldMatrix();
+		MAT_T_ParentScaleInverse = XMMatrixInverse(nullptr, XMMatrixScaling(vParentScale.x, vParentScale.y, vParentScale.z));
+		MAT_M_WorldMatrix = MAT_M_WorldMatrix * MAT_T_ParentScaleInverse * P_T_ParentObject->MF_Get_ComponentByReturnType<C_Transform>()->MF_Get_WorldMatrix();
+
+		C_Transform* T_ParentTransform = P_T_ParentObject->MF_Get_ComponentByReturnType<C_Transform>();
+
+		Vec3_T_ParentDirection[_DIRECTION_RIGHT] = T_ParentTransform->MF_Get_RelativeDirection(_DIRECTION_RIGHT);
+		Vec3_T_ParentDirection[_DIRECTION_UP]    = T_ParentTransform->MF_Get_RelativeDirection(_DIRECTION_UP);
+		Vec3_T_ParentDirection[_DIRECTION_FRONT] = T_ParentTransform->MF_Get_RelativeDirection(_DIRECTION_FRONT);
 	}
 	else if(nullptr != P_T_ParentObject)
 	{
 		MAT_M_WorldMatrix *= MF_Get_OwnerObject()->MF_Get_ParentObject()->MF_Get_ComponentByReturnType<C_Transform>()->MF_Get_WorldMatrix();
 	}
 
-	XMVECTOR DX_T_DirectionRight;				//
-	XMVECTOR DX_T_DirectionUP;
-	XMVECTOR DX_T_DirectionFront;
+	// 방향벡터 정규화
+	// 코드 개선; 오버헤드 감소를 위한 나열방식으로 함
+	//// 상대방향(로컬방향) 정규화
+	Vec3_M_RelativeDirection_s[_DIRECTION_RIGHT].Normalize();
+	Vec3_M_RelativeDirection_s[_DIRECTION_UP].Normalize();
+	Vec3_M_RelativeDirection_s[_DIRECTION_FRONT].Normalize();
+
+	//// 월드방향 정규화
+	Vec3_WorldMatrixDirection_s[_DIRECTION_RIGHT].Normalize();
+	Vec3_WorldMatrixDirection_s[_DIRECTION_UP].Normalize();
+	Vec3_WorldMatrixDirection_s[_DIRECTION_FRONT].Normalize();
 }
 
 void C_Transform::MF_ComponentTickAfter()										// 더미함수; 유의! 위치계산은 Narrow Phase로 쓸 일이 없음

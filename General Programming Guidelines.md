@@ -55,7 +55,7 @@ I decide to use getters for other classes' members and access own class's member
 
 ## About Scale and Rotation Transformation
 
-The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem.
+The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem, and to avoid Gimbal Lock problem.
 
 ### Overhead Comparison Table
 
