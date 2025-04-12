@@ -59,27 +59,39 @@ Vector3 C_Transform::MF_ConvertWorldMatrixToVectorPosition()
 	return Vector3();
 }
 
-Vector3 C_Transform::MF_ConvertWorldMatrixToVectorScale()
+Vector3 C_Transform::MF_ConvertWorldMatrixToVectorScale()						// 유의! 오버헤드를 줄이기 위해 직접접근을 선택함
 {
 	C_Object* P_T_ParantObject = MF_Get_OwnerObject()->MF_Get_ParentObject();
 	
-	bool T_Scale = M_IsScaleDependent;
+	Vector3 T_WorldSpaceScale = Vec3_M_RelativeScale;
 
-	while ((nullptr != P_T_ParantObject) && T_Scale)				// 방어코드
+	bool T_IsDependent = M_IsScaleDependent;
+
+	while (T_IsDependent && (nullptr != P_T_ParantObject))						// 방어코드; 향후, 더 효율적인 오버헤드 감소방법이 있을 지 생각해보자
 	{
-		C_Transform* T_Transform = P_T_ParantObject->MF_Get_ComponentByReturnType<C_Transform>();
+		C_Transform* T_ParentTransform = P_T_ParantObject->MF_Get_ComponentByReturnType<C_Transform>();
+		
+		T_WorldSpaceScale *= T_ParentTransform->MF_Get_RelativeScale();
 
+		T_IsDependent = T_ParentTransform->MF_Get_IsScaleDependent();
+
+		P_T_ParantObject = P_T_ParantObject->MF_Get_ParentObject();
 	}
-
-	return Vector3();
+	return T_WorldSpaceScale;
 }
 
-Vector3 C_Transform::MF_ConvertWorldMatrixToVectorRotation()
+#ifdef _DEBUG
+
+void C_Transform::MF_ConvertWorldMatrixToVectorRotation()
 {
-	return Vector3();
+	// 계산할 수 없는 부분이므로, 일부러 함수를 만들어서 실수 하지 않도록 만든 함수
+	assert(true);
 }
 
-Vector3 C_Transform::MF_ConvertWorldMatrixToVectorDirection()
+void C_Transform::MF_ConvertWorldMatrixToVectorDirection()
 {
-	return Vector3();
+	// 계산할 수 없는 부분이므로, 일부러 함수를 만들어서 실수 하지 않도록 만든 함수
+	assert(true);
 }
+
+#endif // _DEBUG

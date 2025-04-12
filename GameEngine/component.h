@@ -4,6 +4,8 @@
 #include "C_Component.h"
 #include "C_Transform.h"
 #include "C_Collider2D.h"
+
+#include "C_StateComponent.h"
 #include "C_Light2D.h"
 #include "C_CameraComponent.h"
 
@@ -18,7 +20,6 @@
 //// ScriptComponent
 #include "C_ScriptComponent.h"
 #include "C_RigidScript.h"
-#include "C_StateScript.h"
 #include "C_MoveScript.h"
 #include "C_FSMScript.h"
 

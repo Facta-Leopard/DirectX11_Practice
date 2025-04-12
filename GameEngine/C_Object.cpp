@@ -6,7 +6,6 @@ C_Object::C_Object()
 	: C_Entity()
 	, M_GroupIndex(_GROUP_NONE)
 	, M_ObjectType(_OBJECT_END)
-	, M_IsLive(true)
 	, M_ParentObejct(nullptr)
 	, STL_P_M_ChildObejct{}
 	, P_M_Component_s{}
@@ -20,7 +19,6 @@ C_Object::C_Object(const C_Object& _Origin)
 	: C_Entity(_Origin)
 	, M_GroupIndex(_Origin.M_GroupIndex)
 	, M_ObjectType(_Origin.M_ObjectType)
-	, M_IsLive(_Origin.M_IsLive)
 	, M_ParentObejct(nullptr)									// 복사해서 붙여야 할 수도 있으므로 nullptr
 	, STL_P_M_ChildObejct{}
 	, P_M_Component_s{}
@@ -256,13 +254,13 @@ void C_Object::MF_Detach_DeadObjectFromChildObject()										// 유의! 이터레이�
 	vector<C_Object*>::iterator T_Iterator = STL_P_M_ChildObejct.begin();					// 유의! 이터레이터 erase 문법 유의!
 	for (T_Iterator = STL_P_M_ChildObejct.begin(); T_Iterator < STL_P_M_ChildObejct.end();) // 유의! 이터레이터 erase 문법 유의!
 	{
-		if ((*T_Iterator)->M_IsLive)													// 유의! 이터레이터 erase 문법 유의!
+		if ((*T_Iterator)->MF_Get_ComponentByReturnType<C_StateComponent>()->MF_Get_IsDelete())													// 유의! 이터레이터 erase 문법 유의!
 		{
-			++T_Iterator;
+			STL_P_M_ChildObejct.erase(T_Iterator);
 		}
 		else
 		{
-			STL_P_M_ChildObejct.erase(T_Iterator);
+			++T_Iterator;
 		}
 	}
 }

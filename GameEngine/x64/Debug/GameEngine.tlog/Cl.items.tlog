@@ -13,7 +13,7 @@ C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_InputManage
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Light2D.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Light2D.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_MeshRender.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_MeshRender.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_MoveScript.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_MoveScript.obj
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_NPCScript.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_NPCScript.obj
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_FSMScript.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_FSMScript.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Object.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_ParticleRender.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_ParticleRender.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_PathManager.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_PathManager.obj
@@ -27,7 +27,7 @@ C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Sound.cpp;C
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_SpriteRender.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_SpriteRender.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Stage.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Stage.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_StageManager.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_StageManager.obj
-C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_StateScript.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_StateScript.obj
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_StateComponent.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_StateComponent.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_TaskManager.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_TaskManager.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Texture.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_Texture.obj
 C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_TileRender.cpp;C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\x64\Debug\C_TileRender.obj

@@ -1,5 +1,5 @@
 # Naming Convention for This Practice Solution
-- Made by Facta-Leopard : https://github.com/Facta-Leopard
+- **Made by Facta-Leopard**: [https://github.com/Facta-Leopard](https://github.com/Facta-Leopard)
 
 ## In Codebase
 

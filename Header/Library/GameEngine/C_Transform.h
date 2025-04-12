@@ -13,21 +13,21 @@ public:
     virtual ~C_Transform();
 
 protected:
-    Vector3                     Vec3_M_RelativePosition;            // Vector3; 상대적인 좌표(또는 로컬좌표)
-    Vector3                     Vec3_M_RelativeScale;               // Vector3; 상대적인 크기(또는 로컬좌표)
-    Vector3                     Vec3_M_RelativeRotation;            // Vector3; 상대적인 회전(또는 로컬좌표)
-    Vector3                     Vec3_M_RelativeDirection;           // Vector3; 상대적인 방향(또는 로컬방향)
+    Vector3                     Vec3_M_RelativePosition;            // Vector3; 상대적인 좌표(로컬좌표)
+    Vector3                     Vec3_M_RelativeScale;               // Vector3; 상대적인 크기(로컬좌표)
+    Vector3                     Vec3_M_RelativeRotation;            // Vector3; 상대적인 회전(로컬좌표); 유의! Vector3 형식은 오일러 각 형식이므로 활용시에는 360도 각도 보정필요 및 행렬에 XMMatrixDecompose 사용해서 분리해서 쓸 때는 상관이 없으나 Radian이므로, XMConvertToDegrees()를 써서 변환필요!
+    Vector3                     Vec3_M_RelativeDirection;           // Vector3; 상대적인 방향(로컬방향)
 
-    bool                        M_IsScaleDependent;                 // bool; 스케일 조정 관련; 부모 오브젝트의 트리 구조 관련
+    bool                        M_IsScaleDependent;                 // bool; 스케일 조정 관련; 부모 오브젝트의 트리 구조 관련 의존성을 담음
 
     Matrix                      MAT_M_WorldMatrix;                  // Matrix; 월드공간 행렬; 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화 해야함!
-    Vector3                     Vec3_WorldMatrixDirection;          // Vector3; 월드공간 방향
+    Vector3                     Vec3_WorldMatrixDirection;          // Vector3; 월드공간 방향; 유의! 별도로 방향값만 추출해서 쓰는 이유는 카메라 및 충돌처리의 오버헤드를 줄이기 위함임; 향후, 필요시 다른 인자도 캐싱하는 것을 고려해보는 것도 좋을 듯
 
 public:
     CLONE(C_Transform)
 
 public:
-    virtual void MF_Prepare() override;                                                 // 초기화 함수
+    virtual void MF_Prepare() override;				                                	// 초기화 함수; 향후, 함수들 통일성을 위해 생성자에서 모듈로 써서 초기화하는 방법으로 전환도 생각하는 것이 좋을 듯
 
     virtual void MF_ComponentTick() override;
 
@@ -92,7 +92,7 @@ public:
     }
 
     // ScaleFactor 관련
-    inline int MF_Get_ScaleDependent()                                                  // Getter; M_IsScaleDependent
+    inline int MF_Get_IsScaleDependent()                                                  // Getter; M_IsScaleDependent
     {
         return M_IsScaleDependent;
     }
@@ -125,13 +125,13 @@ public:
     ////// WorldMatrixRotation 관련
     inline Vector3 MF_Get_WorldMatrixRotation()                                         // Getter; MF_ConvertWorldMatrixToVectorRotation()
     {
-        return MF_ConvertWorldMatrixToVectorRotation();                                     // Getter용 모듈함수
+        return (MAT_M_WorldMatrix.Right(), MAT_M_WorldMatrix.Up(), MAT_M_WorldMatrix.Front());          // 유의! Right()는 X축, Up()은 Y축, Front()는 Z축 값이므로 사용시 유의!
     }
 
     ////// WorldMatrixDirection 관련
     inline Vector3 MF_Get_WorldMatrixDirection()                                        // Getter; MF_ConvertWorldMatrixToVectorDirection()
     {
-        return MF_ConvertWorldMatrixToVectorDirection();                                    // Getter용 모듈함수
+        return (Vector3)MAT_M_WorldMatrix.Translation();                                                // 유의! 
     }
 
     inline  void MF_Set_WorldMatrix(Matrix _Matrix)                                     // Setter
@@ -147,13 +147,16 @@ protected:
 
     Vector3 MF_ConvertWorldMatrixToVectorScale();                                       // Getter용 모듈함수; MF_Get_WorldMatrixScale()에 쓰임
 
-    Vector3 MF_ConvertWorldMatrixToVectorRotation();                                    // Getter용 모듈함수; MF_Get_WorldMatrixRotation()에 쓰임
+#ifdef _DEBUG
 
-    Vector3 MF_ConvertWorldMatrixToVectorDirection();                                   // Getter용 모듈함수; MF_Get_WorldMatrixDirection()에 쓰임
+    void MF_ConvertWorldMatrixToVectorRotation();                                       // 실수방지용으로 만든 사용불가 함수
+
+    void MF_ConvertWorldMatrixToVectorDirection();                                      // 실수방지용으로 만든 사용불가 함수
+
+#endif // _DEBUG
 
 
-
-
+    
 
 
     // 향후, Save 및 Load는 별도로 구성예정

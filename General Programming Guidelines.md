@@ -1,20 +1,50 @@
 # General Programming Guidelines
+- **Made by Facta-Leopard**: [https://github.com/Facta-Leopard](https://github.com/Facta-Leopard)
 
 ---
 
 ## Components are for data, scripts are for logic.
 
-I chose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
+I choose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
+
+---
 
 ## Branch Split Rule
 
-If a function has 4 or more if or else if statements, and it may add more in the future, then you should split the logic into separate functions.
+If a function has 4 or more if or else if statements, and it may add more in the future, then it should be split the logic into separate functions.
 
 Too many conditions make it hard for the CPU to predict, which can slow things down.
 
 Splitting into functions makes the code cleaner and easier to update.
 
 Function call cost is small, but bad branch prediction is expensive.
+
+---
+
+## Ternary Operator Rule
+
+Nested ternary is allowed only inside for or while loops — my personal rule for compactness and clarity.
+
+Outside loops, I choose if statements for better readability and cache safety.
+
+---
+
+## Using `Getter` function for classfied
+
+I decide to use getters for other classes' members and access own class's members directly to keep things clear.
+
+---
+
+## Rotation Transformation
+
+The Quaternion Method was chosen due to its significantly faster processing time.
+
+### Overhead Comparison Table
+
+| Transformation Method | DirectX Function | Processing Time | Speed Difference |
+|----------------------|------------------|-----------------|------------------|
+| Quaternion Method     | `XMQuaternionToAxisAngle()` → `XMConvertToDegrees()` | 627 nanoseconds | Reference |
+| Matrix Method         | `XMMatrixRotationQuaternion()` → `XMMatrixDecompose()` → `XMConvertToDegrees()` | Approximately 3,637-4,452 nanoseconds | Approximately 5.8-7.1 times slower |
 
 ---
 
@@ -57,7 +87,8 @@ To maintain consistency and readability, all class members should follow the ord
      followed by `MF_Progress()`, `MF_Update()`, `MF_Tick()`.
 
 12. **Getters and Setters**  
-    - For all Getters and Setters, use the inline keyword to optimize performance, reduce function call overhead, and maintain the naming convention `MF_GetX()` and `MF_SetY()`.
+    - For all Getters and Setters, use the `inline` keyword to optimize performance, reduce function call overhead, and maintain the naming convention `MF_GetX()` and `MF_SetY()`.
+    - This makes the code more efficient by directly accessing the member variables, improving performance without extra cost.
 
 13. **Attach and Detach functions**
     - Functions to attach or detach elements or components should follow the naming convention `MF_Attach_` and `MF_Detach_`.
