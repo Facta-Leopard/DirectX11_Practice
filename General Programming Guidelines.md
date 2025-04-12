@@ -3,6 +3,18 @@
 
 ---
 
+## Yoda Condition Rule
+
+When comparing against a constant or literal, always place it on the left side.  
+
+This helps prevent bugs caused by accidental assignment (`=`) in conditionals.
+
+I didn’t choose to be a Jedi… but I did choose Yoda.
+
+I don't really know much about Star Wars, but the name has a wise ring to it.
+
+---
+
 ## Components are for data, scripts are for logic.
 
 I choose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
