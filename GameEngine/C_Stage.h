@@ -17,6 +17,8 @@ protected:
     const E_STAGE_NUMBER            L_M_StageNumber;                // E_STAGE_NUMBER; Stage 종류
     E_STAGE_STATE                   M_StageState;                   // E_STAGE_STATE; Play, Pause, Stop
 
+    E_COLLIDER_TYPE                 M_ColliderType;                 // E_COLLIDER_TYPE; 유의! 충돌시스템 관련 가이드라인에 따라, 충돌계산 향상을 위한 추상적 선별 개념을 위해 쓰는 용도임
+
     C_Group*                        P_M_Group_s[_GROUP_END];        // C_Group;
 
 
@@ -43,11 +45,21 @@ public:
         return M_StageState;
     }
 
-    inline void MF_Set_StageStage(E_STAGE_STATE _StageState)                            // Setter
+    inline void MF_Set_StageState(E_STAGE_STATE _StageState)                            // Setter
     {
         M_StageState = _StageState;
     }
 
+
+    inline E_COLLIDER_TYPE MF_Get_ColliderType()
+    {
+        return M_ColliderType;
+    }
+
+    inline void MF_Set_ColliderType(E_COLLIDER_TYPE _ColliderType)
+    {
+        M_ColliderType = _ColliderType;
+    }
 
     inline C_Group* MF_Get_Groups()                                                     // Getter
     {

@@ -226,12 +226,13 @@ enum E_COMPONENT_TYPE
 ////// about Collider Type
 enum E_COLLIDER_TYPE
 {
-	_COLLIDER_2D_TOPVEIW,
-	_COLLIDER_2D_ISOMETRICVIEW,
-	_COLLIDER_2D_SIDESCROLL,
-	_COLLIDER_3D_SAT_ON,
-	_COLLIDER_3D_SAT_OFF,
-	_COLLIDER_TYPE_END,
+	_COLLIDER_2D_SIDESCROLL_,			// Front(Z축 무효); OBB는 기본적으로 사용하는 것으로 함
+	_COLLIDER_2D_TOPVEIW,				// Up(Y축 무효); OBB는 기본적으로 사용하는 것으로 함
+	_COLLIDER_2D_ISOMETRICVIEW,			// Up(Y축 무효); OBB는 기본적으로 사용하는 것으로 함; _COLLIDER_2D_TOPVEIW와 동일;
+	_COLLIDER_3D_SAT_ON,				// 축 무효없음; S.A.T.(Saperating Axis Theorem) 무조건 적용
+	_COLLIDER_3D_SAT_OFF,				// 축 무효없음; S.A.T.(Saperating Axis Theorem) 무조건 미적용
+
+	_COLLIDER_TYPE_END,					// 인덱스 리딩에러 방지용
 };
 
 ////// about Script

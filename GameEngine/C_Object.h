@@ -1,9 +1,7 @@
 #pragma once
-
-#include "define.h"
-
 #include "C_Entity.h"
 #include "component.h"
+#include "define.h"
 
 class C_Object :
     public C_Entity
@@ -121,67 +119,7 @@ public:
     template <typename T_Template>
     T_Template* MF_Get_ComponentByReturnType();                                  // T_Template*; 기본 템플릿; 사용하지 않지만, 기본설정한 것
 
-    //// C_Transform 타입에 대한 특수화
-    template <>
-    C_Transform* MF_Get_ComponentByReturnType<C_Transform>();                     // C_Transform*
 
-    //// C_Collider2D 타입에 대한 특수화
-    template <>
-    C_Collider2D* MF_Get_ComponentByReturnType<C_Collider2D>();                   // C_Collider2D*
-
-    //// C_StateComponent 타입에 대한 특수화
-    template <>
-    C_StateComponent* MF_Get_ComponentByReturnType<C_StateComponent>();           // C_StateScript*
-
-    //// C_Light2D 타입에 대한 특수화
-    template <>
-    C_Light2D* MF_Get_ComponentByReturnType<C_Light2D>();                         // C_Light2D*
-
-    //// C_CameraComponent 타입에 대한 특수화
-    template <>
-    C_CameraComponent* MF_Get_ComponentByReturnType<C_CameraComponent>();         // C_CameraComponent*
-
-    //// C_MeshRender 타입에 대한 특수화
-    template <>
-    C_MeshRender* MF_Get_ComponentByReturnType<C_MeshRender>();                   // C_MeshRender*
-
-    //// C_SpriteRender 타입에 대한 특수화
-    template <>
-    C_SpriteRender* MF_Get_ComponentByReturnType<C_SpriteRender>();               // C_SpriteRender*
-
-    //// C_FlipbookRender 타입에 대한 특수화
-    template <>
-    C_FlipbookRender* MF_Get_ComponentByReturnType<C_FlipbookRender>();           // C_FlipbookRender*
-
-    //// C_TileRender 타입에 대한 특수화
-    template <>
-    C_TileRender* MF_Get_ComponentByReturnType<C_TileRender>();                   // C_TileRender*
-
-    //// C_ParticleRender 타입에 대한 특수화
-    template <>
-    C_ParticleRender* MF_Get_ComponentByReturnType<C_ParticleRender>();           // C_ParticleRender*
-
-    //// C_RenderComponent 타입에 대한 특수화
-    template <>
-    C_RenderComponent* MF_Get_ComponentByReturnType<C_RenderComponent>();         // C_RenderComponent*
-
-    //// C_ScriptComponent 타입에 대한 특수화
-    ////// C_RigidScript 타입에 대한 특수화
-    template <>
-    C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>();                 // C_RigidScript*
-
-    ////// C_MoveScript 타입에 대한 특수화
-    template <>
-    C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>();                   // C_MoveScript*
-
-    ////// C_FSMScript 타입에 대한 특수화
-    template <>
-    C_FSMScript* MF_Get_ComponentByReturnType<C_FSMScript>();                     // C_FSMScript*
-    
-
-    ////// C_CameraScript 타입에 대한 특수화
-    template <>
-    C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>();               // C_CameraScript*
 
 
 
@@ -368,4 +306,66 @@ public:
     //}
 
 };
+
+////// C_Transform 타입에 대한 특수화
+//template <>
+//C_Transform* MF_Get_ComponentByReturnType<C_Transform>();                     // C_Transform*
+//
+////// C_Collider2D 타입에 대한 특수화
+//template <>
+//C_Collider2D* MF_Get_ComponentByReturnType<C_Collider2D>();                   // C_Collider2D*
+//
+////// C_StateComponent 타입에 대한 특수화
+//template <>
+//C_StateComponent* MF_Get_ComponentByReturnType<C_StateComponent>();           // C_StateScript*
+//
+////// C_Light2D 타입에 대한 특수화
+//template <>
+//C_Light2D* MF_Get_ComponentByReturnType<C_Light2D>();                         // C_Light2D*
+//
+////// C_CameraComponent 타입에 대한 특수화
+//template <>
+//C_CameraComponent* MF_Get_ComponentByReturnType<C_CameraComponent>();         // C_CameraComponent*
+//
+////// C_MeshRender 타입에 대한 특수화
+//template <>
+//C_MeshRender* MF_Get_ComponentByReturnType<C_MeshRender>();                   // C_MeshRender*
+//
+////// C_SpriteRender 타입에 대한 특수화
+//template <>
+//C_SpriteRender* MF_Get_ComponentByReturnType<C_SpriteRender>();               // C_SpriteRender*
+//
+////// C_FlipbookRender 타입에 대한 특수화
+//template <>
+//C_FlipbookRender* MF_Get_ComponentByReturnType<C_FlipbookRender>();           // C_FlipbookRender*
+//
+////// C_TileRender 타입에 대한 특수화
+//template <>
+//C_TileRender* MF_Get_ComponentByReturnType<C_TileRender>();                   // C_TileRender*
+//
+////// C_ParticleRender 타입에 대한 특수화
+//template <>
+//C_ParticleRender* MF_Get_ComponentByReturnType<C_ParticleRender>();           // C_ParticleRender*
+//
+////// C_RenderComponent 타입에 대한 특수화
+//template <>
+//C_RenderComponent* MF_Get_ComponentByReturnType<C_RenderComponent>();         // C_RenderComponent*
+//
+////// C_ScriptComponent 타입에 대한 특수화
+//////// C_RigidScript 타입에 대한 특수화
+//template <>
+//C_RigidScript* MF_Get_ComponentByReturnType<C_RigidScript>();                 // C_RigidScript*
+//
+//////// C_MoveScript 타입에 대한 특수화
+//template <>
+//C_MoveScript* MF_Get_ComponentByReturnType<C_MoveScript>();                   // C_MoveScript*
+//
+//////// C_FSMScript 타입에 대한 특수화
+//template <>
+//C_FSMScript* MF_Get_ComponentByReturnType<C_FSMScript>();                     // C_FSMScript*
+//
+//
+//////// C_CameraScript 타입에 대한 특수화
+//template <>
+//C_CameraScript* MF_Get_ComponentByReturnType<C_CameraScript>();               // C_CameraScript*
 #include "C_Object.inl"

@@ -75,6 +75,16 @@ public:
         M_IsCollision = _IsCollision;
     }
 
+    inline void MF_Set_IsCollisionOn()
+    {
+        M_IsCollision = true;
+    }
+
+    inline void MF_Set_IsCollisionOff()
+    {
+        M_IsCollision = false;
+    }
+
     inline int MF_Get_OverlapCount()
     {
         return M_OverLapCount;
@@ -95,5 +105,19 @@ public:
         --M_OverLapCount;
     }
     
+public:
+    void MF_On_OverlapBegin(C_Collider2D _Collider2D);
+
+    void MF_On_OverlapIng(C_Collider2D _Collider2D);
+
+    void MF_On_OverlapEnd(C_Collider2D _Collider2D);
+
+    // 콜백용 모듈함수
+    void MF_Nofify_OverlapBegin(C_Collider2D _Collider2D);
+
+    void MF_Nofify_OverlapIng(C_Collider2D _Collider2D);
+
+    void MF_NofifyOverlapEnd(C_Collider2D _Collider2D);
+
 };
 

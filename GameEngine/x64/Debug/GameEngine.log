@@ -1,92 +1,423 @@
 ﻿  pch.cpp
-  C_CameraComponent.cpp
-  C_CameraScript.cpp
-  C_Collider2D.cpp
-  C_CollisionManager.cpp
-  C_Component.cpp
-  C_DebugManager.cpp
-  C_Device.cpp
-  C_Entity.cpp
-  C_FlipbookRender.cpp
-  C_GameEngine.cpp
-  C_Group.cpp
-  C_InputManager.cpp
-  C_Light2D.cpp
-  C_MeshRender.cpp
-  C_MoveScript.cpp
-  C_FSMScript.cpp
-  C_Object.cpp
-  C_ParticleRender.cpp
-  C_PathManager.cpp
-  C_RenderComponent.cpp
-  코드를 생성하고 있습니다...
-  컴파일하고 있습니다...
-  C_RenderManager.cpp
-  C_Resource.cpp
-  C_ResourceManager.cpp
-  C_RigidScript.cpp
-  C_ScriptComponent.cpp
-  C_Sound.cpp
-  C_SpriteRender.cpp
-  C_Stage.cpp
-  C_StageManager.cpp
-  C_StateComponent.cpp
-  C_TaskManager.cpp
-  C_Texture.cpp
-  C_TileRender.cpp
-  C_TimeManager.cpp
-  C_Transform.cpp
-  globalFunction.cpp
-  코드를 생성하고 있습니다...
-  GameEngine.vcxproj -> C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\Library\GameEngine\GameEngine_Debug.lib
-  통합관리를 위한 파일 복사용 배치파일 실행
-  .\component.h
-  .\C_CameraComponent.h
-  .\C_CameraScript.h
-  .\C_Collider2D.h
-  .\C_CollisionManager.h
-  .\C_Component.h
-  .\C_DebugManager.h
-  .\C_Device.h
-  .\C_Entity.h
-  .\C_FlipbookRender.h
-  .\C_FSMScript.h
-  .\C_GameEngine.h
-  .\C_Group.h
-  .\C_InputManager.h
-  .\C_Light2D.h
-  .\C_MeshRender.h
-  .\C_MoveScript.h
-  .\C_Object.h
-  .\C_ParticleRender.h
-  .\C_PathManager.h
-  .\C_RenderComponent.h
-  .\C_RenderManager.h
-  .\C_Resource.h
-  .\C_ResourceManager.h
-  .\C_RigidScript.h
-  .\C_ScriptComponent.h
-  .\C_Singleton.h
-  .\C_Sound.h
-  .\C_SpriteRender.h
-  .\C_Stage.h
-  .\C_StageManager.h
-  .\C_StateComponent.h
-  .\C_TaskManager.h
-  .\C_Texture.h
-  .\C_TileRender.h
-  .\C_TimeManager.h
-  .\C_Transform.h
-  .\define.h
-  .\enum.h
-  .\global.h
-  .\globalFunction.h
-  .\globalVariable.h
-  .\SimpleMath.h
-  43개 파일이 복사되었습니다.
-  .\C_Object.inl
-  .\SimpleMath.inl
-  2개 파일이 복사되었습니다.
-  지정된 경로를 찾을 수 없습니다.
-  파일을 찾을 수 없습니다-*.fx
-  0개 파일이 복사되었습니다.
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(31,22): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(31,5): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(31,60): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(33,22): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(33,5): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(33,66): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(91,29): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(91,12): error C7524: 'inline' 지정자는 블록 범위 선언이나 비정적 데이터 멤버에 나타날 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(91,12): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(92,5): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(96,29): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(96,12): error C7524: 'inline' 지정자는 블록 범위 선언이나 비정적 데이터 멤버에 나타날 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(96,12): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(97,5): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,8): error C2065: 'C_Collider2D': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,61): error C2065: 'C_Collider2D': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,20): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,20): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,32): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,32): error C2768: 'C_Object::MF_Get_ComponentByReturnType': 명시적 템플릿 인수를 잘못 사용하였습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,32): error C2244: 'C_Object::MF_Get_ComponentByReturnType': 함수 정의를 기존 선언과 일치시킬 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,32):
+      'C_Object::MF_Get_ComponentByReturnType' 선언을 참조하십시오.
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,32):
+      정의
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,32):
+      'int *C_Object::MF_Get_ComponentByReturnType(void)'
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(29,32):
+      기존 선언
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(120,17):
+      'T_Template *C_Object::MF_Get_ComponentByReturnType(void)'
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(30,1): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(30,1): error C2059: 구문 오류: '<end Parse>'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(30,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(30,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,8): error C2065: 'C_StateComponent': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,65): error C2065: 'C_StateComponent': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,24): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,24): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,36): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,36): error C2768: 'C_Object::MF_Get_ComponentByReturnType': 명시적 템플릿 인수를 잘못 사용하였습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,36): error C2244: 'C_Object::MF_Get_ComponentByReturnType': 함수 정의를 기존 선언과 일치시킬 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,36):
+      'C_Object::MF_Get_ComponentByReturnType' 선언을 참조하십시오.
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,36):
+      정의
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,36):
+      'int *C_Object::MF_Get_ComponentByReturnType(void)'
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(40,36):
+      기존 선언
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(120,17):
+      'T_Template *C_Object::MF_Get_ComponentByReturnType(void)'
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(41,1): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(41,1): error C2059: 구문 오류: '<end Parse>'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(41,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(41,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,8): error C2065: 'C_Light2D': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,58): error C2065: 'C_Light2D': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,17): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,17): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,29): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,29): error C2768: 'C_Object::MF_Get_ComponentByReturnType': 명시적 템플릿 인수를 잘못 사용하였습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,29): error C2244: 'C_Object::MF_Get_ComponentByReturnType': 함수 정의를 기존 선언과 일치시킬 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,29):
+      'C_Object::MF_Get_ComponentByReturnType' 선언을 참조하십시오.
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,29):
+      정의
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,29):
+      'int *C_Object::MF_Get_ComponentByReturnType(void)'
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(51,29):
+      기존 선언
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(120,17):
+      'T_Template *C_Object::MF_Get_ComponentByReturnType(void)'
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(52,1): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(52,1): error C2059: 구문 오류: '<end Parse>'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(52,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(52,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,8): error C2065: 'C_CameraComponent': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,66): error C2065: 'C_CameraComponent': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,25): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,25): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,37): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,37): error C2768: 'C_Object::MF_Get_ComponentByReturnType': 명시적 템플릿 인수를 잘못 사용하였습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,37): error C2244: 'C_Object::MF_Get_ComponentByReturnType': 함수 정의를 기존 선언과 일치시킬 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,37):
+      'C_Object::MF_Get_ComponentByReturnType' 선언을 참조하십시오.
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,37):
+      정의
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,37):
+      'int *C_Object::MF_Get_ComponentByReturnType(void)'
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(62,37):
+      기존 선언
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(120,17):
+      'T_Template *C_Object::MF_Get_ComponentByReturnType(void)'
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(63,1): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(63,1): error C2059: 구문 오류: '<end Parse>'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(63,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(63,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,8): error C2065: 'C_MeshRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,61): error C2065: 'C_MeshRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,20): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,20): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,32): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,32): error C2768: 'C_Object::MF_Get_ComponentByReturnType': 명시적 템플릿 인수를 잘못 사용하였습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,32): error C2244: 'C_Object::MF_Get_ComponentByReturnType': 함수 정의를 기존 선언과 일치시킬 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,32):
+      'C_Object::MF_Get_ComponentByReturnType' 선언을 참조하십시오.
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,32):
+      정의
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,32):
+      'int *C_Object::MF_Get_ComponentByReturnType(void)'
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(73,32):
+      기존 선언
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(120,17):
+      'T_Template *C_Object::MF_Get_ComponentByReturnType(void)'
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(74,1): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(74,1): error C2059: 구문 오류: '<end Parse>'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(74,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(74,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,8): error C2065: 'C_SpriteRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,63): error C2065: 'C_SpriteRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,22): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,22): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,34): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,34): error C2768: 'C_Object::MF_Get_ComponentByReturnType': 명시적 템플릿 인수를 잘못 사용하였습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,34): error C2244: 'C_Object::MF_Get_ComponentByReturnType': 함수 정의를 기존 선언과 일치시킬 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,34):
+      'C_Object::MF_Get_ComponentByReturnType' 선언을 참조하십시오.
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,34):
+      정의
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,34):
+      'int *C_Object::MF_Get_ComponentByReturnType(void)'
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(84,34):
+      기존 선언
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(120,17):
+      'T_Template *C_Object::MF_Get_ComponentByReturnType(void)'
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(85,1): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(85,1): error C2059: 구문 오류: '<end Parse>'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(85,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(85,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,8): error C2065: 'C_FlipbookRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,65): error C2065: 'C_FlipbookRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,24): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,24): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,36): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,36): error C2768: 'C_Object::MF_Get_ComponentByReturnType': 명시적 템플릿 인수를 잘못 사용하였습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,36): error C2244: 'C_Object::MF_Get_ComponentByReturnType': 함수 정의를 기존 선언과 일치시킬 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,36):
+      'C_Object::MF_Get_ComponentByReturnType' 선언을 참조하십시오.
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,36):
+      정의
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,36):
+      'int *C_Object::MF_Get_ComponentByReturnType(void)'
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(95,36):
+      기존 선언
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(120,17):
+      'T_Template *C_Object::MF_Get_ComponentByReturnType(void)'
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(96,1): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(96,1): error C2059: 구문 오류: '<end Parse>'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(96,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(96,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,8): error C2065: 'C_TileRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,61): error C2065: 'C_TileRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,20): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,20): error C2143: 구문 오류: ';'이(가) '*' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,8): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,32): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,32): error C2768: 'C_Object::MF_Get_ComponentByReturnType': 명시적 템플릿 인수를 잘못 사용하였습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,32): error C2244: 'C_Object::MF_Get_ComponentByReturnType': 함수 정의를 기존 선언과 일치시킬 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,32):
+      'C_Object::MF_Get_ComponentByReturnType' 선언을 참조하십시오.
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,32):
+      정의
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,32):
+      'int *C_Object::MF_Get_ComponentByReturnType(void)'
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(106,32):
+      기존 선언
+      C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.h(120,17):
+      'T_Template *C_Object::MF_Get_ComponentByReturnType(void)'
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(107,1): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(107,1): error C2059: 구문 오류: '<end Parse>'
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(107,1): error C2143: 구문 오류: ';'이(가) '{' 앞에 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(107,1): error C2447: '{': 함수 헤더가 없습니다. 이전 스타일의 형식 목록입니까?
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(117,8): error C2065: 'C_ParticleRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(117,65): error C2065: 'C_ParticleRender': 선언되지 않은 식별자입니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(117,24): error C2988: 템플릿 선언/정의를 인식할 수 없습니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  
+C:\Users\Rog-SHTeosis\Desktop\GitHub\DirectX11_Practice\GameEngine\C_Object.inl(117,24): error C1003: 오류 수가 100개를 초과했습니다. 컴파일을 중지합니다.
+  (소스 파일 'pch.cpp'을(를) 컴파일하는 중)
+  

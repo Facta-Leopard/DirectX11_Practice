@@ -8,7 +8,7 @@ C_Collider2D::C_Collider2D()
 
 	, Mat_M_CollisionPosition{}
 
-	, M_IsCollision(false)
+	, M_IsDependent(false)
 
 	, M_OverLapCount(0)
 {
@@ -22,7 +22,7 @@ C_Collider2D::C_Collider2D(const C_Collider2D& _Origin)
 
 	, Mat_M_CollisionPosition{ _Origin .Mat_M_CollisionPosition}
 
-	, M_IsCollision(false)
+	, M_IsDependent(false)
 
 	, M_OverLapCount(0)
 {
@@ -50,4 +50,36 @@ void C_Collider2D::MF_ComponentTick()
 
 void C_Collider2D::MF_ComponentTickAfter()
 {
+}
+
+void C_Collider2D::MF_On_OverlapBegin(C_Collider2D _Collider2D)
+{
+	++M_OverLapCount;
+	MF_Nofify_OverlapBegin(_Collider2D);
+}
+
+void C_Collider2D::MF_On_OverlapIng(C_Collider2D _Collider2D)
+{
+	MF_Nofify_OverlapIng(_Collider2D);
+}
+
+void C_Collider2D::MF_On_OverlapEnd(C_Collider2D _Collider2D)
+{
+	--M_OverLapCount;
+	MF_NofifyOverlapEnd(_Collider2D);
+}
+
+void C_Collider2D::MF_Nofify_OverlapBegin(C_Collider2D _Collider2D)
+{
+	// 스크립트 구성시 마저 작성필요
+}
+
+void C_Collider2D::MF_Nofify_OverlapIng(C_Collider2D _Collider2D)
+{
+	// 스크립트 구성시 마저 작성필요
+}
+
+void C_Collider2D::MF_NofifyOverlapEnd(C_Collider2D _Collider2D)
+{
+	// 스크립트 구성시 마저 작성필요
 }

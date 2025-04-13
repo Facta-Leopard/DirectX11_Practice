@@ -1,3 +1,6 @@
+#pragma once
+
+#include "C_Object.h"
 
 // 은닉화 필요시 원복할 것
 
