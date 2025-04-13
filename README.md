@@ -72,14 +72,14 @@ To maintain consistency and readability, all class members should follow the ord
 
 ## 3. Scale Handling Guidelines
 
-### 2.1. Negative Scale Values
+### 3.1. Negative Scale Values
 
 - When using **negative scale values**, exercise caution, particularly when interacting with libraries or systems that rely on positional data (e.g., physics engines, collision detection). Negative scales may lead to unexpected behaviors such as flipped geometries or incorrect transformations.
 
-### 2.2. Zero Scale Values
+### 3.2. Zero Scale Values
 - **Scale values of 0** can lead to issues such as rendering failures or incorrect matrix transformations. It is recommended to either **clamp** the scale to a small positive value or implement **exception handling** to prevent these errors. This ensures that objects with scale set to 0 do not cause unexpected behavior in the system.
 
-### 2.3. Scale of 1
+### 3.3. Scale of 1
 - A **scale of 1** indicates that the object maintains its **original size**, with **no influence** from parent object scaling. This is useful for cases where independent scaling is desired or to preserve an object's original dimensions in the scene.
 
 ---
