@@ -59,8 +59,4 @@ public:
         return P_M_OwnerObject;
     }
     // 향후, 다형성 이용을 고려하여 Save 및 Load 함수 적용하여야 함;
-
-
-
 };
-

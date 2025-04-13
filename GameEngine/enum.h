@@ -223,8 +223,18 @@ enum E_COMPONENT_TYPE
 	_COMPONENT_RENDER,					// 자기자신 반환 추상함수 방어코드용
 };
 
+////// about Collider Type
+enum E_COLLIDER_TYPE
+{
+	_COLLIDER_2D_TOPVEIW,
+	_COLLIDER_2D_ISOMETRICVIEW,
+	_COLLIDER_2D_SIDESCROLL,
+	_COLLIDER_3D_SAT_ON,
+	_COLLIDER_3D_SAT_OFF,
+	_COLLIDER_TYPE_END,
+};
 
-
+////// about Script
 enum E_SCRIPT_TYPE										// 유의! enum 변동 있을 시, template <typename T_Template> T_Template* MF_Get_ComponentByReturnType() 템플릿 특수화 추가 필요
 {
 	_SCRIPT_RIGID,						// 강체관련

@@ -60,13 +60,17 @@ To maintain consistency and readability, all class members should follow the ord
     - Small helper methods and decomposed logic units.
 
 16. **Template methods** (if applicable)
-    - Declare all function templates at the end of the class definition.
+    - Keep access specifiers clear, and move long or specialized template functions to .inl files for cleaner structure.
 
 ### it is important to maintain clear separation based on access specifiers.
 
 - For example, if there are multiple public members within the public section, or if there are redundant members in the protected or private sections, each section should still be clearly separated.
 
 - Even in cases of redundancy, ensure that access specifiers are used clearly to maintain consistency and readability in the class structure.
+
+- I moved some template functions to .inl files, added inline, and somehow the frame stability got noticeably better.
+
+- Not sure how that even worked(`Beginner's Luck`).
 
 ---
 

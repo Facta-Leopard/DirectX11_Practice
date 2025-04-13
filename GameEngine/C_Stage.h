@@ -16,7 +16,9 @@ public:
 protected:
     const E_STAGE_NUMBER            L_M_StageNumber;                // E_STAGE_NUMBER; Stage 종류
     E_STAGE_STATE                   M_StageState;                   // E_STAGE_STATE; Play, Pause, Stop
+
     C_Group*                        P_M_Group_s[_GROUP_END];        // C_Group;
+
 
 public:
     virtual C_Stage* MF_Clone() override final { return nullptr; }                      // 굳이, 쓸 일이 없을 것 같아서 사용 금지; 대입연산자를 굳이 막진 않음
