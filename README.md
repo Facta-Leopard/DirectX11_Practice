@@ -1,73 +1,14 @@
-
-# General Programming Guidelines  
+# General Programming Guidelines
 - **Made by Facta-Leopard**: [https://github.com/Facta-Leopard](https://github.com/Facta-Leopard)
 
----
+## 1. Key Considerations
 
-## Yoda Condition Rule
-
-When comparing against a constant or literal, always place it on the left side.  
-
-This helps prevent bugs caused by accidental assignment (`=`) in conditionals.
-
-I didn’t choose to be a Jedi… but I did choose Yoda.
-
-I don't really know much about Star Wars, but the name has a wise ring to it.
+- Maintain separation of concerns when handling transformations, ensuring that each system (rendering, physics, etc.) has access to the required data without interference.
+- Regularly update and validate transformation matrices to avoid discrepancies during gameplay or simulation.
 
 ---
 
-## Components are for data, scripts are for logic.
-
-I choose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
-
----
-
-## Branch Split Rule
-
-If a function has 4 or more if or else if statements, and it may add more in the future, then it should be split the logic into separate functions.
-
-Too many conditions make it hard for the CPU to predict, which can slow things down.
-
-Splitting into functions makes the code cleaner and easier to update.
-
-Function call cost is small, but bad branch prediction is expensive.
-
----
-
-## About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
-
-Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
-
----
-
-## Ternary Operator Rule
-
-Nested ternary is allowed only inside for or while loops — my personal rule for compactness and clarity.
-
-Outside loops, I choose if statements for better readability and cache safety.
-
----
-
-## Using `Getter` function for classfied
-
-I decide to use getters for other classes' members and access own class's members directly to keep things clear.
-
----
-
-## About Scale and Rotation Transformation
-
-The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem, and to avoid Gimbal Lock problem.
-
-### Overhead Comparison Table
-
-| Transformation Method | DirectX Function | Processing Time | Speed Difference |
-|----------------------|------------------|-----------------|------------------|
-| Quaternion Method     | `XMQuaternionToAxisAngle()` → `XMConvertToDegrees()` | 627 nanoseconds | Reference |
-| Matrix Method         | `XMMatrixRotationQuaternion()` → `XMMatrixDecompose()` → `XMConvertToDegrees()` | Approximately 3,637-4,452 nanoseconds | Approximately 5.8-7.1 times slower |
-
----
-
-## 1. Class Member Declaration Order
+## 2. Class Member Declaration Order
 
 To maintain consistency and readability, all class members should follow the order below:
 
@@ -129,9 +70,10 @@ To maintain consistency and readability, all class members should follow the ord
 
 ---
 
-## 2. Scale Handling Guidelines
+## 3. Scale Handling Guidelines
 
 ### 2.1. Negative Scale Values
+
 - When using **negative scale values**, exercise caution, particularly when interacting with libraries or systems that rely on positional data (e.g., physics engines, collision detection). Negative scales may lead to unexpected behaviors such as flipped geometries or incorrect transformations.
 
 ### 2.2. Zero Scale Values
@@ -142,16 +84,119 @@ To maintain consistency and readability, all class members should follow the ord
 
 ---
 
-## 3. General Guidelines for Transformations
+## 4. General Guidelines for Transformations
 
 - **World transformation matrices** should be updated consistently when position, rotation, or scale changes.
+
 - Handle transformations separately for rendering and physics calculations, ensuring proper synchronization between the two.
+
 - Always ensure that transformations are applied in the correct order (usually Scale → Rotation → Translation).
 
-## 4. Key Considerations
+---
 
-- Maintain separation of concerns when handling transformations, ensuring that each system (rendering, physics, etc.) has access to the required data without interference.
-- Regularly update and validate transformation matrices to avoid discrepancies during gameplay or simulation.
+## 5. Collision Calculation Policy
+
+### 5.1. Collision Flow Overview
+Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Check center distance to filter out obvious misses -> If needed, do a more accurate SAT check -> Final result handling
+
+---
+
+### 5.2. Summary
+
+- Each stage has its own collision calculation type(`enum or other Structure`).
+
+- This type(`collision calculation type`) fully controls how collision checks will run during that frame.
+
+- First, center distance is used to quickly remove non-colliding objects. SAT is only used when checked or customed.
+
+---
+
+### 5.3. Benefits
+
+- **Clear process**: The steps are always the same based on the collision type.
+
+- **Good performance**: Fast filtering comes first, and detailed checks happen only if needed.
+
+- **Easy to expand**: The enum-based setup makes it simple to add new types or change logic.
+
+- **Clear rules**: The stage sets the rule, and the collision manager only runs the logic.
+
+---
+
+### 5.4. Caution
+
+- **StageManager should not control collision types directly.**
+
+- The collision type must be stored in the `Stage` itself.
+
+- If `StageManager` tries to change or hold this data, it breaks the clean design.
+
+- **The camera is not the same as view type and must never be used for collision logic.**
+
+---
+
+## Techniques and Rationale Used Here
+
+### Yoda Condition Rule
+
+When comparing against a constant or literal, always place it on the left side.  
+
+This helps prevent bugs caused by accidental assignment (`=`) in conditionals.
+
+I didn’t choose to be a Jedi… but I did choose Yoda.
+
+I don't really know much about Star Wars, but the name has a wise ring to it.
+
+---
+
+### Components are for data, scripts are for logic.
+
+I choose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
+
+---
+
+### Branch Split Rule
+
+If a function has 4 or more if or else if statements, and it may add more in the future, then it should be split the logic into separate functions.
+
+Too many conditions make it hard for the CPU to predict, which can slow things down.
+
+Splitting into functions makes the code cleaner and easier to update.
+
+Function call cost is small, but bad branch prediction is expensive.
+
+---
+
+### About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
+
+Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
+
+---
+
+### Ternary Operator Rule
+
+Nested ternary is allowed only inside for or while loops — my personal rule for compactness and clarity.
+
+Outside loops, I choose if statements for better readability and cache safety.
+
+---
+
+### Using `Getter` function for classfied
+
+I decide to use getters for other classes' members and access own class's members directly to keep things clear.
+
+---
+
+### About Scale and Rotation Transformation
+
+The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem, and to avoid Gimbal Lock problem.
+
+#### Overhead Comparison Table
+
+| Transformation Method | DirectX Function | Processing Time | Speed Difference |
+|----------------------|------------------|-----------------|------------------|
+| Quaternion Method     | `XMQuaternionToAxisAngle()` → `XMConvertToDegrees()` | 627 nanoseconds | Reference |
+| Matrix Method         | `XMMatrixRotationQuaternion()` → `XMMatrixDecompose()` → `XMConvertToDegrees()` | Approximately 3,637-4,452 nanoseconds | Approximately 5.8-7.1 times slower |
 
 ---
 

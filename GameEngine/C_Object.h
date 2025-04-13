@@ -65,12 +65,12 @@ public:
         M_GroupIndex = _M_GroupIndex;
     }
 
-    inline E_OBJECT_TYPE MF_Get_ObjectType()                                    // Getter
+    inline E_OBJECT_TYPE MF_Get_ObjectType()                                     // Getter
     {
         return M_ObjectType;
     }
 
-    inline void MF_Set_ObjectType(E_OBJECT_TYPE _ObjectType)                    // Setter
+    inline void MF_Set_ObjectType(E_OBJECT_TYPE _ObjectType)                     // Setter
     {
         M_ObjectType = _ObjectType;
     }
@@ -149,9 +149,9 @@ public:
 
     //// C_StateComponent 타입에 대한 특수화
     template <>
-    C_StateComponent* MF_Get_ComponentByReturnType<C_StateComponent>()                  // C_StateScript*
+    C_StateComponent* MF_Get_ComponentByReturnType<C_StateComponent>()            // C_StateScript*
     {
-        if (nullptr == P_M_Component_s[_COMPONENT_STATE])             // 방어코드
+        if (nullptr == P_M_Component_s[_COMPONENT_STATE])                   // 방어코드
         {
             POPUP_DEBUG(L"nullptr == P_M_Component_s[_COMPONENT_STATE]", L"in C_StateComponent* MF_Get_ComponentByReturnType<C_StateComponent>(), nullptr == P_M_Component_s[_COMPONENT_STATE]");
         }
