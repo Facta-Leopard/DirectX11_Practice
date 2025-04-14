@@ -25,9 +25,6 @@
     <Filter Include="3. Resource\31. Resource">
       <UniqueIdentifier>{35722dd4-0249-4370-b7e8-c8a482a09874}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0. Foundation\01. Header">
-      <UniqueIdentifier>{0974320b-6144-4ab6-a100-b2ad3bf94d2a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0. Foundation\00. PreCompiled Header">
       <UniqueIdentifier>{5c60a316-9b41-4f66-bf45-efb0e4dda5b5}</UniqueIdentifier>
     </Filter>
@@ -178,6 +175,15 @@
     <Filter Include="4. Component\44. Light\4321. Light2D">
       <UniqueIdentifier>{daeee69e-ad70-4eca-80b0-1a3218f55603}</UniqueIdentifier>
     </Filter>
+    <Filter Include="0. Foundation\09. Header">
+      <UniqueIdentifier>{0974320b-6144-4ab6-a100-b2ad3bf94d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\01. Global Header">
+      <UniqueIdentifier>{a4962afc-10b8-47eb-86ff-0af985e15087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\02. Math">
+      <UniqueIdentifier>{30348236-904d-4d08-af6d-3fd457c45b57}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="C_Singleton.h">
@@ -186,9 +192,6 @@
     <ClInclude Include="C_GameEngine.h">
       <Filter>1. Main</Filter>
     </ClInclude>
-    <ClInclude Include="SimpleMath.h">
-      <Filter>0. Foundation</Filter>
-    </ClInclude>
     <ClInclude Include="C_Device.h">
       <Filter>2. Device</Filter>
     </ClInclude>
@@ -196,25 +199,16 @@
       <Filter>3. Resource\30. Entity</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
-      <Filter>0. Foundation\01. Header</Filter>
+      <Filter>0. Foundation\09. Header</Filter>
     </ClInclude>
     <ClInclude Include="enum.h">
-      <Filter>0. Foundation\01. Header</Filter>
+      <Filter>0. Foundation\09. Header</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
-      <Filter>0. Foundation\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="globalVariable.h">
-      <Filter>0. Foundation\01. Header</Filter>
-    </ClInclude>
-    <ClInclude Include="globalFunction.h">
-      <Filter>0. Foundation\01. Header</Filter>
+      <Filter>0. Foundation\09. Header</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>0. Foundation\00. PreCompiled Header</Filter>
-    </ClInclude>
-    <ClInclude Include="global.h">
-      <Filter>0. Foundation\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="C_ResourceManager.h">
       <Filter>9. Manager\94. ResourceManager</Filter>
@@ -262,7 +256,7 @@
       <Filter>4. Component\44. Light\4321. Light2D</Filter>
     </ClInclude>
     <ClInclude Include="component.h">
-      <Filter>0. Foundation\01. Header</Filter>
+      <Filter>0. Foundation\09. Header</Filter>
     </ClInclude>
     <ClInclude Include="C_RenderComponent.h">
       <Filter>5. RenderComponent\60. RenderComponent</Filter>
@@ -315,6 +309,18 @@
     <ClInclude Include="C_StateComponent.h">
       <Filter>4. Component\43. StateComponent</Filter>
     </ClInclude>
+    <ClInclude Include="globalFunction.h">
+      <Filter>0. Foundation\01. Global Header</Filter>
+    </ClInclude>
+    <ClInclude Include="globalVariable.h">
+      <Filter>0. Foundation\01. Global Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SimpleMath.h">
+      <Filter>0. Foundation\02. Math</Filter>
+    </ClInclude>
+    <ClInclude Include="global.h">
+      <Filter>0. Foundation\01. Global Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
@@ -361,9 +367,6 @@
     </ClCompile>
     <ClCompile Include="C_Component.cpp">
       <Filter>4. Component\40. Component</Filter>
-    </ClCompile>
-    <ClCompile Include="globalFunction.cpp">
-      <Filter>0. Foundation</Filter>
     </ClCompile>
     <ClCompile Include="C_Transform.cpp">
       <Filter>4. Component\41. Transform</Filter>
@@ -428,13 +431,16 @@
     <ClCompile Include="C_StateComponent.cpp">
       <Filter>4. Component\43. StateComponent</Filter>
     </ClCompile>
+    <ClCompile Include="globalFunction.cpp">
+      <Filter>0. Foundation\01. Global Header</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SimpleMath.inl">
-      <Filter>0. Foundation</Filter>
-    </None>
     <None Include="cpp.hint">
       <Filter>Relic</Filter>
+    </None>
+    <None Include="SimpleMath.inl">
+      <Filter>0. Foundation\02. Math</Filter>
     </None>
   </ItemGroup>
 </Project>

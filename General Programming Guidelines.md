@@ -116,7 +116,11 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - This helps reduce overhead and provides faster lookups during frame-by-frame collision checks.
 
-- Key pairs are stored as simple `Point` types(Windows SDK) to avoid alignment issues and `#pragma pack(#)`.
+- Key pairs are stored as simple `ULARGE_INTEGER` types(Windows SDK) to avoid alignment issues and `#pragma pack(#)`.
+
+- If `POINT` is used instead, it may cause problems during physics calculations like those in StarCraft 1 because the `USHORT` values inside its union can only go up to `65535`.
+
+- Due to `this limit`, adding more colliders may fail because of `overflow` or `malfunction`.
 
 - This keeps the structure clean, easy to manage, and better aligned with `SIMD`(CPU-level vector instructions such as SSE, AVX, and NEON).
 
@@ -143,6 +147,10 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 - If `StageManager` tries to change or hold this data, it breaks the clean design.
 
 - **The camera is not the same as view type and must never be used for collision logic.**
+
+- DO NOT THINK ABOUT COMBINING TWO POINTERS AS A HASH KEY OR VALUE.
+
+- DO NOT, I FUCKING TRIED SO MANY AND WASTED MY TIME.
 
 ---
 
