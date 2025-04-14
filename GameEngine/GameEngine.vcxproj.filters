@@ -436,8 +436,5 @@
     <None Include="cpp.hint">
       <Filter>Relic</Filter>
     </None>
-    <None Include="C_Object.inl">
-      <Filter>3. Resource\32. Object\320. Object</Filter>
-    </None>
   </ItemGroup>
 </Project>

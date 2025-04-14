@@ -126,7 +126,7 @@ public:
     {
         --M_OverLapCount;
     }
-    
+
 public:
     void MF_On_OverlapBegin(C_Collider2D _Collider2D);
 
@@ -140,6 +140,6 @@ public:
     void MF_Nofify_OverlapIng(C_Collider2D _Collider2D);                        // 스크립트 구성시 마저 작성필요
 
     void MF_NofifyOverlapEnd(C_Collider2D _Collider2D);                         // 스크립트 구성시 마저 작성필요
-
+    
 };
 

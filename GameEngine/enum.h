@@ -156,7 +156,8 @@ enum E_STAGE_NUMBER					// 향후, 스테이지 타입으로 바꾸는 게 더 가독성이 나을지 
 	_STAGE_2,						// 향후, 케릭터 선택메뉴로 정의예정
 	_STAGE_3,						// 향후, 게임플레이하는 스테이지로 정의예정
 	_STAGE_4,						// 향후, 종료화면으로 정의예정
-	_STAGE_END,						// 
+
+	_STAGE_END,						// 인덱스용
 };
 
 
@@ -202,9 +203,10 @@ enum E_OBJECT_TYPE					// 유의! 충돌검사 계층적 검사로 코드 개선하기 위한 enum으
 enum E_COMPONENT_TYPE
 {
 	_COMPONENT_TRANSFORM,
-	_COMPONENT_COLLIDER_2D,
+	_COMPONENT_COLLIDER2D,
 	_COMPONENT_STATE,
-	_COMPONENT_LIGHT_2D,
+	_COMPONENT_LIGHT2D,
+
 	_COMPONENT_CAMERA,
 
 	// Render Component

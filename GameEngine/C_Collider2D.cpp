@@ -2,7 +2,7 @@
 #include "C_Collider2D.h"
 
 C_Collider2D::C_Collider2D()
-	: C_Component(_COMPONENT_COLLIDER_2D)
+	: C_Component(_COMPONENT_COLLIDER2D)
 	, Vec2_M_ColliderScale2D{}
 	, Vec3_M_ColliderScale3D{}
 

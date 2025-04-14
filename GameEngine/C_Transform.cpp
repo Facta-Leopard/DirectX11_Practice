@@ -117,11 +117,11 @@ void C_Transform::MF_ComponentTick()											// 유의! 캐싱이 많으므로, 일부러 
 
 	if (M_IsScaleDependent && (nullptr != P_T_ParentObject))			// 방어코드; 유의! 오버헤드를 줄이기 위해, 브렌치를 감소시키고자 조건문으로 방식 변경
 	{
-		Vector3 vParentScale = P_T_ParentObject->MF_Get_ComponentByReturnType<C_Transform>()->MF_Get_RelativeScale();
+		Vector3 vParentScale = P_T_ParentObject->MF_Get_TransformComponent()->MF_Get_RelativeScale();
 		MAT_T_ParentScaleInverse = XMMatrixInverse(nullptr, XMMatrixScaling(vParentScale.x, vParentScale.y, vParentScale.z));
-		MAT_M_WorldMatrix = MAT_M_WorldMatrix * MAT_T_ParentScaleInverse * P_T_ParentObject->MF_Get_ComponentByReturnType<C_Transform>()->MF_Get_WorldMatrix();
+		MAT_M_WorldMatrix = MAT_M_WorldMatrix * MAT_T_ParentScaleInverse * P_T_ParentObject->MF_Get_TransformComponent()->MF_Get_WorldMatrix();
 
-		C_Transform* T_ParentTransform = P_T_ParentObject->MF_Get_ComponentByReturnType<C_Transform>();
+		C_Transform* T_ParentTransform = P_T_ParentObject->MF_Get_TransformComponent();
 
 		Vec3_T_ParentDirection[_DIRECTION_RIGHT] = T_ParentTransform->MF_Get_RelativeDirection(_DIRECTION_RIGHT);
 		Vec3_T_ParentDirection[_DIRECTION_UP]    = T_ParentTransform->MF_Get_RelativeDirection(_DIRECTION_UP);
@@ -129,7 +129,7 @@ void C_Transform::MF_ComponentTick()											// 유의! 캐싱이 많으므로, 일부러 
 	}
 	else if(nullptr != P_T_ParentObject)
 	{
-		MAT_M_WorldMatrix *= MF_Get_OwnerObject()->MF_Get_ParentObject()->MF_Get_ComponentByReturnType<C_Transform>()->MF_Get_WorldMatrix();
+		MAT_M_WorldMatrix *= MF_Get_OwnerObject()->MF_Get_ParentObject()->MF_Get_TransformComponent()->MF_Get_WorldMatrix();
 	}
 
 	// 방향벡터 정규화
@@ -169,7 +169,7 @@ Vector3 C_Transform::MF_ConvertWorldMatrixToVectorScale()						// 유의! 오버헤드
 
 	while (T_IsDependent && (nullptr != P_T_ParantObject))						// 방어코드; 향후, 더 효율적인 오버헤드 감소방법이 있을 지 생각해보자
 	{
-		C_Transform* T_ParentTransform = P_T_ParantObject->MF_Get_ComponentByReturnType<C_Transform>();
+		C_Transform* T_ParentTransform = P_T_ParantObject->MF_Get_TransformComponent();
 		
 		T_WorldSpaceScale *= T_ParentTransform->MF_Get_RelativeScale();
 

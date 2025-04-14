@@ -45,20 +45,14 @@ public:
         return M_StageState;
     }
 
-    inline void MF_Set_StageState(E_STAGE_STATE _StageState)                            // Setter
+    inline void MF_Set_StageStage(E_STAGE_STATE _StageState)                            // Setter
     {
         M_StageState = _StageState;
     }
 
-
     inline E_COLLIDER_TYPE MF_Get_ColliderType()
     {
         return M_ColliderType;
-    }
-
-    inline void MF_Set_ColliderType(E_COLLIDER_TYPE _ColliderType)
-    {
-        M_ColliderType = _ColliderType;
     }
 
     inline C_Group* MF_Get_Groups()                                                     // Getter

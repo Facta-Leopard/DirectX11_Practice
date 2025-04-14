@@ -1,6 +1,8 @@
 #pragma once
 #include "component.h"
 
+#include "C_StageManager.h"
+
 class C_Collider2D
     : public C_Component
 {
@@ -19,7 +21,7 @@ protected:
 
     Matrix                          Mat_M_CollisionPosition;                      // Vector3; 캐싱 목적의 멤버 변수; 유의! 함수호출의 오버헤드를 줄이기 위함
 
-    bool                            M_IsCollision;                                // bool
+    bool                            M_IsDependent;                                // bool
 
     int                             M_OverLapCount;                               // int; 유의! UINT로 하지않은 이유는 카운트 감소시 음수가 되서 오버플로우 될 수 있기 때문이며, 방어코드를 넣는 것이 도리어 함수호출로 인한 오버헤드 감소거 심할 것으로 사료되어 int로 씀
 
@@ -53,6 +55,26 @@ public:
     inline void MF_Set_ColliderScale3D(Vector3 _ColliderScale3D)
     {
         Vec3_M_ColliderScale3D = _ColliderScale3D;
+
+        E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
+
+        switch (T_ColliderType)
+        {
+        case _COLLIDER_2D_SIDESCROLL_:
+            Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, _ColliderScale3D.y, 0.f);
+            break;
+        case _COLLIDER_2D_TOPVEIW:
+            Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, 0.f, _ColliderScale3D.z);
+            break;
+        case _COLLIDER_2D_ISOMETRICVIEW:
+            Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, 0.f, _ColliderScale3D.z);
+            break;
+        case _COLLIDER_3D_SAT_ON:
+        case _COLLIDER_3D_SAT_OFF:
+        case _COLLIDER_TYPE_END:
+        default:
+            break;
+        }
     }
 
     inline Matrix MF_Get_ColliderPosition()
@@ -65,24 +87,24 @@ public:
         Mat_M_CollisionPosition = _ColliderPosition;
     }
 
-    inline bool MF_Get_IsCollision()
+    inline bool MF_Get_IsDependent()
     {
-        return M_IsCollision;
+        return M_IsDependent;
     }
 
-    inline void MF_Set_IsCollision(bool _IsCollision)
+    inline void MF_Set_IsDependent(bool _IsDependent)
     {
-        M_IsCollision = _IsCollision;
+        M_IsDependent = _IsDependent;
     }
 
-    inline void MF_Set_IsCollisionOn()
+    inline void MF_Set_IsDependentOn()
     {
-        M_IsCollision = true;
+        M_IsDependent = true;
     }
 
-    inline void MF_Set_IsCollisionOff()
+    inline void MF_Set_IsDependentOff()
     {
-        M_IsCollision = false;
+        M_IsDependent = false;
     }
 
     inline int MF_Get_OverlapCount()
@@ -104,7 +126,7 @@ public:
     {
         --M_OverLapCount;
     }
-    
+
 public:
     void MF_On_OverlapBegin(C_Collider2D _Collider2D);
 
@@ -112,12 +134,12 @@ public:
 
     void MF_On_OverlapEnd(C_Collider2D _Collider2D);
 
-    // 콜백용 모듈함수
-    void MF_Nofify_OverlapBegin(C_Collider2D _Collider2D);
+    // 콜백용 모듈함수; 향후, 스크립트 구성시 함수내용 .cpp에 적용할 수 있도록 할 것
+    void MF_Nofify_OverlapBegin(C_Collider2D _Collider2D);                      // 스크립트 구성시 마저 작성필요
 
-    void MF_Nofify_OverlapIng(C_Collider2D _Collider2D);
+    void MF_Nofify_OverlapIng(C_Collider2D _Collider2D);                        // 스크립트 구성시 마저 작성필요
 
-    void MF_NofifyOverlapEnd(C_Collider2D _Collider2D);
-
+    void MF_NofifyOverlapEnd(C_Collider2D _Collider2D);                         // 스크립트 구성시 마저 작성필요
+    
 };
 

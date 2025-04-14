@@ -26,10 +26,10 @@ C_Object::C_Object(const C_Object& _Origin)
 	, P_M_Script_s{}
 {
 	// 컴포넌트 깊은 복사
-	for (int i = _SCRIPT_RIGID; i < _SCRIPT_END; i++)
+	for (int i = 0; i < (int)_COMPONENT_END; i++)
 	{
 		// Colne 함수를 쓴 버전
-		P_M_Component_s[i] = _Origin.P_M_Component_s[i]->MF_Clone();
+		P_M_Component_s[(E_COMPONENT_TYPE)i] = _Origin.P_M_Component_s[(E_COMPONENT_TYPE)i]->MF_Clone();
 
 		// Clone 함수를 안 쓴 버전은 사용할 수 없음
 		//// 깊은 복사를 하려는 타입은 C_Component*이므로 포인터 형식인데다가,
@@ -43,9 +43,9 @@ C_Object::C_Object(const C_Object& _Origin)
 	}
 
 	// 스크립트 깊은 복사
-	for (int i = _SCRIPT_RIGID; i < _SCRIPT_END; i++)
+	for (int i = 0; i < (int)_SCRIPT_END; i++)
 	{
-		P_M_Script_s[i] = _Origin.P_M_Script_s[i]->MF_Clone();
+		P_M_Script_s[(E_SCRIPT_TYPE)i] = _Origin.P_M_Script_s[(E_SCRIPT_TYPE)i]->MF_Clone();
 	}
 
 	// 자식 오브젝트 깊은 복사
@@ -73,23 +73,23 @@ void C_Object::MF_Prepare()
 {
 	// 기반요소부터 준비; C_Component -> C_ScriptComponent -> Obejct
 	//// C_Component
-	for (size_t i = 0; i < _COMPONENT_END; i++)
+	for (int i = 0; i < (int)_COMPONENT_END; i++)
 	{
-		if (nullptr == P_M_Component_s)			// 방어코드; 
+		if (nullptr == P_M_Component_s[(E_COMPONENT_TYPE)i])			// 방어코드; 
 		{
 			continue;
 		}
-		P_M_Component_s[i]->MF_Prepare();
+		P_M_Component_s[(E_COMPONENT_TYPE)i]->MF_Prepare();
 	}
 
 	//// C_ScriptComponent
-	for (size_t i = 0; i < _SCRIPT_END; i++)
+	for (int i = 0; i < (int)_SCRIPT_END; i++)
 	{
-		if (nullptr == P_M_Script_s)			// 방어코드; 
+		if (nullptr == P_M_Script_s[(E_COMPONENT_TYPE)i])			// 방어코드; 
 		{
 			continue;
 		}
-		P_M_Script_s[i]->MF_Prepare();
+		P_M_Script_s[(E_COMPONENT_TYPE)i]->MF_Prepare();
 	}
 
 	//// STL_M_ChildObejct
@@ -140,37 +140,37 @@ void C_Object::MF_ChildTick()
 
 void C_Object::MF_ComponentTick()
 {
-	for (size_t i = 0; i < _COMPONENT_END; i++)
+	for (int i = 0; i < (int)_COMPONENT_END; i++)
 	{
-		if (nullptr == P_M_Component_s)			// 방어코드; 
+		if (nullptr == P_M_Component_s[(E_COMPONENT_TYPE)i])			// 방어코드; 
 		{
 			continue;
 		}
-		P_M_Component_s[i]->MF_ComponentTick();
+		P_M_Component_s[(E_COMPONENT_TYPE)i]->MF_ComponentTick();
 	}
 }
 
 void C_Object::MF_ComponentTickAfter()
 {
-	for (size_t i = 0; i < _COMPONENT_END; i++)
+	for (int i = 0; i < (int)_COMPONENT_END; i++)
 	{
-		if (nullptr == P_M_Component_s)			// 방어코드; 
+		if (nullptr == P_M_Component_s[(E_COMPONENT_TYPE)i])			// 방어코드; 
 		{
 			continue;
 		}
-		P_M_Component_s[i]->MF_ComponentTickAfter();
+		P_M_Component_s[(E_COMPONENT_TYPE)i]->MF_ComponentTickAfter();
 	}
 }
 
 void C_Object::MF_ScriptTick()
 {
-	for (size_t i = 0; i < _SCRIPT_END; i++)
+	for (int i = 0; i < (int)_SCRIPT_END; i++)
 	{
-		if (nullptr == P_M_Script_s[i])			// 방어코드;
+		if (nullptr == P_M_Script_s[(E_SCRIPT_TYPE)i])			// 방어코드;
 		{
 			continue;
 		}
-		P_M_Script_s[i]->MF_ScriptTick();
+		P_M_Script_s[(E_SCRIPT_TYPE)i]->MF_ScriptTick();
 	}
 }
 
@@ -182,7 +182,7 @@ void C_Object::MF_Render()
 
 void C_Object::MF_Attach_ObjectToParentObject(C_Object* _Object)
 {
-	if (nullptr == _Object)						// 방어코드; 들어오는 오브젝트가 nullptr일 경우 방지
+	if (nullptr == _Object)						// 조기반환; 들어오는 오브젝트가 nullptr일 경우 방지
 	{
 		POPUP_DEBUG(L"Null Pointer Dereference", L"in C_Object::MF_Attach_ObjectToParentObject(C_Object* _Object), nullptr == _Object")
 		return;
@@ -195,18 +195,19 @@ void C_Object::MF_Attach_ObjectToParentObject(C_Object* _Object)
 
 void C_Object::MF_Detach_MyselfFromParentObject()
 {
-	if (nullptr == M_ParentObejct)				// 방어코드; 부모오브젝트가 nullptr일 경우 방지
+	if (nullptr == M_ParentObejct)				// 조기반환; 부모오브젝트가 nullptr일 경우 방지
 	{
+		POPUP_DEBUG(L"Null Pointer Dereference", L"in C_Object::MF_Detach_MyselfFromParentObject(C_Object* _Object), nullptr == _Object")
 		return;
 	}
 
-	vector<C_Object*> STL_T_ChildObject = M_ParentObejct->STL_P_M_ChildObejct;
+	vector<C_Object*> STL_P_T_ChildObject = M_ParentObejct->STL_P_M_ChildObejct;
 
-	for (vector<C_Object*>::iterator T_Iterator = STL_T_ChildObject.begin(); T_Iterator < STL_T_ChildObject.end(); T_Iterator++)
+	for (vector<C_Object*>::iterator T_Iterator = STL_P_T_ChildObject.begin(); T_Iterator < STL_P_T_ChildObject.end(); T_Iterator++)
 	{
 		if (*T_Iterator == this)
 		{
-			STL_T_ChildObject.erase(T_Iterator);
+			STL_P_T_ChildObject.erase(T_Iterator);
 
 			M_ParentObejct = nullptr;
 		}
@@ -215,10 +216,10 @@ void C_Object::MF_Detach_MyselfFromParentObject()
 
 void C_Object::MF_Attach_ObjectToChildObject(C_Object* _Object)
 {
-	if (nullptr == _Object)						// 방어코드; 들어오는 오브젝트가 nullptr일 경우 방지
+	if (nullptr == _Object)						// 조기반환; 들어오는 오브젝트가 nullptr일 경우 방지
 	{
-		POPUP_DEBUG(L"Null Pointer Dereference", L"in C_Object::MF_Attach_ObjectToParentObject(C_Object* _Object), nullptr == _Object")
-			return;
+		POPUP_DEBUG(L"Null Pointer Dereference", L"in C_Object::MF_Attach_ObjectToChildObject(C_Object* _Object), nullptr == _Object")
+		return;
 	}
 
 	// 자식오브젝트로 등록할 오브젝트의 부모오브젝트를 변경
@@ -233,16 +234,16 @@ void C_Object::MF_Detach_MyselfFromChildObject()
 {
 	if (STL_P_M_ChildObejct.empty())				// 방어코드; 자식오브젝트들이 없을 경우 방지
 	{
-			return;
+		return;
 	}
 
-	vector<C_Object*> STL_T_ChildObject = M_ParentObejct->STL_P_M_ChildObejct;
+	vector<C_Object*> STL_P_T_ChildObject = M_ParentObejct->STL_P_M_ChildObejct;
 
-	for (vector<C_Object*>::iterator T_Iterator = STL_T_ChildObject.begin(); T_Iterator < STL_T_ChildObject.end(); T_Iterator++)
+	for (vector<C_Object*>::iterator T_Iterator = STL_P_T_ChildObject.begin(); T_Iterator < STL_P_T_ChildObject.end(); T_Iterator++)
 	{
 		if (*T_Iterator == this)
 		{
-			STL_T_ChildObject.erase(T_Iterator);
+			STL_P_T_ChildObject.erase(T_Iterator);
 
 			M_ParentObejct = nullptr;
 		}
@@ -254,7 +255,7 @@ void C_Object::MF_Detach_DeadObjectFromChildObject()										// 유의! 이터레이�
 	vector<C_Object*>::iterator T_Iterator = STL_P_M_ChildObejct.begin();					// 유의! 이터레이터 erase 문법 유의!
 	for (T_Iterator = STL_P_M_ChildObejct.begin(); T_Iterator < STL_P_M_ChildObejct.end();) // 유의! 이터레이터 erase 문법 유의!
 	{
-		if ((*T_Iterator)->MF_Get_ComponentByReturnType<C_StateComponent>()->MF_Get_IsDelete())													// 유의! 이터레이터 erase 문법 유의!
+		if ((*T_Iterator)->MF_Get_StateComponent()->MF_Get_IsDelete())													// 유의! 이터레이터 erase 문법 유의!
 		{
 			STL_P_M_ChildObejct.erase(T_Iterator);
 		}
@@ -267,15 +268,32 @@ void C_Object::MF_Detach_DeadObjectFromChildObject()										// 유의! 이터레이�
 
 void C_Object::MF_Attach_Component(C_Component* _Component)
 {
-	if (nullptr == _Component)				// 방어코드
+	if (nullptr == _Component)				// 조기반환
 	{
 		POPUP_DEBUG(L"Compnent IS nullptr", L"in C_Object::MF_Attach_Componen), nullptr == _Component")
 		return;
 	}
 
-	E_COMPONENT_TYPE T_COMPONENT_TYPE = _Component->MF_Get_ComponentType();
+	E_COMPONENT_TYPE E_T_COMPONENT_TYPE = _Component->MF_Get_ComponentType();
 
-	P_M_Component_s[T_COMPONENT_TYPE] = _Component;
+	P_M_Component_s[E_T_COMPONENT_TYPE] = _Component;
 }
 
+void C_Object::MF_Detach_Component(C_Component* _Component)
+{
+	if (nullptr == _Component)				// 조기반환
+	{
+		POPUP_DEBUG(L"Compnent IS nullptr", L"in C_Object::MF_Attach_Componen), nullptr == _Component")
+			return;
+	}
 
+	E_COMPONENT_TYPE E_T_COMPONENT_TYPE = _Component->MF_Get_ComponentType();
+
+	if (nullptr == P_M_Component_s[E_T_COMPONENT_TYPE])					// 조기반환
+	{
+		POPUP_DEBUG(L"nullptr == P_M_Component_s[E_T_COMPONENT_TYPE]", L"in C_Object::MF_Attach_Componen), nullptr == P_M_Component_s[E_T_COMPONENT_TYPE]")
+			return;
+	}
+
+	P_M_Component_s[E_T_COMPONENT_TYPE] = nullptr;
+}

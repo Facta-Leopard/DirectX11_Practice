@@ -2,7 +2,7 @@
 #include "C_Light2D.h"
 
 C_Light2D::C_Light2D()
-	: C_Component(_COMPONENT_LIGHT_2D)
+	: C_Component(_COMPONENT_LIGHT2D)
 {
 
 }

@@ -156,7 +156,8 @@ enum E_STAGE_NUMBER					// 향후, 스테이지 타입으로 바꾸는 게 더 가독성이 나을지 
 	_STAGE_2,						// 향후, 케릭터 선택메뉴로 정의예정
 	_STAGE_3,						// 향후, 게임플레이하는 스테이지로 정의예정
 	_STAGE_4,						// 향후, 종료화면으로 정의예정
-	_STAGE_END,						// 
+
+	_STAGE_END,						// 인덱스용
 };
 
 
@@ -202,9 +203,10 @@ enum E_OBJECT_TYPE					// 유의! 충돌검사 계층적 검사로 코드 개선하기 위한 enum으
 enum E_COMPONENT_TYPE
 {
 	_COMPONENT_TRANSFORM,
-	_COMPONENT_COLLIDER_2D,
+	_COMPONENT_COLLIDER2D,
 	_COMPONENT_STATE,
-	_COMPONENT_LIGHT_2D,
+	_COMPONENT_LIGHT2D,
+
 	_COMPONENT_CAMERA,
 
 	// Render Component
@@ -226,12 +228,13 @@ enum E_COMPONENT_TYPE
 ////// about Collider Type
 enum E_COLLIDER_TYPE
 {
-	_COLLIDER_2D_TOPVEIW,
-	_COLLIDER_2D_ISOMETRICVIEW,
-	_COLLIDER_2D_SIDESCROLL,
-	_COLLIDER_3D_SAT_ON,
-	_COLLIDER_3D_SAT_OFF,
-	_COLLIDER_TYPE_END,
+	_COLLIDER_2D_SIDESCROLL_,			// Front(Z축 무효); OBB는 기본적으로 사용하는 것으로 함
+	_COLLIDER_2D_TOPVEIW,				// Up(Y축 무효); OBB는 기본적으로 사용하는 것으로 함
+	_COLLIDER_2D_ISOMETRICVIEW,			// Up(Y축 무효); OBB는 기본적으로 사용하는 것으로 함; _COLLIDER_2D_TOPVEIW와 동일;
+	_COLLIDER_3D_SAT_ON,				// 축 무효없음; S.A.T.(Saperating Axis Theorem) 무조건 적용
+	_COLLIDER_3D_SAT_OFF,				// 축 무효없음; S.A.T.(Saperating Axis Theorem) 무조건 미적용
+
+	_COLLIDER_TYPE_END,					// 인덱스 리딩에러 방지용
 };
 
 ////// about Script

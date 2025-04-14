@@ -22,7 +22,6 @@
 #include "C_RigidScript.h"
 #include "C_MoveScript.h"
 #include "C_FSMScript.h"
-
 #include "C_CameraScript.h"
 
 
