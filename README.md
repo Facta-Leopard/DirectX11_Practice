@@ -110,7 +110,19 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.3. Benefits
+### 5.3. Collision Pair Storage Policy
+
+- `std::unordered_map` is used to store collision pair states, since the number of collision-checking layers is very limited.
+
+- This helps reduce overhead and provides faster lookups during frame-by-frame collision checks.
+
+- Key pairs are stored as simple `Point` types(Windows SDK) to avoid alignment issues and `#pragma pack(#)`.
+
+- This keeps the structure clean, easy to manage, and better aligned with `SIMD`(CPU-level vector instructions such as SSE, AVX, and NEON).
+
+---
+
+### 5.4. Benefits
 
 - **Clear process**: The steps are always the same based on the collision type.
 
@@ -122,7 +134,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.4. Caution
+### 5.5. Caution
 
 - **StageManager should not control collision types directly.**
 
@@ -225,6 +237,7 @@ The Quaternion Method was chosen due to its significantly faster processing time
 ### Structure & Member Types
 - **`C`**: Prefix for class names.
 - **`DS`**: Prefix for data structure names.
+- **`US`**: Prefix for union structure names.
 - **`M`**: Prefix for member variables.
 - **`MF`**: Prefix for member functions.
 - **`G`**: Prefix for global (extern) variables.
@@ -243,6 +256,7 @@ The Quaternion Method was chosen due to its significantly faster processing time
 
 ### Platform or API Specific Types
 - **`H`**: Prefix for Windows HANDLE types.
+- **`SDK`**: Prefix for types that are defined in the Windows SDK, such as DWORD, BOOL, HRESULT, LPARAM, and others.
 - **`F`**: Prefix for FMOD classes in FMOD Library.
 - **`I`**: Prefix for Using IMGUI Headers.
 - **`DX`**: Prefix for DirectX-specific classes.

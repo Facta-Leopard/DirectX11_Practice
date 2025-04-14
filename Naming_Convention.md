@@ -23,6 +23,7 @@
 ### Structure & Member Types
 - **`C`**: Prefix for class names.
 - **`DS`**: Prefix for data structure names.
+- **`US`**: Prefix for union structure names.
 - **`M`**: Prefix for member variables.
 - **`MF`**: Prefix for member functions.
 - **`G`**: Prefix for global (extern) variables.
@@ -41,6 +42,7 @@
 
 ### Platform or API Specific Types
 - **`H`**: Prefix for Windows HANDLE types.
+- **`SDK`**: Prefix for types that are defined in the Windows SDK, such as DWORD, BOOL, HRESULT, LPARAM, and others.
 - **`F`**: Prefix for FMOD classes in FMOD Library.
 - **`I`**: Prefix for Using IMGUI Headers.
 - **`DX`**: Prefix for DirectX-specific classes.

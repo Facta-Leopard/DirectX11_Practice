@@ -110,7 +110,19 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.3. Benefits
+### 5.3. Collision Pair Storage Policy
+
+- `std::unordered_map` is used to store collision pair states, since the number of collision-checking layers is very limited.
+
+- This helps reduce overhead and provides faster lookups during frame-by-frame collision checks.
+
+- Key pairs are stored as simple `Point` types(Windows SDK) to avoid alignment issues and `#pragma pack(#)`.
+
+- This keeps the structure clean, easy to manage, and better aligned with `SIMD`(CPU-level vector instructions such as SSE, AVX, and NEON).
+
+---
+
+### 5.4. Benefits
 
 - **Clear process**: The steps are always the same based on the collision type.
 
@@ -122,7 +134,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.4. Caution
+### 5.5. Caution
 
 - **StageManager should not control collision types directly.**
 
