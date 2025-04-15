@@ -117,7 +117,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ### 5.3. Collision Pair Storage Policy
 
-- `std::unordered_map` is used to store collision pair states, since the number of collision-checking layers is very limited.
+- `std::unordered_map` is used to store collision pair states, offering scalability and fast lookup for increasing collision objects.
 
 - This helps reduce overhead and provides faster lookups during frame-by-frame collision checks.
 
@@ -166,6 +166,10 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 ---
 
 ### 5.6. Caution
+
+- Using std::unordered_map requires `careful bucket sizing`.
+
+- `Poor bucket planning` can lead to `performance drops`, especially with a large number of collision pairs.
 
 - **StageManager should not control collision types directly.**
 
