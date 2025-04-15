@@ -267,12 +267,12 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 #### Comparison Pointer Chasing Table: Dereference Depth vs Runtime Overhead
 
-| Dereference Depth | Example Access                                                                 | Pointer Deref. Count | Function Call Count | Inline Optimization Feasibility | Cache Friendliness | Performance Impact | Measured Time (100k runs, sec) |
-|-------------------|--------------------------------------------------------------------------------|-----------------------|----------------------|-------------------------------|---------------------|---------------------|-------------------------------|
-| 0 (Direct)        | `Vec2 Pos = Vec2_M_Position;`                                                  | 0                     | 0                    | Very High                     | Excellent           | Minimal             | 0.00243                        |
-| 1-Level           | `Vec2 Pos = P_Owner->MF_Get_Position();`                                       | 1                     | 1                    | Moderate                      | Good                | Slight              | 0.00329                        |
-| 2-Level           | `Vec2 Pos = P_Owner->MF_Get_Transform()->MF_Get_Position();`                   | 2                     | 2                    | Low                           | Fair                | Moderate            | 0.00383                        |
-| 3-Level           | `Vec2 Pos = P_Game->MF_Get_Scene()->MF_Get_Object()->MF_Get_Transform()->MF_Get_Position();` | 3          | 3                    | Very Low                      | Poor                | High                | 0.00414                        |
+| Dereference Depth | Example Access                                                                                  | Pointer Deref. Count | Function Call Count | Inline Optimization Feasibility | Cache Friendliness | Performance Impact | Measured Time (100k runs, sec) |
+|-------------------|--------------------------------------------------------------------------------------------------|-----------------------|----------------------|-------------------------------|---------------------|---------------------|-------------------------------|
+| 0 (Direct)        | `Vector2 Pos = Vec2_M_Position;`                                                                 | 0                     | 0                    | Very High                     | Excellent           | Minimal             | 0.00243                        |
+| 1-Level           | `Vector2 Pos = C_Transform->MF_Get_Position();`                                                  | 1                     | 1                    | Moderate                      | Good                | Slight              | 0.00329                        |
+| 2-Level           | `Vector2 Pos = C_Object->MF_Get_Transform()->MF_Get_Position();`                                 | 2                     | 2                    | Low                           | Fair                | Moderate            | 0.00383                        |
+| 3-Level           | `Vector2 Pos = C_Component->MF_Get_OwnerObject()->MF_Get_Transform()->MF_Get_Position();`              | 3                     | 3                    | Very Low                      | Poor                | High                | 0.00414                        |
 
 ---
 
