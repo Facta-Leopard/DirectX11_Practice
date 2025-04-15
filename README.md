@@ -1,6 +1,14 @@
 # General Programming Guidelines
 - **Made by Facta-Leopard**: [https://github.com/Facta-Leopard](https://github.com/Facta-Leopard)
 
+> All design decisions are made with `low-level hardware optimization` in mind, focusing not only on compiler output but on `how the CPU executes instructions, manages branches, handles caches, and traverses memory`.  
+
+> This mindset is why I chose to begin programming with `C` and `C++`, aiming for full control over execution rather than relying on abstraction.  
+
+> (But, I'm a `APPLE BITCH`, so i wnat to develop with `MetalAPI` via `SWIFT`.  
+
+> It is also the reason I began programming through `GAME DEVELOPMENT`, a field where `logic`, `system architecture`, and `creative expression` come together as one.
+
 ## 1. Key Considerations
 
 - Regularly update and validate transformation matrices to avoid discrepancies during gameplay or simulation.
