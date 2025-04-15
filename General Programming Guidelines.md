@@ -186,6 +186,14 @@ Function call cost is small, but bad branch prediction is expensive.
 
 ---
 
+### Value Caching
+
+- I Cached a `value as a member variable` to avoid `repeated work in a loop`.  
+
+- Later, if I work more with `parallel programming`, I may move it `back into the function`.
+
+---
+
 ### About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
 
 Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
