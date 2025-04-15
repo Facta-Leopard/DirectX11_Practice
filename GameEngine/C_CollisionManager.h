@@ -17,12 +17,12 @@ protected:
 
     E_COLLIDER_TYPE                                 E_M_ColliderType;                               // E_COLLIDER_TYPE; 충돌계산 오버헤드를 줄이기 위한 캐싱용
 
-    Vector3                                         Vec3_M_ColliderPositionA;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-    Vector3                                         Vec3_M_ColliderPositionB;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-    Vector3                                         Vec3_M_ColliderDistanceEachOther;               // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용; 두 충돌체를 있는 벡터
+    static Vector3                                  Vec3_S_ColliderPositionA;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static Vector3                                  Vec3_S_ColliderPositionB;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static Vector3                                  Vec3_S_ColliderDistanceEachOther;               // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용; 두 충돌체를 있는 벡터
 
-    Vector2                                         Vec2_M_ColliderPositionA;                       // Vector2; 충돌계산 오버헤드를 줄이기 위한 캐싱용; MF_Check_DistanceBetweenCenters() 전용
-    Vector2                                         Vec2_M_ColliderPositionB;                       // Vector2; 충돌계산 오버헤드를 줄이기 위한 캐싱용; MF_Check_DistanceBetweenCenters() 전용
+    static Vector2                                  Vec2_S_ColliderPositionA;                       // Vector2; 충돌계산 오버헤드를 줄이기 위한 캐싱용; MF_Check_DistanceBetweenCenters() 전용
+    static Vector2                                  Vec2_S_ColliderPositionB;                       // Vector2; 충돌계산 오버헤드를 줄이기 위한 캐싱용; MF_Check_DistanceBetweenCenters() 전용
 
 public:
     HRESULT MF_Initialize();

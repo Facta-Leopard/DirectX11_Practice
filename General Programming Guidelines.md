@@ -3,8 +3,11 @@
 
 ## 1. Key Considerations
 
-- Maintain separation of concerns when handling transformations, ensuring that each system (rendering, physics, etc.) has access to the required data without interference.
 - Regularly update and validate transformation matrices to avoid discrepancies during gameplay or simulation.
+
+- Maintain separation of concerns when handling transformations, ensuring that each system (rendering, physics, etc.) has access to the required data without interference.
+
+- Use `quaternion-based matrices` for `GPU-side` `transforms` and `vector-based logic` for `CPU-side` `collision` checks to reduce overhead.
 
 ---
 
@@ -201,12 +204,6 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### Components are for data, scripts are for logic.
-
-- I choose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
-
----
-
 ### Branch Split Rule
 
 > **"Branch predictability drives speed. Nested ifs lead straight into unpredictability."**
@@ -249,6 +246,25 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 - **CPU prediction is critical** for performance in tight loops such as collision checks or update ticks.
 
 - In this test scenario (10,000 iterations), the `else-if` chain saved approximately **37,800 CPU cycles**.
+
+---
+
+### Components Design
+
+- `Components are for data`, `scripts are for logic`.
+
+- I choose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
+
+- If a component needs to access a value frequently, caching should be considered to minimize `dereference overhead` by `Pointer Chasing` during runtime.
+
+#### Comparison Pointer Chasing Table: Dereference Depth vs Runtime Overhead
+
+| Dereference Depth | Example Access                                                                 | Pointer Deref. Count | Function Call Count | Inline Optimization Feasibility | Cache Friendliness | Performance Impact | Measured Time (100k runs, sec) |
+|-------------------|--------------------------------------------------------------------------------|-----------------------|----------------------|-------------------------------|---------------------|---------------------|-------------------------------|
+| 0 (Direct)        | `Vec2 Pos = Vec2_M_Position;`                                                  | 0                     | 0                    | Very High                     | Excellent           | Minimal             | 0.00243                        |
+| 1-Level           | `Vec2 Pos = P_Owner->MF_Get_Position();`                                       | 1                     | 1                    | Moderate                      | Good                | Slight              | 0.00329                        |
+| 2-Level           | `Vec2 Pos = P_Owner->MF_Get_Transform()->MF_Get_Position();`                   | 2                     | 2                    | Low                           | Fair                | Moderate            | 0.00383                        |
+| 3-Level           | `Vec2 Pos = P_Game->MF_Get_Scene()->MF_Get_Object()->MF_Get_Transform()->MF_Get_Position();` | 3          | 3                    | Very Low                      | Poor                | High                | 0.00414                        |
 
 ---
 

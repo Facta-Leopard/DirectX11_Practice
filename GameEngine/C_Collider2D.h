@@ -16,14 +16,16 @@ public:
     ~C_Collider2D();
 
 protected:
-    Vector2                         Vec2_M_ColliderScale2D;                       // Vector2; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
-    Vector3                         Vec3_M_ColliderScale3D;                       // Vector3; 캐싱 목적의 멤버 변수; 유의! 함수호출의 오버헤드를 줄이기 위함
+    Vector2                         Vec2_M_ColliderScale2D;                         // Vector2; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
+    Vector3                         Vec3_M_ColliderScale3D;                         // Vector3; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
 
-    Matrix                          Mat_M_CollisionPosition;                      // Matrix; 캐싱 목적의 멤버 변수; 유의! 함수호출의 오버헤드를 줄이기 위함
+    Matrix                          MAT_M_CollisionPosition;                        // Matrix; 유의! 오버헤드 감소 목적의 멤버 변수;
 
-    bool                            M_IsDependent;                                // bool
+    Vector3                         Vec3_M_WorldMatrixDirection_s[_DIRECTION_END];    // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수;
 
-    int                             M_OverLapCount;                               // int; 유의! UINT로 하지않은 이유는 카운트 감소시 음수가 되서 오버플로우 될 수 있기 때문이며, 방어코드를 넣는 것이 도리어 함수호출로 인한 오버헤드 감소거 심할 것으로 사료되어 int로 씀
+    bool                            M_IsDependent;                                  // bool
+
+    int                             M_OverLapCount;                                 // int; 유의! UINT로 하지않은 이유는 카운트 감소시 음수가 되서 오버플로우 될 수 있기 때문이며, 방어코드를 넣는 것이 도리어 함수호출로 인한 오버헤드 감소거 심할 것으로 사료되어 int로 씀
 
     // 향후, 알림 관련 부분은 스크립트 제작시 같이 해야할 듯
 
@@ -77,19 +79,19 @@ public:
 
     inline Matrix MF_Get_ColliderPosition()
     {
-        return Mat_M_CollisionPosition;
+        return MAT_M_CollisionPosition;
     }
 
     inline Vector3 MF_Get_ColliderPositionAsVector3()
     {
-        return Mat_M_CollisionPosition.Translation();
+        return MAT_M_CollisionPosition.Translation();
     }
 
     inline Vector2 MF_Get_ColliderPositionAsVector2()
     {
         E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
 
-        Vector3 Vec3_T_Position = Mat_M_CollisionPosition.Translation();
+        Vector3 Vec3_T_Position = MAT_M_CollisionPosition.Translation();
 
         switch (T_ColliderType)
         {

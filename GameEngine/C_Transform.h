@@ -16,15 +16,15 @@ public:
     virtual ~C_Transform();
 
 protected:
-    Vector3                     Vec3_M_RelativeScale;                           // Vector3; 상대적인 크기(로컬좌표)
-    Vector3                     Vec3_M_RelativeRotation;                        // Vector3; 상대적인 회전(로컬좌표); 유의! Vector3 형식은 오일러 각 형식이므로 활용시에는 360도 각도 보정필요 및 행렬에 XMMatrixDecompose 사용해서 분리해서 쓸 때는 상관이 없으나 Radian이므로, XMConvertToDegrees()를 써서 변환필요!
-    Vector3                     Vec3_M_RelativePosition;                        // Vector3; 상대적인 좌표(로컬좌표); 유의! 행렬변환시 순서를 통일시키기 위해 인자 순서 변경했음!
-    Vector3                     Vec3_M_RelativeDirection_s[_DIRECTION_END];     // Vector3; 상대적인 방향(로컬방향)을 축 방향별로 배열로 가지고 있음; 유의! 월드방향 및 부모 오브젝트와의 계산 누적을 위해서 씀
+    Vector3                     Vec3_M_RelativeScale;                               // Vector3; 상대적인 크기(로컬좌표)
+    Vector3                     Vec3_M_RelativeRotation;                            // Vector3; 상대적인 회전(로컬좌표); 유의! Vector3 형식은 오일러 각 형식이므로 활용시에는 360도 각도 보정필요 및 행렬에 XMMatrixDecompose 사용해서 분리해서 쓸 때는 상관이 없으나 Radian이므로, XMConvertToDegrees()를 써서 변환필요!
+    Vector3                     Vec3_M_RelativePosition;                            // Vector3; 상대적인 좌표(로컬좌표); 유의! 행렬변환시 순서를 통일시키기 위해 인자 순서 변경했음!
+    Vector3                     Vec3_M_RelativeDirection_s[_DIRECTION_END];         // Vector3; 상대적인 방향(로컬방향)을 축 방향별로 배열로 가지고 있음; 유의! 월드방향 및 부모 오브젝트와의 계산 누적을 위해서 씀
 
-    bool                        M_IsScaleDependent;                             // bool; 스케일 조정 관련; 부모 오브젝트의 트리 구조 관련 의존성을 담음
+    bool                        M_IsScaleDependent;                                 // bool; 스케일 조정 관련; 부모 오브젝트의 트리 구조 관련 의존성을 담음
 
-    Matrix                      MAT_M_WorldMatrix;                              // Matrix; 월드공간 행렬; 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화 해야함!
-    Vector3                     Vec3_WorldMatrixDirection_s[_DIRECTION_END];    // DS_Vector3_Direction; 월드공간 방향; 유의! 별도로 방향값만 추출해서 쓰는 이유는 카메라 및 충돌처리의 오버헤드를 줄이기 위함임; 향후, 필요시 다른 인자도 캐싱하는 것을 고려해보는 것도 좋을 듯
+    Matrix                      MAT_M_WorldMatrix;                                  // Matrix; 월드공간 행렬; 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화 해야함!
+    Vector3                     Vec3_M_WorldMatrixDirection_s[_DIRECTION_END];      // DS_Vector3_Direction; 월드공간 방향; 유의! 별도로 방향값만 추출해서 쓰는 이유는 카메라 및 충돌처리의 오버헤드를 줄이기 위함임; 향후, 필요시 다른 인자도 캐싱하는 것을 고려해보는 것도 좋을 듯
 
 public:
     CLONE(C_Transform)
@@ -134,7 +134,7 @@ public:
     ////// WorldMatrixDirection 관련
     inline Vector3 MF_Get_WorldMatrixDirection(E_DIRECTION_TYPE _Direction)             // Getter; MF_ConvertWorldMatrixToVectorDirection()
     {
-        return Vec3_WorldMatrixDirection_s[_Direction];
+        return Vec3_M_WorldMatrixDirection_s[_Direction];
     }
 
     inline  void MF_Set_WorldMatrix(Matrix _Matrix)                                     // Setter
