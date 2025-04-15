@@ -28,7 +28,7 @@
 - **`MF`**: Prefix for member functions.
 - **`G`**: Prefix for global (extern) variables.
 - **`GF`**: Prefix for global (extern) functions.
-- **`S`**: Prefix for static variables.
+- **`S`**: Prefix for static variables, including singleton instances and cache-only objects reused per frame.
 - **`SF`**: Prefix for static functions.
 - **`T`**: Prefix for temporary variables.
 - **`TF`**: Prefix for temporary functions.

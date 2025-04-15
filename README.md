@@ -147,6 +147,8 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - `Scale values`, which are mainly `used in OBB checks`, are `not included in this logic` and are `handled separately`.
 
+- To make it faster, `static or pre-made variables` are used inside the manager to skip repeated memory work.
+
 ---
 
 ### 5.5. Benefits
@@ -159,7 +161,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - **Clear rules**: The stage sets the rule, and the collision manager only runs the logic.
 
-- **Smart caching**: Only needed data is transformed and cached, saving resources and avoiding redundant calculations.
+- **Smart caching**: Only needed data is transformed and cached, and `static variables` make it `faster` by `skipping this pointer` and reusing memory.
 
 - **Cleaner logic flow**: Because the calculations depend on the current view, the engine avoids rigid logic paths and adapts flexibly.
 
@@ -252,9 +254,17 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ### Value Caching
 
-- I Cached a `value as a member variable` to avoid `repeated work in a loop`.  
+- I Cached a `value as a static member variable` to avoid `repeated work in a loop`.  
 
 - Later, if I work more with `parallel programming`, I may move it `back into the function`.
+
+#### Overhead Comparison Table: Static vs Member vs Local Variable
+
+| Method               | Memory Location            | Access                           | Creation        | Thread-Safe   | Cache Efficiency   | Example              | Performance (10M ops)   |
+|:---------------------|:---------------------------|:---------------------------------|:----------------|:--------------|:-------------------|:---------------------|:------------------------|
+| Static variable      | .data / .bss               | Direct (fastest)                 | Once            | No            | High               | static Vector2 temp; | 0.8424 sec              |
+| Member-like variable | Heap or stack (via object) | `this` pointer (slightly slower) | Per object      | Yes           | Medium             | this->tempVec;       | 0.8819 sec              |
+| Local variable       | Stack frame (per loop)     | Stack allocation (slowest)       | Every iteration | Yes           | Low                | Vector2 temp = ...;  | 3.0636 sec              |
 
 ---
 
@@ -322,7 +332,7 @@ The Quaternion Method was chosen due to its significantly faster processing time
 - **`MF`**: Prefix for member functions.
 - **`G`**: Prefix for global (extern) variables.
 - **`GF`**: Prefix for global (extern) functions.
-- **`S`**: Prefix for static variables.
+- **`S`**: Prefix for static variables, including singleton instances and cache-only objects reused per frame.
 - **`SF`**: Prefix for static functions.
 - **`T`**: Prefix for temporary variables.
 - **`TF`**: Prefix for temporary functions.

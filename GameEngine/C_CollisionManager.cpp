@@ -100,7 +100,7 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
             }
 
             //// 향후, 그룹타입 조건에 따라, 조기반환 걸어버리는 것과, SAT 내부에서 OBB를 순차로 하는 것이 좋을지도 생각해보자
-            if ((MF_Check_SAT(P_T_ColliderA, P_T_ColliderB)) && (true == R_T_WasOverlap))                   // 코드개선; 향후, 다른 조건에서도 최대한 분기문을 줄여서 분기예측이 쉽도록 하는 방법을 추가로 적용할 수 있도록 하자
+            if ((true == MF_Check_SAT()) && (true == R_T_WasOverlap))                   // 코드개선; 향후, 다른 조건에서도 최대한 분기문을 줄여서 분기예측이 쉽도록 하는 방법을 추가로 적용할 수 있도록 하자
             {
                 P_T_ColliderA->MF_On_OverlapIng(P_T_ColliderB);
                 P_T_ColliderB->MF_On_OverlapIng(P_T_ColliderA);
@@ -132,26 +132,32 @@ bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _Collider
     case _COLLIDER_2D_TOPVEIW:
     case _COLLIDER_2D_ISOMETRICVIEW:
 
-        Vector2 Vec2_T_PositionA = _ColliderA->MF_Get_ColliderPositionAsVector2();
-        Vector2 Vec2_T_PositionB = _ColliderB->MF_Get_ColliderPositionAsVector2();
+        // 코드개선; 캐싱전용 멤버변수 이용
+        Vec2_M_ColliderPositionA = _ColliderA->MF_Get_ColliderPositionAsVector2();
+        Vec2_M_ColliderPositionB = _ColliderB->MF_Get_ColliderPositionAsVector2();
 
         Vector2 Vec2_T_RadiusA = _ColliderA->MF_Get_ColliderScale2D();
         Vector2 Vec2_T_RadiusB = _ColliderB->MF_Get_ColliderScale2D();
 
-        if ((Vec2_T_PositionA - Vec2_T_PositionB).Length() < (Vec2_T_RadiusA.Length() - Vec2_T_RadiusB.Length()))
+        // 중심점과의 거리가 각 충돌체의 반지름의 합보다 작으면 충돌한 것으로 간주
+        if (((Vec2_M_ColliderPositionB - Vec2_M_ColliderPositionA).Length()) < (fabs((Vec2_T_RadiusA.Length() + Vec2_T_RadiusB.Length()))))
         {
             return true;
         }
 
         break;
     default:
-        Vector3 Vec3_T_PositionA = _ColliderA->MF_Get_ColliderPositionAsVector3();
-        Vector3 Vec3_T_PositionB = _ColliderB->MF_Get_ColliderPositionAsVector3();
+        // 코드개선; 캐싱전용 멤버변수 이용
+        Vec3_M_ColliderPositionA = _ColliderA->MF_Get_ColliderPositionAsVector3();
+        Vec3_M_ColliderPositionB = _ColliderB->MF_Get_ColliderPositionAsVector3();
+
+        Vec3_M_ColliderDistanceEachOther = Vec3_M_ColliderPositionB - Vec3_M_ColliderPositionA;
 
         Vector3 Vec3_T_RadiusA = _ColliderA->MF_Get_ColliderScale3D();
         Vector3 Vec3_T_RadiusB = _ColliderB->MF_Get_ColliderScale3D();
         
-        if ((Vec3_T_PositionA - Vec3_T_PositionB).Length() < (Vec3_T_RadiusA.Length() - Vec3_T_RadiusB.Length()))
+        // 중심점과의 거리가 각 충돌체의 반지름의 합보다 작으면 충돌한 것으로 간주
+        if ((Vec3_M_ColliderDistanceEachOther.Length()) < (fabs((Vec3_T_RadiusA.Length() + Vec3_T_RadiusB.Length()))))
         {
             return true;
         }
@@ -163,7 +169,39 @@ bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _Collider
 }
 
 
-bool C_CollisionManager::MF_Check_SAT(C_Collider2D* _ColliderA, C_Collider2D* _ColliderB)
+bool C_CollisionManager::MF_Check_SAT()
 {
-    return false;
+    // 월드상의 충돌체의 꼭지점 위치를 찾아서, 각 표면 방향을 알아낸다.
+    // 이 방향벡터를 투영축으로 사용할 것
+    Vector3 Vec3_T_ProjectionAxis[4] = {};
+    vProj[0] = XMVector3TransformCoord(Vec3(0.5f, 0.5f, 0.f), matLeft) - XMVector3TransformCoord(Vec3(-0.5f, 0.5f, 0.f), matLeft);
+    vProj[1] = XMVector3TransformCoord(Vec3(-0.5f, -0.5f, 0.f), matLeft) - XMVector3TransformCoord(Vec3(-0.5f, 0.5f, 0.f), matLeft);
+    vProj[2] = XMVector3TransformCoord(Vec3(0.5f, 0.5f, 0.f), matRight) - XMVector3TransformCoord(Vec3(-0.5f, 0.5f, 0.f), matRight);
+    vProj[3] = XMVector3TransformCoord(Vec3(-0.5f, -0.5f, 0.f), matRight) - XMVector3TransformCoord(Vec3(-0.5f, 0.5f, 0.f), matRight);
+
+    for (int j = 0; j < 4; ++j)
+    {
+        // 4개의 투영축 중에서 하나를 투영시킬 목적지 방향으로 정한다.
+        Vec3 vProjTarget = vProj[j];
+        vProjTarget.Normalize();
+
+        // 해당 투영 축으로 나머지 4개의 투영축 벡터를 투영시킨 거리의 절반을 구한다.
+        float ProjDist = 0.f;
+        for (int i = 0; i < 4; ++i)
+        {
+            ProjDist += fabs(vProjTarget.Dot(vProj[i]));
+        }
+        ProjDist /= 2.f;
+
+        // 두 충돌체의 중심점을 이은 벡터도 투영시킨다.
+        float fCenter = fabs(vProjTarget.Dot(Vec3_M_ColliderDistanceEachOther));
+
+        // 중심끼리 이은 벡터의 투영길이가, 두 충돌체의 투영 면적 절반보다 멀면, 
+        // 둘 사이를 나눌 수 있는 분리축이 존재한다.
+        if (ProjDist < fCenter)
+            return false;
+    }
+
+    // 모든 테스트를 다 통과하면, 투 충돌체는 겹쳐있다.
+    return true;
 }
