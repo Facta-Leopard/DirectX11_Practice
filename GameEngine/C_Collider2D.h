@@ -30,7 +30,7 @@ protected:
 public:
     CLONE(C_Collider2D)
 
-    virtual void MF_Prepare() override;
+        virtual void MF_Prepare() override;
 
     virtual void MF_ComponentTick() override;
 
@@ -60,19 +60,17 @@ public:
 
         switch (T_ColliderType)
         {
-        case _COLLIDER_2D_SIDESCROLL_:
-            Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, _ColliderScale3D.y, 0.f);
-            break;
+
         case _COLLIDER_2D_TOPVEIW:
-            Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, 0.f, _ColliderScale3D.z);
-            break;
         case _COLLIDER_2D_ISOMETRICVIEW:
+
             Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, 0.f, _ColliderScale3D.z);
+
             break;
-        case _COLLIDER_3D_SAT_ON:
-        case _COLLIDER_3D_SAT_OFF:
-        case _COLLIDER_TYPE_END:
         default:
+
+            Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, _ColliderScale3D.y, 0.f);
+
             break;
         }
     }
@@ -80,6 +78,38 @@ public:
     inline Matrix MF_Get_ColliderPosition()
     {
         return Mat_M_CollisionPosition;
+    }
+
+    inline Vector3 MF_Get_ColliderPositionAsVector3()
+    {
+        return Mat_M_CollisionPosition.Translation();
+    }
+
+    inline Vector2 MF_Get_ColliderPositionAsVector2()
+    {
+        E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
+
+        Vector3 Vec3_T_Position = Mat_M_CollisionPosition.Translation();
+
+        switch (T_ColliderType)
+        {
+        case _COLLIDER_2D_TOPVEIW:
+        case _COLLIDER_2D_ISOMETRICVIEW:
+
+            return (Vector2)(Vec3_T_Position.x, Vec3_T_Position.z);
+
+            break;
+        default:
+
+            return (Vector2)(Vec3_T_Position.x, Vec3_T_Position.y);
+
+            break;
+        }
+    }
+
+    inline Vector3 MF_Get_ColliderPositionAsVector3()
+    {
+        return Mat_M_CollisionPosition.Translation();
     }
 
     inline void MF_Set_ColliderPosition(Matrix _ColliderPosition)

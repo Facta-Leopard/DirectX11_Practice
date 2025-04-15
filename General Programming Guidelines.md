@@ -96,6 +96,7 @@ To maintain consistency and readability, all class members should follow the ord
 ## 5. Collision Calculation Policy
 
 ### 5.1. Collision Flow Overview
+
 Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Check center distance to filter out obvious misses -> If needed, do a more accurate SAT check -> Final result handling
 
 ---
@@ -106,7 +107,11 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - This type(`collision calculation type`) fully controls how collision checks will run during that frame.
 
-- First, center distance is used to quickly remove non-colliding objects. SAT is only used when checked or customed.
+- First, center distance is used to quickly remove non-colliding objects.
+
+- SAT is only used when checked or customed.
+
+- Inspired by `functional programming`, collision logic uses `lazy evaluation` and view-based caching to reduce redundant work.
 
 ---
 
@@ -128,7 +133,23 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.4. Benefits
+### 5.4. View-Aware Caching Policy
+
+- `To skip useless calculations`, the engine chooses what to convert based on the `current view(2D or 3D)`.
+
+- It follows a `lazy and smart style` that mimics `functional programming`.
+
+- In this system, collider positions are `calculated every frame using matrices`, but they are `not pre-converted into Vec2 or Vec3 in advance`.
+
+- Instead, the `Oollision Manager(C_CollisonManager)` converts only the parts of the matrix needed for the current view `when a collision check happens, and stores them` for reuse.
+
+- This helps reduce unnecessary work and `keeps things flexible`.
+
+- `Scale values`, which are mainly `used in OBB checks`, are `not included in this logic` and are `handled separately`.
+
+---
+
+### 5.5. Benefits
 
 - **Clear process**: The steps are always the same based on the collision type.
 
@@ -138,9 +159,13 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - **Clear rules**: The stage sets the rule, and the collision manager only runs the logic.
 
+- **Smart caching**: Only needed data is transformed and cached, saving resources and avoiding redundant calculations.
+
+- **Cleaner logic flow**: Because the calculations depend on the current view, the engine avoids rigid logic paths and adapts flexibly.
+
 ---
 
-### 5.5. Caution
+### 5.6. Caution
 
 - **StageManager should not control collision types directly.**
 

@@ -94,12 +94,7 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
             ////// 중심점끼리 계산시 겹치는지 확인
             bool T_IsDistanceOverlap = MF_Check_DistanceBetweenCenters(P_T_ColliderA, P_T_ColliderB);
 
-            if (false == T_IsDistanceOverlap)                                 // 조기반환; 중심끼리 거리가 겹치지 않으면 계산할 필요가 없음; 향후, 그냥 무조건 바로 SAT로 가는 옵션을 추가하는 것도 생각해보자
-            {
-                continue;
-            }
-
-            if (_COLLIDER_3D_SAT_OFF == E_M_ColliderType)                     // 조기반환; SAT 계산모드가 켜져있지 않다면, 굳이 SAT를 계산할 필요가 없음
+            if ((false == T_IsDistanceOverlap) && (_COLLIDER_3D_SAT_OFF == E_M_ColliderType))               // 조기반환; 중심끼리 거리가 겹치지 않고, SAT 계산모드가 켜져있지 않다면 계산할 필요가 없으며, Narrow Phase를 통해 오버헤드 감소시킴; 향후, 그냥 무조건 바로 SAT로 가는 옵션을 추가하는 것도 생각해보자
             {
                 continue;
             }
@@ -137,29 +132,34 @@ bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _Collider
     case _COLLIDER_2D_TOPVEIW:
     case _COLLIDER_2D_ISOMETRICVIEW:
 
-        Matrix MAT_T_PositionA = _ColliderA->MF_Get_ColliderPosition();
-        Matrix MAT_T_PositionB = _ColliderB->MF_Get_ColliderPosition();
+        Vector2 Vec2_T_PositionA = _ColliderA->MF_Get_ColliderPositionAsVector2();
+        Vector2 Vec2_T_PositionB = _ColliderB->MF_Get_ColliderPositionAsVector2();
 
         Vector2 Vec2_T_RadiusA = _ColliderA->MF_Get_ColliderScale2D();
         Vector2 Vec2_T_RadiusB = _ColliderB->MF_Get_ColliderScale2D();
 
-        Vec2_T_RadiusA.l
-
-
-        _ColliderB->MF_Get_ColliderScale2D();
-
+        if ((Vec2_T_PositionA - Vec2_T_PositionB).Length() < (Vec2_T_RadiusA.Length() - Vec2_T_RadiusB.Length()))
+        {
+            return true;
+        }
 
         break;
     default:
-        Matrix MAT_T_PositionA = _ColliderA->MF_Get_ColliderPosition();
-        Matrix MAT_T_PositionB = _ColliderB->MF_Get_ColliderPosition();
+        Vector3 Vec3_T_PositionA = _ColliderA->MF_Get_ColliderPositionAsVector3();
+        Vector3 Vec3_T_PositionB = _ColliderB->MF_Get_ColliderPositionAsVector3();
 
-        Vector3 Vec2_T_RadiusA = _ColliderA->MF_Get_ColliderScale3D();
-        Vector3 Vec2_T_RadiusB = _ColliderB->MF_Get_ColliderScale3D();
-
+        Vector3 Vec3_T_RadiusA = _ColliderA->MF_Get_ColliderScale3D();
+        Vector3 Vec3_T_RadiusB = _ColliderB->MF_Get_ColliderScale3D();
+        
+        if ((Vec3_T_PositionA - Vec3_T_PositionB).Length() < (Vec3_T_RadiusA.Length() - Vec3_T_RadiusB.Length()))
+        {
+            return true;
+        }
 
         break;
     }
+    
+    return false;
 }
 
 
