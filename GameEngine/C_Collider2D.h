@@ -16,16 +16,15 @@ public:
     ~C_Collider2D();
 
 protected:
-    Vector2                         Vec2_M_ColliderScale2D;                         // Vector2; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
-    Vector3                         Vec3_M_ColliderScale3D;                         // Vector3; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
+    Vector3                         Vec3_M_ColliderScale;                               // Vector3; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
 
-    Matrix                          MAT_M_CollisionPosition;                        // Matrix; 유의! 오버헤드 감소 목적의 멤버 변수;
+    Matrix                          MAT_M_WorldCollision;                               // Matrix; 유의! 오버헤드 감소 목적의 멤버 변수;
 
-    Vector3                         Vec3_M_WorldMatrixDirection_s[_DIRECTION_END];    // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수;
+    Vector3                         Vec3_M_WorldMatrixDirection_s[_DIRECTION_END];      // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수; C_Transform의 방향벡터를 캐싱함
 
-    bool                            M_IsDependent;                                  // bool
+    bool                            M_IsDependent;                                      // bool; 오브젝트와의 의존성 관련
 
-    int                             M_OverLapCount;                                 // int; 유의! UINT로 하지않은 이유는 카운트 감소시 음수가 되서 오버플로우 될 수 있기 때문이며, 방어코드를 넣는 것이 도리어 함수호출로 인한 오버헤드 감소거 심할 것으로 사료되어 int로 씀
+    int                             M_OverLapCount;                                     // int; 유의! UINT로 하지않은 이유는 카운트 감소시 음수가 되서 오버플로우 될 수 있기 때문이며, 방어코드를 넣는 것이 도리어 함수호출로 인한 오버헤드 감소거 심할 것으로 사료되어 int로 씀
 
     // 향후, 알림 관련 부분은 스크립트 제작시 같이 해야할 듯
 
@@ -39,24 +38,14 @@ public:
     virtual void MF_ComponentTickAfter() override;
 
 public:
-    inline Vector2 MF_Get_ColliderScale2D()
+    inline Vector3 MF_Get_ColliderScale()
     {
-        return Vec2_M_ColliderScale2D;
+        return Vec3_M_ColliderScale;
     }
 
-    inline void MF_Set_ColliderScale2D(Vector2 _ColliderScale2D)
+    inline void MF_Set_ColliderScale(Vector3 _ColliderScale)
     {
-        Vec2_M_ColliderScale2D = _ColliderScale2D;
-    }
-
-    inline Vector3 MF_Get_ColliderScale3D()
-    {
-        return Vec3_M_ColliderScale3D;
-    }
-
-    inline void MF_Set_ColliderScale3D(Vector3 _ColliderScale3D)
-    {
-        Vec3_M_ColliderScale3D = _ColliderScale3D;
+        Vec3_M_ColliderScale = _ColliderScale;
 
         E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
 
@@ -66,12 +55,12 @@ public:
         case _COLLIDER_2D_TOPVEIW:
         case _COLLIDER_2D_ISOMETRICVIEW:
 
-            Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, 0.f, _ColliderScale3D.z);
+            Vec3_M_ColliderScale = (Vector3)(_ColliderScale.x, 0.f, _ColliderScale.z);
 
             break;
         default:
 
-            Vec2_M_ColliderScale2D = (Vector2)(_ColliderScale3D.x, _ColliderScale3D.y, 0.f);
+            Vec3_M_ColliderScale = (Vector3)(_ColliderScale.x, _ColliderScale.y, 0.f);
 
             break;
         }
@@ -79,31 +68,31 @@ public:
 
     inline Matrix MF_Get_ColliderPosition()
     {
-        return MAT_M_CollisionPosition;
+        return MAT_M_WorldCollision;
     }
 
     inline Vector3 MF_Get_ColliderPositionAsVector3()
     {
-        return MAT_M_CollisionPosition.Translation();
+        return MAT_M_WorldCollision.Translation();
     }
 
     inline Vector2 MF_Get_ColliderPositionAsVector2()
     {
         E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
 
-        Vector3 Vec3_T_Position = MAT_M_CollisionPosition.Translation();
+        Vector3 Vec3_T_Position = MAT_M_WorldCollision.Translation();
 
         switch (T_ColliderType)
         {
         case _COLLIDER_2D_TOPVEIW:
         case _COLLIDER_2D_ISOMETRICVIEW:
 
-            return (Vector2)(Vec3_T_Position.x, Vec3_T_Position.z);
+            return (Vector3)(Vec3_T_Position.x, Vec3_T_Position.z);
 
             break;
         default:
 
-            return (Vector2)(Vec3_T_Position.x, Vec3_T_Position.y);
+            return (Vector3)(Vec3_T_Position.x, Vec3_T_Position.y);
 
             break;
         }
@@ -111,12 +100,12 @@ public:
 
     inline Vector3 MF_Get_ColliderPositionAsVector3()
     {
-        return Mat_M_CollisionPosition.Translation();
+        return MAT_M_WorldCollision.Translation();
     }
 
     inline void MF_Set_ColliderPosition(Matrix _ColliderPosition)
     {
-        Mat_M_CollisionPosition = _ColliderPosition;
+        MAT_M_WorldCollision = _ColliderPosition;
     }
 
     inline bool MF_Get_IsDependent()

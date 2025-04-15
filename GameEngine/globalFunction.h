@@ -18,6 +18,102 @@ inline bool GF_Toggle(bool _input)
 	}
 }
 
+// 매트릭스 관련 전역함수
+// 전역으로 하면 오버헤드가 줄어드는 효과가 있다.
+//// 매트릭스에서 벡터로 뽑아내는 용도의 전영 함수
+//// 참조는 아직도 익숙하지 않다..
+//// NRVO 버전; inline 걸려있어도 컴파일러 최적화가 안될 수 있으므로 주석처리만 함 
+//inline Vector3 SF_Extract_ScaleFromMatrix(const Matrix& _Matrix)
+//{
+//	Vector3 Vec3_T_Scale = {};
+//
+//	Vec3_T_Scale.x = sqrtf((_Matrix._11 * _Matrix._11) + (_Matrix._21 * _Matrix._21) + (_Matrix._31 * _Matrix._31));
+//	Vec3_T_Scale.y = sqrtf((_Matrix._12 * _Matrix._12) + (_Matrix._22 * _Matrix._22) + (_Matrix._32 * _Matrix._32));
+//	Vec3_T_Scale.z = sqrtf((_Matrix._13 * _Matrix._13) + (_Matrix._23 * _Matrix._13) + (_Matrix._33 * _Matrix._33));
+//
+//	return Vec3_T_Scale;
+//}
+
+//// RVO 버전
+inline Vector3 SF_Extract_ScaleFromMatrix(const Matrix& _Matrix)
+{
+	return Vector3(
+		sqrtf((_Matrix._11 * _Matrix._11) + (_Matrix._21 * _Matrix._21) + (_Matrix._31 * _Matrix._31)),
+		sqrtf((_Matrix._12 * _Matrix._12) + (_Matrix._22 * _Matrix._22) + (_Matrix._32 * _Matrix._32)),
+		sqrtf((_Matrix._13 * _Matrix._13) + (_Matrix._23 * _Matrix._13) + (_Matrix._33 * _Matrix._33))
+	);
+}
+
+// 최적화 주석
+//// 리턴값은 Right, Up, Look 벡터 길이를 통해 추출한 스케일값 (Vec3_T_Scale)
+//// 지역 변수 없이 직접 리턴 → RVO + inline 최적화 유도
+//// MAT_M_Source는 스케일이 포함된 변환 행렬이어야 함
+
+
+//// 매트릭스 스케일만 조정
+//// 참조는 아직도 익숙하지 않다.
+inline void GF_Apply_ScaleToMatrix(Matrix& _Matrix, const Vector3& V_Scale)
+{
+	// X축 방향 벡터 (Right)
+	_Matrix._11 *= V_Scale.x;
+	_Matrix._12 *= V_Scale.x;
+	_Matrix._13 *= V_Scale.x;
+
+	// Y축 방향 벡터 (Up)
+	_Matrix._21 *= V_Scale.y;
+	_Matrix._22 *= V_Scale.y;
+	_Matrix._23 *= V_Scale.y;
+
+	// Z축 방향 벡터 (Look)
+	_Matrix._31 *= V_Scale.z;
+	_Matrix._32 *= V_Scale.z;
+	_Matrix._33 *= V_Scale.z;
+
+	// 유의! _41, _42, _43은 위치 값과 관련이 있어서 건드리면 대형사고 나니까 절대 조심
+}
+
+
+// Vector3 관련 전역함수
+//// Vector3 값을 리버스한다.
+inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
+{
+	Vector3 Vec_T_Scale = {};
+
+	if (0.f == _Vector3.x)						// 방어코드; 제로스케일 문제 사전 방지
+	{
+		Vec_T_Scale.x = LL_G_ZeroScaleFloat;
+	}
+	else
+	{
+		Vec_T_Scale.x = 1 / _Vector3.x;
+
+	}
+
+	if (0.f == _Vector3.y)						// 방어코드; 제로스케일 문제 사전 방지
+	{
+		Vec_T_Scale.y = LL_G_ZeroScaleFloat;
+	}
+	else
+	{
+		Vec_T_Scale.y = 1 / _Vector3.y;
+
+	}
+
+	if (0.f == _Vector3.z)						// 방어코드; 제로스케일 문제 사전 방지
+	{
+		Vec_T_Scale.z = LL_G_ZeroScaleFloat;
+	}
+	else
+	{
+		Vec_T_Scale.z = 1 / _Vector3.z;
+
+	}
+
+	return Vec_T_Scale;
+}
+
+
+
 //향후, 구현예정이었으나 방향 바꿈; C_Component의 다형성을 이용해 자기자신 반환 함수 구현; C_Component::MF_Get_Myself()
 //// Component 분류를 위한 Switch문
 //{

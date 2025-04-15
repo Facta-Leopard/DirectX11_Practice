@@ -1,25 +1,41 @@
 # General Programming Guidelines
 - **Made by Facta-Leopard**: [https://github.com/Facta-Leopard](https://github.com/Facta-Leopard)
 
-> All design decisions are made with `low-level hardware optimization` in mind, focusing not only on compiler output but on `how the CPU executes instructions, manages branches, handles caches, and traverses memory`.  
+## The One Who Recompiled an Old Dream. Yes, It's Me!
 
-> This mindset is why I chose to begin programming with `C` and `C++`, aiming for full control over execution rather than relying on abstraction.  
+- All design decisions are made with `low-level hardware optimization` in mind, focusing not only on compiler output but on `how the CPU executes instructions, manages branches, handles caches, and traverses memory`.
 
-> (But, I'm a `APPLE BITCH`, so i wnat to develop with `MetalAPI` via `SWIFT`.  
+- This mindset is why I chose to begin programming with `C` and `C++`, aiming for full control over execution rather than relying on abstraction.
 
-> It is also the reason I began programming through `GAME DEVELOPMENT`, a field where `logic`, `system architecture`, and `creative expression` come together as one.
+- (But, I'm a `APPLE BITCH`, so i wnat to develop with `MetalAPI` via `SWIFT`.
+
+- It is also the reason I began programming through `GAME DEVELOPMENT`, a field where `logic`, `system architecture`, and `creative expression` come together as one.
 
 ## 1. Key Considerations
 
 - Regularly update and validate transformation matrices to avoid discrepancies during gameplay or simulation.
 
-- Maintain separation of concerns when handling transformations, ensuring that each system (rendering, physics, etc.) has access to the required data without interference.
+- Maintain separation of concerns when handling transformations, ensuring that each system (rendering, physics, and so on.) has access to the required data without interference.
 
 - Use `quaternion-based matrices` for `GPU-side` `transforms` and `vector-based logic` for `CPU-side` `collision` checks to reduce overhead.
 
 ---
 
-## 2. Class Member Declaration Order
+## 2. Function Return Style & Optimization
+
+- Prefer `RVO(Return Value Optimization)` style when returning objects.
+
+- Return values should be directly constructed without temporary variables.
+
+- However, if code gets too messy or error-prone, `NRVO(Named RVO)` can be used instead.
+
+- I tend to make frequent typos, so I intentionally mix `RVO` and `NRVO`.
+
+- In such cases, I always leave a comment explaining the choice.
+
+---
+
+## 3. Class Member Declaration Order
 
 To maintain consistency and readability, all class members should follow the order below:
 
@@ -83,18 +99,18 @@ To maintain consistency and readability, all class members should follow the ord
 
 ---
 
-## 3. Scale Handling Guidelines
+## 4. Scale Handling Guidelines
 
-### 3.1. Negative Scale Values
+### 4.1. Negative Scale Values
 
 - When using **negative scale values**, exercise caution, particularly when interacting with libraries or systems that rely on positional data (e.g., physics engines, collision detection). Negative scales may lead to unexpected behaviors such as flipped geometries or incorrect transformations.
 
-### 3.2. Zero Scale Values
+### 4.2. Zero Scale Values
 - **Scale values of 0** can lead to issues such as rendering failures or incorrect matrix transformations. It is recommended to either **clamp** the scale to a small positive value or implement **exception handling** to prevent these errors. This ensures that objects with scale set to 0 do not cause unexpected behavior in the system.
 
 ---
 
-## 4. General Guidelines for Transformations
+## 5. General Guidelines for Transformations
 
 - **World transformation matrices** should be updated consistently when position, rotation, or scale changes.
 
@@ -104,15 +120,15 @@ To maintain consistency and readability, all class members should follow the ord
 
 ---
 
-## 5. Collision Calculation Policy
+## 6. Collision Calculation Policy
 
-### 5.1. Collision Flow Overview
+### 6.1. Collision Flow Overview
 
 Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Check center distance to filter out obvious misses -> If needed, do a more accurate SAT check -> Final result handling
 
 ---
 
-### 5.2. Summary
+### 6.2. Summary
 
 - Each stage has its own collision calculation type(`enum or other Structure`).
 
@@ -126,7 +142,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.3. Collision Pair Storage Policy
+### 6.3. Collision Pair Storage Policy
 
 - `std::unordered_map` is used to store collision pair states, offering scalability and fast lookup for increasing collision objects.
 
@@ -144,7 +160,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.4. View-Aware Caching Policy
+### 6.4. View-Aware Caching Policy
 
 - `To skip useless calculations`, the engine chooses what to convert based on the `current view(2D or 3D)`.
 
@@ -162,7 +178,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.5. Benefits
+### 6.5. Benefits
 
 - **Clear process**: The steps are always the same based on the collision type.
 
@@ -178,7 +194,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-### 5.6. Caution
+### 6.6. Caution
 
 - Using std::unordered_map requires `careful bucket sizing`.
 
