@@ -1,8 +1,9 @@
 # Frame Execute Method Naming Convention for This Practice Solution
 - **Made by Facta-Leopard**: [https://github.com/Facta-Leopard](https://github.com/Facta-Leopard)
 
-This document defines the naming convention for methods executed per frame in a real-time system.  
-Each level has a clear role and naming consistency to ensure readability and maintainability.
+- This document defines the naming convention for methods executed per frame in a real-time system.  
+
+- Each level has a clear role and naming consistency to ensure readability and maintainability.
 
 ---
 
@@ -36,12 +37,16 @@ Each level has a clear role and naming consistency to ensure readability and mai
 
 ## Naming Rule
 
-All frame-execute methods must follow these additional rules for clarity and uniformity:
+**All frame-execute methods must follow these additional rules for clarity and uniformity:**
 
 - All method names **must start with the `MF_` prefix** to indicate that it is a member function.
+
 - The **verb following `MF_` must not have an underscore** if it stands alone and is clear.
+
 - If the method name includes **multiple words**, or **needs separation for clarity**, use an underscore after the verb.
+
 - **Getter and Setter functions** should use `MF_Get_` and `MF_Set_` as prefixes, respectively.
+
 - **Attach and Detach functions** should end with `Attach_` and `Detach_` respectively to indicate adding or removing components or elements.
 
 > `MF_Initialize()`
@@ -59,7 +64,7 @@ All frame-execute methods must follow these additional rules for clarity and uni
 > `MF_Attach_`  
 > `MF_Detach_`
 
-This convention improves readability while keeping short method names clean.
+**This convention improves readability while keeping short method names clean.**
 
 ---
 

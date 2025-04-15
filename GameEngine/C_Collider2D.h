@@ -19,7 +19,7 @@ protected:
     Vector2                         Vec2_M_ColliderScale2D;                       // Vector2; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
     Vector3                         Vec3_M_ColliderScale3D;                       // Vector3; 캐싱 목적의 멤버 변수; 유의! 함수호출의 오버헤드를 줄이기 위함
 
-    Matrix                          Mat_M_CollisionPosition;                      // Vector3; 캐싱 목적의 멤버 변수; 유의! 함수호출의 오버헤드를 줄이기 위함
+    Matrix                          Mat_M_CollisionPosition;                      // Matrix; 캐싱 목적의 멤버 변수; 유의! 함수호출의 오버헤드를 줄이기 위함
 
     bool                            M_IsDependent;                                // bool
 
@@ -122,24 +122,25 @@ public:
         ++M_OverLapCount;
     }
 
-    inline void MF_Set_Subtrct_OverlapCount()
-    {
-        --M_OverLapCount;
-    }
+    // 코드개선으로 인한 무효화
+    //inline void MF_Set_Subtrct_OverlapCount()
+    //{
+    //    --M_OverLapCount;
+    //}
 
 public:
-    void MF_On_OverlapBegin(C_Collider2D _Collider2D);
+    void MF_On_OverlapBegin(C_Collider2D* _Collider2D);
 
-    void MF_On_OverlapIng(C_Collider2D _Collider2D);
+    void MF_On_OverlapIng(C_Collider2D* _Collider2D);
 
-    void MF_On_OverlapEnd(C_Collider2D _Collider2D);
+    void MF_On_OverlapEnd(C_Collider2D* _Collider2D);
 
     // 콜백용 모듈함수; 향후, 스크립트 구성시 함수내용 .cpp에 적용할 수 있도록 할 것
-    void MF_Nofify_OverlapBegin(C_Collider2D _Collider2D);                      // 스크립트 구성시 마저 작성필요
+    void MF_Nofify_OverlapBegin(C_Collider2D* _Collider2D);                      // 스크립트 구성시 마저 작성필요
 
-    void MF_Nofify_OverlapIng(C_Collider2D _Collider2D);                        // 스크립트 구성시 마저 작성필요
+    void MF_Nofify_OverlapIng(C_Collider2D* _Collider2D);                        // 스크립트 구성시 마저 작성필요
 
-    void MF_NofifyOverlapEnd(C_Collider2D _Collider2D);                         // 스크립트 구성시 마저 작성필요
+    void MF_NofifyOverlapEnd(C_Collider2D* _Collider2D);                         // 스크립트 구성시 마저 작성필요
     
 };
 

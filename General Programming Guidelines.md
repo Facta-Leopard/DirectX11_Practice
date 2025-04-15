@@ -118,6 +118,8 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - Key pairs are stored as simple `ULARGE_INTEGER` types(Windows SDK) to avoid alignment issues and `#pragma pack(#)`.
 
+- However, since `ULARGE_INTEGER` is a union structure, **always use its internal `ULONGLONG` member `QuadPart` when using it as a hash key or a unique value**.  
+
 - If `POINT` is used instead, it may cause problems during physics calculations like those in StarCraft 1 because the `USHORT` values inside its union can only go up to `65535`.
 
 - Due to `this limit`, adding more colliders may fail because of `overflow` or `malfunction`.
@@ -158,31 +160,64 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ### Yoda Condition Rule
 
-When comparing against a constant or literal, always place it on the left side.  
+- When comparing against a constant or literal, always place it on the left side.  
 
-This helps prevent bugs caused by accidental assignment (`=`) in conditionals.
+- This helps prevent bugs caused by accidental assignment (`=`) in conditionals.
 
-I didn’t choose to be a Jedi… but I did choose Yoda.
+- I didn’t choose to be a Jedi… but I did choose Yoda.
 
-I don't really know much about Star Wars, but the name has a wise ring to it.
+- I don't really know much about Star Wars, but the name has a wise ring to it.
 
 ---
 
 ### Components are for data, scripts are for logic.
 
-I choose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
+- I choose to attach scripts directly to objects not manage them globally for making editor-based control and maintenance easier.
 
 ---
 
 ### Branch Split Rule
 
-If a function has 4 or more if or else if statements, and it may add more in the future, then it should be split the logic into separate functions.
+> **"Branch predictability drives speed. Nested ifs lead straight into unpredictability."**
 
-Too many conditions make it hard for the CPU to predict, which can slow things down.
+- If a function has 4 or more if or else if statements, and it may add more in the future, then it should be split the logic into separate functions.
 
-Splitting into functions makes the code cleaner and easier to update.
+- Too many conditions make it hard for the CPU to predict, which can slow things down.
 
-Function call cost is small, but bad branch prediction is expensive.
+- Splitting into functions makes the code cleaner and easier to update.
+
+- Function call cost is small, but bad branch prediction is expensive.
+
+- To reduce the overhead from branch misprediction, keep `switch-case` structures as `simple` as possible.
+
+- It’s better for SIMD and branch prediction to use value assignment instead of branching.
+
+#### Branch Prediction Table
+
+##### Diagram
+
+          [Condition A]
+             /    \
+         true     false
+         /          
+   [Condition B]          
+     /     \              
+ true     false          
+
+##### Overview
+
+| Style             | Compute Cost (cycles) | Branch Misprediction Cost (cycles) | Total Cost (cycles) |
+|-------------------|------------------------|-------------------------------------|----------------------|
+| Nested `if` (A)   | 325,000                | 64,400                              | 389,400              |
+| Flat `else-if` (B)| 325,000                | 26,600                              | 351,600              |
+
+- Both structures execute the same logic.
+
+- However, the **flat `else-if` chain avoids deep branching**, which results in **fewer branch prediction failures**.
+
+- **CPU prediction is critical** for performance in tight loops such as collision checks or update ticks.
+
+- In this test scenario (10,000 iterations), the `else-if` chain saved approximately **37,800 CPU cycles**.
 
 ---
 
@@ -196,27 +231,27 @@ Function call cost is small, but bad branch prediction is expensive.
 
 ### About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
 
-Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
+- Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
 
 ---
 
 ### Ternary Operator Rule
 
-Nested ternary is allowed only inside for or while loops — my personal rule for compactness and clarity.
+- Nested ternary is allowed only inside for or while loops — my personal rule for compactness and clarity.
 
-Outside loops, I choose if statements for better readability and cache safety.
+- Outside loops, I choose if statements for better readability and cache safety.
 
 ---
 
 ### Using `Getter` function for classfied
 
-I decide to use getters for other classes' members and access own class's members directly to keep things clear.
+- I decide to use getters for other classes' members and access own class's members directly to keep things clear.
 
 ---
 
 ### About Scale and Rotation Transformation
 
-The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem, and to avoid Gimbal Lock problem.
+- The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem, and to avoid Gimbal Lock problem.
 
 #### Overhead Comparison Table
 

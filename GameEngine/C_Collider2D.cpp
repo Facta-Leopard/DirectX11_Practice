@@ -50,36 +50,37 @@ void C_Collider2D::MF_ComponentTick()
 
 void C_Collider2D::MF_ComponentTickAfter()
 {
+	// 향후, 디버그 렌더는 별도로 매니저에서 관리하는 형태로 개선하는 것이 좋을 듯
 }
 
-void C_Collider2D::MF_On_OverlapBegin(C_Collider2D _Collider2D)
+void C_Collider2D::MF_On_OverlapBegin(C_Collider2D* _Collider2D)
 {
 	++M_OverLapCount;
 	MF_Nofify_OverlapBegin(_Collider2D);
 }
 
-void C_Collider2D::MF_On_OverlapIng(C_Collider2D _Collider2D)
+void C_Collider2D::MF_On_OverlapIng(C_Collider2D* _Collider2D)
 {
 	MF_Nofify_OverlapIng(_Collider2D);
 }
 
-void C_Collider2D::MF_On_OverlapEnd(C_Collider2D _Collider2D)
+void C_Collider2D::MF_On_OverlapEnd(C_Collider2D* _Collider2D)
 {
 	--M_OverLapCount;
 	MF_NofifyOverlapEnd(_Collider2D);
 }
 
-void C_Collider2D::MF_Nofify_OverlapBegin(C_Collider2D _Collider2D)
+void C_Collider2D::MF_Nofify_OverlapBegin(C_Collider2D* _Collider2D)
 {
 	// 스크립트 구성시 마저 작성필요
 }
 
-void C_Collider2D::MF_Nofify_OverlapIng(C_Collider2D _Collider2D)
+void C_Collider2D::MF_Nofify_OverlapIng(C_Collider2D* _Collider2D)
 {
 	// 스크립트 구성시 마저 작성필요
 }
 
-void C_Collider2D::MF_NofifyOverlapEnd(C_Collider2D _Collider2D)
+void C_Collider2D::MF_NofifyOverlapEnd(C_Collider2D* _Collider2D)
 {
 	// 스크립트 구성시 마저 작성필요
 }
