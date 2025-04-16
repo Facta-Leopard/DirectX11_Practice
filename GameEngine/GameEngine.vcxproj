@@ -260,7 +260,6 @@
     <ClCompile Include="C_TileRender.cpp" />
     <ClCompile Include="C_TimeManager.cpp" />
     <ClCompile Include="C_Transform.cpp" />
-    <ClCompile Include="globalFunction.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

@@ -1,4 +1,4 @@
-#include "pch.h"
+ï»¿#include "pch.h"
 #include "C_CollisionManager.h"
 
 C_CollisionManager::C_CollisionManager()
@@ -35,8 +35,8 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
 {
     C_Stage* P_T_CurrentStage = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage();
 
-    // Ãæµ¹Ã¼ °è»êÀ» ¾î¶»°Ô ÇÒ °ÍÀÎÁö Ä³½Ì
-    E_M_ColliderType = P_T_CurrentStage->MF_Get_ColliderType();                 // ¿À¹öÇìµå ÁÙÀÌ±â¿ë
+    // ì¶©ëŒì²´ ê³„ì‚°ì„ ì–´ë–»ê²Œ í•  ê²ƒì¸ì§€ ìºì‹±
+    E_M_ColliderType = P_T_CurrentStage->MF_Get_ColliderType();                 // ì˜¤ë²„í—¤ë“œ ì¤„ì´ê¸°ìš©
 
     C_Group* P_T_GroupA = P_T_CurrentStage->MF_Get_Groups(_GroupIndexB);
     C_Group* P_T_GroupB = P_T_CurrentStage->MF_Get_Groups(_GroupIndexB);
@@ -47,29 +47,29 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
     for (size_t i = 0; i < L_STL_P_T_ObjectA.size(); ++i)
     {
         C_Collider2D* P_T_ColliderA = L_STL_P_T_ObjectA[i]->MF_Get_Collider2DComponent();
-        if (nullptr == P_T_ColliderA)                                         // Á¶±â¹İÈ¯;
+        if (nullptr == P_T_ColliderA)                                         // ì¡°ê¸°ë°˜í™˜;
             continue;
 
         for (size_t j = 0; j < L_STL_P_T_ObjectB.size(); ++j)
         {
             C_Collider2D* P_T_ColliderB = L_STL_P_T_ObjectB[j]->MF_Get_Collider2DComponent();
             if (nullptr == P_T_ColliderB)
-                continue;                                                     // Á¶±â¹İÈ¯;
+                continue;                                                     // ì¡°ê¸°ë°˜í™˜;
 
-            // unordered map¿¡ ¾µ Å° °ª »ı¼º
-            ULARGE_INTEGER T_CollisionKey;                                    // À¯ÀÇ! ULARGE_INTEGER´Â À¯´Ï¿Â ±¸Á¶Ã¼ÀÌ¹Ç·Î, °ªÀ» »ç¿ëÇÒ ¶§´Â °ª ÀÚ·áÇüÀÎ ULONGLONGÀ¸·Î ÇØ¾ßÇÔ
+            // unordered mapì— ì“¸ í‚¤ ê°’ ìƒì„±
+            ULARGE_INTEGER T_CollisionKey;                                    // ìœ ì˜! ULARGE_INTEGERëŠ” ìœ ë‹ˆì˜¨ êµ¬ì¡°ì²´ì´ë¯€ë¡œ, ê°’ì„ ì‚¬ìš©í•  ë•ŒëŠ” ê°’ ìë£Œí˜•ì¸ ULONGLONGìœ¼ë¡œ í•´ì•¼í•¨
 
-            //// ÇØ½¬È­; Ã³À½¿¡ Æ÷ÀÎÅÍ(64ºñÆ®)¸¦ 2°³(128ºñÆ®)·Î ÇØ¼­ ÀÚÃ¼ ÇØ½¬°ªÀ¸·Î ¾²·Á´Ù, ºñÈ¿À²ÀûÀÓÀ» ±ú´İ°í ´Ù½Ã ID±âÁØÀ¸·Î ¼±È¸ÇÔ 
+            //// í•´ì‰¬í™”; ì²˜ìŒì— í¬ì¸í„°(64ë¹„íŠ¸)ë¥¼ 2ê°œ(128ë¹„íŠ¸)ë¡œ í•´ì„œ ìì²´ í•´ì‰¬ê°’ìœ¼ë¡œ ì“°ë ¤ë‹¤, ë¹„íš¨ìœ¨ì ì„ì„ ê¹¨ë‹«ê³  ë‹¤ì‹œ IDê¸°ì¤€ìœ¼ë¡œ ì„ íšŒí•¨ 
             DWORD T_DwordA = (DWORD)(P_T_ColliderA->MF_Get_EntityID());
             DWORD T_DwordB = (DWORD)(P_T_ColliderB->MF_Get_EntityID());
 
-            // ÇØ½¬È­¸¦ À§ÇÑ °ª Á¤·Ä
-            if (T_DwordA > T_DwordB) std::swap(T_DwordA, T_DwordB);           // ÇâÈÄ, ÃÖÀûÈ­°¡ µÈ´Ù´Â °¡Á¤ÇÏ¿¡´Â std::swap()À» ¾²´Â °Í°ú ¼öµ¿À¸·Î ÇÏ´Â °Í°ú ¿À¹öÇìµå°¡ º° Â÷ÀÌ°¡ ¾øÁö¸¸, ÇÔ¼ö È£Ãâ ½ºÅÃÀ» ¾ø¾Ö´Â °Íµµ °í·ÁÇØº¸ÀÚ
+            // í•´ì‰¬í™”ë¥¼ ìœ„í•œ ê°’ ì •ë ¬
+            if (T_DwordA > T_DwordB) std::swap(T_DwordA, T_DwordB);           // í–¥í›„, ìµœì í™”ê°€ ëœë‹¤ëŠ” ê°€ì •í•˜ì—ëŠ” std::swap()ì„ ì“°ëŠ” ê²ƒê³¼ ìˆ˜ë™ìœ¼ë¡œ í•˜ëŠ” ê²ƒê³¼ ì˜¤ë²„í—¤ë“œê°€ ë³„ ì°¨ì´ê°€ ì—†ì§€ë§Œ, í•¨ìˆ˜ í˜¸ì¶œ ìŠ¤íƒì„ ì—†ì• ëŠ” ê²ƒë„ ê³ ë ¤í•´ë³´ì
 
-            // À¯ÀÇ! Æ÷ÀÎÅÍ ±× ÀÚÃ¼¸¦ ÇØ½¬°ªÀ¸·Î ÀÌ¿ëÇÏ·Á´Ù, Å©±â ¹®Á¦·Î ÀÎÇØ ´õ¿í ´õ ´õ º¹ÀâÇÑ ¿¬»êÀ» ÇØ¾ßÇÔÀ» Áß°£¿¡ ±ú´Ş¾ÒÀ¸¹Ç·Î, °´Ã¼ÀÇ ID °ª ºÙÈ÷±â·Î ´Ù½Ã ¼±È¸
-            T_CollisionKey.QuadPart = (((DWORD)T_DwordA) << 32) | ((DWORD)T_DwordB);   // À¯ÀÇ! ULARGE_INTEGER´Â °ªÀÌ ¾Æ´Ñ SDK À¯´Ï¿ÂÀÌ¹Ç·Î, ¹ÙÀÌ³Ê¸® ÀÌµ¿ÇÏ·Á¸é ULONGLONG ÀÎ ÀÚ·áÇü °ªÀ» ÀÚ·áÇüÀÎ ULARGE_INTEGER.QuadPart·Î ´ëÀÔÇÏ¿© ¹Ù²Ù´Â °ÍÀÌ ¼±ÇàµÇ¾î¾ß ÇÔ
+            // ìœ ì˜! í¬ì¸í„° ê·¸ ìì²´ë¥¼ í•´ì‰¬ê°’ìœ¼ë¡œ ì´ìš©í•˜ë ¤ë‹¤, í¬ê¸° ë¬¸ì œë¡œ ì¸í•´ ë”ìš± ë” ë” ë³µì¡í•œ ì—°ì‚°ì„ í•´ì•¼í•¨ì„ ì¤‘ê°„ì— ê¹¨ë‹¬ì•˜ìœ¼ë¯€ë¡œ, ê°ì²´ì˜ ID ê°’ ë¶™íˆê¸°ë¡œ ë‹¤ì‹œ ì„ íšŒ
+            T_CollisionKey.QuadPart = (((DWORD)T_DwordA) << 32) | ((DWORD)T_DwordB);   // ìœ ì˜! ULARGE_INTEGERëŠ” ê°’ì´ ì•„ë‹Œ SDK ìœ ë‹ˆì˜¨ì´ë¯€ë¡œ, ë°”ì´ë„ˆë¦¬ ì´ë™í•˜ë ¤ë©´ ULONGLONG ì¸ ìë£Œí˜• ê°’ì„ ìë£Œí˜•ì¸ ULARGE_INTEGER.QuadPartë¡œ ëŒ€ì…í•˜ì—¬ ë°”ê¾¸ëŠ” ê²ƒì´ ì„ í–‰ë˜ì–´ì•¼ í•¨
 
-            // Å° °ªÀ» unordered map¿¡¼­ Ã£°í ¾øÀ¸¸é ³ÖÀ½
+            // í‚¤ ê°’ì„ unordered mapì—ì„œ ì°¾ê³  ì—†ìœ¼ë©´ ë„£ìŒ
             unordered_map<ULONGLONG, bool>::iterator T_Iterator = STL_M_SDKIsCollision.find(T_CollisionKey.QuadPart);
             if (T_Iterator == STL_M_SDKIsCollision.end())
             {
@@ -77,30 +77,30 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
                 T_Iterator = STL_M_SDKIsCollision.find(T_CollisionKey.QuadPart);
             }
 
-            // Áö¿öÁú ¿¹Á¤ÀÎÁö °ª È®ÀÎ
+            // ì§€ì›Œì§ˆ ì˜ˆì •ì¸ì§€ ê°’ í™•ì¸
             bool T_IsDelete = L_STL_P_T_ObjectA[i]->MF_Get_StateComponent()->MF_Get_IsDelete() || L_STL_P_T_ObjectB[j]->MF_Get_StateComponent()->MF_Get_IsDelete();
 
-            if (true == T_IsDelete)                                           // Á¶±â¹İÈ¯; Áö¿öÁú ¿¹Á¤ÀÌ¸é ±»ÀÌ °è»êÇÒ ÇÊ¿ä°¡ ¾øÀ½
+            if (true == T_IsDelete)                                           // ì¡°ê¸°ë°˜í™˜; ì§€ì›Œì§ˆ ì˜ˆì •ì´ë©´ êµ³ì´ ê³„ì‚°í•  í•„ìš”ê°€ ì—†ìŒ
             {
                 continue;
             }
 
-            // Àü¿¡ Ãæµ¹ÇÑÀûÀÌ ÀÖ´ÂÁö °ª ÂüÁ¶
-            bool& R_T_WasOverlap = STL_M_SDKIsCollision[T_CollisionKey.QuadPart];      // ¿À¹öÇìµå¸¦ ÁÙÀÌ±â À§ÇØ ÂüÁ¶Çü½Ä »ç¿ë
+            // ì „ì— ì¶©ëŒí•œì ì´ ìˆëŠ”ì§€ ê°’ ì°¸ì¡°
+            bool& R_T_WasOverlap = STL_M_SDKIsCollision[T_CollisionKey.QuadPart];      // ì˜¤ë²„í—¤ë“œë¥¼ ì¤„ì´ê¸° ìœ„í•´ ì°¸ì¡°í˜•ì‹ ì‚¬ìš©
 
-            // Ãæµ¹°è»ê ¸ğµâÈ­
+            // ì¶©ëŒê³„ì‚° ëª¨ë“ˆí™”
 
-            //// Áß½ÉÁ¡ °è»ê¹æ½Ä Àû¿ë
-            ////// Áß½ÉÁ¡³¢¸® °è»ê½Ã °ãÄ¡´ÂÁö È®ÀÎ
+            //// ì¤‘ì‹¬ì  ê³„ì‚°ë°©ì‹ ì ìš©
+            ////// ì¤‘ì‹¬ì ë¼ë¦¬ ê³„ì‚°ì‹œ ê²¹ì¹˜ëŠ”ì§€ í™•ì¸
             bool T_IsDistanceOverlap = MF_Check_DistanceBetweenCenters(P_T_ColliderA, P_T_ColliderB);
 
-            if ((false == T_IsDistanceOverlap) && (_COLLIDER_3D_SAT_OFF == E_M_ColliderType))               // Á¶±â¹İÈ¯; Áß½É³¢¸® °Å¸®°¡ °ãÄ¡Áö ¾Ê°í, SAT °è»ê¸ğµå°¡ ÄÑÁ®ÀÖÁö ¾Ê´Ù¸é °è»êÇÒ ÇÊ¿ä°¡ ¾øÀ¸¸ç, Narrow Phase¸¦ ÅëÇØ ¿À¹öÇìµå °¨¼Ò½ÃÅ´; ÇâÈÄ, ±×³É ¹«Á¶°Ç ¹Ù·Î SAT·Î °¡´Â ¿É¼ÇÀ» Ãß°¡ÇÏ´Â °Íµµ »ı°¢ÇØº¸ÀÚ
+            if ((false == T_IsDistanceOverlap) && (_COLLIDER_3D_SAT_OFF == E_M_ColliderType))               // ì¡°ê¸°ë°˜í™˜; ì¤‘ì‹¬ë¼ë¦¬ ê±°ë¦¬ê°€ ê²¹ì¹˜ì§€ ì•Šê³ , SAT ê³„ì‚°ëª¨ë“œê°€ ì¼œì ¸ìˆì§€ ì•Šë‹¤ë©´ ê³„ì‚°í•  í•„ìš”ê°€ ì—†ìœ¼ë©°, Narrow Phaseë¥¼ í†µí•´ ì˜¤ë²„í—¤ë“œ ê°ì†Œì‹œí‚´; í–¥í›„, ê·¸ëƒ¥ ë¬´ì¡°ê±´ ë°”ë¡œ SATë¡œ ê°€ëŠ” ì˜µì…˜ì„ ì¶”ê°€í•˜ëŠ” ê²ƒë„ ìƒê°í•´ë³´ì
             {
                 continue;
             }
 
-            //// ÇâÈÄ, ±×·ìÅ¸ÀÔ Á¶°Ç¿¡ µû¶ó, Á¶±â¹İÈ¯ °É¾î¹ö¸®´Â °Í°ú, SAT ³»ºÎ¿¡¼­ OBB¸¦ ¼øÂ÷·Î ÇÏ´Â °ÍÀÌ ÁÁÀ»Áöµµ »ı°¢ÇØº¸ÀÚ
-            if ((true == MF_Check_SAT()) && (true == R_T_WasOverlap))                   // ÄÚµå°³¼±; ÇâÈÄ, ´Ù¸¥ Á¶°Ç¿¡¼­µµ ÃÖ´ëÇÑ ºĞ±â¹®À» ÁÙ¿©¼­ ºĞ±â¿¹ÃøÀÌ ½±µµ·Ï ÇÏ´Â ¹æ¹ıÀ» Ãß°¡·Î Àû¿ëÇÒ ¼ö ÀÖµµ·Ï ÇÏÀÚ
+            //// í–¥í›„, ê·¸ë£¹íƒ€ì… ì¡°ê±´ì— ë”°ë¼, ì¡°ê¸°ë°˜í™˜ ê±¸ì–´ë²„ë¦¬ëŠ” ê²ƒê³¼, SAT ë‚´ë¶€ì—ì„œ OBBë¥¼ ìˆœì°¨ë¡œ í•˜ëŠ” ê²ƒì´ ì¢‹ì„ì§€ë„ ìƒê°í•´ë³´ì
+            if ((true == MF_Check_SAT()) && (true == R_T_WasOverlap))                   // ì½”ë“œê°œì„ ; í–¥í›„, ë‹¤ë¥¸ ì¡°ê±´ì—ì„œë„ ìµœëŒ€í•œ ë¶„ê¸°ë¬¸ì„ ì¤„ì—¬ì„œ ë¶„ê¸°ì˜ˆì¸¡ì´ ì‰½ë„ë¡ í•˜ëŠ” ë°©ë²•ì„ ì¶”ê°€ë¡œ ì ìš©í•  ìˆ˜ ìˆë„ë¡ í•˜ì
             {
                 P_T_ColliderA->MF_On_OverlapIng(P_T_ColliderB);
                 P_T_ColliderB->MF_On_OverlapIng(P_T_ColliderA);
@@ -132,14 +132,14 @@ bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _Collider
     case _COLLIDER_2D_TOPVEIW:
     case _COLLIDER_2D_ISOMETRICVIEW:
 
-        // ÄÚµå°³¼±; Ä³½ÌÀü¿ë ¸â¹öº¯¼ö ÀÌ¿ë
-        Vec2_M_ColliderPositionA = _ColliderA->MF_Get_ColliderPositionAsVector2();
-        Vec2_M_ColliderPositionB = _ColliderB->MF_Get_ColliderPositionAsVector2();
+        // ì½”ë“œê°œì„ ; ìºì‹±ì „ìš© ë©¤ë²„ë³€ìˆ˜ ì´ìš©
+        Vec3_S_ColliderPositionA = _ColliderA->MF_Get_Vector3FromCollisionMatrix();
+        Vec3_S_ColliderPositionB = _ColliderB->MF_Get_Vector3FromCollisionMatrix();
 
-        Vector2 Vec2_T_RadiusA = _ColliderA->MF_Get_ColliderScale2D();
-        Vector2 Vec2_T_RadiusB = _ColliderB->MF_Get_ColliderScale2D();
+        Vector2 Vec2_T_RadiusA = _ColliderA->MF_Get_ColliderScale();
+        Vector2 Vec2_T_RadiusB = _ColliderB->MF_Get_ColliderScale();
 
-        // Áß½ÉÁ¡°úÀÇ °Å¸®°¡ °¢ Ãæµ¹Ã¼ÀÇ ¹İÁö¸§ÀÇ ÇÕº¸´Ù ÀÛÀ¸¸é Ãæµ¹ÇÑ °ÍÀ¸·Î °£ÁÖ
+        // ì¤‘ì‹¬ì ê³¼ì˜ ê±°ë¦¬ê°€ ê° ì¶©ëŒì²´ì˜ ë°˜ì§€ë¦„ì˜ í•©ë³´ë‹¤ ì‘ìœ¼ë©´ ì¶©ëŒí•œ ê²ƒìœ¼ë¡œ ê°„ì£¼
         if (((Vec2_M_ColliderPositionB - Vec2_M_ColliderPositionA).Length()) < (fabs((Vec2_T_RadiusA.Length() + Vec2_T_RadiusB.Length()))))
         {
             return true;
@@ -147,7 +147,7 @@ bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _Collider
 
         break;
     default:
-        // ÄÚµå°³¼±; Ä³½ÌÀü¿ë ¸â¹öº¯¼ö ÀÌ¿ë
+        // ì½”ë“œê°œì„ ; ìºì‹±ì „ìš© ë©¤ë²„ë³€ìˆ˜ ì´ìš©
         Vec3_M_ColliderPositionA = _ColliderA->MF_Get_ColliderPositionAsVector3();
         Vec3_M_ColliderPositionB = _ColliderB->MF_Get_ColliderPositionAsVector3();
 
@@ -156,7 +156,7 @@ bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _Collider
         Vector3 Vec3_T_RadiusA = _ColliderA->MF_Get_ColliderScale3D();
         Vector3 Vec3_T_RadiusB = _ColliderB->MF_Get_ColliderScale3D();
         
-        // Áß½ÉÁ¡°úÀÇ °Å¸®°¡ °¢ Ãæµ¹Ã¼ÀÇ ¹İÁö¸§ÀÇ ÇÕº¸´Ù ÀÛÀ¸¸é Ãæµ¹ÇÑ °ÍÀ¸·Î °£ÁÖ
+        // ì¤‘ì‹¬ì ê³¼ì˜ ê±°ë¦¬ê°€ ê° ì¶©ëŒì²´ì˜ ë°˜ì§€ë¦„ì˜ í•©ë³´ë‹¤ ì‘ìœ¼ë©´ ì¶©ëŒí•œ ê²ƒìœ¼ë¡œ ê°„ì£¼
         if ((Vec3_M_ColliderDistanceEachOther.Length()) < (fabs((Vec3_T_RadiusA.Length() + Vec3_T_RadiusB.Length()))))
         {
             return true;
@@ -171,37 +171,71 @@ bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _Collider
 
 bool C_CollisionManager::MF_Check_SAT()
 {
-    // ¿ùµå»óÀÇ Ãæµ¹Ã¼ÀÇ ²ÀÁöÁ¡ À§Ä¡¸¦ Ã£¾Æ¼­, °¢ Ç¥¸é ¹æÇâÀ» ¾Ë¾Æ³½´Ù.
-    // ÀÌ ¹æÇâº¤ÅÍ¸¦ Åõ¿µÃàÀ¸·Î »ç¿ëÇÒ °Í
-    Vector3 Vec3_T_ProjectionAxis[4] = {};
-    vProj[0] = XMVector3TransformCoord(Vec3(0.5f, 0.5f, 0.f), matLeft) - XMVector3TransformCoord(Vec3(-0.5f, 0.5f, 0.f), matLeft);
-    vProj[1] = XMVector3TransformCoord(Vec3(-0.5f, -0.5f, 0.f), matLeft) - XMVector3TransformCoord(Vec3(-0.5f, 0.5f, 0.f), matLeft);
-    vProj[2] = XMVector3TransformCoord(Vec3(0.5f, 0.5f, 0.f), matRight) - XMVector3TransformCoord(Vec3(-0.5f, 0.5f, 0.f), matRight);
-    vProj[3] = XMVector3TransformCoord(Vec3(-0.5f, -0.5f, 0.f), matRight) - XMVector3TransformCoord(Vec3(-0.5f, 0.5f, 0.f), matRight);
+    //const Vector3& Vec3_T_CenterA, const Vector3 Vec3_T_DirA[3], const Vector3& Vec3_T_ScaleA,
+    //const Vector3& Vec3_T_CenterB, const Vector3 Vec3_T_DirB[3], const Vector3& Vec3_T_ScaleB,
+    //E_COLLIDER_TYPE E_ViewType
 
-    for (int j = 0; j < 4; ++j)
+    int L_AxisCount = 3;
+
+    switch (E_ViewType)
     {
-        // 4°³ÀÇ Åõ¿µÃà Áß¿¡¼­ ÇÏ³ª¸¦ Åõ¿µ½ÃÅ³ ¸ñÀûÁö ¹æÇâÀ¸·Î Á¤ÇÑ´Ù.
-        Vec3 vProjTarget = vProj[j];
-        vProjTarget.Normalize();
+    case _COLLIDER_2D_SIDESCROLL_:		// Z ë¬´íš¨ (XY í‰ë©´ ê¸°ì¤€)
+        L_AxisCount = 2;
+        break;
 
-        // ÇØ´ç Åõ¿µ ÃàÀ¸·Î ³ª¸ÓÁö 4°³ÀÇ Åõ¿µÃà º¤ÅÍ¸¦ Åõ¿µ½ÃÅ² °Å¸®ÀÇ Àı¹İÀ» ±¸ÇÑ´Ù.
-        float ProjDist = 0.f;
-        for (int i = 0; i < 4; ++i)
+    case _COLLIDER_2D_TOPVEIW:			// Y ë¬´íš¨ (XZ í‰ë©´ ê¸°ì¤€)
+    case _COLLIDER_2D_ISOMETRICVIEW:
+        L_AxisCount = 2;
+        break;
+
+    case _COLLIDER_3D_SAT_OFF:			// S.A.T ë¹„í™œì„±í™” (ê°•ì œ false ë°˜í™˜)
+        return false;
+
+    case _COLLIDER_3D_SAT_ON:
+    default:
+        L_AxisCount = 3;
+        break;
+    }
+
+    Vector3 Arr_Vec3_T_Axes[15];
+    int L_Index = 0;
+
+    for (int i = 0; i < L_AxisCount; ++i)
+        Arr_Vec3_T_Axes[L_Index++] = Vec3_T_DirA[i];
+
+    for (int i = 0; i < L_AxisCount; ++i)
+        Arr_Vec3_T_Axes[L_Index++] = Vec3_T_DirB[i];
+
+    for (int i = 0; i < L_AxisCount; ++i)
+    {
+        for (int j = 0; j < L_AxisCount; ++j)
         {
-            ProjDist += fabs(vProjTarget.Dot(vProj[i]));
+            Vector3 Vec3_T_Cross = Vec3_T_DirA[i].Cross(Vec3_T_DirB[j]);
+            if (Vec3_T_Cross.LengthSquared() > 1e-6f) // ê±°ì˜ 0ì— ê°€ê¹Œìš´ ì¶•ì€ ë¬´ì‹œ
+                Arr_Vec3_T_Axes[L_Index++] = Vec3_T_Cross.Normalize();
         }
-        ProjDist /= 2.f;
+    }
 
-        // µÎ Ãæµ¹Ã¼ÀÇ Áß½ÉÁ¡À» ÀÌÀº º¤ÅÍµµ Åõ¿µ½ÃÅ²´Ù.
-        float fCenter = fabs(vProjTarget.Dot(Vec3_M_ColliderDistanceEachOther));
+    Vector3 Vec3_T_Diff = Vec3_T_CenterB - Vec3_T_CenterA;
 
-        // Áß½É³¢¸® ÀÌÀº º¤ÅÍÀÇ Åõ¿µ±æÀÌ°¡, µÎ Ãæµ¹Ã¼ÀÇ Åõ¿µ ¸éÀû Àı¹İº¸´Ù ¸Ö¸é, 
-        // µÑ »çÀÌ¸¦ ³ª´­ ¼ö ÀÖ´Â ºĞ¸®ÃàÀÌ Á¸ÀçÇÑ´Ù.
-        if (ProjDist < fCenter)
+    for (int i = 0; i < L_Index; ++i)
+    {
+        const Vector3& Vec3_T_ProjAxis = Arr_Vec3_T_Axes[i];
+
+        float L_RadiusA = 0.f;
+        for (int j = 0; j < L_AxisCount; ++j)
+            L_RadiusA += fabs(Vec3_T_ProjAxis.Dot(Vec3_T_DirA[j])) * Vec3_T_ScaleA[j];
+
+        float L_RadiusB = 0.f;
+        for (int j = 0; j < L_AxisCount; ++j)
+            L_RadiusB += fabs(Vec3_T_ProjAxis.Dot(Vec3_T_DirB[j])) * Vec3_T_ScaleB[j];
+
+        float L_ProjDist = fabs(Vec3_T_ProjAxis.Dot(Vec3_T_Diff));
+
+        if (L_ProjDist > (L_RadiusA + L_RadiusB))
             return false;
     }
 
-    // ¸ğµç Å×½ºÆ®¸¦ ´Ù Åë°úÇÏ¸é, Åõ Ãæµ¹Ã¼´Â °ãÃÄÀÖ´Ù.
+    // ëª¨ë“  í…ŒìŠ¤íŠ¸ë¥¼ ë‹¤ í†µê³¼í•˜ë©´, íˆ¬ ì¶©ëŒì²´ëŠ” ê²¹ì³ìˆë‹¤.
     return true;
 }

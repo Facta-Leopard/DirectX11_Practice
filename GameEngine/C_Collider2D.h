@@ -18,9 +18,9 @@ public:
 protected:
     Vector3                         Vec3_M_ColliderScale;                               // Vector3; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
 
-    Matrix                          MAT_M_WorldCollision;                               // Matrix; 유의! 오버헤드 감소 목적의 멤버 변수;
+    Matrix                          MAT_M_CollisionMatrix;                               // Matrix; 유의! 오버헤드 감소 목적의 멤버 변수;
 
-    Vector3                         Vec3_M_WorldMatrixDirection_s[_DIRECTION_END];      // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수; C_Transform의 방향벡터를 캐싱함
+    Vector3                         Vec3_M_CollisionDirection_s[_DIRECTION_END];      // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수; C_Transform의 방향벡터를 캐싱함
 
     bool                            M_IsDependent;                                      // bool; 오브젝트와의 의존성 관련
 
@@ -31,7 +31,7 @@ protected:
 public:
     CLONE(C_Collider2D)
 
-        virtual void MF_Prepare() override;
+    virtual void MF_Prepare() override;
 
     virtual void MF_ComponentTick() override;
 
@@ -66,46 +66,37 @@ public:
         }
     }
 
-    inline Matrix MF_Get_ColliderPosition()
+    inline Matrix MF_Get_ColliderMatrix()
     {
-        return MAT_M_WorldCollision;
+        return MAT_M_CollisionMatrix;
     }
 
-    inline Vector3 MF_Get_ColliderPositionAsVector3()
-    {
-        return MAT_M_WorldCollision.Translation();
-    }
-
-    inline Vector2 MF_Get_ColliderPositionAsVector2()
+    inline Vector3 MF_Get_Vector3FromCollisionMatrix()
     {
         E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
 
-        Vector3 Vec3_T_Position = MAT_M_WorldCollision.Translation();
+        Vector3 Vec3_T_Position = MAT_M_CollisionMatrix.Translation();
 
+        // 뭐같은 인텔리전스 씨발.. 문제없는데 왜 에러띄운거야
         switch (T_ColliderType)
         {
         case _COLLIDER_2D_TOPVEIW:
         case _COLLIDER_2D_ISOMETRICVIEW:
-
-            return (Vector3)(Vec3_T_Position.x, Vec3_T_Position.z);
-
+            Vec3_T_Position.y = 0.f;
+            return Vec3_T_Position; // Vector3(Vec3_T_Position.x, 0.f, Vec3_T_Position.z);
+            
             break;
         default:
-
-            return (Vector3)(Vec3_T_Position.x, Vec3_T_Position.y);
+            Vec3_T_Position.z = 0.f;
+            return Vec3_T_Position; // Vector3(Vec3_T_Position.x, Vec3_T_Position.y, 0.f);
 
             break;
         }
     }
 
-    inline Vector3 MF_Get_ColliderPositionAsVector3()
+    inline void MF_Set_ColliderPosition(Matrix _ColliderMatrix)
     {
-        return MAT_M_WorldCollision.Translation();
-    }
-
-    inline void MF_Set_ColliderPosition(Matrix _ColliderPosition)
-    {
-        MAT_M_WorldCollision = _ColliderPosition;
+        MAT_M_CollisionMatrix = _ColliderMatrix;
     }
 
     inline bool MF_Get_IsDependent()

@@ -431,9 +431,6 @@
     <ClCompile Include="C_StateComponent.cpp">
       <Filter>4. Component\43. StateComponent</Filter>
     </ClCompile>
-    <ClCompile Include="globalFunction.cpp">
-      <Filter>0. Foundation\01. Global Header</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint">

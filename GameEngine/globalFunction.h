@@ -1,11 +1,11 @@
-#pragma once
+ï»¿#pragma once
 
 #include "pch.h"
 #include "component.h"
 
-// inline¿¡ ´ëÇÑ Àß¸øµÈ ÀÎ½ÄÀ» °³¼±ÇßÀ½
-// inlineÀº .cpp¾øÀÌµµ ¸µÅ·ÇÒ ¼ö ÀÖ°Ô ÇÏ´Â °Í°ú ÄÄÆÄÀÏ·¯ ÃÖÀûÈ­ÀÇ µÎ Á¾·ù°¡ ÀÖ¾úÀ½
-// ÀÌ ÇÔ¼ö´Â .cpp ¾øÀÌ ¾µ ¼ö ÀÖµµ·Ï ÇÏ´Â inline ÇÔ¼ö
+// inlineì— ëŒ€í•œ ì˜ëª»ëœ ì¸ì‹ì„ ê°œì„ í–ˆìŒ
+// inlineì€ .cppì—†ì´ë„ ë§í‚¹í•  ìˆ˜ ìˆê²Œ í•˜ëŠ” ê²ƒê³¼ ì»´íŒŒì¼ëŸ¬ ìµœì í™”ì˜ ë‘ ì¢…ë¥˜ê°€ ìˆì—ˆìŒ
+// ì´ í•¨ìˆ˜ëŠ” .cpp ì—†ì´ ì“¸ ìˆ˜ ìˆë„ë¡ í•˜ëŠ” inline í•¨ìˆ˜
 inline bool GF_Toggle(bool _input)
 {
 	if (_input)
@@ -18,11 +18,15 @@ inline bool GF_Toggle(bool _input)
 	}
 }
 
-// ¸ÅÆ®¸¯½º °ü·Ã Àü¿ªÇÔ¼ö
-// Àü¿ªÀ¸·Î ÇÏ¸é ¿À¹öÇìµå°¡ ÁÙ¾îµå´Â È¿°ú°¡ ÀÖ´Ù.
-//// ¸ÅÆ®¸¯½º¿¡¼­ º¤ÅÍ·Î »Ì¾Æ³»´Â ¿ëµµÀÇ Àü¿µ ÇÔ¼ö
-//// ÂüÁ¶´Â ¾ÆÁ÷µµ ÀÍ¼÷ÇÏÁö ¾Ê´Ù..
-//// NRVO ¹öÀü; inline °É·ÁÀÖ¾îµµ ÄÄÆÄÀÏ·¯ ÃÖÀûÈ­°¡ ¾ÈµÉ ¼ö ÀÖÀ¸¹Ç·Î ÁÖ¼®Ã³¸®¸¸ ÇÔ 
+// ë§¤íŠ¸ë¦­ìŠ¤ ê´€ë ¨ ì „ì—­í•¨ìˆ˜
+// ì „ì—­ìœ¼ë¡œ í•˜ë©´ ì˜¤ë²„í—¤ë“œê°€ ì¤„ì–´ë“œëŠ” íš¨ê³¼ê°€ ìˆë‹¤.
+//// ë§¤íŠ¸ë¦­ìŠ¤ì—ì„œ ë²¡í„°ë¡œ ë½‘ì•„ë‚´ëŠ” ìš©ë„ì˜ ì „ì˜ í•¨ìˆ˜
+//// ì°¸ì¡°ëŠ” ì•„ì§ë„ ìµìˆ™í•˜ì§€ ì•Šë‹¤..
+//// ë¦¬í„´ê°’ì€ Right, Up, Look ë²¡í„° ê¸¸ì´ë¥¼ í†µí•´ ì¶”ì¶œí•œ ìŠ¤ì¼€ì¼ê°’ (Vec3_T_Scale)
+//// ì§€ì—­ ë³€ìˆ˜ ì—†ì´ ì§ì ‘ ë¦¬í„´ â†’ RVO + inline ìµœì í™” ìœ ë„
+//// MAT_M_SourceëŠ” ìŠ¤ì¼€ì¼ì´ í¬í•¨ëœ ë³€í™˜ í–‰ë ¬ì´ì–´ì•¼ í•¨
+// 
+//// NRVO ë²„ì „; inline ê±¸ë ¤ìˆì–´ë„ ì»´íŒŒì¼ëŸ¬ ìµœì í™”ê°€ ì•ˆë  ìˆ˜ ìˆìœ¼ë¯€ë¡œ ì£¼ì„ì²˜ë¦¬ë§Œ í•¨ 
 //inline Vector3 SF_Extract_ScaleFromMatrix(const Matrix& _Matrix)
 //{
 //	Vector3 Vec3_T_Scale = {};
@@ -34,8 +38,8 @@ inline bool GF_Toggle(bool _input)
 //	return Vec3_T_Scale;
 //}
 
-//// RVO ¹öÀü
-inline Vector3 SF_Extract_ScaleFromMatrix(const Matrix& _Matrix)
+//// RVO ë²„ì „
+inline Vector3 SF_Get_ScaleVector3FromMatrix(const Matrix& _Matrix)
 {
 	return Vector3(
 		sqrtf((_Matrix._11 * _Matrix._11) + (_Matrix._21 * _Matrix._21) + (_Matrix._31 * _Matrix._31)),
@@ -44,82 +48,103 @@ inline Vector3 SF_Extract_ScaleFromMatrix(const Matrix& _Matrix)
 	);
 }
 
-// ÃÖÀûÈ­ ÁÖ¼®
-//// ¸®ÅÏ°ªÀº Right, Up, Look º¤ÅÍ ±æÀÌ¸¦ ÅëÇØ ÃßÃâÇÑ ½ºÄÉÀÏ°ª (Vec3_T_Scale)
-//// Áö¿ª º¯¼ö ¾øÀÌ Á÷Á¢ ¸®ÅÏ ¡æ RVO + inline ÃÖÀûÈ­ À¯µµ
-//// MAT_M_Source´Â ½ºÄÉÀÏÀÌ Æ÷ÇÔµÈ º¯È¯ Çà·ÄÀÌ¾î¾ß ÇÔ
-
-
-//// ¸ÅÆ®¸¯½º ½ºÄÉÀÏ¸¸ Á¶Á¤
-//// ÂüÁ¶´Â ¾ÆÁ÷µµ ÀÍ¼÷ÇÏÁö ¾Ê´Ù.
-inline void GF_Apply_ScaleToMatrix(Matrix& _Matrix, const Vector3& V_Scale)
+// ë§¤íŠ¸ë¦­ìŠ¤ì—ì„œ ë°©í–¥ë²¡í„° ë½‘ì•„ë‚´ê¸°
+inline Vector3 GF_Get_DirectionVector3FromMatrix(const Matrix& _Matrix, E_DIRECTION_TYPE _DIRECTIONTYPE)
 {
-	// XÃà ¹æÇâ º¤ÅÍ (Right)
+	switch (_DIRECTIONTYPE)
+	{
+	case _DIRECTION_RIGHT:
+		return (Vector3)(_Matrix._11, _Matrix._12, _Matrix._13);
+
+	case _DIRECTION_UP:
+		return (Vector3)(_Matrix._21, _Matrix._22, _Matrix._23);
+
+	case _DIRECTION_FRONT:
+		return (Vector3)(_Matrix._31, _Matrix._32, _Matrix._33);
+	}
+}
+
+
+//// ë§¤íŠ¸ë¦­ìŠ¤ ìŠ¤ì¼€ì¼ë§Œ ì¡°ì •
+//// ì°¸ì¡°ëŠ” ì•„ì§ë„ ìµìˆ™í•˜ì§€ ì•Šë‹¤.
+inline void GF_Set_ScaleToMatrix(Matrix& _Matrix, const Vector3& V_Scale)
+{
+	// Xì¶• ë°©í–¥ ë²¡í„° (Right)
 	_Matrix._11 *= V_Scale.x;
 	_Matrix._12 *= V_Scale.x;
 	_Matrix._13 *= V_Scale.x;
 
-	// YÃà ¹æÇâ º¤ÅÍ (Up)
+	// Yì¶• ë°©í–¥ ë²¡í„° (Up)
 	_Matrix._21 *= V_Scale.y;
 	_Matrix._22 *= V_Scale.y;
 	_Matrix._23 *= V_Scale.y;
 
-	// ZÃà ¹æÇâ º¤ÅÍ (Look)
+	// Zì¶• ë°©í–¥ ë²¡í„° (Look)
 	_Matrix._31 *= V_Scale.z;
 	_Matrix._32 *= V_Scale.z;
 	_Matrix._33 *= V_Scale.z;
 
-	// À¯ÀÇ! _41, _42, _43Àº À§Ä¡ °ª°ú °ü·ÃÀÌ ÀÖ¾î¼­ °Çµå¸®¸é ´ëÇü»ç°í ³ª´Ï±î Àı´ë Á¶½É
+	// ìœ ì˜! _41, _42, _43ì€ ìœ„ì¹˜ ê°’ê³¼ ê´€ë ¨ì´ ìˆì–´ì„œ ê±´ë“œë¦¬ë©´ ëŒ€í˜•ì‚¬ê³  ë‚˜ë‹ˆê¹Œ ì ˆëŒ€ ì¡°ì‹¬
 }
 
+// Vector3 ê´€ë ¨ ì „ì—­í•¨ìˆ˜
+//// Vector3 ê°’ì„ ë¦¬ë²„ìŠ¤í•œë‹¤.
+//// NRVO ë²„ì „
+//inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
+//{
+//	Vector3 Vec_T_Scale = {};
+//
+//	if (0.f == _Vector3.x)						// ë°©ì–´ì½”ë“œ; ì œë¡œìŠ¤ì¼€ì¼ ë¬¸ì œ ì‚¬ì „ ë°©ì§€
+//	{
+//		Vec_T_Scale.x = LL_G_ZeroScaleFloat;
+//	}
+//	else
+//	{
+//		Vec_T_Scale.x = 1 / _Vector3.x;
+//
+//	}
+//
+//	if (0.f == _Vector3.y)						// ë°©ì–´ì½”ë“œ; ì œë¡œìŠ¤ì¼€ì¼ ë¬¸ì œ ì‚¬ì „ ë°©ì§€
+//	{
+//		Vec_T_Scale.y = LL_G_ZeroScaleFloat;
+//	}
+//	else
+//	{
+//		Vec_T_Scale.y = 1 / _Vector3.y;
+//
+//	}
+//
+//	if (0.f == _Vector3.z)						// ë°©ì–´ì½”ë“œ; ì œë¡œìŠ¤ì¼€ì¼ ë¬¸ì œ ì‚¬ì „ ë°©ì§€
+//	{
+//		Vec_T_Scale.z = LL_G_ZeroScaleFloat;
+//	}
+//	else
+//	{
+//		Vec_T_Scale.z = 1 / _Vector3.z;
+//
+//	}
+//
+//	return Vec_T_Scale;
+//}
 
-// Vector3 °ü·Ã Àü¿ªÇÔ¼ö
-//// Vector3 °ªÀ» ¸®¹ö½ºÇÑ´Ù.
-inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
+//// RVO ë²„ì „
+inline Vector3 GF_Set_InverseVector(const Vector3& Vec3_T_Source)
 {
-	Vector3 Vec_T_Scale = {};
-
-	if (0.f == _Vector3.x)						// ¹æ¾îÄÚµå; Á¦·Î½ºÄÉÀÏ ¹®Á¦ »çÀü ¹æÁö
-	{
-		Vec_T_Scale.x = LL_G_ZeroScaleFloat;
-	}
-	else
-	{
-		Vec_T_Scale.x = 1 / _Vector3.x;
-
-	}
-
-	if (0.f == _Vector3.y)						// ¹æ¾îÄÚµå; Á¦·Î½ºÄÉÀÏ ¹®Á¦ »çÀü ¹æÁö
-	{
-		Vec_T_Scale.y = LL_G_ZeroScaleFloat;
-	}
-	else
-	{
-		Vec_T_Scale.y = 1 / _Vector3.y;
-
-	}
-
-	if (0.f == _Vector3.z)						// ¹æ¾îÄÚµå; Á¦·Î½ºÄÉÀÏ ¹®Á¦ »çÀü ¹æÁö
-	{
-		Vec_T_Scale.z = LL_G_ZeroScaleFloat;
-	}
-	else
-	{
-		Vec_T_Scale.z = 1 / _Vector3.z;
-
-	}
-
-	return Vec_T_Scale;
+	return Vector3(
+		(Vec3_T_Source.x != 0.f) ? (1.f / Vec3_T_Source.x) : LL_G_ZeroScaleFloat,
+		(Vec3_T_Source.y != 0.f) ? (1.f / Vec3_T_Source.y) : LL_G_ZeroScaleFloat,
+		(Vec3_T_Source.z != 0.f) ? (1.f / Vec3_T_Source.z) : LL_G_ZeroScaleFloat
+	);
 }
 
 
 
-//ÇâÈÄ, ±¸Çö¿¹Á¤ÀÌ¾úÀ¸³ª ¹æÇâ ¹Ù²Ş; C_ComponentÀÇ ´ÙÇü¼ºÀ» ÀÌ¿ëÇØ ÀÚ±âÀÚ½Å ¹İÈ¯ ÇÔ¼ö ±¸Çö; C_Component::MF_Get_Myself()
-//// Component ºĞ·ù¸¦ À§ÇÑ Switch¹®
+//í–¥í›„, êµ¬í˜„ì˜ˆì •ì´ì—ˆìœ¼ë‚˜ ë°©í–¥ ë°”ê¿ˆ; C_Componentì˜ ë‹¤í˜•ì„±ì„ ì´ìš©í•´ ìê¸°ìì‹  ë°˜í™˜ í•¨ìˆ˜ êµ¬í˜„; C_Component::MF_Get_Myself()
+//// Component ë¶„ë¥˜ë¥¼ ìœ„í•œ Switchë¬¸
 //{
 //	inline C_Transform GF_ComponentTypeCheck(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)		// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)		// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component IS nullptr", L"in inline C_Transform GF_ComponentTypeCheck(), nullptr == _Component")
 //				return;
@@ -157,7 +182,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_Transform* GF_ConvertComponentToTransform(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToTransform(), nullptr == _Component")
 //		}
@@ -166,7 +191,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_Collider2D* GF_ConvertComponentToCollider2D(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToCollider2D(), nullptr == _Component")
 //		}
@@ -175,7 +200,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_Light2D* GF_ConvertComponentToLight2D(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToLight2D(), nullptr == _Component")
 //		}
@@ -184,7 +209,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_CameraComponent* GF_ConvertComponentToCameraComponent(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToCameraComponent(), nullptr == _Component")
 //		}
@@ -193,7 +218,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_MeshRender* GF_ConvertComponentToMeshRender(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToMeshRender(), nullptr == _Component")
 //		}
@@ -202,7 +227,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_SpriteRender* GF_ConvertComponentToSpriteRender(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToSpriteRender(), nullptr == _Component")
 //		}
@@ -211,7 +236,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_FlipbookRender* GF_ConvertComponentToFlipbookRender(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToFlipbookRender(), nullptr == _Component")
 //		}
@@ -220,7 +245,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_TileRender* GF_ConvertComponentToTileRender(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToTileRender(), nullptr == _Component")
 //		}
@@ -229,7 +254,7 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 //
 //	C_ParticleRender* GF_ConvertComponentToParticleRender(C_Component * _Component)
 //	{
-//		if (nullptr == _Component)			// ¹æ¾îÄÚµå
+//		if (nullptr == _Component)			// ë°©ì–´ì½”ë“œ
 //		{
 //			POPUP_DEBUG(L"C_Component Is nullptr", L"in C_Transform* GF_ConvertComponentToParticleRender(), nullptr == _Component")
 //		}
@@ -248,6 +273,86 @@ inline Vector3 GF_Apply_InverseVector(const Vector3& _Vector3)
 
 
 
+
+inline bool MF_Check_SAT_ByVectors(
+	const Vector3& Vec3_T_CenterA, const Vector3 Vec3_T_DirA[3], const Vector3& Vec3_T_ScaleA,
+	const Vector3& Vec3_T_CenterB, const Vector3 Vec3_T_DirB[3], const Vector3& Vec3_T_ScaleB,
+	E_COLLIDER_TYPE E_ViewType)
+{
+	// â–¶ ë·° íƒ€ì…ì— ë”°ë¼ ì‚¬ìš©í•  ì¶• ê°œìˆ˜ ê²°ì • (2D or 3D)
+	int L_AxisCount = 3;
+
+	switch (E_ViewType)
+	{
+	case _COLLIDER_2D_SIDESCROLL_:		// Z ë¬´íš¨ (XY í‰ë©´ ê¸°ì¤€)
+		L_AxisCount = 2;
+		break;
+
+	case _COLLIDER_2D_TOPVEIW:			// Y ë¬´íš¨ (XZ í‰ë©´ ê¸°ì¤€)
+	case _COLLIDER_2D_ISOMETRICVIEW:
+		L_AxisCount = 2;
+		break;
+
+	case _COLLIDER_3D_SAT_OFF:			// S.A.T ë¹„í™œì„±í™” (ê°•ì œ false ë°˜í™˜)
+		return false;
+
+	case _COLLIDER_3D_SAT_ON:
+	default:
+		L_AxisCount = 3;
+		break;
+	}
+
+	// â–¶ ë¶„ë¦¬ì¶•ì„ ë‹´ì„ ë°°ì—´ (ìµœëŒ€ 15ê°œ)
+	Vector3 Arr_Vec3_T_Axes[15];
+	int L_Index = 0;
+
+	// â–¶ Aì˜ ë¡œì»¬ ì¶• ì¶”ê°€
+	for (int i = 0; i < L_AxisCount; ++i)
+		Arr_Vec3_T_Axes[L_Index++] = Vec3_T_DirA[i];
+
+	// â–¶ Bì˜ ë¡œì»¬ ì¶• ì¶”ê°€
+	for (int i = 0; i < L_AxisCount; ++i)
+		Arr_Vec3_T_Axes[L_Index++] = Vec3_T_DirB[i];
+
+	// â–¶ A_i Ã— B_j ì™¸ì  ì¶• ê³„ì‚° (ì§êµ ê¸°ë°˜ ì¶• ìƒì„±)
+	for (int i = 0; i < L_AxisCount; ++i)
+	{
+		for (int j = 0; j < L_AxisCount; ++j)
+		{
+			Vector3 Vec3_T_Cross = Vec3_T_DirA[i].Cross(Vec3_T_DirB[j]);
+			if (Vec3_T_Cross.LengthSquared() > 1e-6f) // ê±°ì˜ 0ì— ê°€ê¹Œìš´ ì¶•ì€ ë¬´ì‹œ
+				Arr_Vec3_T_Axes[L_Index++] = Vec3_T_Cross.Normalize();
+		}
+	}
+
+	// â–¶ ë‘ ì¤‘ì‹¬ì  ê°„ì˜ ë²¡í„° (D)
+	Vector3 Vec3_T_Diff = Vec3_T_CenterB - Vec3_T_CenterA;
+
+	// â–¶ ê° ì¶•ì— ëŒ€í•´ íˆ¬ì˜ ë° ë¹„êµ
+	for (int i = 0; i < L_Index; ++i)
+	{
+		const Vector3& Vec3_T_ProjAxis = Arr_Vec3_T_Axes[i];
+
+		// [A ë°•ìŠ¤] íˆ¬ì˜ ë°˜ì§€ë¦„ ê³„ì‚°: âˆ‘ |ì¶• â‹… ë°©í–¥| Ã— ìŠ¤ì¼€ì¼
+		float L_RadiusA = 0.f;
+		for (int j = 0; j < L_AxisCount; ++j)
+			L_RadiusA += fabs(Vec3_T_ProjAxis.Dot(Vec3_T_DirA[j])) * Vec3_T_ScaleA[j];
+
+		// [B ë°•ìŠ¤] ë™ì¼ ë°©ì‹ìœ¼ë¡œ íˆ¬ì˜ ë°˜ì§€ë¦„ ê³„ì‚°
+		float L_RadiusB = 0.f;
+		for (int j = 0; j < L_AxisCount; ++j)
+			L_RadiusB += fabs(Vec3_T_ProjAxis.Dot(Vec3_T_DirB[j])) * Vec3_T_ScaleB[j];
+
+		// ì¤‘ì‹¬ ê°„ ê±°ë¦¬ íˆ¬ì˜ (D â‹… ì¶•)
+		float L_ProjDist = fabs(Vec3_T_ProjAxis.Dot(Vec3_T_Diff));
+
+		// â–¶ ë¶„ë¦¬ ì—¬ë¶€ íŒë‹¨: íˆ¬ì˜ ê±°ë¦¬ê°€ ë°˜ì§€ë¦„ í•©ë³´ë‹¤ í¬ë©´ ë¶„ë¦¬
+		if (L_ProjDist > (L_RadiusA + L_RadiusB))
+			return false;
+	}
+
+	return true; //ëª¨ë“  ì¶•ì—ì„œ ê²¹ì¹¨ â†’ ì¶©ëŒ
+}
 
 
 
