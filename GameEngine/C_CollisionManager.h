@@ -13,33 +13,30 @@ protected:
     unordered_map<ULONGLONG,bool>                   STL_M_SDKIsCollision;                           // unordered_map<ULARGE_INTEGER,bool>; 초반 버킷을 정하는 방식이며, 향후 확장성까지 고려하여 기존의 map보다는 더 순회며 조회가 더 빠를 것으로 예상되므로 STL 변경
 
     // 캐싱용 멤버 변수
-    UINT                                            SDK_M_BucketSize;                               // UINT; unordered_map 속도 증가를 위한 캐싱용; 초기값은 4095로 하고 다음은 65535; 향후, 이 부분은 확장성을 고려해서 더 많은 충돌체를 생각할 경우, 리해시를 줄이기 위한 값인 1048575로 하는 것이 좋을 것 같음(커피레이크 기준 300ms 추정)
-
     E_COLLIDER_TYPE                                 E_M_ColliderType;                               // E_COLLIDER_TYPE; 충돌계산 오버헤드를 줄이기 위한 캐싱용
 
     static Vector3                                  Vec3_S_ColliderPositionA;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
     static Vector3                                  Vec3_S_ColliderPositionB;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-    static Vector3                                  Vec3_S_ColliderDistanceEachOther;               // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용; 두 충돌체를 있는 벡터
 
-    static Vector2                                  Vec2_S_ColliderPositionA;                       // Vector2; 충돌계산 오버헤드를 줄이기 위한 캐싱용; MF_Check_DistanceBetweenCenters() 전용
-    static Vector2                                  Vec2_S_ColliderPositionB;                       // Vector2; 충돌계산 오버헤드를 줄이기 위한 캐싱용; MF_Check_DistanceBetweenCenters() 전용
+    static Vector3                                  Vec3_S_ColliderDistanceEachOther;               // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+    static Vector3                                  Vec3_S_ColliderRadiusA;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static Vector3                                  Vec3_S_ColliderRadiusB;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+    static Vector3                                  Vec3_S_ColliderScaleA;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static Vector3                                  Vec3_S_ColliderScaleB;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+    static Vector3                                  Vec3_S_ColliderDirection_sA[_DIRECTION_END];   // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static Vector3                                  Vec3_S_ColliderDirection_sB[_DIRECTION_END];   // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+    static E_COLLIDER_TYPE                          E_S_ColliderType;                              // E_COLLIDER_TYPE; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+    static int                                      S_AxisCount;                                   // int; 충돌계산 오버헤드를 줄이기 위한 캐싱용
 
 public:
     HRESULT MF_Initialize();
 
     void MF_Update();
-
-public:
-    inline UINT MF_Get_BucketSize()
-    {
-        return SDK_M_BucketSize;
-    }
-
-    inline void MF_Set_MF_Get_BucketSize(UINT _BucketSize)
-    {
-        SDK_M_BucketSize = _BucketSize;
-
-    }
 
 public:
     void MF_Check_SameGroup(USHORT _GroupA, USHORT _GroupB);

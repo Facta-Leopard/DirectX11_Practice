@@ -5,12 +5,10 @@ C_CollisionManager::C_CollisionManager()
 	: SDK_M_Group_s{}
     
     , STL_M_SDKIsCollision{}
-    , SDK_M_BucketSize(4096)
 
     , E_M_ColliderType(_COLLIDER_3D_SAT_ON)
 {
-	size_t T_Resize= ((size_t)(_GROUP_END) * (size_t)(_GROUP_END));
-	STL_M_SDKIsCollision.reserve(T_Resize);
+	STL_M_SDKIsCollision.reserve(65535);    // 2^16 - 1; 멀티플랫폼 확장 고려 버킷;
 }
 
 C_CollisionManager::~C_CollisionManager()
@@ -36,7 +34,7 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
     C_Stage* P_T_CurrentStage = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage();
 
     // 충돌체 계산을 어떻게 할 것인지 캐싱
-    E_M_ColliderType = P_T_CurrentStage->MF_Get_ColliderType();                 // 오버헤드 줄이기용
+    E_S_ColliderType = P_T_CurrentStage->MF_Get_ColliderType();                 // 오버헤드 줄이기용
 
     C_Group* P_T_GroupA = P_T_CurrentStage->MF_Get_Groups(_GroupIndexB);
     C_Group* P_T_GroupB = P_T_CurrentStage->MF_Get_Groups(_GroupIndexB);
@@ -60,14 +58,17 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
             ULARGE_INTEGER T_CollisionKey;                                    // 유의! ULARGE_INTEGER는 유니온 구조체이므로, 값을 사용할 때는 값 자료형인 ULONGLONG으로 해야함
 
             //// 해쉬화; 처음에 포인터(64비트)를 2개(128비트)로 해서 자체 해쉬값으로 쓰려다, 비효율적임을 깨닫고 다시 ID기준으로 선회함 
-            DWORD T_DwordA = (DWORD)(P_T_ColliderA->MF_Get_EntityID());
-            DWORD T_DwordB = (DWORD)(P_T_ColliderB->MF_Get_EntityID());
+            //// 유의! DWORD로 하면 스왑에 따른 정렬과 시프트 이동에 문제가 생길 수 있고, 어차피 | 연산이므로 둘 다 유롱롱으로 하는 것이 로우레벨 최적화가 가능하다고 사료되어 코드개선했음
+            //// 상기의 시행착오를 거친 흔적으로 Dword를 식별자 명칭으로 남겨두겠음!
+            ULONGLONG T_DwordA = (ULONGLONG)(P_T_ColliderA->MF_Get_EntityID());
+            ULONGLONG T_DwordB = (ULONGLONG)(P_T_ColliderB->MF_Get_EntityID());
 
             // 해쉬화를 위한 값 정렬
             if (T_DwordA > T_DwordB) std::swap(T_DwordA, T_DwordB);           // 향후, 최적화가 된다는 가정하에는 std::swap()을 쓰는 것과 수동으로 하는 것과 오버헤드가 별 차이가 없지만, 함수 호출 스택을 없애는 것도 고려해보자
 
             // 유의! 포인터 그 자체를 해쉬값으로 이용하려다, 크기 문제로 인해 더욱 더 더 복잡한 연산을 해야함을 중간에 깨달았으므로, 객체의 ID 값 붙히기로 다시 선회
-            T_CollisionKey.QuadPart = (((DWORD)T_DwordA) << 32) | ((DWORD)T_DwordB);   // 유의! ULARGE_INTEGER는 값이 아닌 SDK 유니온이므로, 바이너리 이동하려면 ULONGLONG 인 자료형 값을 자료형인 ULARGE_INTEGER.QuadPart로 대입하여 바꾸는 것이 선행되어야 함
+            // 유의! 시프트 연산하면서 씹히는 비트를 생각하고, DWORD 자체가 32비트라 32비트 시프트하면 논리적 에러가 발생하므로 캐스팅 필요
+            T_CollisionKey.QuadPart = ((T_DwordA) << 32) | T_DwordB;   // 유의! ULARGE_INTEGER는 값이 아닌 SDK 유니온이므로, 바이너리 이동하려면 ULONGLONG 인 자료형 값을 자료형인 ULARGE_INTEGER.QuadPart로 대입하여 바꾸는 것이 선행되어야 함
 
             // 키 값을 unordered map에서 찾고 없으면 넣음
             unordered_map<ULONGLONG, bool>::iterator T_Iterator = STL_M_SDKIsCollision.find(T_CollisionKey.QuadPart);
@@ -77,13 +78,14 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
                 T_Iterator = STL_M_SDKIsCollision.find(T_CollisionKey.QuadPart);
             }
 
-            // 지워질 예정인지 값 확인
-            bool T_IsDelete = L_STL_P_T_ObjectA[i]->MF_Get_StateComponent()->MF_Get_IsDelete() || L_STL_P_T_ObjectB[j]->MF_Get_StateComponent()->MF_Get_IsDelete();
+            //// 지워질 예정인지 값 확인
+            //// 향후, 다시 생각해봐야 할 포인트는 오히려 오버헤드를 발생시키는 요인이 되고 있지 않은지?
+            //bool T_IsDelete = L_STL_P_T_ObjectA[i]->MF_Get_StateComponent()->MF_Get_IsDelete() || L_STL_P_T_ObjectB[j]->MF_Get_StateComponent()->MF_Get_IsDelete();
 
-            if (true == T_IsDelete)                                           // 조기반환; 지워질 예정이면 굳이 계산할 필요가 없음
-            {
-                continue;
-            }
+            //if (true == T_IsDelete)                                           // 조기반환; 지워질 예정이면 굳이 계산할 필요가 없음
+            //{
+            //    continue;
+            //}
 
             // 전에 충돌한적이 있는지 값 참조
             bool& R_T_WasOverlap = STL_M_SDKIsCollision[T_CollisionKey.QuadPart];      // 오버헤드를 줄이기 위해 참조형식 사용
@@ -136,56 +138,53 @@ bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _Collider
         Vec3_S_ColliderPositionA = _ColliderA->MF_Get_Vector3FromCollisionMatrix();
         Vec3_S_ColliderPositionB = _ColliderB->MF_Get_Vector3FromCollisionMatrix();
 
-        Vector2 Vec2_T_RadiusA = _ColliderA->MF_Get_ColliderScale();
-        Vector2 Vec2_T_RadiusB = _ColliderB->MF_Get_ColliderScale();
+        Vec3_S_ColliderRadiusA = _ColliderA->MF_Get_ColliderScale();
+        Vec3_S_ColliderRadiusA.LengthSquared();
+        Vec3_S_ColliderRadiusB = _ColliderB->MF_Get_ColliderScale();
+        Vec3_S_ColliderRadiusB.LengthSquared();
+
+        Vec3_S_ColliderDistanceEachOther = Vec3_S_ColliderDistanceEachOther - Vec3_S_ColliderPositionA;
+        Vec3_S_ColliderDistanceEachOther.LengthSquared();
 
         // 중심점과의 거리가 각 충돌체의 반지름의 합보다 작으면 충돌한 것으로 간주
-        if (((Vec2_M_ColliderPositionB - Vec2_M_ColliderPositionA).Length()) < (fabs((Vec2_T_RadiusA.Length() + Vec2_T_RadiusB.Length()))))
+        if (Vec3_S_ColliderDistanceEachOther < (Vec3_S_ColliderRadiusA + Vec3_S_ColliderRadiusB))
         {
             return true;
         }
-
-        break;
-    default:
-        // 코드개선; 캐싱전용 멤버변수 이용
-        Vec3_M_ColliderPositionA = _ColliderA->MF_Get_ColliderPositionAsVector3();
-        Vec3_M_ColliderPositionB = _ColliderB->MF_Get_ColliderPositionAsVector3();
-
-        Vec3_M_ColliderDistanceEachOther = Vec3_M_ColliderPositionB - Vec3_M_ColliderPositionA;
-
-        Vector3 Vec3_T_RadiusA = _ColliderA->MF_Get_ColliderScale3D();
-        Vector3 Vec3_T_RadiusB = _ColliderB->MF_Get_ColliderScale3D();
-        
-        // 중심점과의 거리가 각 충돌체의 반지름의 합보다 작으면 충돌한 것으로 간주
-        if ((Vec3_M_ColliderDistanceEachOther.Length()) < (fabs((Vec3_T_RadiusA.Length() + Vec3_T_RadiusB.Length()))))
-        {
-            return true;
-        }
-
-        break;
+        return false;
     }
-    
-    return false;
 }
 
 
 bool C_CollisionManager::MF_Check_SAT()
 {
-    //const Vector3& Vec3_T_CenterA, const Vector3 Vec3_T_DirA[3], const Vector3& Vec3_T_ScaleA,
-    //const Vector3& Vec3_T_CenterB, const Vector3 Vec3_T_DirB[3], const Vector3& Vec3_T_ScaleB,
-    //E_COLLIDER_TYPE E_ViewType
-
-    int L_AxisCount = 3;
-
-    switch (E_ViewType)
+    switch (E_S_ColliderType)
     {
     case _COLLIDER_2D_SIDESCROLL_:		// Z 무효 (XY 평면 기준)
-        L_AxisCount = 2;
+        S_AxisCount = 2;
+
+        Vec3_S_ColliderDirection_sA[_DIRECTION_RIGHT].z = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_UP].z = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_FRONT].z = 0.f;
+
+        Vec3_S_ColliderDirection_sB[_DIRECTION_RIGHT].z = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_UP].z = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_FRONT].z = 0.f;
+
         break;
 
     case _COLLIDER_2D_TOPVEIW:			// Y 무효 (XZ 평면 기준)
     case _COLLIDER_2D_ISOMETRICVIEW:
-        L_AxisCount = 2;
+        S_AxisCount = 2;
+
+        Vec3_S_ColliderDirection_sA[_DIRECTION_RIGHT].y = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_UP].y = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_FRONT].y = 0.f;
+
+        Vec3_S_ColliderDirection_sB[_DIRECTION_RIGHT].y = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_UP].y = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_FRONT].y = 0.f;
+
         break;
 
     case _COLLIDER_3D_SAT_OFF:			// S.A.T 비활성화 (강제 false 반환)
@@ -193,47 +192,55 @@ bool C_CollisionManager::MF_Check_SAT()
 
     case _COLLIDER_3D_SAT_ON:
     default:
-        L_AxisCount = 3;
+        S_AxisCount = 3;
         break;
     }
 
     Vector3 Arr_Vec3_T_Axes[15];
-    int L_Index = 0;
+    int T_Index = 0;
 
-    for (int i = 0; i < L_AxisCount; ++i)
-        Arr_Vec3_T_Axes[L_Index++] = Vec3_T_DirA[i];
-
-    for (int i = 0; i < L_AxisCount; ++i)
-        Arr_Vec3_T_Axes[L_Index++] = Vec3_T_DirB[i];
-
-    for (int i = 0; i < L_AxisCount; ++i)
+    for (int i = 0; i < S_AxisCount; ++i)
     {
-        for (int j = 0; j < L_AxisCount; ++j)
+        Arr_Vec3_T_Axes[T_Index++] = Vec3_S_ColliderDirection_sA[i];
+    }
+
+    for (int i = 0; i < S_AxisCount; ++i)
+    {
+        Arr_Vec3_T_Axes[T_Index++] = Vec3_S_ColliderDirection_sB[i];
+    }
+        
+    for (int i = 0; i < S_AxisCount; ++i)
+    {
+        for (int j = 0; j < S_AxisCount; ++j)
         {
-            Vector3 Vec3_T_Cross = Vec3_T_DirA[i].Cross(Vec3_T_DirB[j]);
-            if (Vec3_T_Cross.LengthSquared() > 1e-6f) // 거의 0에 가까운 축은 무시
-                Arr_Vec3_T_Axes[L_Index++] = Vec3_T_Cross.Normalize();
+            Vector3 Vec3_T_Cross = Vec3_S_ColliderDirection_sA[i].Cross(Vec3_S_ColliderDirection_sB[j]);
+            if (Vec3_T_Cross.LengthSquared() > LL_G_ZeroScaleFloat)
+            {
+                Arr_Vec3_T_Axes[T_Index++] = Vec3_T_Cross.Normalize();
+            }
         }
     }
 
-    Vector3 Vec3_T_Diff = Vec3_T_CenterB - Vec3_T_CenterA;
+    Vec3_S_ColliderDistanceEachOther = Vec3_S_ColliderPositionB - Vec3_S_ColliderPositionA;
 
-    for (int i = 0; i < L_Index; ++i)
+    for (int i = 0; i < T_Index; ++i)
     {
         const Vector3& Vec3_T_ProjAxis = Arr_Vec3_T_Axes[i];
 
         float L_RadiusA = 0.f;
-        for (int j = 0; j < L_AxisCount; ++j)
-            L_RadiusA += fabs(Vec3_T_ProjAxis.Dot(Vec3_T_DirA[j])) * Vec3_T_ScaleA[j];
+        for (int j = 0; j < S_AxisCount; ++j)
+            L_RadiusA += fabs(Vec3_T_ProjAxis.Dot(Vec3_S_ColliderDirection_sA[j])) * Vec3_S_ColliderScaleA[j];
 
         float L_RadiusB = 0.f;
-        for (int j = 0; j < L_AxisCount; ++j)
-            L_RadiusB += fabs(Vec3_T_ProjAxis.Dot(Vec3_T_DirB[j])) * Vec3_T_ScaleB[j];
+        for (int j = 0; j < S_AxisCount; ++j)
+            L_RadiusB += fabs(Vec3_T_ProjAxis.Dot(Vec3_S_ColliderDirection_sB[j])) * Vec3_S_ColliderScaleB[j];
 
-        float L_ProjDist = fabs(Vec3_T_ProjAxis.Dot(Vec3_T_Diff));
+        float L_ProjDist = fabs(Vec3_T_ProjAxis.Dot(Vec3_S_ColliderDistanceEachOther));
 
         if (L_ProjDist > (L_RadiusA + L_RadiusB))
+        {
             return false;
+        }
     }
 
     // 모든 테스트를 다 통과하면, 투 충돌체는 겹쳐있다.
