@@ -26,7 +26,7 @@ HRESULT C_StageManager::MF_Initialize()
 
 void C_StageManager::MF_Update()
 {
-	if (nullptr == P_M_CurrentStage)					// 방어코드; 여기서 엑세스 위반이 터졌으므로, 향후, 렌더링에 다시 체크 필요
+	if (nullptr == P_M_CurrentStage)					// 방어코드; 향후, 렌더링에 다시 체크 필요
 	{
 			return;
 	}

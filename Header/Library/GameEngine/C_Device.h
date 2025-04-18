@@ -30,13 +30,14 @@ private:
 	ComPtr<ID3D11SamplerState>				CP_M_DX_Sampler[2];											// ComPtr<ID3D11SamplerState>
 
 	// WinAPI를 활용하니까 에러검출용 반환값인 HRESULT로 통일하자
-protected:
-	HRESULT MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
 
-	HRESULT MF_Clear_RanderTargetView();
+public:
+	void MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
 
-	HRESULT MF_Present();
+	void MF_ClearRenderTargetView();
 
+	void MF_Present();
+	
 public:
 	inline ID3D11Device* MF_Get_Device()  																// Getter; 생성된 Device; CP_M_DX_Device.Get()
 	{

@@ -8,7 +8,7 @@ class C_PathManager :
 {
     SINGLE(C_PathManager);
 
-protected:
+private:
     wchar_t     M_ProjectPath_s[255];                     // Project Directory Address
     wchar_t     M_SolutionPath_s[255];                    // Solution Directory Address
     wchar_t     M_ResourcePath_s[255];                    // Resource Directory Address

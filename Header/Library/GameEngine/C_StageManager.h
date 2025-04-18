@@ -8,7 +8,7 @@ class C_StageManager :
 {
     SINGLE(C_StageManager)
 
-public:
+private:
     C_Stage*                    P_M_CurrentStage;                   // 현재 선택된 레벨
 
 public:
