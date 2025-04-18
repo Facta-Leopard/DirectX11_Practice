@@ -11,6 +11,10 @@
 
 - It is also the reason I began programming through `GAME DEVELOPMENT`, a field where `logic`, `system architecture`, and `creative expression` come together as one.
 
+- Always `consider separating` `debug code` from `release code` to reduce performance impact and avoid unintended behaviors in production builds.
+
+---
+
 ## 1. Key Considerations
 
 - Regularly update and validate transformation matrices to avoid discrepancies during gameplay or simulation.
