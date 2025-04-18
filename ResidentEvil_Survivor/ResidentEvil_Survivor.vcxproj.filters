@@ -46,9 +46,6 @@
     <Filter Include="2. IMGUI\95. ComponentUI">
       <UniqueIdentifier>{c0c021e9-8faf-43e8-a45f-69915b983fa6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="9.GUIManager">
-      <UniqueIdentifier>{cde6f8e9-e107-40fb-93a5-7e84981ac81c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="1. Main">
       <UniqueIdentifier>{5a421495-c6c0-438b-9b58-b1fa21336b49}</UniqueIdentifier>
     </Filter>
@@ -63,6 +60,9 @@
     </Filter>
     <Filter Include="0. Foundation\10. PreCompiledHeader">
       <UniqueIdentifier>{0185d3bc-7110-4468-b465-3bfbe84ebc3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="9. UIManager">
+      <UniqueIdentifier>{cde6f8e9-e107-40fb-93a5-7e84981ac81c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -102,9 +102,6 @@
     <ClInclude Include="targetver.h">
       <Filter>0. Foundation\11. Header</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h">
-      <Filter>0. Foundation\10. PreCompiledHeader</Filter>
-    </ClInclude>
     <ClInclude Include="C_MenuUI.h">
       <Filter>2. IMGUI\92. MenuUI</Filter>
     </ClInclude>
@@ -127,7 +124,10 @@
       <Filter>2. IMGUI\95. ComponentUI</Filter>
     </ClInclude>
     <ClInclude Include="C_UIManager.h">
-      <Filter>9.GUIManager</Filter>
+      <Filter>9. UIManager</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>0. Foundation\10. PreCompiledHeader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -158,9 +158,6 @@
     <ClCompile Include="C_UI.cpp">
       <Filter>2. IMGUI\91. Base</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp">
-      <Filter>0. Foundation\10. PreCompiledHeader</Filter>
-    </ClCompile>
     <ClCompile Include="C_MenuUI.cpp">
       <Filter>2. IMGUI\92. MenuUI</Filter>
     </ClCompile>
@@ -183,7 +180,10 @@
       <Filter>2. IMGUI\95. ComponentUI</Filter>
     </ClCompile>
     <ClCompile Include="C_UIManager.cpp">
-      <Filter>9.GUIManager</Filter>
+      <Filter>9. UIManager</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>0. Foundation\10. PreCompiledHeader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

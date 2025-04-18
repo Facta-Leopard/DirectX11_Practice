@@ -1,7 +1,15 @@
-﻿// ResidentEvil_Survivor.cpp : 애플리케이션에 대한 진입점을 정의합니다.
-//
-
+﻿
 #include "pch.h"
+#include "Resource.h"
+
+#include "../GameEngine/C_GameEngine.h"
+#include "../GameEngine/C_Device.h"
+
+#ifndef _DEBUG
+#pragma comment(lib, "GameEngine//GameEngine")
+#else
+#pragma comment(lib, "GameEngine//GameEngine_DEBUG")
+#endif
 
 #include "C_UIManager.h"
 

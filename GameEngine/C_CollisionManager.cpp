@@ -5,8 +5,6 @@ C_CollisionManager::C_CollisionManager()
 	: SDK_M_Group_s{}
     
     , STL_M_SDKIsCollision{}
-
-    , E_M_ColliderType(_COLLIDER_3D_SAT_ON)
 {
 	STL_M_SDKIsCollision.reserve(65535);    // 2^16 - 1; 멀티플랫폼 확장 고려 버킷;
 }
@@ -14,6 +12,25 @@ C_CollisionManager::C_CollisionManager()
 C_CollisionManager::~C_CollisionManager()
 {
 }
+
+// 정적변수 초기화
+E_COLLIDER_TYPE C_CollisionManager::E_S_ColliderType(_COLLIDER_3D_SAT_ON);      // E_COLLIDER_TYPE; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+Vector3 C_CollisionManager::Vec3_S_ColliderPositionA{};                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+Vector3 C_CollisionManager::Vec3_S_ColliderPositionB{};                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+Vector3 C_CollisionManager::Vec3_S_ColliderDistanceEachOther{};                 // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+Vector3 C_CollisionManager::Vec3_S_ColliderRadiusA{};                           // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+Vector3 C_CollisionManager::Vec3_S_ColliderRadiusB{};                           // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+Vector3 C_CollisionManager::Vec3_S_ColliderScaleA{};                            // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+Vector3 C_CollisionManager::Vec3_S_ColliderScaleB{};                            // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+Vector3 C_CollisionManager::Vec3_S_ColliderDirection_sA[_DIRECTION_END];        // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+Vector3 C_CollisionManager::Vec3_S_ColliderDirection_sB[_DIRECTION_END];        // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+
+int C_CollisionManager::S_AxisCount;
 
 HRESULT C_CollisionManager::MF_Initialize()
 {
@@ -96,7 +113,7 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
             ////// 중심점끼리 계산시 겹치는지 확인
             bool T_IsDistanceOverlap = MF_Check_DistanceBetweenCenters(P_T_ColliderA, P_T_ColliderB);
 
-            if ((false == T_IsDistanceOverlap) && (_COLLIDER_3D_SAT_OFF == E_M_ColliderType))               // 조기반환; 중심끼리 거리가 겹치지 않고, SAT 계산모드가 켜져있지 않다면 계산할 필요가 없으며, Narrow Phase를 통해 오버헤드 감소시킴; 향후, 그냥 무조건 바로 SAT로 가는 옵션을 추가하는 것도 생각해보자
+            if ((false == T_IsDistanceOverlap) && (_COLLIDER_3D_SAT_OFF == E_S_ColliderType))               // 조기반환; 중심끼리 거리가 겹치지 않고, SAT 계산모드가 켜져있지 않다면 계산할 필요가 없으며, Narrow Phase를 통해 오버헤드 감소시킴; 향후, 그냥 무조건 바로 SAT로 가는 옵션을 추가하는 것도 생각해보자
             {
                 continue;
             }
@@ -128,31 +145,30 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
 
 bool C_CollisionManager::MF_Check_DistanceBetweenCenters(C_Collider2D* _ColliderA, C_Collider2D* _ColliderB)
 {
-    switch (E_M_ColliderType)
+    // 코드개선; 캐싱전용 멤버변수 이용; 각 요소들의 제곱값을 그대로 사용해서 루트계산의 연산 오버헤드 감소
+    Vec3_S_ColliderPositionA = _ColliderA->MF_Get_Vector3FromCollisionMatrix();
+    Vec3_S_ColliderPositionB = _ColliderB->MF_Get_Vector3FromCollisionMatrix();
+
+    Vec3_S_ColliderDistanceEachOther.x = Vec3_S_ColliderPositionB.x - Vec3_S_ColliderPositionA.x;
+    Vec3_S_ColliderDistanceEachOther.y = Vec3_S_ColliderPositionB.y - Vec3_S_ColliderPositionA.y;
+    Vec3_S_ColliderDistanceEachOther.z = Vec3_S_ColliderPositionB.z - Vec3_S_ColliderPositionA.z;
+    float T_Distance = Vec3_S_ColliderDistanceEachOther.LengthSquared();
+
+    Vec3_S_ColliderRadiusA = _ColliderA->MF_Get_ColliderScale();
+
+    float T_RadiusA = Vec3_S_ColliderRadiusA.LengthSquared();
+
+    Vec3_S_ColliderRadiusB = _ColliderB->MF_Get_ColliderScale();
+    float T_RadiusB = Vec3_S_ColliderRadiusB.LengthSquared();
+
+
+
+    // 중심점과의 거리가 각 충돌체의 반지름의 합보다 작으면 충돌한 것으로 간주
+    if (T_Distance < (T_RadiusA + T_RadiusB))
     {
-    case _COLLIDER_2D_SIDESCROLL_:
-    case _COLLIDER_2D_TOPVEIW:
-    case _COLLIDER_2D_ISOMETRICVIEW:
-
-        // 코드개선; 캐싱전용 멤버변수 이용
-        Vec3_S_ColliderPositionA = _ColliderA->MF_Get_Vector3FromCollisionMatrix();
-        Vec3_S_ColliderPositionB = _ColliderB->MF_Get_Vector3FromCollisionMatrix();
-
-        Vec3_S_ColliderRadiusA = _ColliderA->MF_Get_ColliderScale();
-        Vec3_S_ColliderRadiusA.LengthSquared();
-        Vec3_S_ColliderRadiusB = _ColliderB->MF_Get_ColliderScale();
-        Vec3_S_ColliderRadiusB.LengthSquared();
-
-        Vec3_S_ColliderDistanceEachOther = Vec3_S_ColliderDistanceEachOther - Vec3_S_ColliderPositionA;
-        Vec3_S_ColliderDistanceEachOther.LengthSquared();
-
-        // 중심점과의 거리가 각 충돌체의 반지름의 합보다 작으면 충돌한 것으로 간주
-        if (Vec3_S_ColliderDistanceEachOther < (Vec3_S_ColliderRadiusA + Vec3_S_ColliderRadiusB))
-        {
-            return true;
-        }
-        return false;
+        return true;
     }
+    return false;
 }
 
 
@@ -163,13 +179,25 @@ bool C_CollisionManager::MF_Check_SAT()
     case _COLLIDER_2D_SIDESCROLL_:		// Z 무효 (XY 평면 기준)
         S_AxisCount = 2;
 
+        // 코드 개선; 오차 보정
         Vec3_S_ColliderDirection_sA[_DIRECTION_RIGHT].z = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_RIGHT] = Vec3_S_ColliderDirection_sA[_DIRECTION_RIGHT].Normalize();
+
         Vec3_S_ColliderDirection_sA[_DIRECTION_UP].z = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_UP] = Vec3_S_ColliderDirection_sA[_DIRECTION_UP].Normalize();
+
         Vec3_S_ColliderDirection_sA[_DIRECTION_FRONT].z = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_FRONT] = Vec3_S_ColliderDirection_sA[_DIRECTION_FRONT].Normalize();
+
 
         Vec3_S_ColliderDirection_sB[_DIRECTION_RIGHT].z = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_RIGHT] = Vec3_S_ColliderDirection_sB[_DIRECTION_RIGHT].Normalize();
+
         Vec3_S_ColliderDirection_sB[_DIRECTION_UP].z = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_UP] = Vec3_S_ColliderDirection_sB[_DIRECTION_UP].Normalize();
+
         Vec3_S_ColliderDirection_sB[_DIRECTION_FRONT].z = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_FRONT] = Vec3_S_ColliderDirection_sB[_DIRECTION_FRONT].Normalize();
 
         break;
 
@@ -177,13 +205,25 @@ bool C_CollisionManager::MF_Check_SAT()
     case _COLLIDER_2D_ISOMETRICVIEW:
         S_AxisCount = 2;
 
+        // 코드 개선; 오차 보정
         Vec3_S_ColliderDirection_sA[_DIRECTION_RIGHT].y = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_RIGHT] = Vec3_S_ColliderDirection_sA[_DIRECTION_RIGHT].Normalize();
+
         Vec3_S_ColliderDirection_sA[_DIRECTION_UP].y = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_UP] = Vec3_S_ColliderDirection_sA[_DIRECTION_UP].Normalize();
+
         Vec3_S_ColliderDirection_sA[_DIRECTION_FRONT].y = 0.f;
+        Vec3_S_ColliderDirection_sA[_DIRECTION_FRONT] = Vec3_S_ColliderDirection_sA[_DIRECTION_FRONT].Normalize();
+
 
         Vec3_S_ColliderDirection_sB[_DIRECTION_RIGHT].y = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_RIGHT] = Vec3_S_ColliderDirection_sB[_DIRECTION_RIGHT].Normalize();
+
         Vec3_S_ColliderDirection_sB[_DIRECTION_UP].y = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_UP] = Vec3_S_ColliderDirection_sB[_DIRECTION_UP].Normalize();
+
         Vec3_S_ColliderDirection_sB[_DIRECTION_FRONT].y = 0.f;
+        Vec3_S_ColliderDirection_sB[_DIRECTION_FRONT] = Vec3_S_ColliderDirection_sB[_DIRECTION_FRONT].Normalize();
 
         break;
 

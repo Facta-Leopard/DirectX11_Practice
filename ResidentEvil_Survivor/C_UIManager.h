@@ -1,10 +1,12 @@
 #pragma once
 
+#include "pch.h"
 #include "../GameEngine/C_Singleton.h"
 
-#include "../GameEngine/define.h"
+#include <unordered_map>
 
-#include "unordered_map"
+#include <string>
+#include <d3d11.h>
 
 using namespace std;
 

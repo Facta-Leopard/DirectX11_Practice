@@ -13,6 +13,45 @@
 
 #include "define.h"
 
+// 메모리 참조 해제관련
+#include <memory>
+using namespace std;
+
+// DirectX 라이브러리 링크
+#include <d3d11.h>
+#include <d3dcompiler.h>
+#include <DirectXPackedVector.h>
+#include <DirectXMath.h>
+using namespace DirectX;
+using namespace DirectX::PackedVector;
+
+#pragma comment(lib, "d3d11")
+#pragma comment(lib, "d3dcompiler")
+#pragma comment(lib, "dxguid")
+
+// STL
+#include <vector>
+#include <list>
+#include <map>
+#include <unordered_map>
+#include <string>
+using namespace std;
+
+
+// 행렬관련
+#include "../GameEngine/SimpleMath.h"
+using namespace DirectX::SimpleMath;
+
+// DirectxTex 라이브러리 링크
+#include <DirectxTex/DirectXTex.h>
+#include <DirectxTex/DirectXTex.inl>
+
+#ifndef _DEBUG
+#pragma comment(lib, "DirectxTex/DirectXTex.lib")
+#else
+#pragma comment(lib, "DirectxTex/DirectXTex_debug.lib")
+#endif
+
 // 관리자
 #include "C_InputManager.h"
 #include "C_PathManager.h"

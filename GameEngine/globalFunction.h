@@ -55,12 +55,16 @@ inline Vector3 GF_Get_DirectionVector3FromMatrix(const Matrix& _Matrix, E_DIRECT
 	{
 	case _DIRECTION_RIGHT:
 		return (Vector3)(_Matrix._11, _Matrix._12, _Matrix._13);
-
+		break;
 	case _DIRECTION_UP:
 		return (Vector3)(_Matrix._21, _Matrix._22, _Matrix._23);
-
+		break;
 	case _DIRECTION_FRONT:
 		return (Vector3)(_Matrix._31, _Matrix._32, _Matrix._33);
+		break;
+	default:
+		return (Vector3)(_Matrix._31, _Matrix._32, _Matrix._33);
+		break;
 	}
 }
 
