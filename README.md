@@ -409,16 +409,20 @@ The Quaternion Method was chosen due to its significantly faster processing time
 
 ---
 
-#### Naming Rule Notes
+### Enum Structure
+- To reduce overhead, enum class is not used.
 
-#### General
-- All prefixed names should include a **trailing underscore** (`_`) to improve readability and avoid naming conflicts (e.g., with macros or keywords).
+- Instead, to minimize duplication, an underscore (_) is used as a suffix, and all letters are written in uppercase with words separated by underscores.
 
 ---
 
-#### Enum Structure
-- To reduce overhead, enum class is not used.
-- Instead, to minimize duplication, an underscore (`_`) is used as a suffix, and all letters are written in uppercase with words separated by underscores.
+## Naming Rule Notes
+
+- All prefixed names should include a **trailing underscore** (`_`) to improve readability and avoid naming conflicts.  
+
+- When wrapping `external API functions(Windows SDK or DirectX)`, keep the **original function name**, and use the right prefix(`MF_` and `GF_`, `SF_`) depending on where the function is (member, global, or static).
+
+- This makes the code clear and helps you see which API it came from.
 
 ---
 
