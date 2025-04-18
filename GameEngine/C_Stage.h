@@ -14,13 +14,12 @@ public:
     ~C_Stage();
 
 protected:
-    const E_STAGE_NUMBER            L_M_StageNumber;                // E_STAGE_NUMBER; Stage 종류
-    E_STAGE_STATE                   M_StageState;                   // E_STAGE_STATE; Play, Pause, Stop
+    const E_STAGE_NUMBER            L_E_M_StageNumber;                // E_STAGE_NUMBER; Stage 종류
+    E_STAGE_STATE                   E_M_StageState;                   // E_STAGE_STATE; Play, Pause, Stop
 
-    E_COLLIDER_TYPE                 M_ColliderType;                 // E_COLLIDER_TYPE; 유의! 충돌시스템 관련 가이드라인에 따라, 충돌계산 향상을 위한 추상적 선별 개념을 위해 쓰는 용도임
+    E_COLLIDER_TYPE                 E_M_ColliderType;                 // E_COLLIDER_TYPE; 유의! 충돌시스템 관련 가이드라인에 따라, 충돌계산 향상을 위한 추상적 선별 개념을 위해 쓰는 용도임
 
-    C_Group*                        P_M_Group_s[_GROUP_END];        // C_Group;
-
+    C_Group* P_M_Group_s[_GROUP_END];          // C_Group;
 
 public:
     virtual C_Stage* MF_Clone() override final { return nullptr; }                      // 굳이, 쓸 일이 없을 것 같아서 사용 금지; 대입연산자를 굳이 막진 않음
@@ -32,44 +31,54 @@ public:
 
     void MF_StepAfter();                                                                // Group 내 모든 Object의 TickAfter() 실행
 
-    void DetachGroups();                                                                // 소멸자 생성 이전 사용할 순환참조 방지용 함수
 
-
+public:
     inline E_STAGE_NUMBER MF_Get_StageNumber()                                          // Getter; 처음 만들어질 때 정해지는 부분이므로, Setter는 따로 지정하지 안음
     {
-        return L_M_StageNumber;
+        return L_E_M_StageNumber;
     }
 
     inline E_STAGE_STATE MF_Get_StageState()                                            // Getter
     {
-        return M_StageState;
+        return E_M_StageState;
     }
 
-    inline void MF_Set_StageStage(E_STAGE_STATE _StageState)                            // Setter
+    inline void MF_Set_StageState(E_STAGE_STATE _StageState)                            // Setter
     {
-        M_StageState = _StageState;
+        E_M_StageState = _StageState;
     }
 
-    inline E_COLLIDER_TYPE MF_Get_ColliderType()
+    inline E_COLLIDER_TYPE MF_Get_ColliderType()                                        // Getter
     {
-        return M_ColliderType;
+        return E_M_ColliderType;
     }
 
-    inline C_Group* MF_Get_Groups(E_GROUP_INDEX _GroupIndex)                            // Getter
+    inline C_Group* MF_Get_Group_s(E_GROUP_INDEX _GroupIndex)                            // Getter
     {
         return P_M_Group_s[_GroupIndex];
     }
 
-    inline C_Group* MF_Set_GroupInGroups(C_Group* _Group, E_GROUP_INDEX _GroupType)     // Setter; 명명규칙에 벗어나지 않도록 헤더에 기재
+    inline C_Group* MF_Set_Group_s(E_GROUP_INDEX _GroupType, C_Group* _Group)     // Setter; 명명규칙에 벗어나지 않도록 헤더에 기재
     {
-        for (size_t i = 0; i < _GROUP_END; i++)
+        if (nullptr == _Group)      // 방어코드
         {
-            if (_GroupType == i)
+            POPUP_DEBUG(L"nullptr == _Group", L"in C_Group* MF_Set_Group(), nullptr == _Group")
+        }
+        P_M_Group_s[_GroupType] = _Group;
+    }
+
+    inline void MF_Detach_Group_s()                                                      // Detach; 소멸자 생성 이전 사용할 순환참조 방지용 함수
+    {
+        for (int i = 0; i < (int)_GROUP_END; ++i)
+        {
+            if (nullptr == P_M_Group_s[(E_GROUP_INDEX)i])				// 방어코드
             {
-                P_M_Group_s[i] = _Group;
+                continue;
             }
+            P_M_Group_s[(E_GROUP_INDEX)i]->STL_P_M_AllObject.clear();
         }
     }
+
 
 };
 

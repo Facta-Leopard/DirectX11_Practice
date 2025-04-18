@@ -22,9 +22,6 @@
     <Filter Include="3. Resource\30. Entity">
       <UniqueIdentifier>{10568c81-ada8-41a3-8d0f-6318d65a6d69}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\31. Resource">
-      <UniqueIdentifier>{35722dd4-0249-4370-b7e8-c8a482a09874}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0. Foundation\00. PreCompiled Header">
       <UniqueIdentifier>{5c60a316-9b41-4f66-bf45-efb0e4dda5b5}</UniqueIdentifier>
     </Filter>
@@ -42,36 +39,6 @@
     <Filter Include="Relic\소스 파일">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\310. Resource">
-      <UniqueIdentifier>{642537bf-0f55-48dc-a07b-398ad9348484}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\311. Mesh">
-      <UniqueIdentifier>{5ff4c869-fe00-4e52-a373-cdd2e4cbdb11}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\313. Material">
-      <UniqueIdentifier>{7239bf1f-c395-4237-b6be-72da7260724f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\314. Texture">
-      <UniqueIdentifier>{1a4335a6-9cbf-4ad6-bfa8-44fa04b16a50}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\315. Shader">
-      <UniqueIdentifier>{97ad6f7f-80b0-4a05-8d6d-2eb3e072c703}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\316. Sprite">
-      <UniqueIdentifier>{ffef2b2a-7c71-459c-904f-04f9148b5334}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\317. Flipbook">
-      <UniqueIdentifier>{39a9fa31-a9b0-42f2-8f42-72cd372a7352}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\31. Resource\319. Prefab">
-      <UniqueIdentifier>{68702963-2237-465a-a296-4a7e4dc1b1e8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\32. Object">
-      <UniqueIdentifier>{2a67f850-fca8-451c-83ee-d04bc0f39ce5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3. Resource\32. Object\320. Object">
-      <UniqueIdentifier>{3fce44a9-35e2-4824-9885-d7e2681af2db}</UniqueIdentifier>
     </Filter>
     <Filter Include="8. Stage">
       <UniqueIdentifier>{bb07772a-9191-45a4-a869-3669c427142d}</UniqueIdentifier>
@@ -127,9 +94,6 @@
     <Filter Include="7. Group">
       <UniqueIdentifier>{98743328-50c1-4470-a2b3-798157d60fdd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Object\321. CameraObject">
-      <UniqueIdentifier>{a42e632c-3c3b-4479-ad74-59222926c5a9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="9. Manager\90. TaskManager">
       <UniqueIdentifier>{ec84cace-9f9a-43e5-9bc2-241086247b8d}</UniqueIdentifier>
     </Filter>
@@ -157,9 +121,6 @@
     <Filter Include="9. Manager\99. DebugManager">
       <UniqueIdentifier>{a202515e-1d01-4913-b098-3950f5ededba}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\31. Resource\318. Sound">
-      <UniqueIdentifier>{ff196e5e-15a8-404d-b521-585b932efef4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="4. Component\43. StateComponent">
       <UniqueIdentifier>{91e26e34-e512-456c-acee-7de3e8f9a32e}</UniqueIdentifier>
     </Filter>
@@ -183,6 +144,45 @@
     </Filter>
     <Filter Include="0. Foundation\02. Math">
       <UniqueIdentifier>{30348236-904d-4d08-af6d-3fd457c45b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Object">
+      <UniqueIdentifier>{2a67f850-fca8-451c-83ee-d04bc0f39ce5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Object\320. Object">
+      <UniqueIdentifier>{3fce44a9-35e2-4824-9885-d7e2681af2db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\31. Object\321. CameraObject">
+      <UniqueIdentifier>{a42e632c-3c3b-4479-ad74-59222926c5a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource">
+      <UniqueIdentifier>{35722dd4-0249-4370-b7e8-c8a482a09874}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\310. Resource">
+      <UniqueIdentifier>{642537bf-0f55-48dc-a07b-398ad9348484}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\311. Mesh">
+      <UniqueIdentifier>{5ff4c869-fe00-4e52-a373-cdd2e4cbdb11}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\313. Material">
+      <UniqueIdentifier>{7239bf1f-c395-4237-b6be-72da7260724f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\314. Texture">
+      <UniqueIdentifier>{1a4335a6-9cbf-4ad6-bfa8-44fa04b16a50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\315. Shader">
+      <UniqueIdentifier>{97ad6f7f-80b0-4a05-8d6d-2eb3e072c703}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\316. Sprite">
+      <UniqueIdentifier>{ffef2b2a-7c71-459c-904f-04f9148b5334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\317. Flipbook">
+      <UniqueIdentifier>{39a9fa31-a9b0-42f2-8f42-72cd372a7352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\319. Prefab">
+      <UniqueIdentifier>{68702963-2237-465a-a296-4a7e4dc1b1e8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\318. Sound">
+      <UniqueIdentifier>{ff196e5e-15a8-404d-b521-585b932efef4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -235,10 +235,10 @@
       <Filter>9. Manager\96. StageManager</Filter>
     </ClInclude>
     <ClInclude Include="C_Resource.h">
-      <Filter>3. Resource\31. Resource\310. Resource</Filter>
+      <Filter>3. Resource\32. Resource\310. Resource</Filter>
     </ClInclude>
     <ClInclude Include="C_Object.h">
-      <Filter>3. Resource\32. Object\320. Object</Filter>
+      <Filter>3. Resource\31. Object\320. Object</Filter>
     </ClInclude>
     <ClInclude Include="C_Component.h">
       <Filter>4. Component\40. Component</Filter>
@@ -298,13 +298,13 @@
       <Filter>8. Stage</Filter>
     </ClInclude>
     <ClInclude Include="C_Texture.h">
-      <Filter>3. Resource\31. Resource\314. Texture</Filter>
+      <Filter>3. Resource\32. Resource\314. Texture</Filter>
     </ClInclude>
     <ClInclude Include="C_TaskManager.h">
       <Filter>9. Manager\90. TaskManager</Filter>
     </ClInclude>
     <ClInclude Include="C_Sound.h">
-      <Filter>3. Resource\31. Resource\318. Sound</Filter>
+      <Filter>3. Resource\32. Resource\318. Sound</Filter>
     </ClInclude>
     <ClInclude Include="C_StateComponent.h">
       <Filter>4. Component\43. StateComponent</Filter>
@@ -320,6 +320,9 @@
     </ClInclude>
     <ClInclude Include="global.h">
       <Filter>0. Foundation\01. Global Header</Filter>
+    </ClInclude>
+    <ClInclude Include="C_Mesh.h">
+      <Filter>3. Resource\32. Resource\311. Mesh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -360,10 +363,10 @@
       <Filter>9. Manager\96. StageManager</Filter>
     </ClCompile>
     <ClCompile Include="C_Resource.cpp">
-      <Filter>3. Resource\31. Resource\310. Resource</Filter>
+      <Filter>3. Resource\32. Resource\310. Resource</Filter>
     </ClCompile>
     <ClCompile Include="C_Object.cpp">
-      <Filter>3. Resource\32. Object\320. Object</Filter>
+      <Filter>3. Resource\31. Object\320. Object</Filter>
     </ClCompile>
     <ClCompile Include="C_Component.cpp">
       <Filter>4. Component\40. Component</Filter>
@@ -420,16 +423,19 @@
       <Filter>8. Stage</Filter>
     </ClCompile>
     <ClCompile Include="C_Texture.cpp">
-      <Filter>3. Resource\31. Resource\314. Texture</Filter>
+      <Filter>3. Resource\32. Resource\314. Texture</Filter>
     </ClCompile>
     <ClCompile Include="C_TaskManager.cpp">
       <Filter>9. Manager\90. TaskManager</Filter>
     </ClCompile>
     <ClCompile Include="C_Sound.cpp">
-      <Filter>3. Resource\31. Resource\318. Sound</Filter>
+      <Filter>3. Resource\32. Resource\318. Sound</Filter>
     </ClCompile>
     <ClCompile Include="C_StateComponent.cpp">
       <Filter>4. Component\43. StateComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Mesh.cpp">
+      <Filter>3. Resource\32. Resource\311. Mesh</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

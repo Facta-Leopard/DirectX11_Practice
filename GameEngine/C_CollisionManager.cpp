@@ -53,8 +53,8 @@ void C_CollisionManager::MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GRO
     // 충돌체 계산을 어떻게 할 것인지 캐싱
     E_S_ColliderType = P_T_CurrentStage->MF_Get_ColliderType();                 // 오버헤드 줄이기용
 
-    C_Group* P_T_GroupA = P_T_CurrentStage->MF_Get_Groups(_GroupIndexB);
-    C_Group* P_T_GroupB = P_T_CurrentStage->MF_Get_Groups(_GroupIndexB);
+    C_Group* P_T_GroupA = P_T_CurrentStage->MF_Get_Group_s(_GroupIndexB);
+    C_Group* P_T_GroupB = P_T_CurrentStage->MF_Get_Group_s(_GroupIndexB);
 
     const vector<C_Object*>& L_STL_P_T_ObjectA = P_T_GroupA->MF_Get_AllObjectFromGroup();
     const vector<C_Object*>& L_STL_P_T_ObjectB = P_T_GroupB->MF_Get_AllObjectFromGroup();

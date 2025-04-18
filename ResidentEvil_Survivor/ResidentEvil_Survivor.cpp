@@ -118,7 +118,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
 
             // 다이렉트로 생성된 스왑체인 화면 송출
-            C_Device::SF_Get_Instance()->MF_Present();
+            // 향후, 구현
+            // C_Device::SF_Get_Instance()->MF_Present();
 
         }
     }

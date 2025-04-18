@@ -14,9 +14,10 @@ C_StageManager::~C_StageManager()
 
 HRESULT C_StageManager::MF_Initialize()
 {
+
 	if (nullptr == P_M_CurrentStage)					// 방어코드
 	{
-		return E_FAIL;
+		MF_Set_CurrentStage(P_M_Stage_s[_STAGE_0]);
 	}
 	P_M_CurrentStage->MF_Prepare();
 
@@ -38,3 +39,4 @@ void C_StageManager::MF_Update()
 		P_M_CurrentStage->MF_StepAfter();
 	}
 }
+
