@@ -75,9 +75,11 @@ void C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
 #endif // _DEBUG
 }
 
-HRESULT C_Device::MF_Clear_RanderTargetView()
+void C_Device::MF_ClearRenderTargetView()
 {
-	return E_NOTIMPL;
+    float Color[4] = { 0.f, 0.f, 0.f, 1.f };        // ÇÏ¾á»ö ¼³Á¤
+    CP_M_DX_DeviceContext->ClearRenderTargetView((SP_M_DX_RenderTargetTexture->MF_Get_RenderTargetView()).Get(), Color);
+    CP_M_DX_DeviceContext->ClearDepthStencilView((SP_M_DX_DepthStencilTexture->MF_Get_DepthStencilView()).Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 }
 
 void C_Device::MF_Present()

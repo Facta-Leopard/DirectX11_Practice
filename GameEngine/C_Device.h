@@ -34,7 +34,7 @@ private:
 public:
 	void MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
 
-	void MF_Clear_RanderTargetView();
+	void MF_ClearRenderTargetView();
 
 	void MF_Present();
 	

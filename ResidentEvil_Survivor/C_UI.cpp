@@ -3,7 +3,7 @@
 
 C_UI::C_UI()
 	: M_Name()
-	, M_OpenState(true)
+	, M_IsActive(true)
 	, P_M_ParentUI(nullptr)
 	, STL_P_M_ChildUI{}
 	, I_M_Vec2_ChildSize(ImVec2(0.f, 0.f))
@@ -38,7 +38,7 @@ void C_UI::MF_Tick()
 
 void C_UI::MF_Render()
 {
-	if (false == M_OpenState)				// 조기반환;
+	if (false == M_IsActive)				// 조기반환;
 	{
 		return;
 	}
@@ -47,7 +47,7 @@ void C_UI::MF_Render()
 	{
 		if (false == M_IsModal)				// 모달이 아닐 때; 계산이 자주 들어올 부분의 분기를 앞에 위치시켜 오버헤드 감소
 		{
-			ImGui::Begin(M_Name.c_str(), &M_OpenState);
+			ImGui::Begin(M_Name.c_str(), &M_IsActive);
 
 			MF_Check_Focus();
 
@@ -67,7 +67,7 @@ void C_UI::MF_Render()
 		else								// 모달일 때;
 		{
 			ImGui::OpenPopup(M_Name.c_str());
-			if (ImGui::BeginPopupModal(M_Name.c_str(), &M_OpenState))
+			if (ImGui::BeginPopupModal(M_Name.c_str(), &M_IsActive))
 			{
 				MF_UIRender();
 
