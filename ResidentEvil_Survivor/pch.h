@@ -18,6 +18,7 @@
 
 #include "GameEngine/C_GameEngine.h"
 
+#include "GameEngine/C_Device.h"
 
 #ifndef _DEBUG
 #pragma comment(lib, "GameEngine//GameEngine")

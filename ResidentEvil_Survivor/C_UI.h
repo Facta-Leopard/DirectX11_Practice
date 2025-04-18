@@ -15,7 +15,7 @@ public:
 
 protected:
 	string				M_Name;						// string; IMGUI는 wstring을 지원하지 않음
-	bool				M_OpenState;				// bool; 활성화 여부
+	bool				M_IsActive;					// bool; 활성화 여부
 
 	C_UI*				P_M_ParentUI;				// C_UI*; 부모 UI
 	vector<C_UI*>		STL_P_M_ChildUI;			// vector<C_UI*>; 자식 UI들
@@ -42,16 +42,16 @@ public:
 
 	void MF_Check_Focus();							// 포커싱 여부 체크
 
-	inline void MF_Decide_OpenState(bool _OpenState)		// Setter; true
+	inline void MF_Set_Active(bool _Active)		// Setter; true
 	{
-		if (M_OpenState == _OpenState)				// 조기반환; 오버헤드 줄이기
+		if (M_IsActive == _Active)				// 조기반환; 오버헤드 줄이기
 		{
 			return;
 		}
 
-		M_OpenState = _OpenState;
+		M_IsActive = _Active;
 
-		if (true == M_OpenState)
+		if (true == _Active)
 		{
 			MF_Set_ActivateOn();
 		}
@@ -61,14 +61,14 @@ public:
 		}
 	}
 
-	inline void MF_Set_ActivateOn()			// Setter; true
+	inline void MF_Set_ActivateOn()				// Setter; true
 	{
-		M_OpenState = true;
+		M_IsActive = true;
 	}
 
 	inline void MF_Set_ActivateOff()			// Setter; false
 	{
-		M_OpenState = false;
+		M_IsActive = false;
 	}
 
 	ImVec2 MF_Get_ChildSize()					// Getter; I_M_Vec2_ChildSize

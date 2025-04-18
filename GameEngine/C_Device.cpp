@@ -3,8 +3,16 @@
 
 C_Device::C_Device()
     : M_H_Window(nullptr)
-{
+    , M_V2_RenderTargetResolution()
 
+    , CP_M_DX_Device{}
+    , CP_M_DX_DeviceContext{}
+
+    , CP_M_DX_SwapChain{}
+
+    , SP_M_DX_RenderTargetTexture{}
+    , SP_M_DX_DepthStencilTexture{}
+{
 }
 
 C_Device::~C_Device()
@@ -12,37 +20,33 @@ C_Device::~C_Device()
 
 }
 
-HRESULT C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
+void C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
 {
+    // DirectX Version Setting
+    D3D_FEATURE_LEVEL level = D3D_FEATURE_LEVEL_11_0;
 
-    // Device 생성용 Flag 설정 - DEBUG용이 아닌 경우 0
-    UINT Flag = 0;
 #ifdef _DEBUG
-    Flag = D3D11_CREATE_DEVICE_DEBUG;
-#endif
-    D3D_FEATURE_LEVEL level = D3D_FEATURE_LEVEL_11_0; // DirectX Version Setting
+    // Device 생성용 Flag 설정 - DEBUG용이 아닌 경우 0
+    UINT SDK_T_Flag = D3D11_CREATE_DEVICE_DEBUG;
 
     // Device 생성
     if (FAILED(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr
-        , Flag, 0, 0, D3D11_SDK_VERSION
+        , SDK_T_Flag, 0, 0, D3D11_SDK_VERSION
         , CP_M_DX_Device.GetAddressOf(), &level, CP_M_DX_DeviceContext.GetAddressOf()))) // 향후, 해상도 관련 부분 조정예정
     {
-        POPUP_DEBUG(L"Device Creating Failed", L"in C_Device::MF_Initialize(), Failed");
-        return E_FAIL;
+        POPUP_DEBUG(L"FAILED(D3D11CreateDevice()", L"in C_Device::MF_Initialize(), FAILED(D3D11CreateDevice()");
     }
 
     // Swapchain 생성
     if (FAILED(MF_Create_SwapChain()))
     {
-        POPUP_DEBUG(L"Swapchain Creating Failed", L"in C_Device::MF_CreateSwapChain(), Failed");
-        return E_FAIL;
+        POPUP_DEBUG(L"FAILED(MF_Create_SwapChain()", L"in C_Device::MF_Initialize(), FAILED(MF_Create_SwapChain()");
     }
 
     // View 생성
     if (FAILED(MF_Create_View()))
     {
-        POPUP_DEBUG(L"View Creating Failed", L"in C_Device::MF_CreateSwapChain(), Failed");
-        return E_FAIL;
+        POPUP_DEBUG(L"FAILED(MF_Create_View()", L"in C_Device::MF_Initialize(), FAILED(MF_Create_View()");
     }
 
     // 향후, 화면 크기 조정시 관여하는 bool값으로 다시 버퍼 생성하지 않게 하는 것을 추가할 수도 있으니 코드 블록 구분해 둠
@@ -50,17 +54,42 @@ HRESULT C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
 
     }
 
-	return E_NOTIMPL;
+#else
+    UINT SDK_T_Flag = 0;
+
+    // Device 생성
+    D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr
+        , SDK_T_Flag, 0, 0, D3D11_SDK_VERSION
+        , CP_M_DX_Device.GetAddressOf(), &level, CP_M_DX_DeviceContext.GetAddressOf());     // 향후, 해상도 관련 부분 조정예정
+    
+    // Swapchain 생성
+    MF_Create_SwapChain();
+
+    // View 생성
+    MF_Create_View();
+
+    // 향후, 화면 크기 조정시 관여하는 bool값으로 다시 버퍼 생성하지 않게 하는 것을 추가할 수도 있으니 코드 블록 구분해 둠
+    {
+
+    }
+#endif // _DEBUG
 }
 
-HRESULT C_Device::MF_ClearTarget()
+HRESULT C_Device::MF_Clear_RanderTargetView()
 {
 	return E_NOTIMPL;
 }
 
-HRESULT C_Device::MF_Present()
+void C_Device::MF_Present()
 {
-	return E_NOTIMPL;
+#ifdef _DEBUG
+    if (FAILED(CP_M_DX_SwapChain->Present(0, 0)))
+    {
+        POPUP(L"S_OK != CP_M_DX_SwapChain->Present(0, 0)", L"in C_Device::MF_Present(), S_OK != CP_M_DX_SwapChain->Present(0, 0)")
+    }
+#endif // _DEBUG
+
+    CP_M_DX_SwapChain->Present(0, 0);
 }
 
 HRESULT C_Device::MF_Create_SwapChain()

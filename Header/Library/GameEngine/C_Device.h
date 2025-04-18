@@ -5,7 +5,6 @@
 
 class C_Device: public C_Singleton<C_Device>
 {
-	// 싱글턴 매크로 안에 생성자와 소멸자 전부 정의
 	SINGLE(C_Device)
 
 private:
@@ -34,7 +33,8 @@ private:
 protected:
 	HRESULT MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
 
-	HRESULT MF_ClearTarget();
+	HRESULT MF_Clear_RanderTargetView();
+
 	HRESULT MF_Present();
 
 public:

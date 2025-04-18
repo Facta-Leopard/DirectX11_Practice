@@ -9,7 +9,7 @@ class C_InputManager :
 {
     SINGLE(C_InputManager);
 
-protected:
+private:
     vector<DS_KeyInfo>          STL_M_DS_KeyInfo;      // vector<DS_KeyInfo>
     DS_MouseInfo                M_DS_MouseInfo;        // DS_MouseInfo
     

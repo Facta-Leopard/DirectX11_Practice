@@ -51,6 +51,7 @@ using namespace DirectX::SimpleMath;
 #include <vector>
 #include <list>
 #include <map>
+#include <unordered_map>
 #include <string>
 using namespace std;
 

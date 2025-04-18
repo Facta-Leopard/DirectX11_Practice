@@ -6,7 +6,7 @@ class C_RenderManager :
 {
     SINGLE(C_RenderManager)
 
-protected:
+private:
     // 향후 추가 구현 예정
 
 public:

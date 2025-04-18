@@ -7,7 +7,7 @@ class C_TimeManager :
 {
     SINGLE(C_TimeManager);
 
-protected:
+private:
     // 측정용
     // 측정은 정밀도가 높은 LARGE_INTEGER를 쓰는 것이였군
     LARGE_INTEGER       M_CurrentFrequency;              // LARGE_INTEGER; UNION; 64Bit Interger

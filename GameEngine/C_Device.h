@@ -5,7 +5,6 @@
 
 class C_Device: public C_Singleton<C_Device>
 {
-	// 싱글턴 매크로 안에 생성자와 소멸자 전부 정의
 	SINGLE(C_Device)
 
 private:
@@ -31,12 +30,14 @@ private:
 	ComPtr<ID3D11SamplerState>				CP_M_DX_Sampler[2];											// ComPtr<ID3D11SamplerState>
 
 	// WinAPI를 활용하니까 에러검출용 반환값인 HRESULT로 통일하자
-protected:
-	HRESULT MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
 
-	HRESULT MF_ClearTarget();
-	HRESULT MF_Present();
+public:
+	void MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
 
+	void MF_Clear_RanderTargetView();
+
+	void MF_Present();
+	
 public:
 	inline ID3D11Device* MF_Get_Device()  																// Getter; 생성된 Device; CP_M_DX_Device.Get()
 	{

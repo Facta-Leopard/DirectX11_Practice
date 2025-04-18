@@ -7,7 +7,7 @@ class C_DebugManager :
 {
     SINGLE(C_DebugManager)
 
-protected:
+private:
     bool            M_IsDebugSrcreen;                   // bool
 
     //향후, Object관련 생성 예정

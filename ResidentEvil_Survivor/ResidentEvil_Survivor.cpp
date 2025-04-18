@@ -3,6 +3,8 @@
 
 #include "pch.h"
 
+#include "C_UIManager.h"
+
 #include "../IMGUI/imgui.h"
 
 HINSTANCE G_H_Instance = nullptr;     
@@ -56,12 +58,21 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 엔진 초기화
     C_GameEngine::SF_Get_Instance()->MF_Initialize(G_H_Instance, 800, 600);
 
+
+
     // 에디터 카메라 관리자 초기화
 
 
-    // IMGUI 관리자 초기화
+    // IMGUI 관리자 초기화; Debug 모드에서만 작동하도록 함
+#ifdef _DEBUG
+    HWND H_WindowHandle = C_GameEngine::SF_Get_Instance()->MF_Get_WindowHandle();
 
+    ComPtr<ID3D11Device> CP_D_Device = C_Device::SF_Get_Instance()->MF_Get_Device();
 
+    ComPtr<ID3D11DeviceContext> CP_D_DeviceContext = C_Device::SF_Get_Instance()->MF_Get_DeviceContext();
+
+    C_UIManager::SF_Get_Instance()->MF_Initialize(H_WindowHandle, CP_D_Device.Get(), CP_D_DeviceContext.Get());
+#endif
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_RESIDENTEVILSURVIVOR));
 
@@ -91,10 +102,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             // 에디터 카메라 루프 호출
 
 
-            // IMGUI 관련 루프 호출
+            // IMGUI 관련 루프 호출; Debug 모드에서만 작동하도록 함
+#ifdef _DEBUG
+            C_UIManager::SF_Get_Instance()->MF_Update();
+
+#endif // _DEBUG
 
 
             // 다이렉트로 생성된 스왑체인 화면 송출
+            C_Device::SF_Get_Instance()->MF_Present();
 
         }
     }

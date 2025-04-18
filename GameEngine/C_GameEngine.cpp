@@ -15,12 +15,12 @@ C_GameEngine::~C_GameEngine()
 {
 }
 
-HRESULT C_GameEngine::MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UINT _ResoulutionY)
+HRESULT C_GameEngine::MF_Initialize(HINSTANCE _H_Instance, UINT _SDK_ResolutionX, UINT _SDK_ResoulutionY)
 {
     // 메인 프로그램 인자 전달
-    M_H_Instance = _HInstance;
-    M_V2_Resolution.x = (float)_ResolutionX;
-    M_V2_Resolution.y = (float)_ResoulutionY;
+    M_H_Instance = _H_Instance;
+    M_V2_Resolution.x = (float)_SDK_ResolutionX;
+    M_V2_Resolution.y = (float)_SDK_ResoulutionY;
 
     // 창 생성
     MF_CreateWindow();
@@ -36,7 +36,7 @@ HRESULT C_GameEngine::MF_Initialize(HINSTANCE _HInstance, UINT _ResolutionX, UIN
     C_TaskManager::SF_Get_Instance()->MF_Initialize();
 
 #ifdef _DEBUG
-    C_DebugManager::SF_Get_Instance()->MF_Initialize();
+    C_DebugManager::SF_Get_Instance()->MF_Initialize();     // 향후, 디버그 관련 코드 전체를 메인으로 옮기는 것도 생각해보자.
 #endif // DEBUG
  
     // 객체 구별용 ID값 초기화
