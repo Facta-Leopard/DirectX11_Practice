@@ -61,36 +61,39 @@ To maintain consistency and readability, all class members should follow the ord
 6. **Member variables**  (if applicable)
    - All member variables prefixed with `M_`.
 
-7. **Clone method**  (if applicable)
+7. **Static member variables** (if applicable)
+   - The actual definition must be written in the `.cpp` file (right after constructor/destructor), not in the constructor body or initializer list.
+
+8. **Clone method**  (if applicable)
    - Example: `MF_Clone()` for duplicating the instance.
 
-8. **Callback functions** (if applicable)
-   - Functions acting as callbacks should follow the naming convention `MF_CallBack_`. The name should end with `MF_CallBack_` to indicate its role as a callback function. This ensures clarity in identifying callback-specific logic.
+9. **Callback functions** (if applicable)
+   - Functions acting as callbacks should follow the naming convention `MF_CallBack_`. The name should end with `MF_CallBack_` to indicate its role as a callback function.
 
-9. **Abstract methods (`virtual`)**  (if applicable)
+10. **Abstract methods (`virtual`)**  (if applicable)
    - All pure virtual functions declared here.
 
-10. **Binding-related** methods (if applicable)
+11. **Binding-related** methods (if applicable)
    - Functions related to GPU register bindings, such as `MF_Bind()`, `MF_Bind()`, and so on.
 
-11. **Initialization and frame-based methods**  (if applicable)
+12. **Initialization and frame-based methods**  (if applicable)
    - `MF_Initialize()`, `MF_Prepare()`,  
      followed by `MF_Progress()`, `MF_Update()`, `MF_Tick()`.
 
-12. **Getters and Setters**  
+13. **Getters and Setters**  
     - For all Getters and Setters, use the `inline` keyword to optimize performance, reduce function call overhead, and maintain the naming convention `MF_GetX()` and `MF_SetY()`.
     - This makes the code more efficient by directly accessing the member variables, improving performance without extra cost.
 
-13. **Attach and Detach functions**
+14. **Attach and Detach functions**
     - Functions to attach or detach elements or components should follow the naming convention `MF_Attach_` and `MF_Detach_`.
 
-14. **Public/Internal methods**  
+15. **Public/Internal methods**  
     - Main logic and behavior functions.
 
-15. **Modularized private/internal methods**  (if applicable)
+16. **Modularized private/internal methods**  (if applicable)
     - Small helper methods and decomposed logic units.
 
-16. **Template methods** (if applicable)
+17. **Template methods** (if applicable)
     - Declare all function templates at the end of the class definition.
     - **DO NOT EVEN FUCKING TRY TO SPECIALIZE A MEMBER TEMPLATE FUNCTION JUST TO CHANGE ITS RETURN TYPE.**
     - **HOW DO I KNOW? BECAUSE I HAVE FUCKING TRY TO FUCK AND FUCK IT IN!**
