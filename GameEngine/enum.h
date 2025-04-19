@@ -6,16 +6,29 @@
 // 단어별로 '_'로 끊는 것으로 정함
 
 // DirectX
+// Component형식으로 분류했던 방식으로, Buffer를 분류하는 것도 나쁘지 않을 듯
 //// Buffer; 버퍼타입으로 바인드될 레지스터 숫자 대체
 enum E_CONSTANTBUFFER_TYPE
 {
 	// 향후, 사용할 레지스터를 정하는 것이 좋을 듯.
 	// 상수버퍼이므로 b 레지스터를 사용
-	_CONSTANTBUFFER_TRANSFORM,					// b0
+	_CONSTANTBUFFER_TRANSFORM,					// b0: register 번호
 	_CONSTANTBUFFER_MATERIAL,					// b1
 	_CONSTANTBUFFER_GLOBAL,						// b2
 
 	_CONSTANTBUFFER_END,
+};
+
+enum E_STRUCTUREDBUFFER_TYPE
+{
+	// 향후, 사용할 레지스터를 정하는 것이 좋을 듯.
+	// 상수버퍼이므로 b 레지스터를 사용
+	_STRUCTUREDBUFFER_SHADERRESOURCEVIEW_ONLY,					 // tRegister
+	_STRUCTUREDBUFFER_UNORDEREDACCESSVIEW_ADDED,				 // uRegister
+
+	_STRUCTUREDBUFFER_UNORDEREDACCESSVIEW_ONLY,					 // 결과를 그래픽 파이프라인에서 보여주는 쉐이더리소스뷰가 꼭 필요한 게임업계에서 안 쓰고, 그럴 필요가 없는 실험용에서만 자주 씀; 유의! 게임엔진이 아닌 다른 용도로만 쓸 거면, 이 부분은 사용하지 말 것이며, 만약 다른 용도로 전용한다면 C_StructuredBuffer::MF_Create_StructuredBuffer() 내 분기문 등을 전체적으로 수정할 것!
+
+	_STRUCTUREDBUFFER_END,
 };
 
 // DirectX_Rendering Pipeline

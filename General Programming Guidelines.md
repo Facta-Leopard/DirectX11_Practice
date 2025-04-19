@@ -23,9 +23,15 @@
 
 - Use `quaternion-based matrices` for `GPU-side` `transforms` and `vector-based logic` for `CPU-side` `collision` checks to reduce overhead.
 
+- Code should be `easy to read first`.
+
+- But if better performance is possible without making it too messy, go for performance.
+
 ---
 
-## 2. Function Return Style & Optimization
+## 2. Function Optimization
+
+### 2.1 Function Return Style
 
 - Prefer `RVO(Return Value Optimization)` style when returning objects.
 
@@ -36,6 +42,18 @@
 - I tend to make frequent typos, so I intentionally mix `RVO` and `NRVO`.
 
 - In such cases, I always leave a comment explaining the choice.
+
+### 2.2 Function Overloading & Wrapping
+
+- If multiple overloads perform the **same task** but receive **different forms of input**, consider **wrapping them internally** to reduce redundancy.
+
+- This improves **maintainability** and keeps core logic in a single place.
+
+- Wrapping also helps avoid **code duplication** when dealing with repetitive setup code, such as **DirectX buffer creation** (e.g., using `ByteWidth` vs. `ElementSize × ElementCount`).
+
+- **Wrappers have little to no runtime overhead**, as modern compilers usually **inline** them.
+
+- Use this pattern unless overloads require **completely different behaviors**.
 
 ---
 
@@ -250,6 +268,8 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 - To reduce the overhead from branch misprediction, keep `switch-case` structures as `simple` as possible.
 
 - It’s better for SIMD and branch prediction to use value assignment instead of branching.
+
+- For `enum class`, I use `switch branching` instead of `if branching`, to `keep the code style consistent`.
 
 #### Branch Prediction Table
 

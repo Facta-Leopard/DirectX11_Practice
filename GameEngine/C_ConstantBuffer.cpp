@@ -14,9 +14,19 @@ C_ConstantBuffer::~C_ConstantBuffer()
 {
 }
 
+void C_ConstantBuffer::MF_Create_ConstantBuffer(UINT _ElementSize, UINT _ElementCount, E_CONSTANTBUFFER_TYPE _BufferType)		// 코드개선: 기존의 기본값 0이 들어가는 건 상당히 위험한 행위였음! 유의! 래핑으로 가독성 및 유지보수성 증가!
+{
+	MF_Create_ConstantBuffer((UINT)(_ElementSize * _ElementCount), _BufferType);
+}
 
 void C_ConstantBuffer::MF_Create_ConstantBuffer(UINT _ByteWidth, E_CONSTANTBUFFER_TYPE _BufferType)
 {
+	if (0 == _ByteWidth)		// 방어코드; 향후, 나중에 디버깅 전용으로 전환하는 것도 생각해보자
+	{
+		POPUP(L"0 == _ByteWidth", L"in C_ConstantBuffer::MF_Create_ConstantBuffer(), 0 == _ByteWidth")
+		return;
+	}
+
 	E_M_ConstantBufferType = _BufferType;
 
 	// D3D11_BUFFER_DESC.ByteWidth; Constant Buffer 크기 설정
@@ -71,17 +81,4 @@ void C_ConstantBuffer::MF_Bind_ConstantBufferToComputeShaderOnly()
 	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->CSSetConstantBuffers((UINT)E_M_ConstantBufferType, 1, CP_DX_M_ConstantBuffer.GetAddressOf());
 }
 
-void C_ConstantBuffer::MF_Set_ConstantBufferByData(void* _DataType, UINT _ByteWidth)		// void* 자료형은 어떤 것이든 받을 수 있는 만능; 유의! 윈도우의 WPARAM과 LPARAM과 유사! 향후, CPU및 GPU간의 병렬을 Lock하기 위한 것을 감안하여 새로운 설계를 해보는 것을 고려해보자
-{
-	// 데이터 전송용 구조체
-	D3D11_MAPPED_SUBRESOURCE DX_T_Data = {};
 
-	// DeviceContext의 Map()으로 GPU에 Lock을 걸어 GPU 접근 방지 및 CPU가 데이터 접근
-	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->Map(CP_DX_M_ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &DX_T_Data);
-
-	// 메모리를 통으로 복사하는 빠른 복사방법
-	memcpy(DX_T_Data.pData, _DataType, _ByteWidth);
-
-	// DeviceContext의 Unmap()으로 GPU에 Lock을 풀어 CPU 접근 방지 및 GPU가 데이터 접근
-	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->Unmap(CP_DX_M_ConstantBuffer.Get(), 0);
-}
