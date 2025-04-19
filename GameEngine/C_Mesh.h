@@ -19,12 +19,12 @@ protected:
     DXGI_FORMAT                 DX_M_PerformanceFormat;           // DXGI_FORMAT; 정점 개수를 통해 퍼포먼스 및 메모리 조절용, 생성자로 기본 65535개 제한
 
     ComPtr<ID3D11Buffer>        CP_DX_M_VertexBuffer;             // ComPtr<ID3D11Buffer>
-    D3D11_BUFFER_DESC           CP_DX_M_VertexBufferDesc;         // D3D11_BUFFER_DESC
+    D3D11_BUFFER_DESC           DX_M_VertexBufferDesc;         // D3D11_BUFFER_DESC
     UINT                        SDK_M_VertexCount;                // UINT
     DS_Vertex*                  P_DS_M_VertexSystemMemory;        // DS_Vertex*
 
     ComPtr<ID3D11Buffer>        CP_DX_M_IndexBuffer;              // ComPtr<ID3D11Buffer>
-    D3D11_BUFFER_DESC           CP_DX_M_IndexBufferDesc;          // D3D11_BUFFER_DESC
+    D3D11_BUFFER_DESC           DX_M_IndexBufferDesc;          // D3D11_BUFFER_DESC
     UINT                        SDK_M_IndexCount;                 // UINT
     UINT*                       P_SDK_M_IndexSystemMemory;        // UINT*
 
@@ -37,7 +37,7 @@ public:
 
 public:
     // 바인딩함수; 향후, DXGI_FORMAT 값을 변경해서 정점 수 제한을 푸는 등 퍼포먼스 사용가능토록 고려해보자
-    void MF_Bind_MeshToBuffer();                            // 가독성을 위해 NRVO 적용
+    void MF_Bind();                                         // 가독성을 위해 NRVO 적용
 
 public:
     DXGI_FORMAT MF_Get_DXGIFormat()

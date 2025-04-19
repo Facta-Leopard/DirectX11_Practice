@@ -37,7 +37,7 @@ public:
     virtual void MF_ComponentTickAfter() override;                                      // 더미함수; 유의! 위치계산은 Narrow Phase로 쓸 일이 없음
 
 public:
-    void MF_Bind_Register();                                                            // Bind; 위치값은 GPU에거 값을 바꿀 필요가 없으므로, 레지스터(b#) 사용
+    void MF_Bind();                                                            // Bind; 위치값은 GPU에거 값을 바꿀 필요가 없으므로, 레지스터(b#) 사용
 
 public:
     // RelativeScale 관련

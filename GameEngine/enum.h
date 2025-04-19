@@ -6,7 +6,7 @@
 // 단어별로 '_'로 끊는 것으로 정함
 
 // DirectX
-//// Buffer
+//// Buffer; 버퍼타입으로 바인드될 레지스터 숫자 대체
 enum E_CONSTANTBUFFER_TYPE
 {
 	// 향후, 사용할 레지스터를 정하는 것이 좋을 듯.
@@ -17,9 +17,6 @@ enum E_CONSTANTBUFFER_TYPE
 
 	_CONSTANTBUFFER_END,
 };
-
-
-
 
 // DirectX_Rendering Pipeline
 //// Vertex

@@ -149,7 +149,7 @@ void C_Transform::MF_ComponentTickAfter()										// 더미함수; 유의! 위치계산은
 {
 }
 
-void C_Transform::MF_Bind_Register()
+void C_Transform::MF_Bind()
 {
 	// 향후, 구조화 버퍼관련 클래스 생성 후 함수 작성 필요
 }

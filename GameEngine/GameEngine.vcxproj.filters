@@ -154,35 +154,44 @@
     <Filter Include="3. Resource\31. Object\321. CameraObject">
       <UniqueIdentifier>{a42e632c-3c3b-4479-ad74-59222926c5a9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource">
+    <Filter Include="3. Resource\32. Buffer">
+      <UniqueIdentifier>{c73a7a1c-23a7-4e55-9f45-4a432e1458b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\33. Resource">
       <UniqueIdentifier>{35722dd4-0249-4370-b7e8-c8a482a09874}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\310. Resource">
+    <Filter Include="3. Resource\33. Resource\330. Resource">
       <UniqueIdentifier>{642537bf-0f55-48dc-a07b-398ad9348484}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\311. Mesh">
+    <Filter Include="3. Resource\33. Resource\331. Mesh">
       <UniqueIdentifier>{5ff4c869-fe00-4e52-a373-cdd2e4cbdb11}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\313. Material">
+    <Filter Include="3. Resource\33. Resource\333. Material">
       <UniqueIdentifier>{7239bf1f-c395-4237-b6be-72da7260724f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\314. Texture">
+    <Filter Include="3. Resource\33. Resource\334. Texture">
       <UniqueIdentifier>{1a4335a6-9cbf-4ad6-bfa8-44fa04b16a50}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\315. Shader">
+    <Filter Include="3. Resource\33. Resource\335. Shader">
       <UniqueIdentifier>{97ad6f7f-80b0-4a05-8d6d-2eb3e072c703}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\316. Sprite">
+    <Filter Include="3. Resource\33. Resource\336. Sprite">
       <UniqueIdentifier>{ffef2b2a-7c71-459c-904f-04f9148b5334}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\317. Flipbook">
+    <Filter Include="3. Resource\33. Resource\337. Flipbook">
       <UniqueIdentifier>{39a9fa31-a9b0-42f2-8f42-72cd372a7352}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\319. Prefab">
+    <Filter Include="3. Resource\33. Resource\338. Sound">
+      <UniqueIdentifier>{ff196e5e-15a8-404d-b521-585b932efef4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\33. Resource\339. Prefab">
       <UniqueIdentifier>{68702963-2237-465a-a296-4a7e4dc1b1e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\318. Sound">
-      <UniqueIdentifier>{ff196e5e-15a8-404d-b521-585b932efef4}</UniqueIdentifier>
+    <Filter Include="3. Resource\32. Buffer\321. ConstantBuffer">
+      <UniqueIdentifier>{a0523887-900a-49fb-9ddc-859f2a530226}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Buffer\322. StructuredBuffer">
+      <UniqueIdentifier>{b3568c5a-77b7-44f0-8624-97fd7e340fe8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -235,7 +244,7 @@
       <Filter>9. Manager\96. StageManager</Filter>
     </ClInclude>
     <ClInclude Include="C_Resource.h">
-      <Filter>3. Resource\32. Resource\310. Resource</Filter>
+      <Filter>3. Resource\33. Resource\330. Resource</Filter>
     </ClInclude>
     <ClInclude Include="C_Object.h">
       <Filter>3. Resource\31. Object\320. Object</Filter>
@@ -298,13 +307,13 @@
       <Filter>8. Stage</Filter>
     </ClInclude>
     <ClInclude Include="C_Texture.h">
-      <Filter>3. Resource\32. Resource\314. Texture</Filter>
+      <Filter>3. Resource\33. Resource\334. Texture</Filter>
     </ClInclude>
     <ClInclude Include="C_TaskManager.h">
       <Filter>9. Manager\90. TaskManager</Filter>
     </ClInclude>
     <ClInclude Include="C_Sound.h">
-      <Filter>3. Resource\32. Resource\318. Sound</Filter>
+      <Filter>3. Resource\33. Resource\338. Sound</Filter>
     </ClInclude>
     <ClInclude Include="C_StateComponent.h">
       <Filter>4. Component\43. StateComponent</Filter>
@@ -322,7 +331,13 @@
       <Filter>0. Foundation\01. Global Header</Filter>
     </ClInclude>
     <ClInclude Include="C_Mesh.h">
-      <Filter>3. Resource\32. Resource\311. Mesh</Filter>
+      <Filter>3. Resource\33. Resource\331. Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="C_ConstantBuffer.h">
+      <Filter>3. Resource\32. Buffer\321. ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="C_StructuredBuffer.h">
+      <Filter>3. Resource\32. Buffer\322. StructuredBuffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -363,7 +378,7 @@
       <Filter>9. Manager\96. StageManager</Filter>
     </ClCompile>
     <ClCompile Include="C_Resource.cpp">
-      <Filter>3. Resource\32. Resource\310. Resource</Filter>
+      <Filter>3. Resource\33. Resource\330. Resource</Filter>
     </ClCompile>
     <ClCompile Include="C_Object.cpp">
       <Filter>3. Resource\31. Object\320. Object</Filter>
@@ -423,19 +438,25 @@
       <Filter>8. Stage</Filter>
     </ClCompile>
     <ClCompile Include="C_Texture.cpp">
-      <Filter>3. Resource\32. Resource\314. Texture</Filter>
+      <Filter>3. Resource\33. Resource\334. Texture</Filter>
     </ClCompile>
     <ClCompile Include="C_TaskManager.cpp">
       <Filter>9. Manager\90. TaskManager</Filter>
     </ClCompile>
     <ClCompile Include="C_Sound.cpp">
-      <Filter>3. Resource\32. Resource\318. Sound</Filter>
+      <Filter>3. Resource\33. Resource\338. Sound</Filter>
     </ClCompile>
     <ClCompile Include="C_StateComponent.cpp">
       <Filter>4. Component\43. StateComponent</Filter>
     </ClCompile>
     <ClCompile Include="C_Mesh.cpp">
-      <Filter>3. Resource\32. Resource\311. Mesh</Filter>
+      <Filter>3. Resource\33. Resource\331. Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="C_ConstantBuffer.cpp">
+      <Filter>3. Resource\32. Buffer\321. ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="C_StructuredBuffer.cpp">
+      <Filter>3. Resource\32. Buffer\322. StructuredBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

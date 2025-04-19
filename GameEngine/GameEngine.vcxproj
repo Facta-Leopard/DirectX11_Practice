@@ -184,6 +184,7 @@
     <ClInclude Include="C_Collider2D.h" />
     <ClInclude Include="C_CollisionManager.h" />
     <ClInclude Include="C_Component.h" />
+    <ClInclude Include="C_ConstantBuffer.h" />
     <ClInclude Include="C_DebugManager.h" />
     <ClInclude Include="C_Device.h" />
     <ClInclude Include="C_Entity.h" />
@@ -210,6 +211,7 @@
     <ClInclude Include="C_Stage.h" />
     <ClInclude Include="C_StageManager.h" />
     <ClInclude Include="C_StateComponent.h" />
+    <ClInclude Include="C_StructuredBuffer.h" />
     <ClInclude Include="C_TaskManager.h" />
     <ClInclude Include="C_Texture.h" />
     <ClInclude Include="C_TileRender.h" />
@@ -231,6 +233,7 @@
     <ClCompile Include="C_Collider2D.cpp" />
     <ClCompile Include="C_CollisionManager.cpp" />
     <ClCompile Include="C_Component.cpp" />
+    <ClCompile Include="C_ConstantBuffer.cpp" />
     <ClCompile Include="C_DebugManager.cpp" />
     <ClCompile Include="C_Device.cpp" />
     <ClCompile Include="C_Entity.cpp" />
@@ -257,6 +260,7 @@
     <ClCompile Include="C_Stage.cpp" />
     <ClCompile Include="C_StageManager.cpp" />
     <ClCompile Include="C_StateComponent.cpp" />
+    <ClCompile Include="C_StructuredBuffer.cpp" />
     <ClCompile Include="C_TaskManager.cpp" />
     <ClCompile Include="C_Texture.cpp" />
     <ClCompile Include="C_TileRender.cpp" />
