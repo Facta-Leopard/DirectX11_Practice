@@ -55,6 +55,18 @@
 
 - Use this pattern unless overloads require **completely different behaviors**.
 
+### 2.3 Use Parameters Instead of Member Variables Within Functions
+
+- **If the value is used inside the function, use the parameter. Not the member.**
+
+- Even if the value is saved to a member variable, that doesn’t matter.
+
+- If it’s used in the same function, `the parameter must be used` first.
+
+- `Using parameters is faster` because the CPU can reach them directly.
+
+- Member variables are for things that stay around and matter across functions.
+
 ---
 
 ## 3. Class Member Declaration Order

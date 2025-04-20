@@ -37,14 +37,14 @@ void C_StructuredBuffer::MF_Create_StructuredBuffer(UINT _ElementSize, UINT _Ele
 
 	E_M_StructuredBuffeType = _StructuredBufferType;
 
-	SDK_M_ElementSize = _ElementSize;
-	SDK_M_ElementCount = _ElementCount;
-
 	// GPU 메모리크기 통일; 유의! GPU는 메모리 관리단위가 16 배수이므로 맞춰줘야 함!
-	if (0 != ((SDK_M_ElementSize * SDK_M_ElementCount) % 16))
+	if (0 != ((_ElementSize * _ElementCount) % 16))		// 코드개선; 멤버변수가 아닌 인자를 써서 레지스터 접근을 통해 CPU 사이클을 줄임
 	{
 		POPUP(L"0 != ((SDK_M_ElementSize * SDK_M_ElementCount) % 16)", L"in C_StructuredBuffer::MF_Create_StructuredBuffer, 0 != ((SDK_M_ElementSize * SDK_M_ElementCount) % 16)")
 	}
+
+	SDK_M_ElementSize = _ElementSize;
+	SDK_M_ElementCount = _ElementCount;
 
 	// 버퍼 전체 용량
 	DX_M_StructuredBufferDesc.ByteWidth = SDK_M_ElementSize * SDK_M_ElementCount;
