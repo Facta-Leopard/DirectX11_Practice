@@ -53,9 +53,9 @@
 - **`E`**: Used alone for enum structures.
 - **`EC`**: Used alone for `enum class`.
 - **`_`**: Used alone as a suffix for enum members.
-- **`Vector2`**: Used for Vector2 structure.
-- **`Vector3`**: Used for Vector3 structure.
-- **`Vector4`**: Used for Vector4 structure.
+- **`VEC2`**: Used for Vector2 structure.
+- **`VEC3`**: Used for Vector3 structure.
+- **`VEC4`**: Used for Vector4 structure.
 - **`MAT`**: Used for Matrix (4x4) structure.
 
 ---

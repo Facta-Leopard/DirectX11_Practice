@@ -33,43 +33,58 @@ enum E_STRUCTUREDBUFFER_TYPE
 
 // DirectX_Rendering Pipeline
 //// Vertex
-enum E_PROJECTION_TYPE
+////// Projection Type
+enum E_PROJECTION_STATE
 {
 	_PROJECTION_ORTHOGRAPHIC,				// 직교투영
 	_PROJECTION_PERSPECTIVE,				// 원근투영
 };
 
 
-//// Rasterizer
-enum E_RASTERIZER_TYPE
+//// Rasterizer Type; 시계방향이 정방향
+enum E_RASTERIZER_STATE
 {
-	_RASTERIZER_CULL_BACK,					// cull_ccw, 뒷면(반시계 순서) 컬링
-	_RASTERIZER_CULL_FRONT,				// cull_cw
-	_RASTERIZER_CULL_NONE,					// 컬링하지 않음
-	_RASTERIZER_WIRE_FRAME,				// 컬링하지 않으나, edge는 보임
+	_RASTERIZER_CULL_BACK,					// 뒷면 제거; 기본값
+	_RASTERIZER_CULL_FRONT,					// 앞면 제거
+	_RASTERIZER_CULL_NONE,					// 제거하지 않음
+
+	_RASTERIZER_WIRE_FRAME,					// 컬링하지 않으나, edge는 보임
 
 	_RASTERIZER_END,
 };
 
 
 //// Pixel
+////// Blend State
 enum E_BLEND_STATE
 {
-	_BLEND_DEFAULT,					// Src : 1, Dst : 0
-	_BLEND_ALPHABLEND,				// Src : A, Dst : (1 - A)
-
+	_BLEND_DEFAULT,							// Src : 1, Dst : 0
+	_BLEND_ALPHABLEND,						// Src : A, Dst : (1 - A)
+	
 	_BLEND_END,
 };
 
 
-//// Sampler
-enum E_SAMPLER_TYPE
+////// Sampler State
+enum E_SAMPLER_STATE
 {
+	_SAMPLER_POINT_WRAP,					// 픽셀 단위 그대로 찍고(UV 정수 단위 기준), 텍스처 범위 벗어나면 반복(Wrap)
+	_SAMPLER_POINT_CLAMP,					// 픽셀 단위 그대로 찍되, UV 0~1 밖은 가장자리에 고정(Clamp)
 
+	_SAMPLER_LINEAR_WRAP,					// 부드럽게 보간(Linear), UV 0~1 벗어나면 반복
+	_SAMPLER_LINEAR_CLAMP,					// 부드럽게 보간하면서 경계는 텍스처 가장자리에 고정
+
+	_SAMPLER_ANISOTROPIC_WRAP,				// Anisotropic Filtering -> 시야각이 심할 때 품질 유지(멀리 갈수록 뭉개지는 걸 잡아줌)하고 반복 패턴 사용
+	_SAMPLER_ANISOTROPIC_CLAMP,				// 고품질 필터링 + 경계는 고정
+
+	_SAMPLER_COMPARISON_LINEAR,				// 깊이 비교용 샘플러 + 보간
+	_SAMPLER_COMPARISON_POINT,				// 깊이 비교용 샘플러 + 포인트
+
+	_SAMPLER_END
 };
 
 
-//// DepthStencil State
+////// DepthStencil State
 enum E_DEPTHSTENCIL_STATE
 {
 	_DEPTHSTENCIL_LESS,						// 깊이판정 : 더 작아야 통과, 깊이 기록 O
@@ -84,7 +99,8 @@ enum E_DEPTHSTENCIL_STATE
 };
 
 //// OutputMerger
-enum E_DOMAIN_TYPE
+////// Domain State
+enum E_DOMAIN_STATE
 {
 	_DOMAIN_QPAQUE,				// 불투명
 	_DOMAIN_MASKED,				// 불투명 + 완전 투명

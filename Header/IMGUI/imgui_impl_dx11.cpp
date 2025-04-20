@@ -408,24 +408,24 @@ bool    ImGui_ImplDX11_CreateDeviceObjects()
             };\
             struct VS_INPUT\
             {\
-              float2 pos : POSITION;\
-              float4 col : COLOR0;\
-              float2 uv  : TEXCOORD0;\
+              float3 pos : SEMANTIC_POSITION;\
+              float2 uv  : SEMANTIC_UV0;\
+              float4 col : SEMANTIC_COLOR0; \
             };\
             \
             struct PS_INPUT\
             {\
               float4 pos : SV_POSITION;\
-              float4 col : COLOR0;\
-              float2 uv  : TEXCOORD0;\
+              float2 uv  : UV0;\
+              float4 col : COLOR0; \
             };\
             \
             PS_INPUT main(VS_INPUT input)\
             {\
               PS_INPUT output;\
               output.pos = mul( ProjectionMatrix, float4(input.pos.xy, 0.f, 1.f));\
-              output.col = input.col;\
               output.uv  = input.uv;\
+              output.col = input.col; \
               return output;\
             }";
 
@@ -441,9 +441,9 @@ bool    ImGui_ImplDX11_CreateDeviceObjects()
         // Create the input layout
         D3D11_INPUT_ELEMENT_DESC local_layout[] =
         {
-            { "POSITION", 0, DXGI_FORMAT_R32G32_FLOAT,   0, (UINT)offsetof(ImDrawVert, pos), D3D11_INPUT_PER_VERTEX_DATA, 0 },
-            { "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT,   0, (UINT)offsetof(ImDrawVert, uv),  D3D11_INPUT_PER_VERTEX_DATA, 0 },
-            { "COLOR",    0, DXGI_FORMAT_R8G8B8A8_UNORM, 0, (UINT)offsetof(ImDrawVert, col), D3D11_INPUT_PER_VERTEX_DATA, 0 },
+            { "SEMANTIC_POSITION", 0, DXGI_FORMAT_R32G32_FLOAT,   0, (UINT)offsetof(ImDrawVert, pos), D3D11_INPUT_PER_VERTEX_DATA, 0 },
+            { "SEMANTIC_UV", 0, DXGI_FORMAT_R32G32_FLOAT,   0, (UINT)offsetof(ImDrawVert, uv),  D3D11_INPUT_PER_VERTEX_DATA, 0 },
+            { "SEMANTIC_COLOR",    0, DXGI_FORMAT_R8G8B8A8_UNORM, 0, (UINT)offsetof(ImDrawVert, col), D3D11_INPUT_PER_VERTEX_DATA, 0 },
         };
         if (bd->pd3dDevice->CreateInputLayout(local_layout, 3, vertexShaderBlob->GetBufferPointer(), vertexShaderBlob->GetBufferSize(), &bd->pInputLayout) != S_OK)
         {
@@ -471,7 +471,7 @@ bool    ImGui_ImplDX11_CreateDeviceObjects()
             {\
             float4 pos : SV_POSITION;\
             float4 col : COLOR0;\
-            float2 uv  : TEXCOORD0;\
+            float2 uv  : UV0;\
             };\
             sampler sampler0;\
             Texture2D texture0;\

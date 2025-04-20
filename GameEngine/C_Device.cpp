@@ -2,16 +2,16 @@
 #include "C_Device.h"
 
 C_Device::C_Device()
-    : M_H_Window(nullptr)
-    , M_V2_RenderTargetResolution()
+    : H_M_Window(nullptr)
+    , VEC2_M_RenderTargetResolution()
 
-    , CP_M_DX_Device{}
-    , CP_M_DX_DeviceContext{}
+    , CP_DX_M_Device{}
+    , CP_DX_M_DeviceContext{}
 
-    , CP_M_DX_SwapChain{}
+    , CP_DX_M_SwapChain{}
 
-    , SP_M_DX_RenderTargetTexture{}
-    , SP_M_DX_DepthStencilTexture{}
+    , SP_DX_M_RenderTargetTexture{}
+    , SP_DX_M_DepthStencilTexture{}
 {
 }
 
@@ -32,7 +32,7 @@ void C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
     // Device 생성
     if (FAILED(D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr
         , SDK_T_Flag, 0, 0, D3D11_SDK_VERSION
-        , CP_M_DX_Device.GetAddressOf(), &level, CP_M_DX_DeviceContext.GetAddressOf()))) // 향후, 해상도 관련 부분 조정예정
+        , CP_DX_M_Device.GetAddressOf(), &level, CP_DX_M_DeviceContext.GetAddressOf()))) // 향후, 해상도 관련 부분 조정예정
     {
         POPUP_DEBUG(L"FAILED(D3D11CreateDevice()", L"in C_Device::MF_Initialize(), FAILED(D3D11CreateDevice()");
     }
@@ -78,20 +78,20 @@ void C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
 void C_Device::MF_ClearRenderTargetView()
 {
     float Color[4] = { 0.f, 0.f, 0.f, 1.f };        // 하얀색 설정
-    CP_M_DX_DeviceContext->ClearRenderTargetView((SP_M_DX_RenderTargetTexture->MF_Get_RenderTargetView()).Get(), Color);
-    CP_M_DX_DeviceContext->ClearDepthStencilView((SP_M_DX_DepthStencilTexture->MF_Get_DepthStencilView()).Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
+    CP_DX_M_DeviceContext->ClearRenderTargetView((SP_DX_M_RenderTargetTexture->MF_Get_RenderTargetView()).Get(), Color);
+    CP_DX_M_DeviceContext->ClearDepthStencilView((SP_DX_M_RenderTargetTexture->MF_Get_DepthStencilView()).Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
 }
 
 void C_Device::MF_Present()
 {
 #ifdef _DEBUG
-    if (FAILED(CP_M_DX_SwapChain->Present(0, 0)))
+    if (FAILED(CP_DX_M_SwapChain->Present(0, 0)))
     {
         POPUP(L"S_OK != CP_M_DX_SwapChain->Present(0, 0)", L"in C_Device::MF_Present(), S_OK != CP_M_DX_SwapChain->Present(0, 0)")
     }
 #endif // _DEBUG
 
-    CP_M_DX_SwapChain->Present(0, 0);
+    CP_DX_M_SwapChain->Present(0, 0);
 }
 
 HRESULT C_Device::MF_Create_SwapChain()
@@ -99,7 +99,7 @@ HRESULT C_Device::MF_Create_SwapChain()
     // 스왑체인을 만들면, 기본적으로 렌더타겟 버퍼가 생김
     DXGI_SWAP_CHAIN_DESC Desc = {};
 
-    Desc.OutputWindow = M_H_Window;   // 생성된 스왚체인이 이미지를 출력시킬 목적지 윈도우
+    Desc.OutputWindow = H_M_Window;   // 생성된 스왚체인이 이미지를 출력시킬 목적지 윈도우
     Desc.Windowed = true;            // 윈도우 모드, 전체화면 모드
 
     Desc.Flags = 0;
@@ -109,8 +109,8 @@ HRESULT C_Device::MF_Create_SwapChain()
 
     Desc.BufferCount = 1;             // 출력 Buffer 개수         
     Desc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT; // Buffer 용도
-    Desc.BufferDesc.Width = (UINT)M_V2_RenderTargetResolution.x;
-    Desc.BufferDesc.Height = (UINT)M_V2_RenderTargetResolution.y;
+    Desc.BufferDesc.Width = (UINT)VEC2_M_RenderTargetResolution.x;
+    Desc.BufferDesc.Height = (UINT)VEC2_M_RenderTargetResolution.y;
     Desc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
     Desc.BufferDesc.RefreshRate.Numerator = 60;
     Desc.BufferDesc.RefreshRate.Denominator = 1;
@@ -121,11 +121,11 @@ HRESULT C_Device::MF_Create_SwapChain()
     ComPtr<IDXGIAdapter> T_pAdapter = nullptr;
     ComPtr<IDXGIFactory> T_pFactory = nullptr;
 
-    CP_M_DX_Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&T_pDevice);
+    CP_DX_M_Device->QueryInterface(__uuidof(IDXGIDevice), (void**)&T_pDevice);
     T_pDevice->GetParent(__uuidof(IDXGIAdapter), (void**)&T_pAdapter);
     T_pAdapter->GetParent(__uuidof(IDXGIFactory), (void**)&T_pFactory);
 
-    if (FAILED(T_pFactory->CreateSwapChain(T_pDevice.Get(), &Desc, CP_M_DX_SwapChain.GetAddressOf())))
+    if (FAILED(T_pFactory->CreateSwapChain(T_pDevice.Get(), &Desc, CP_DX_M_SwapChain.GetAddressOf())))
     {
         return E_FAIL;
     }
@@ -139,7 +139,7 @@ HRESULT C_Device::MF_Create_View()
     ComPtr<ID3D11Texture2D> CP_T_DX_RenderTargetTexure = nullptr;
 
     // 스왑체인 생성시, 자동으로 같이 만들어진 렌더타겟 버퍼를 가져옮
-    CP_M_DX_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)CP_T_DX_RenderTargetTexure.GetAddressOf());
+    CP_DX_M_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)CP_T_DX_RenderTargetTexure.GetAddressOf());
 
     // SwapChain 이 보유하고있는 ID3D11Texture2D 객체를 CTexture 클래스로 전환
     // C_Texture 만들고 활성화할 예정
