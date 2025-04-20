@@ -1,6 +1,6 @@
 #pragma once
 #include "C_Entity.h"
-class C_StructuredBuffer :      // 향후, CP_DX_M_StructuredBufferForWriting 관련해서 아예 클래스를 구분하여 책임원칙
+class C_StructuredBuffer :      // 향후, CP_DX_M_StructuredBufferForWriting 관련해서 아예 클래스를 구분하여 SOLID에 따라 재구성하는 것을 고려해보자
     public C_Entity
 {
 public:
@@ -23,21 +23,24 @@ protected:
     UINT                                     SDK_M_ElementSize;                          // UINT; 유의! 구조화 버퍼는 StructureByteStride를 써야하므로, 필수적으로 써야하는 요소임!
     UINT                                     SDK_M_ElementCount;                         // UINT
 
+    UINT                                     SDK_M_tRegisterNumberForComputeShader;      // UINT; Compute Shader에 쓰인 ShaderResourceView로 세팅된 데 쓰여 다시금 사용되는 멤버로 쓰임
+    UINT                                     SDK_M_uRegisterNumberForComputeShader;      // UINT; Compute Shader에 쓰인 UnorderedAccessView로 세팅된 데 쓰여 다시금 사용되는 멤버로 쓰임
+
 public:
     void MF_Create_StructuredBuffer(UINT _ElementSize, UINT _ElementCount, E_STRUCTUREDBUFFER_TYPE _StructuredBufferType, void* _Data = nullptr);
 
 public:
-    void MF_Bind_StructuredBuffer();
+    void MF_Bind_StructuredBuffer(UINT _RegisterNumber);                                                        // 그래픽 파이프라인에 바인딩은 매 프레임당 하는 형식
 
-    void MF_Clear_StructuredBuffer();
+    void MF_Clear_StructuredBuffer(UINT _RegisterNumber);                                                       // 그래픽 파이프라인에 바인딩된 것을 해제
 
-    void MF_Bind_StructuredBufferForComputingWithShaderResourceView();
+    void MF_Bind_StructuredBufferForComputingWithShaderResourceView(UINT _RegisterNumberForComputeShader);      // 한 프레임에 컴퓨트 쉐이더에 따라 여러번 호출하므로, 다시금 호출 안하도록 최근 사용된 레지스터 넘버를 기록하는 게 좋음
 
-    void MF_Clear_StructuredBufferForComputingWithShaderResourceView();
+    void MF_Clear_StructuredBufferForComputingWithShaderResourceView();                                         // 컴퓨트 쉐이더에 썻던 레지스터 넘버를 이용해서 쉐이더 설정 해제
 
-    void MF_Bind_StructuredBufferForComputingWithUndorederAccessView();
+    void MF_Bind_StructuredBufferForComputingWithUndorederAccessView(UINT _RegisterNumberForComputeShader);     // 한 프레임에 컴퓨트 쉐이더에 따라 여러번 호출하므로, 다시금 호출 안하도록 최근 사용된 레지스터 넘버를 기록하는 게 좋음
 
-    void MF_Clear_StructuredBufferForComputingWithUnorderedAccessView();
+    void MF_Clear_StructuredBufferForComputingWithUnorderedAccessView();                                        // 컴퓨트 쉐이더에 썻던 레지스터 넘버를 이용해서 쉐이더 설정 해제
 
 public:
     inline void MF_Get_StructuredBufferByData(void* _Data, UINT _ElementSize, UINT _ElementCount)

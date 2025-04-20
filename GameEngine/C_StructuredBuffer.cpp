@@ -16,6 +16,9 @@ C_StructuredBuffer::C_StructuredBuffer()
 
 	, SDK_M_ElementSize(0)
 	, SDK_M_ElementCount(0)
+
+	, SDK_M_tRegisterNumberForComputeShader(0)
+	, SDK_M_uRegisterNumberForComputeShader(0)
 {
 }
 
@@ -117,50 +120,75 @@ void C_StructuredBuffer::MF_Create_StructuredBuffer(UINT _ElementSize, UINT _Ele
 	switch (_StructuredBufferType)
 	{
 	case _STRUCTUREDBUFFER_UNORDEREDACCESSVIEW_ADDED:
-		D3D11_BUFFER_DESC tWriteBufferDesc = {};
-		tWriteBufferDesc.ByteWidth = SDK_M_ElementSize * SDK_M_ElementCount;
-		tWriteBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
-		tWriteBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-		tWriteBufferDesc.StructureByteStride = SDK_M_ElementSize;
-		tWriteBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
-		tWriteBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+		D3D11_BUFFER_DESC DX_T_WriteBufferDesc = {};
+		DX_T_WriteBufferDesc.ByteWidth = SDK_M_ElementSize * SDK_M_ElementCount;
+		DX_T_WriteBufferDesc.Usage = D3D11_USAGE_DYNAMIC;
+		DX_T_WriteBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		DX_T_WriteBufferDesc.StructureByteStride = SDK_M_ElementSize;
+		DX_T_WriteBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+		DX_T_WriteBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 
-		SDK_T_HResult = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer(&tWriteBufferDesc, nullptr, CP_DX_M_StructuredBufferForWriting.GetAddressOf());
+		SDK_T_HResult = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer(&DX_T_WriteBufferDesc, nullptr, CP_DX_M_StructuredBufferForWriting.GetAddressOf());
 
 
-		D3D11_BUFFER_DESC tReadBufferDesc = {};
-		tReadBufferDesc.ByteWidth = SDK_M_ElementSize * SDK_M_ElementCount;
-		tReadBufferDesc.Usage = D3D11_USAGE_DEFAULT;
-		tReadBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
-		tReadBufferDesc.StructureByteStride = SDK_M_ElementSize;
-		tReadBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
-		tReadBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
+		D3D11_BUFFER_DESC DX_T_ReadBufferDesc = {};
+		DX_T_ReadBufferDesc.ByteWidth = SDK_M_ElementSize * SDK_M_ElementCount;
+		DX_T_ReadBufferDesc.Usage = D3D11_USAGE_DEFAULT;
+		DX_T_ReadBufferDesc.CPUAccessFlags = D3D11_CPU_ACCESS_READ;
+		DX_T_ReadBufferDesc.StructureByteStride = SDK_M_ElementSize;
+		DX_T_ReadBufferDesc.MiscFlags = D3D11_RESOURCE_MISC_BUFFER_STRUCTURED;
+		DX_T_ReadBufferDesc.BindFlags = D3D11_BIND_SHADER_RESOURCE;
 
-		SDK_T_HResult = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer(&tReadBufferDesc, nullptr, CP_DX_M_StructuredBufferForReading.GetAddressOf());
+		SDK_T_HResult = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer(&DX_T_ReadBufferDesc, nullptr, CP_DX_M_StructuredBufferForReading.GetAddressOf());
 		break;
 	}
 }
 
-void C_StructuredBuffer::MF_Bind_StructuredBuffer()
+void C_StructuredBuffer::MF_Bind_StructuredBuffer(UINT _RegisterNumber)
 {
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->VSSetShaderResources(_RegisterNumber, 1, CP_DX_M_ShaderResourceView.GetAddressOf());
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->HSSetShaderResources(_RegisterNumber, 1, CP_DX_M_ShaderResourceView.GetAddressOf());
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->DSSetShaderResources(_RegisterNumber, 1, CP_DX_M_ShaderResourceView.GetAddressOf());
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->GSSetShaderResources(_RegisterNumber, 1, CP_DX_M_ShaderResourceView.GetAddressOf());
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->PSSetShaderResources(_RegisterNumber, 1, CP_DX_M_ShaderResourceView.GetAddressOf());
 }
 
-void C_StructuredBuffer::MF_Clear_StructuredBuffer()
+void C_StructuredBuffer::MF_Clear_StructuredBuffer(UINT _RegisterNumber)
 {
+	ID3D11ShaderResourceView* P_DX_ShaderResourceView = nullptr;
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->VSSetShaderResources(_RegisterNumber, 1, &P_DX_ShaderResourceView);
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->HSSetShaderResources(_RegisterNumber, 1, &P_DX_ShaderResourceView);
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->DSSetShaderResources(_RegisterNumber, 1, &P_DX_ShaderResourceView);
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->GSSetShaderResources(_RegisterNumber, 1, &P_DX_ShaderResourceView);
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->PSSetShaderResources(_RegisterNumber, 1, &P_DX_ShaderResourceView);
 }
 
-void C_StructuredBuffer::MF_Bind_StructuredBufferForComputingWithShaderResourceView()
+void C_StructuredBuffer::MF_Bind_StructuredBufferForComputingWithShaderResourceView(UINT _RegisterNumberForComputeShader)
 {
+	SDK_M_tRegisterNumberForComputeShader = _RegisterNumberForComputeShader;
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->CSSetShaderResources(_RegisterNumberForComputeShader
+		, 1, CP_DX_M_ShaderResourceView.GetAddressOf());
 }
 
 void C_StructuredBuffer::MF_Clear_StructuredBufferForComputingWithShaderResourceView()
 {
+	ID3D11ShaderResourceView* P_DX_T_ShaderResourceView = nullptr;
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->CSSetShaderResources(SDK_M_tRegisterNumberForComputeShader, 1, &P_DX_T_ShaderResourceView);
+	SDK_M_tRegisterNumberForComputeShader = -1;		// 오버플로우를 이용하여 CSSetUnorderedAccessViews의 배열 초기화 흉내; 유의! MSVC가 아닌 컴파일러에는 쓰지 말 것
 }
 
-void C_StructuredBuffer::MF_Bind_StructuredBufferForComputingWithUndorederAccessView()
+void C_StructuredBuffer::MF_Bind_StructuredBufferForComputingWithUndorederAccessView(UINT _RegisterNumberForComputeShader)
 {
+	SDK_M_uRegisterNumberForComputeShader = _RegisterNumberForComputeShader;
+	UINT i = -1;		// 오버플로우를 이용하여 CSSetUnorderedAccessViews의 배열 초기화
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->CSSetUnorderedAccessViews(_RegisterNumberForComputeShader
+		, 1, CP_DX_M_UnorderedAccessView.GetAddressOf(), &i);
 }
 
 void C_StructuredBuffer::MF_Clear_StructuredBufferForComputingWithUnorderedAccessView()
 {
+	ID3D11UnorderedAccessView* P_DX_T_UnorderedAccessView = nullptr;
+	UINT i = -1;		// 오버플로우를 이용하여 CSSetUnorderedAccessViews의 배열 초기화
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->CSSetUnorderedAccessViews(SDK_M_uRegisterNumberForComputeShader, 1, &P_DX_T_UnorderedAccessView, &i);
+	SDK_M_uRegisterNumberForComputeShader = -1;		// 오버플로우를 이용하여 CSSetUnorderedAccessViews의 배열 초기화 흉내; 유의! MSVC가 아닌 컴파일러에는 쓰지 말 것
 }
