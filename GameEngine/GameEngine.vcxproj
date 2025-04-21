@@ -195,6 +195,7 @@
     <ClInclude Include="C_Group.h" />
     <ClInclude Include="C_InputManager.h" />
     <ClInclude Include="C_Light2D.h" />
+    <ClInclude Include="C_Material.h" />
     <ClInclude Include="C_Mesh.h" />
     <ClInclude Include="C_MeshRender.h" />
     <ClInclude Include="C_MoveScript.h" />
@@ -248,6 +249,7 @@
     <ClCompile Include="C_Group.cpp" />
     <ClCompile Include="C_InputManager.cpp" />
     <ClCompile Include="C_Light2D.cpp" />
+    <ClCompile Include="C_Material.cpp" />
     <ClCompile Include="C_Mesh.cpp" />
     <ClCompile Include="C_MeshRender.cpp" />
     <ClCompile Include="C_MoveScript.cpp" />

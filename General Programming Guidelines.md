@@ -69,7 +69,107 @@
 
 ---
 
-## 3. Class Member Declaration Order
+## 3. Memory Considerations
+
+- Use `clear` and `predictable` memory layouts.
+
+- Try to avoid `unnecessary heap allocations` in `performance-critical areas`.
+
+- If a value is `used repeatedly inside a loop` or a `frequently called function`, `use static variables to cache` it instead of recalculating.
+
+---
+
+## 4. Buffer Compatibility(CPU <-> GPU)
+
+- When `sending data from CPU to GPU`, `avoid using C++ types` like bool, char, or short, and instead `use Windows SDK types` like BOOL or UINT that match HLSL alignment.
+
+- These can `cause alignment issues` because `bool in C++ is usually 1 byte`.
+
+- But `HLSL treats all scalar variables (including bool) as 4 bytes`.
+
+- This `mismatch` can result in wrong values being read by the shader or silent bugs.
+
+- To `avoid this`, always use `Windows SDK types BOOL(alias of int, 4 bytes)`, UINT, FLOAT, XMFLOAT2, XMFLOAT4, XMFLOAT4X4 and so on.
+
+- These types are all aligned to 4-byte boundaries and are safe to use with GPU constant buffers.
+
+### Reference: Microsoft Docs - Packing Rules for Constant Buffers
+
+[Microsoft Docs - Packing Rules for Constant Buffers](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-packing-rules)
+
+---
+
+## 5. Transformation Optimization (SIMD / XMMATRIX)
+
+- Use `XMMATRIX` for matrix calculations `on the CPU only`.
+
+- It is `optimized with SIMD instructions` using `128-bit registers`.
+
+- It gives `a significant speed boost` for operations like world `matrix updates`, `skeletal animation`, and `inverse matrix calculation`.
+
+- DO NOT SEND `XMMATRIX` TO THE GPU DIRECTLY.
+
+- Its `internal format(XMVECTOR[4])` is `designed for fast CPU computation`, `not for GPU constant buffers`.
+
+- `To send matrix data to the GPU`, convert the result into a GPU-safe structure like `XMFLOAT4X4` or `SimpleMath::Matrix` using XMStoreFloat4x4().
+
+### CPU vs GPU Matrix Structure Comparison
+
+- Use `XMMATRIX` for calculation,  
+- Then store to `XMFLOAT4X4` using `XMStoreFloat4x4()` before uploading to GPU.
+
+#### XMMATRIX (SIMD-Optimized, CPU Only)
+
+```cpp
+typedef struct XMMATRIX
+{
+    XMVECTOR r[4];  // 4 x 128-bit SIMD registers (total: 64 bytes)
+} XMMATRIX;
+```
+
+- Each `XMVECTOR` = 4 floats (SIMD register, 128 bits)
+- Total size = 64 bytes
+- Designed for **fast CPU-side math** using SIMD
+- Cannot be sent to GPU directly (incompatible memory layout)
+
+#### XMFLOAT4X4 (GPU-Friendly, Flat Memory)
+
+```cpp
+typedef struct XMFLOAT4X4
+{
+    float m[4][4];  // 16 floats, flat layout (total: 64 bytes)
+} XMFLOAT4X4;
+```
+
+- Perfectly matches HLSL `float4x4` layout
+- Used for **safe and reliable GPU transfers**
+- Can be filled using `XMStoreFloat4x4()` from an `XMMATRIX`
+- Not optimized for CPU math (use only for storage/transfer)
+
+---
+
+#### Summary Table
+
+| Feature            | `XMMATRIX`            | `XMFLOAT4X4`         |
+|--------------------|------------------------|------------------------|
+| Internal Type      | `XMVECTOR[4]` (SIMD)   | `float[4][4]`         |
+| Size               | 64 bytes               | 64 bytes               |
+| CPU SIMD Math      |   Yes                 |   No                  |
+| GPU Transfer Safe  |   No                  |   Yes                 |
+| Usage Scenario     | CPU matrix operations  | Constant buffer upload |
+
+#### Performance Comparison Table: 100,000 iterations
+
+| Method                  | Time       | Speed      |
+|-------------------------|------------|------------|
+| `float[4][4]` loops     | 1.7717 sec | Base       |
+| `XMMATRIX` (SIMD)       | 0.1461 sec | **12.13× faster** |
+
+- `XMFLOAT4X4` IS NOT IN SIMD.
+
+---
+
+## 6. Class Member Declaration Order
 
 To maintain consistency and readability, all class members should follow the order below:
 
@@ -136,18 +236,18 @@ To maintain consistency and readability, all class members should follow the ord
 
 ---
 
-## 4. Scale Handling Guidelines
+## 7. Scale Handling Guidelines
 
-### 4.1. Negative Scale Values
+### 7.1. Negative Scale Values
 
 - When using **negative scale values**, exercise caution, particularly when interacting with libraries or systems that rely on positional data (e.g., physics engines, collision detection). Negative scales may lead to unexpected behaviors such as flipped geometries or incorrect transformations.
 
-### 4.2. Zero Scale Values
+### 7.2. Zero Scale Values
 - **Scale values of 0** can lead to issues such as rendering failures or incorrect matrix transformations. It is recommended to either **clamp** the scale to a small positive value or implement **exception handling** to prevent these errors. This ensures that objects with scale set to 0 do not cause unexpected behavior in the system.
 
 ---
 
-## 5. General Guidelines for Transformations
+## 8. General Guidelines for Transformations
 
 - **World transformation matrices** should be updated consistently when position, rotation, or scale changes.
 
@@ -157,15 +257,13 @@ To maintain consistency and readability, all class members should follow the ord
 
 ---
 
-## 6. Collision Calculation Policy
+## 9. Collision Calculation Policy
 
-### 6.1. Collision Flow Overview
+### 9.1. Collision Flow Overview
 
 Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Check center distance to filter out obvious misses -> If needed, do a more accurate SAT check -> Final result handling
 
----
-
-### 6.2. Summary
+### 9.2. Summary
 
 - Each stage has its own collision calculation type(`enum or other Structure`).
 
@@ -177,9 +275,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - Inspired by `functional programming`, collision logic uses `lazy evaluation` and view-based caching to reduce redundant work.
 
----
-
-### 6.3. Collision Pair Storage Policy
+### 9.3. Collision Pair Storage Policy
 
 - `std::unordered_map` is used to store collision pair states, offering scalability and fast lookup for increasing collision objects.
 
@@ -195,9 +291,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - This keeps the structure clean, easy to manage, and better aligned with `SIMD`(CPU-level vector instructions such as SSE, AVX, and NEON).
 
----
-
-### 6.4. View-Aware Caching Policy
+### 9.4. View-Aware Caching Policy
 
 - `To skip useless calculations`, the engine chooses what to convert based on the `current view(2D or 3D)`.
 
@@ -213,9 +307,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - To make it faster, `static or pre-made variables` are used inside the manager to skip repeated memory work.
 
----
-
-### 6.5. Benefits
+### 9.5. Benefits
 
 - **Clear process**: The steps are always the same based on the collision type.
 
@@ -229,9 +321,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - **Cleaner logic flow**: Because the calculations depend on the current view, the engine avoids rigid logic paths and adapts flexibly.
 
----
-
-### 6.6. Caution
+### 9.6. Caution
 
 - Using std::unordered_map requires `careful bucket sizing`.
 
@@ -251,9 +341,9 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-## Techniques and Rationale Used Here
+## 10. Techniques and Rationale Used Here
 
-### Yoda Condition Rule
+### 10.1 Yoda Condition Rule
 
 - When comparing against a constant or literal, always place it on the left side.  
 
@@ -263,9 +353,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - I don't really know much about Star Wars, but the name has a wise ring to it.
 
----
-
-### Branch Split Rule
+### 10.2 Branch Split Rule
 
 > **"Branch predictability drives speed. Nested ifs lead straight into unpredictability."**
 
@@ -310,9 +398,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - In this test scenario (10,000 iterations), the `else-if` chain saved approximately **37,800 CPU cycles**.
 
----
-
-### Components Design
+### 10.3 Components Design
 
 - `Components are for data`, `scripts are for logic`.
 
@@ -329,9 +415,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 | 2-Level           | `Vector2 Pos = C_Object->MF_Get_Transform()->MF_Get_Position();`                                 | 2                     | 2                    | Low                           | Fair                | Moderate            | 0.00383                        |
 | 3-Level           | `Vector2 Pos = C_Component->MF_Get_OwnerObject()->MF_Get_Transform()->MF_Get_Position();`              | 3                     | 3                    | Very Low                      | Poor                | High                | 0.00414                        |
 
----
-
-### Value Caching
+### 10.4 Value Caching
 
 - I Cached a `value as a static member variable` to avoid `repeated work in a loop`.  
 
@@ -345,29 +429,21 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 | Member-like variable | Heap or stack (via object) | `this` pointer (slightly slower) | Per object      | Yes           | Medium             | this->tempVec;       | 0.8819 sec              |
 | Local variable       | Stack frame (per loop)     | Stack allocation (slowest)       | Every iteration | Yes           | Low                | Vector2 temp = ...;  | 3.0636 sec              |
 
----
-
-### About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
+### 10.5 About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
 
 - Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
 
----
-
-### Ternary Operator Rule
+### 10.6 Ternary Operator Rule
 
 - Nested ternary is allowed only inside for or while loops — my personal rule for compactness and clarity.
 
 - Outside loops, I choose if statements for better readability and cache safety.
 
----
-
-### Using `Getter` function for classfied
+### 10.7 Using `Getter` function for classfied
 
 - I decide to use getters for other classes' members and access own class's members directly to keep things clear.
 
----
-
-### About Scale and Rotation Transformation
+### 10.8 About Scale and Rotation Transformation
 
 - The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem, and to avoid Gimbal Lock problem.
 
@@ -379,4 +455,3 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 | Matrix Method         | `XMMatrixRotationQuaternion()` → `XMMatrixDecompose()` → `XMConvertToDegrees()` | Approximately 3,637-4,452 nanoseconds | Approximately 5.8-7.1 times slower |
 
 ---
-

@@ -372,6 +372,9 @@
     <ClInclude Include="C_ColorCompute.h">
       <Filter>3. Resource\32. Resource\329. Shader\3292. ComputeShader\32921. Compute_Color</Filter>
     </ClInclude>
+    <ClInclude Include="C_Material.h">
+      <Filter>3. Resource\32. Resource\323. Material</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
@@ -499,6 +502,9 @@
     </ClCompile>
     <ClCompile Include="C_ColorCompute.cpp">
       <Filter>3. Resource\32. Resource\329. Shader\3292. ComputeShader\32921. Compute_Color</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Material.cpp">
+      <Filter>3. Resource\32. Resource\323. Material</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

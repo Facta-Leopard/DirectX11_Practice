@@ -46,6 +46,7 @@
 - **`F`**: Prefix for FMOD classes in FMOD Library.
 - **`I`**: Prefix for Using IMGUI Headers.
 - **`DX`**: Prefix for DirectX-specific classes.
+- **XM**: Prefix for types aligned for safe GPU transfer(like `XM_FLOAT4X4`_, `XM_FLOAT3`)
 
 ---
 
@@ -53,10 +54,10 @@
 - **`E`**: Used alone for enum structures.
 - **`EC`**: Used alone for `enum class`.
 - **`_`**: Used alone as a suffix for enum members.
-- **`VEC2`**: Used for Vector2 structure.
-- **`VEC3`**: Used for Vector3 structure.
-- **`VEC4`**: Used for Vector4 structure.
-- **`MAT`**: Used for Matrix (4x4) structure.
+- **`VEC2`**: Used for Vector2 structure. Represents the data form, not memory alignment.
+- **`VEC3`**: Used for Vector3 structure. Represents the data form, not memory alignment.
+- **`VEC4`**: Used for Vector4 structure. Represents the data form, not memory alignment.
+- **`MAT`**: Used for Matrix (4x4) structure. Represents the data form, not memory alignment. Use `XM` prefix if the structure is aligned for GPU transfer.
 
 ---
 
@@ -86,11 +87,11 @@
 
 ```cpp
 // Member variable of type ID3D11Device wrapped by ComPtr
-// CP (ComPtr) + trailing '_' + M (Member) + trailing '_' + D (DirectX) + trailing '_'
-ComPtr<ID3D11Device> CP_M_D_Device_;
+// CP (ComPtr) + trailing '_' + DX (DirectX) + trailing '_' + M (Member) + trailing '_'
+ComPtr<ID3D11Device> CP_DX_M_Device_;
 
 // Temporary pointer to Vector3 structure
-V3* T_V3_Position_;
+Vector3* T_VEC3_Position_;
 
 // constexpr constant
 constexpr int LL_MaxFrame_ = 60;

@@ -60,17 +60,19 @@ struct DS_Vertex
 };
 
 //// Material용 구조체
+//// 코드개선: 데이터 정렬 및 SIMD를 고려한 최적화 포함
 struct DS_MaterialConstant
 {
-	int				Int_Constant_s[4];				// 0 -> TextureWidth, 1 -> TextureHeight
-	float			Float_Constant_s[4];			// 
-	Vector2			VEC2_Constant_s[4];				// 
-	Vector4			VEC4_Constant_s[4];				// 0 -> Color(RGBA)
-	Matrix			MAT_Constant_s[4];				// 
+	UINT				SDK_XM_UINT_Constant_s[4];						// 16 bytes (4 * 4); 0 -> TextureWidth, 1 -> TextureHeight
+	FLOAT				SDK_XM_FLOAT_Constant_s[4];						// 16 bytes (4 * 4)
+	XMFLOAT2			SDK_XM_FLOAT2_Constant_s[4];					// 16 * 2 bytes (5 * 4);
+	XMFLOAT4			SDK_XM_FLOAT4_Constant_s[4];					// 16 * 4 bytes (16 * 4); 0 -> Color(RGBA)
+	XMFLOAT4X4			SDK_XM_FLOAT4X4_Constant_s[4];					// 16 * 16 bytes (64 * 4); 유의! XMMATRIX랑 구조방식이 다르므로 XMMATRIX는 절대 쓰지 말 것!; 단, SimpleMath.h에 정의된 Matrix 구조체는 XMFLOAT4X4를 타입디파인한 거라 문제가 없으나, SDK 통일성을 위해 XMFLOAT4X4로 쓴다.
 
 	// 텍스처 정보
-	int				Int_Texture_s[_TEXTURE_END];
-	int				Padding_s[2];
+	// 유의! DS_MaterialConstant 구조체의 데이터 정렬 때문에 bool아닌 SDK인 BOOL을 썻다는 점을 잊지 말 것!
+	BOOL				SDK_XM_BOOL_Texture_s[_TEXTURE_END];			// 16 * 2 bytes + 8 bytes (4 * 6); 텍스처 분류 전용; 바인딩 되어 있으면 true, 아니면 false
+	UINT				SDK_XM_Padding_s[2];							// 8 bytes; 16비트 정렬을 위해 넣는 더미 데이터
 };
 
 // 유니온 방식 쓰려고 했으나, 메모리 정렬에 따른 오버헤드 및 충돌체 개수 증가 등 확상성을 고려해서 윈도우 구조체를 쓰기로 함
