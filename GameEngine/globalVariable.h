@@ -50,12 +50,27 @@ struct DS_MouseInfo
 ////// 내가 만드는 것은 상기 사항을 고려하여 0.001f의 값으로 한다
 constexpr float LL_G_ZeroScaleFloat = 0.001f;
 
-// Vertex에 담은 구조체
+// Bind 전용 구조체
+//// Vertex용 구조체
 struct DS_Vertex
 {
 	Vector3			Position;		// Vector3; 3차원 좌표
 	Vector2			PositionUV;		// Vector2; 2차원 UV좌표
 	Vector4			Color;			// Vector4; RGBA
+};
+
+//// Material용 구조체
+struct DS_MaterialConstant
+{
+	int				Int_Constant_s[4];				// 0 -> TextureWidth, 1 -> TextureHeight
+	float			Float_Constant_s[4];			// 
+	Vector2			VEC2_Constant_s[4];				// 
+	Vector4			VEC4_Constant_s[4];				// 0 -> Color(RGBA)
+	Matrix			MAT_Constant_s[4];				// 
+
+	// 텍스처 정보
+	int				Int_Texture_s[_TEXTURE_END];
+	int				Padding_s[2];
 };
 
 // 유니온 방식 쓰려고 했으나, 메모리 정렬에 따른 오버헤드 및 충돌체 개수 증가 등 확상성을 고려해서 윈도우 구조체를 쓰기로 함

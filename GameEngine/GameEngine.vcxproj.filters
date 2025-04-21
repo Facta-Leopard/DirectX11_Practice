@@ -136,15 +136,6 @@
     <Filter Include="4. Component\44. Light\4321. Light2D">
       <UniqueIdentifier>{daeee69e-ad70-4eca-80b0-1a3218f55603}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0. Foundation\09. Header">
-      <UniqueIdentifier>{0974320b-6144-4ab6-a100-b2ad3bf94d2a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0. Foundation\01. Global Header">
-      <UniqueIdentifier>{a4962afc-10b8-47eb-86ff-0af985e15087}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="0. Foundation\02. Math">
-      <UniqueIdentifier>{30348236-904d-4d08-af6d-3fd457c45b57}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3. Resource\31. Object">
       <UniqueIdentifier>{2a67f850-fca8-451c-83ee-d04bc0f39ce5}</UniqueIdentifier>
     </Filter>
@@ -196,14 +187,38 @@
     <Filter Include="3. Resource\32. Resource\329. Shader\3291. GraphicPipeline">
       <UniqueIdentifier>{a922df71-48a2-49d6-8829-0bf3de0102e6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\329. Shader\3292. Compute">
+    <Filter Include="0. Foundation\01. Header">
+      <UniqueIdentifier>{0974320b-6144-4ab6-a100-b2ad3bf94d2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\01. Header\011. Global Header">
+      <UniqueIdentifier>{a4962afc-10b8-47eb-86ff-0af985e15087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\01. Header\012. Math">
+      <UniqueIdentifier>{30348236-904d-4d08-af6d-3fd457c45b57}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\02. HLSL">
+      <UniqueIdentifier>{5d954bee-fae0-43ee-9e3a-bf05e6312c63}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\02. HLSL\021. Global FX">
+      <UniqueIdentifier>{cbc2c25d-6983-4d83-a26f-ee6ba1fecc5c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\02. HLSL\022. Graphic FX">
+      <UniqueIdentifier>{5d08c60e-e07c-4cde-b8d2-31c9d818665e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\02. HLSL\023. Compute FX">
+      <UniqueIdentifier>{25ec3376-5240-43b4-8d50-576f371b78c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\329. Shader\3292. ComputeShader">
       <UniqueIdentifier>{4aa47da3-33f6-4bf3-a641-198468fe552d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\329. Shader\3292. ComputeShader\32921. Compute_Color">
+      <UniqueIdentifier>{e1c8f1e1-5ec5-4358-974f-d4c3e3d4e3cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\329. Shader\3292. ComputeShader\32920. ComputeShader">
+      <UniqueIdentifier>{cecd3d65-f944-4d6a-8b69-3ee24068259d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="C_Singleton.h">
-      <Filter>0. Foundation</Filter>
-    </ClInclude>
     <ClInclude Include="C_GameEngine.h">
       <Filter>1. Main</Filter>
     </ClInclude>
@@ -214,13 +229,13 @@
       <Filter>3. Resource\30. Entity</Filter>
     </ClInclude>
     <ClInclude Include="framework.h">
-      <Filter>0. Foundation\09. Header</Filter>
+      <Filter>0. Foundation\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="enum.h">
-      <Filter>0. Foundation\09. Header</Filter>
+      <Filter>0. Foundation\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="define.h">
-      <Filter>0. Foundation\09. Header</Filter>
+      <Filter>0. Foundation\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
       <Filter>0. Foundation\00. PreCompiled Header</Filter>
@@ -271,7 +286,7 @@
       <Filter>4. Component\44. Light\4321. Light2D</Filter>
     </ClInclude>
     <ClInclude Include="component.h">
-      <Filter>0. Foundation\09. Header</Filter>
+      <Filter>0. Foundation\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="C_RenderComponent.h">
       <Filter>5. RenderComponent\60. RenderComponent</Filter>
@@ -325,16 +340,16 @@
       <Filter>4. Component\43. StateComponent</Filter>
     </ClInclude>
     <ClInclude Include="globalFunction.h">
-      <Filter>0. Foundation\01. Global Header</Filter>
+      <Filter>0. Foundation\01. Header\011. Global Header</Filter>
     </ClInclude>
     <ClInclude Include="globalVariable.h">
-      <Filter>0. Foundation\01. Global Header</Filter>
+      <Filter>0. Foundation\01. Header\011. Global Header</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
-      <Filter>0. Foundation\02. Math</Filter>
+      <Filter>0. Foundation\01. Header\012. Math</Filter>
     </ClInclude>
     <ClInclude Include="global.h">
-      <Filter>0. Foundation\01. Global Header</Filter>
+      <Filter>0. Foundation\01. Header\011. Global Header</Filter>
     </ClInclude>
     <ClInclude Include="C_Mesh.h">
       <Filter>3. Resource\32. Resource\321. Mesh</Filter>
@@ -348,8 +363,14 @@
     <ClInclude Include="C_GraphicShader.h">
       <Filter>3. Resource\32. Resource\329. Shader\3291. GraphicPipeline</Filter>
     </ClInclude>
+    <ClInclude Include="C_Singleton.h">
+      <Filter>0. Foundation\01. Header</Filter>
+    </ClInclude>
     <ClInclude Include="C_ComputeShader.h">
-      <Filter>3. Resource\32. Resource\329. Shader\3292. Compute</Filter>
+      <Filter>3. Resource\32. Resource\329. Shader\3292. ComputeShader\32920. ComputeShader</Filter>
+    </ClInclude>
+    <ClInclude Include="C_ColorCompute.h">
+      <Filter>3. Resource\32. Resource\329. Shader\3292. ComputeShader\32921. Compute_Color</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -474,7 +495,10 @@
       <Filter>3. Resource\32. Resource\329. Shader\3291. GraphicPipeline</Filter>
     </ClCompile>
     <ClCompile Include="C_ComputeShader.cpp">
-      <Filter>3. Resource\32. Resource\329. Shader\3292. Compute</Filter>
+      <Filter>3. Resource\32. Resource\329. Shader\3292. ComputeShader\32920. ComputeShader</Filter>
+    </ClCompile>
+    <ClCompile Include="C_ColorCompute.cpp">
+      <Filter>3. Resource\32. Resource\329. Shader\3292. ComputeShader\32921. Compute_Color</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -482,7 +506,7 @@
       <Filter>Relic</Filter>
     </None>
     <None Include="SimpleMath.inl">
-      <Filter>0. Foundation\02. Math</Filter>
+      <Filter>0. Foundation\01. Header\012. Math</Filter>
     </None>
   </ItemGroup>
 </Project>

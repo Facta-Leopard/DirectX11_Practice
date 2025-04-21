@@ -39,6 +39,12 @@ public:
     void MF_Update();
 
 public:
+    inline static E_COLLIDER_TYPE MF_Get_ColliderType()
+    {
+        return E_S_ColliderType;
+    }
+
+public:
     void MF_Check_SameGroup(USHORT _GroupA, USHORT _GroupB);
 
     void MF_Check_OverlapGroup(E_GROUP_INDEX _GroupIndexA, E_GROUP_INDEX _GroupIndexB);

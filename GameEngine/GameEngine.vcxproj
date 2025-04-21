@@ -183,6 +183,7 @@
     <ClInclude Include="C_CameraScript.h" />
     <ClInclude Include="C_Collider2D.h" />
     <ClInclude Include="C_CollisionManager.h" />
+    <ClInclude Include="C_ColorCompute.h" />
     <ClInclude Include="C_Component.h" />
     <ClInclude Include="C_ComputeShader.h" />
     <ClInclude Include="C_ConstantBuffer.h" />
@@ -234,6 +235,7 @@
     <ClCompile Include="C_CameraScript.cpp" />
     <ClCompile Include="C_Collider2D.cpp" />
     <ClCompile Include="C_CollisionManager.cpp" />
+    <ClCompile Include="C_ColorCompute.cpp" />
     <ClCompile Include="C_Component.cpp" />
     <ClCompile Include="C_ComputeShader.cpp" />
     <ClCompile Include="C_ConstantBuffer.cpp" />

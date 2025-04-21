@@ -18,10 +18,10 @@ private:
 
 	// 기존 학습시 정의한 ptr 클래스는 이중포인터를 사용하기 위한 ComPtr의 열화판이고,
 	// 이중포인터는 COM과 같은 DirectX 객체들에서만 쓰므로, 그냥 스마트 포인터로 전부 개조해서 쓰자
-	shared_ptr<C_Texture>					SP_DX_M_RenderTargetTexture;
-	shared_ptr<C_Texture>					SP_DX_M_DepthStencilTexture;
+	shared_ptr<C_Texture>					SP_DX_M_RenderTargetTexture;								// shared_ptr<C_Texture>
+	shared_ptr<C_Texture>					SP_DX_M_DepthStencilTexture;								// shared_ptr<C_Texture>
 
-	// CConstBuffer* MD_ConstructureBuffer[(UINT)CB_TYPE::END];
+	C_ConstantBuffer*						P_M_ConstanctBuffer_s[(UINT)_CONSTANTBUFFER_END];			// C_ConstantBuffer*
 
 	ComPtr<ID3D11RasterizerState>			CP_M_RasterizerState_s[(UINT)_RASTERIZER_END];				// ComPtr<ID3D11RasterizerState>
 	ComPtr<ID3D11DepthStencilState>			CP_M_DepthStencilState_s[(UINT)_DEPTHSTENCIL_END];			// ComPtr<ID3D11DepthStencilState>
@@ -72,6 +72,11 @@ public:		// 향후, Setter를 두는 것과 아닌 것의 차이를 생각해보자
 	inline shared_ptr<C_Texture> MF_Get_DepthStencilTexture()
 	{
 		return SP_DX_M_DepthStencilTexture;
+	}
+
+	inline C_ConstantBuffer* MF_Get_ConstantBuffer(E_CONSTANTBUFFER_TYPE _E_ConstantBufferType)
+	{
+		return P_M_ConstanctBuffer_s[_E_ConstantBufferType];
 	}
 
 	inline ComPtr<ID3D11RasterizerState> MF_Get_RasterizerState(E_RASTERIZER_STATE _RasterizerState)

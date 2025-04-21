@@ -72,7 +72,10 @@ void C_GraphicShader::MF_Create_VertexShader(const wstring& _Path, const string&
 	if (FAILED(D3DCompileFromFile(T_ShaderFilePath.c_str()
 		, nullptr
 		, D3D_COMPILE_STANDARD_FILE_INCLUDE
-		, _HLSL_Function.c_str(), "vs_5_0", Flag, 0
+		, _HLSL_Function.c_str()
+		, "vs_5_0"			// vs_5_0; Vertex Shader, Shader Model 5.0
+		, Flag
+		, 0
 		, CP_DX_M_VertexShaderBlob.GetAddressOf()
 		, CP_DX_M_ErrorBlob.GetAddressOf())))
 	{
@@ -178,7 +181,9 @@ void C_GraphicShader::MF_Create_GeometryShader(const wstring& _Path, const strin
 	if (FAILED(D3DCompileFromFile(T_ShaderFilePath.c_str()
 		, nullptr
 		, D3D_COMPILE_STANDARD_FILE_INCLUDE
-		, _HLSL_Function.c_str(), "gs_5_0", Flag, 0
+		, _HLSL_Function.c_str()
+		, "gs_5_0"			// gs_5_0; Geometry Shader, Shader Model 5.0
+		, Flag, 0
 		, CP_DX_M_GeometryShaderBlob.GetAddressOf()
 		, CP_DX_M_ErrorBlob.GetAddressOf())))
 	{
@@ -228,7 +233,10 @@ void C_GraphicShader::MF_Create_PixelShader(const wstring& _Path, const string& 
 	if (FAILED(D3DCompileFromFile(T_ShaderFilePath.c_str()
 		, nullptr
 		, D3D_COMPILE_STANDARD_FILE_INCLUDE
-		, _HLSL_Function.c_str(), "ps_5_0", Flag, 0
+		, _HLSL_Function.c_str()
+		, "ps_5_0"			// ps_5_0; Pixel Shader, Shader Model 5.0
+		, Flag
+		, 0
 		, CP_DX_M_PixelShaderBlob.GetAddressOf()
 		, CP_DX_M_ErrorBlob.GetAddressOf())))
 	{
