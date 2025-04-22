@@ -34,7 +34,6 @@ public:
 		{
 			return nullptr;
 		}
-
 		return T_Iterator->second;
 	}
 };

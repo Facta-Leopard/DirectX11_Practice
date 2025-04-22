@@ -46,27 +46,27 @@ public:
 public:
     // 유의! ID3DBlob같은 COM객체는 게터나 세터를 통한 멤버접근을 잘 하지 않음!
 
-    ComPtr<ID3D11ComputeShader> MF_Get_ComputeShader()
+    inline ComPtr<ID3D11ComputeShader> MF_Get_ComputeShader()
     {
         return  CP_DX_M_ComputeShader;
     }
 
-    DS_MaterialConstant MF_Get_MaterialConstant()
+    inline DS_MaterialConstant MF_Get_MaterialConstant()
     {
         return DS_M_MaterialConstant;
     }
 
-    UINT MF_Get_GroupCountX()
+    inline UINT MF_Get_GroupCountX()
     {
         return SDK_M_GroupCountX;
     }
 
-    UINT MF_Get_GroupCountY()
+    inline UINT MF_Get_GroupCountY()
     {
         return SDK_M_GroupCountY;
     }
 
-    UINT MF_Get_GroupCountZ()
+    inline UINT MF_Get_GroupCountZ()
     {
         return SDK_M_GroupCountZ;
     }

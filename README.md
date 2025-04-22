@@ -263,6 +263,9 @@ To maintain consistency and readability, all class members should follow the ord
 13. **Getters**  
     - For all Getters uses the `inline` keyword to optimize performance, reduce function call overhead, and maintain the naming convention `MF_Get_X()`.
     - This makes the code more efficient by directly accessing the member variables, improving performance without extra cost.
+    - But, don't use `inline` for `virtual getters`.
+    - Because `Inline works at compile time` and `virtual works at runtime`.
+    - They don't fit together conceptually.
 
 14. **Setters**
     - Decide `inline` `case by case`.

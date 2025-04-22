@@ -70,40 +70,22 @@ public:
         C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->Unmap(CP_DX_M_StructuredBufferForReading.Get(), 0);
     }
 
-    inline void MF_Set_StructuredBufferByData(void* _Data, UINT _ElementSize, UINT _ElementCount)
-    {
-        SDK_M_ElementSize = _ElementSize;
-        SDK_M_ElementCount = _ElementCount;
-
-        // 읽기전용 버퍼에서 -> 시스템메모리로 복사
-        //// 데이터 전송용 구조체
-        D3D11_MAPPED_SUBRESOURCE tSubRes = {};
-
-        //// DeviceContext의 Map()으로 GPU에 Lock을 걸어 GPU 접근 방지 및 CPU가 데이터 접근
-        C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->Map(CP_DX_M_StructuredBufferForWriting.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &tSubRes);
-
-        memcpy(tSubRes.pData, _Data, _ElementSize * _ElementCount);     // SDK_M_ElementSize나 SDK_M_ElementCount로 접근하는 것이 인자로 접근하는 것보다 더 느림(SIMD 최적화)
-
-        C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->Unmap(CP_DX_M_StructuredBufferForWriting.Get(), 0);
-
-        // 읽기전용 버퍼에서 중간 매개의 버퍼로 복사
-        //// CopyResource는 GPU메모리 복사전용 명령어; 아무리 생각해도, Dest랑 src위치가 memcpy하고 다른 걸 보면 통일성이 없는데, 이런 점에서 마이크로소프트는 욕나온다 씨발
-        C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->CopyResource(CP_DX_M_StructuredBufferForTransfer.Get(), CP_DX_M_StructuredBufferForWriting.Get());
-    }
-
     inline UINT MF_Get_ElementSize()
     {
         return SDK_M_ElementSize;
     }
 
-    inline void MF_Set_ElementSize(UINT _SDK_ElementSize)
-    {
-        SDK_M_ElementSize = _SDK_ElementSize;
-    }
-
     inline UINT MF_Get_ElementCount()
     {
         return SDK_M_ElementCount;
+    }
+
+public:
+    void MF_Set_StructuredBufferByData(void* _Data, UINT _ElementSize, UINT _ElementCount);
+
+    inline void MF_Set_ElementSize(UINT _SDK_ElementSize)
+    {
+        SDK_M_ElementSize = _SDK_ElementSize;
     }
 
     inline void MF_Set_ElementCount(UINT _SDK_ElementCount)

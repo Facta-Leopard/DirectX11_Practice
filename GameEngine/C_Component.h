@@ -35,7 +35,7 @@ public:
 
     virtual void MF_ComponentTickAfter() = 0;                       // 상속받는 클래스의 작동함수 작성을 강제하기 위해서 추상화 설정
 
-    virtual C_Component* MF_Get_ComponentMyself()                             // Return This Point By Vitual and Polymorph; 다형성을 이용한 자기자신 반환함수
+    virtual C_Component* MF_Get_ComponentMyself()                             // Return This Point By Vitual and Polymorph; 다형성을 이용한 자기자신 반환함수; 유의! inline은 컴파일 시점, virtual은 런타임 시점으로 충돌하니까 동시에 써야할 경우 inline을 제외함!
     {
         if (_COMPONENT_SCRIPT == this->L_M_ComponentType)           // 방어코드
         {

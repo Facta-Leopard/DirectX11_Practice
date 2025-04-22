@@ -17,12 +17,15 @@ public:
 
     void MF_Update();
 
+    void MF_DebugRender();
 
+public:
     inline bool MF_Get_DebugScreenOn()                   // Getter; M_IsDebugSrcreenOn
     {
         return M_IsDebugSrcreen;
     }
 
+public:
     inline void MF_Set_ScreenOn()                        // Setter; M_IsDebugSrcreenOn
     {
         M_IsDebugSrcreen = true;
@@ -33,7 +36,7 @@ public:
         M_IsDebugSrcreen = false;
     }
 
+public:
 
-    void MF_DebugRender();
 };
 

@@ -18,7 +18,7 @@ public:
 
     void MF_Update();
 
-
+public:
     inline DS_KeyInfo MF_Get_MouseInfo(E_KEY_TYPE _KeyType)     // Getter; STL_M_DS_KeyInfo
     {
         return STL_M_DS_KeyInfo[_KeyType];

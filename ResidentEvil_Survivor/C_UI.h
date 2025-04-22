@@ -40,8 +40,13 @@ public:
 public:
 	virtual HRESULT MF_Prepare();					// 가상함수 설정; 초기화함수
 
-	void MF_Check_Focus();							// 포커싱 여부 체크
+public:
+	ImVec2 MF_Get_ChildSize()					// Getter; I_M_Vec2_ChildSize
+	{
+		return I_M_Vec2_ChildSize;
+	}
 
+public:
 	inline void MF_Set_Active(bool _Active)		// Setter; true
 	{
 		if (M_IsActive == _Active)				// 조기반환; 오버헤드 줄이기
@@ -71,13 +76,11 @@ public:
 		M_IsActive = false;
 	}
 
-	ImVec2 MF_Get_ChildSize()					// Getter; I_M_Vec2_ChildSize
-	{
-		return I_M_Vec2_ChildSize;
-	}
-
 	inline void MF_Set_ChildSize(ImVec2 _I_Vec2_Size)	// Setter;
 	{
 		I_M_Vec2_ChildSize = _I_Vec2_Size;
 	}
+
+public:
+	void MF_Check_Focus();							// 포커싱 여부 체크
 };

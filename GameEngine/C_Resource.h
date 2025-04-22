@@ -41,6 +41,8 @@ public:
         return M_PathKey;
     }
 
+public:
+
     inline wstring MF_Set_PathKey(const wstring& _PathKey)      // Setter
     {
         M_PathKey = _PathKey;

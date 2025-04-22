@@ -3,7 +3,7 @@
 
 C_Collider2D::C_Collider2D()
 	: C_Component(_COMPONENT_COLLIDER2D)
-	, Vec3_M_ColliderScale{}
+	, VEC3_M_ColliderScale{}
 
 	, MAT_M_CollisionMatrix{}
 
@@ -16,19 +16,19 @@ C_Collider2D::C_Collider2D()
 
 C_Collider2D::C_Collider2D(const C_Collider2D& _Origin)
 	: C_Component(_Origin)
-	, Vec3_M_ColliderScale{_Origin.Vec3_M_ColliderScale}
+	, VEC3_M_ColliderScale{_Origin.VEC3_M_ColliderScale }
 
 	, MAT_M_CollisionMatrix{_Origin.MAT_M_CollisionMatrix}
 
-	, Vec3_M_CollisionDirection_s{}
+	, VEC3_M_CollisionDirection_s{}
 	, M_IsDependent(false)
 
 	, M_OverLapCount(0)
 {
 	// 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
-	Vec3_M_CollisionDirection_s[_DIRECTION_RIGHT]   = _Origin.Vec3_M_CollisionDirection_s[_DIRECTION_RIGHT]
-	, Vec3_M_CollisionDirection_s[_DIRECTION_UP]    = _Origin.Vec3_M_CollisionDirection_s[_DIRECTION_UP]
-	, Vec3_M_CollisionDirection_s[_DIRECTION_FRONT] = _Origin.Vec3_M_CollisionDirection_s[_DIRECTION_FRONT];
+	VEC3_M_CollisionDirection_s[_DIRECTION_RIGHT]   = _Origin.VEC3_M_CollisionDirection_s[_DIRECTION_RIGHT]
+	, VEC3_M_CollisionDirection_s[_DIRECTION_UP]    = _Origin.VEC3_M_CollisionDirection_s[_DIRECTION_UP]
+	, VEC3_M_CollisionDirection_s[_DIRECTION_FRONT] = _Origin.VEC3_M_CollisionDirection_s[_DIRECTION_FRONT];
 }
 
 C_Collider2D::~C_Collider2D()
@@ -60,16 +60,16 @@ void C_Collider2D::MF_ComponentTick()
 		GF_Set_ScaleToMatrix(MAT_M_CollisionMatrix, Vec3_T_ObjectScale);
 	}
 
-	Vec3_M_ColliderScale = SF_Get_ScaleVector3FromMatrix(MAT_M_CollisionMatrix);
+	VEC3_M_ColliderScale = SF_Get_ScaleVector3FromMatrix(MAT_M_CollisionMatrix);
 
 	// 방향벡터 캐싱
-	Vec3_M_CollisionDirection_s[_DIRECTION_RIGHT] = GF_Get_DirectionVector3FromMatrix(MAT_M_CollisionMatrix, _DIRECTION_RIGHT);
-	Vec3_M_CollisionDirection_s[_DIRECTION_UP]    = GF_Get_DirectionVector3FromMatrix(MAT_M_CollisionMatrix, _DIRECTION_UP);
-	Vec3_M_CollisionDirection_s[_DIRECTION_FRONT] = GF_Get_DirectionVector3FromMatrix(MAT_M_CollisionMatrix, _DIRECTION_FRONT);
+	VEC3_M_CollisionDirection_s[_DIRECTION_RIGHT] = GF_Get_DirectionVector3FromMatrix(MAT_M_CollisionMatrix, _DIRECTION_RIGHT);
+	VEC3_M_CollisionDirection_s[_DIRECTION_UP]    = GF_Get_DirectionVector3FromMatrix(MAT_M_CollisionMatrix, _DIRECTION_UP);
+	VEC3_M_CollisionDirection_s[_DIRECTION_FRONT] = GF_Get_DirectionVector3FromMatrix(MAT_M_CollisionMatrix, _DIRECTION_FRONT);
 
-	Vec3_M_CollisionDirection_s[_DIRECTION_RIGHT].Normalize();
-	Vec3_M_CollisionDirection_s[_DIRECTION_UP].Normalize();
-	Vec3_M_CollisionDirection_s[_DIRECTION_FRONT].Normalize();
+	VEC3_M_CollisionDirection_s[_DIRECTION_RIGHT].Normalize();
+	VEC3_M_CollisionDirection_s[_DIRECTION_UP].Normalize();
+	VEC3_M_CollisionDirection_s[_DIRECTION_FRONT].Normalize();
 
 	// 최종
 }
@@ -77,6 +77,29 @@ void C_Collider2D::MF_ComponentTick()
 void C_Collider2D::MF_ComponentTickAfter()
 {
 	// 향후, 디버그 렌더는 별도로 매니저에서 관리하는 형태로 개선하는 것이 좋을 듯
+}
+
+void C_Collider2D::MF_Set_ColliderScale(Vector3 _ColliderScale)
+{
+	VEC3_M_ColliderScale = _ColliderScale;
+
+	E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
+
+	switch (T_ColliderType)
+	{
+
+	case _COLLIDER_2D_TOPVEIW:
+	case _COLLIDER_2D_ISOMETRICVIEW:
+
+		VEC3_M_ColliderScale = (Vector3)(_ColliderScale.x, 0.f, _ColliderScale.z);
+
+		break;
+	default:
+
+		VEC3_M_ColliderScale = (Vector3)(_ColliderScale.x, _ColliderScale.y, 0.f);
+
+		break;
+	}
 }
 
 void C_Collider2D::MF_On_OverlapBegin(C_Collider2D* _Collider2D)

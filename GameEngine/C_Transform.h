@@ -46,46 +46,16 @@ public:
         return VEC3_M_RelativeScale;
     }
 
-    inline  void MF_Set_RelativeScale(Vector3 _Vec3Position)                            // Setter;
-    {
-        VEC3_M_RelativeScale = _Vec3Position;
-    }
-
-    inline  void MF_Set_RelativeScale(float _X, float _Y, float _Z)                     // Setter;
-    {
-        VEC3_M_RelativeScale = Vector3(_X, _Y, _Z);
-    }
-
     // RelativeRotation 包访
     inline Vector3 MF_Get_RelativeRotation()                                            // Getter; Vec3_M_RelativeRotation
     {
         return VEC3_M_RelativeRotation;
     }
 
-    inline  void MF_Set_RelativeRotation(Vector3 _Vec3Position)                         // Setter;
-    {
-        VEC3_M_RelativeRotation = _Vec3Position;
-    }
-
-    inline  void MF_Set_RelativeRotation(float _X, float _Y, float _Z)                  // Setter;
-    {
-        VEC3_M_RelativeRotation = Vector3(_X, _Y, _Z);
-    }
-
     // RelativePosition 包访
     inline Vector3 MF_Get_RelativePosition()                                            // Getter; Vec3_M_RelativePosition
     {
         return VEC3_M_RelativePosition;
-    }
-
-    inline  void MF_Set_RelativePosition(Vector3 _Vec3Position)                         // Setter; 
-    {
-        VEC3_M_RelativePosition = _Vec3Position;
-    }
-
-    inline  void MF_Set_RelativePosition(float _X, float _Y, float _Z)                  // Setter;
-    {
-        VEC3_M_RelativePosition = Vector3(_X, _Y, _Z);
     }
 
     // RelativeDirection 包访
@@ -98,11 +68,6 @@ public:
     inline int MF_Get_IsScaleDependent()                                                // Getter; M_IsScaleDependent
     {
         return M_IsScaleDependent;
-    }
-
-    inline bool MF_Set_ScaleDependent(bool _InputScaleFactor)                           // Setter; 
-    {
-        M_IsScaleDependent = _InputScaleFactor;
     }
 
     // WorldMatrix 包访
@@ -135,6 +100,42 @@ public:
     inline Vector3 MF_Get_WorldMatrixDirection(E_DIRECTION_TYPE _Direction)             // Getter; MF_ConvertWorldMatrixToVectorDirection()
     {
         return VEC3_M_WorldMatrixDirection_s[_Direction];
+    }
+
+public:
+    inline  void MF_Set_RelativeScale(Vector3 _Vec3Position)                            // Setter;
+    {
+        VEC3_M_RelativeScale = _Vec3Position;
+    }
+
+    inline  void MF_Set_RelativeScale(float _X, float _Y, float _Z)                     // Setter;
+    {
+        VEC3_M_RelativeScale = Vector3(_X, _Y, _Z);
+    }
+
+    inline  void MF_Set_RelativeRotation(Vector3 _Vec3Position)                         // Setter;
+    {
+        VEC3_M_RelativeRotation = _Vec3Position;
+    }
+
+    inline  void MF_Set_RelativeRotation(float _X, float _Y, float _Z)                  // Setter;
+    {
+        VEC3_M_RelativeRotation = Vector3(_X, _Y, _Z);
+    }
+
+    inline  void MF_Set_RelativePosition(Vector3 _Vec3Position)                         // Setter; 
+    {
+        VEC3_M_RelativePosition = _Vec3Position;
+    }
+
+    inline  void MF_Set_RelativePosition(float _X, float _Y, float _Z)                  // Setter;
+    {
+        VEC3_M_RelativePosition = Vector3(_X, _Y, _Z);
+    }
+
+    inline bool MF_Set_ScaleDependent(bool _InputScaleFactor)                           // Setter; 
+    {
+        M_IsScaleDependent = _InputScaleFactor;
     }
 
     inline  void MF_Set_WorldMatrix(Matrix _Matrix)                                     // Setter

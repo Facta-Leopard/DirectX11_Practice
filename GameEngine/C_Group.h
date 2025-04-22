@@ -39,16 +39,6 @@ public:
 	void MF_TickAfter();																	  // Group 내 모든 부모 오브젝트 TickAfter() 실행
 
 public:
-	inline E_GROUP_INDEX MF_Set_GroupIndex()												  // Getter; E_GROUP_TYPE 관련
-	{
-		return M_GroupIndex;
-	}
-
-	inline void MF_Set_GroupIndex(E_GROUP_INDEX _GroupIndex)								  // Setter
-	{
-		M_GroupIndex = _GroupIndex;
-	}
-
 	inline vector<C_Object*> MF_Get_AllObjectFromGroup()									  // Getter; STL_M_AllObject 관련
 	{
 		return STL_P_M_AllObject;
@@ -59,7 +49,19 @@ public:
 		return STL_P_M_ParentObject;
 	}
 
-	inline void MF_Attach_ObjectIntoAllObject(C_Object* _Object)							  // Attach; STL_M_AllObject 관련
+public:
+	inline void MF_Set_GroupIndex(E_GROUP_INDEX _GroupIndex)								  // Setter
+	{
+		M_GroupIndex = _GroupIndex;
+	}
+
+	inline E_GROUP_INDEX MF_Set_GroupIndex()												  // Getter; E_GROUP_TYPE 관련
+	{
+		return M_GroupIndex;
+	}
+
+public:
+	void MF_Attach_ObjectIntoAllObject(C_Object* _Object)							  // Attach; STL_M_AllObject 관련
 	{
 		STL_P_M_AllObject.push_back(_Object);
 	}

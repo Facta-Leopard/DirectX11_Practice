@@ -23,6 +23,7 @@ public:
         return P_M_CurrentStage;
     }
 
+public:
     inline void MF_Set_CurrentStage(C_Stage* _Stage)
     {
         P_M_CurrentStage = _Stage;
