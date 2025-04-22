@@ -73,6 +73,18 @@
 
 ---
 
+## Location Naming Rule
+
+- For position/direction identifiers (UVs, Anchors, Alignment, Rects, etc.), always `follow Western-style naming order`.
+
+- `Vertical direction (Top/Bottom) must come first`, followed by horizontal (Left/Right).
+
+### Examples
+
+- `TopLeft`, `BottomRight`
+
+---
+
 ## Naming Rule Notes
 
 - All prefixed names should include a **trailing underscore** (`_`) to improve readability and avoid naming conflicts.  
