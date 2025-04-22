@@ -93,9 +93,35 @@
 
 - These types are all aligned to 4-byte boundaries and are safe to use with GPU constant buffers.
 
-### Reference: Microsoft Docs - Packing Rules for Constant Buffers
+### 4.1 Constant Buffer Data Scope
+
+- Data transferred from CPU to GPU (e.g., tTransform, tGlobal, etc.) should be declared as global variables, not as static members of a class.
+
+- Global variables have fixed memory addresses and CPU access have advanced faster.
+
+- They stay in contiguous memory, improving CPU cache hit rate and GPU upload efficiency.
+
+- Scattering constant data across multiple static class members leads to fragmented memory and cache misses.
+
+### 4.2 Rule
+
+- Group all GPU-bound data into a single struct.
+
+- Expose that struct as a global instance.
+
+- Prefix with G_ to indicate global scope.
+
+- This layout is cache-friendly, upload-efficient, and structure-clean.
+
+### 4.3. Reference
+
+#### 4.3.1 Reference: Microsoft Docs - Packing Rules for Constant Buffers
 
 [Microsoft Docs - Packing Rules for Constant Buffers](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-packing-rules)
+
+### 4.3.2 Reference: Microsoft Docs - Shader Constants
+
+[Microsoft Docs - Shader Constants](https://learn.microsoft.com/en-us/windows/win32/direct3dhlsl/dx-graphics-hlsl-constants)
 
 ---
 
