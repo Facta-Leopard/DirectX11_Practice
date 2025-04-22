@@ -211,6 +211,7 @@
     <ClInclude Include="C_ScriptComponent.h" />
     <ClInclude Include="C_Singleton.h" />
     <ClInclude Include="C_Sound.h" />
+    <ClInclude Include="C_Sprite.h" />
     <ClInclude Include="C_SpriteRender.h" />
     <ClInclude Include="C_Stage.h" />
     <ClInclude Include="C_StageManager.h" />
@@ -264,6 +265,7 @@
     <ClCompile Include="C_RigidScript.cpp" />
     <ClCompile Include="C_ScriptComponent.cpp" />
     <ClCompile Include="C_Sound.cpp" />
+    <ClCompile Include="C_Sprite.cpp" />
     <ClCompile Include="C_SpriteRender.cpp" />
     <ClCompile Include="C_Stage.cpp" />
     <ClCompile Include="C_StageManager.cpp" />

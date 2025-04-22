@@ -375,6 +375,9 @@
     <ClInclude Include="C_Material.h">
       <Filter>3. Resource\32. Resource\323. Material</Filter>
     </ClInclude>
+    <ClInclude Include="C_Sprite.h">
+      <Filter>3. Resource\32. Resource\325. Sprite</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
@@ -508,6 +511,9 @@
     </ClCompile>
     <ClCompile Include="globalVariable.cpp">
       <Filter>0. Foundation\01. Header\011. Global</Filter>
+    </ClCompile>
+    <ClCompile Include="C_Sprite.cpp">
+      <Filter>3. Resource\32. Resource\325. Sprite</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
