@@ -59,7 +59,8 @@ using namespace std;
 #include "define.h"
 
 #include "enum.h"
-#include "globalVariable.h"
+#include "struct.h"
+
 #include "globalFunction.h"
 
 #include "C_Singleton.h"

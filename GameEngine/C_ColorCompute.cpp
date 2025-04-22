@@ -19,9 +19,9 @@ void C_ColorCompute::MF_Bind_ColorCompute()
 		
 	SP_M_Texture->MF_Bind_UnorderedAccessViewToComputeShadersByuRegister(0);
 
-	DS_M_MaterialConstant.VEC4_Constant_s[0] = VEC4_M_Color;
-	DS_M_MaterialConstant.Int_Constant_s[0] = (int)SP_M_Texture->MF_Get_TextureWidth();
-	DS_M_MaterialConstant.Int_Constant_s[1] = (int)SP_M_Texture->MF_Get_TextureHeight();
+	DS_M_MaterialConstant.SDK_XM_FLOAT4_Constant_s[0] = VEC4_M_Color;
+	DS_M_MaterialConstant.SDK_XM_UINT_Constant_s[0] = (int)SP_M_Texture->MF_Get_TextureWidth();
+	DS_M_MaterialConstant.SDK_XM_UINT_Constant_s[1] = (int)SP_M_Texture->MF_Get_TextureHeight();
 }
 
 void C_ColorCompute::MF_UnBind_ColorCompute()

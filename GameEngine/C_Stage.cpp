@@ -23,7 +23,7 @@ void C_Stage::MF_Prepare()
 {
 	for (int i = 0; i < (int)_GROUP_END; ++i)
 	{
-		if (nullptr == P_M_Group_s[(E_GROUP_INDEX)i])				// 规绢内靛;
+		if (nullptr == P_M_Group_s[i])				// 规绢内靛;
 		{
 			continue;
 		}

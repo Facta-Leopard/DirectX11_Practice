@@ -2,8 +2,11 @@
 
 #include "global.h"
 #include "C_Texture.h"
+#include "C_ConstantBuffer.h"
+#include "C_Singleton.h"
 
-class C_Device: public C_Singleton<C_Device>
+class C_Device
+	: public C_Singleton<C_Device>
 {
 	SINGLE(C_Device)
 
@@ -76,22 +79,22 @@ public:		// 향후, Setter를 두는 것과 아닌 것의 차이를 생각해보자
 
 	inline C_ConstantBuffer* MF_Get_ConstantBuffer(E_CONSTANTBUFFER_TYPE _E_ConstantBufferType)
 	{
-		return P_M_ConstanctBuffer_s[_E_ConstantBufferType];
+		return P_M_ConstanctBuffer_s[(UINT)_E_ConstantBufferType];
 	}
 
 	inline ComPtr<ID3D11RasterizerState> MF_Get_RasterizerState(E_RASTERIZER_STATE _RasterizerState)
 	{
-		return CP_M_RasterizerState_s[_RasterizerState];
+		return CP_M_RasterizerState_s[(UINT)_RasterizerState];
 	}
 
 	inline ComPtr<ID3D11DepthStencilState> MF_Get_DepthStencilState(E_DEPTHSTENCIL_STATE _DepthStencilState)
 	{
-		return CP_M_DepthStencilState_s[_DepthStencilState];
+		return CP_M_DepthStencilState_s[(UINT)_DepthStencilState];
 	}
 
 	inline ComPtr<ID3D11BlendState> MF_Get_BlendState(E_BLEND_STATE _BlendState)
 	{
-		return CP_M_BlendState_s[_BlendState];
+		return CP_M_BlendState_s[(UINT)_BlendState];
 	}
 
 protected:
@@ -109,12 +112,4 @@ protected:
 
 	HRESULT MF_Create_SamplerState();
 
-
-
-	// 향후 정의예정
-	// C_ConstBuffer* MF_Get_ConstBuffer(CONSTRUCTUREBUFFER_TYPE _Type) { return MD_ConstructureBuffer[(UINT)_Type]; }
-	// Vector2 MF_Get_RenderResolution() { return MV2_RenderTargetResolution; }
-	// ComPtr<ID3D11RasterizerState> MF_Get_RSState(RASTERIZERSTATE_TYPE _Type) { return CPMEC_RasterizerState[(UINT)_Type]; }
-	// ComPtr<ID3D11DepthStencilState> MF_Get_DSState(DEPTHSTENCILSTATE_TYPE _Type) { return CPMEC_DepthStencilState[(UINT)_Type]; }
-	// ComPtr<ID3D11BlendState>	MF_Get_BSState(BLENDSTATE_TYPE _Type) { return CPMEC_BlendState[(UINT)_Type]; }
 };

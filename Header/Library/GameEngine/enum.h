@@ -6,60 +6,85 @@
 // 단어별로 '_'로 끊는 것으로 정함
 
 // DirectX
-//// Buffer
+// Component형식으로 분류했던 방식으로, Buffer를 분류하는 것도 나쁘지 않을 듯
+//// Buffer; 버퍼타입으로 바인드될 레지스터 숫자 대체
 enum E_CONSTANTBUFFER_TYPE
 {
 	// 향후, 사용할 레지스터를 정하는 것이 좋을 듯.
 	// 상수버퍼이므로 b 레지스터를 사용
-	_CONSTANTBUFFER_TRANSFORM,					// b0
+	_CONSTANTBUFFER_TRANSFORM,					// b0: register 번호
 	_CONSTANTBUFFER_MATERIAL,					// b1
 	_CONSTANTBUFFER_GLOBAL,						// b2
 
 	_CONSTANTBUFFER_END,
 };
 
+enum E_STRUCTUREDBUFFER_TYPE
+{
+	// 향후, 사용할 레지스터를 정하는 것이 좋을 듯.
+	// 상수버퍼이므로 b 레지스터를 사용
+	_STRUCTUREDBUFFER_SHADERRESOURCEVIEW_ONLY,					 // tRegister
+	_STRUCTUREDBUFFER_UNORDEREDACCESSVIEW_ADDED,				 // uRegister
 
+	_STRUCTUREDBUFFER_UNORDEREDACCESSVIEW_ONLY,					 // 결과를 그래픽 파이프라인에서 보여주는 쉐이더리소스뷰가 꼭 필요한 게임업계에서 안 쓰고, 그럴 필요가 없는 실험용에서만 자주 씀; 유의! 게임엔진이 아닌 다른 용도로만 쓸 거면, 이 부분은 사용하지 말 것이며, 만약 다른 용도로 전용한다면 C_StructuredBuffer::MF_Create_StructuredBuffer() 내 분기문 등을 전체적으로 수정할 것!
 
+	_STRUCTUREDBUFFER_END,
+};
 
 // DirectX_Rendering Pipeline
 //// Vertex
-enum E_PROJECTION_TYPE
+////// Projection Type
+enum E_PROJECTION_STATE
 {
 	_PROJECTION_ORTHOGRAPHIC,				// 직교투영
 	_PROJECTION_PERSPECTIVE,				// 원근투영
 };
 
 
-//// Rasterizer
-enum E_RASTERIZER_TYPE
+//// Rasterizer Type; 시계방향이 정방향
+enum E_RASTERIZER_STATE
 {
-	_RASTERIZER_CULL_BACK,					// cull_ccw, 뒷면(반시계 순서) 컬링
-	_RASTERIZER_CULL_FRONT,				// cull_cw
-	_RASTERIZER_CULL_NONE,					// 컬링하지 않음
-	_RASTERIZER_WIRE_FRAME,				// 컬링하지 않으나, edge는 보임
+	_RASTERIZER_CULL_BACK,					// 뒷면 제거; 기본값
+	_RASTERIZER_CULL_FRONT,					// 앞면 제거
+	_RASTERIZER_CULL_NONE,					// 제거하지 않음
+
+	_RASTERIZER_WIRE_FRAME,					// 컬링하지 않으나, edge는 보임
 
 	_RASTERIZER_END,
 };
 
 
 //// Pixel
+////// Blend State
 enum E_BLEND_STATE
 {
-	_BLEND_DEFAULT,					// Src : 1, Dst : 0
-	_BLEND_ALPHABLEND,				// Src : A, Dst : (1 - A)
-
+	_BLEND_DEFAULT,							// Src : 1, Dst : 0
+	_BLEND_ALPHABLEND,						// Src : A, Dst : (1 - A)
+	
 	_BLEND_END,
 };
 
 
-//// Sampler
-enum E_SAMPLER_TYPE
+////// Sampler State
+enum E_SAMPLER_STATE
 {
+	_SAMPLER_POINT_WRAP,					// 픽셀 단위 그대로 찍고(UV 정수 단위 기준), 텍스처 범위 벗어나면 반복(Wrap)
+	_SAMPLER_POINT_CLAMP,					// 픽셀 단위 그대로 찍되, UV 0~1 밖은 가장자리에 고정(Clamp)
 
+	_SAMPLER_LINEAR_WRAP,					// 부드럽게 보간(Linear), UV 0~1 벗어나면 반복
+	_SAMPLER_LINEAR_CLAMP,					// 부드럽게 보간하면서 경계는 텍스처 가장자리에 고정
+
+	_SAMPLER_ANISOTROPIC_WRAP,				// Anisotropic Filtering -> 시야각이 심할 때 품질 유지(멀리 갈수록 뭉개지는 걸 잡아줌)하고 반복 패턴 사용
+	_SAMPLER_ANISOTROPIC_CLAMP,				// 고품질 필터링 + 경계는 고정
+
+	_SAMPLER_COMPARISON_LINEAR,				// 깊이 비교용 샘플러 + 보간
+	_SAMPLER_COMPARISON_POINT,				// 깊이 비교용 샘플러 + 포인트
+
+	_SAMPLER_END
 };
 
 
-//// DepthStencil State
+////// DepthStencil State
 enum E_DEPTHSTENCIL_STATE
 {
 	_DEPTHSTENCIL_LESS,						// 깊이판정 : 더 작아야 통과, 깊이 기록 O
@@ -74,7 +99,8 @@ enum E_DEPTHSTENCIL_STATE
 };
 
 //// OutputMerger
-enum E_DOMAIN_TYPE
+////// Domain State
+enum E_DOMAIN_STATE
 {
 	_DOMAIN_QPAQUE,				// 불투명
 	_DOMAIN_MASKED,				// 불투명 + 완전 투명

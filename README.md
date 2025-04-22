@@ -77,6 +77,30 @@
 
 - If a value is `used repeatedly inside a loop` or a `frequently called function`, `use static variables to cache` it instead of recalculating.
 
+###  Caution: Smart Pointer Using
+
+- **`ONLY PASS `shared_ptr` IF THE MEMBER IS `shared_ptr`**
+
+- I made an overload like `MF_Set_Texture(C_Texture&& _Texture)` to pass raw objects and wrap them with `shared_ptr` inside the setter.
+
+- But `the object had copy/move constructors deleted`, so i did `make_shared(std::move(_Texture))` and, it `passed compile`.
+
+- But, `errors occured during Run-Time`.
+
+- So, i tried to work around it with `shared_ptr<C_Texture>(&_Texture)` and `ended up hitting a dangling pointer bug`.
+
+- I even tried defining a move constructor overload, I had thought `I was being smart`.
+
+- I was a `fucking idiot` who totally screwed myself.
+
+### Lesson: if the member is a shared_ptr, just pass a shared_ptr  
+
+- **`NEVER BREAK OR REBUILD SMART POINTER` JUST TO PASS THEM AROUND!**
+
+- **ONLY ASSIGN ONE SMART POINTER TO ANOTHER TO MANAGE REF COUNTS SAFELY!**
+
+- **I EXPERIENCED THE HELL OF DEBUGGING OF THOSE!**
+
 ---
 
 ## 4. Buffer Compatibility(CPU <-> GPU)
@@ -236,20 +260,28 @@ To maintain consistency and readability, all class members should follow the ord
    - `MF_Initialize()`, `MF_Prepare()`,  
      followed by `MF_Progress()`, `MF_Update()`, `MF_Tick()`.
 
-13. **Getters and Setters**  
-    - For all Getters and Setters, use the `inline` keyword to optimize performance, reduce function call overhead, and maintain the naming convention `MF_GetX()` and `MF_SetY()`.
+13. **Getters**  
+    - For all Getters uses the `inline` keyword to optimize performance, reduce function call overhead, and maintain the naming convention `MF_Get_X()`.
     - This makes the code more efficient by directly accessing the member variables, improving performance without extra cost.
 
-14. **Attach and Detach functions**
+14. **Setters**
+    - Decide `inline` `case by case`.
+    - I once added `inline` to a setter and got `circular include errors`.
+    - It happened because `the setter needed another class definition`.
+    - **SO NOW, I DO NOT USE `inline` WHEN IT NEEDS OTHER CLASS TYPES.**
+    - **I JUST MOVE IT TO THE `.cpp` FILE.**
+    - **I EXPERIENCED THE HELL-TIME OF DEBUGGING OF THOSE!**
+
+15. **Attach and Detach functions**
     - Functions to attach or detach elements or components should follow the naming convention `MF_Attach_` and `MF_Detach_`.
 
-15. **Public/Internal methods**  
+16. **Public/Internal methods**  
     - Main logic and behavior functions.
 
-16. **Modularized private/internal methods**  (if applicable)
+17. **Modularized private/internal methods**  (if applicable)
     - Small helper methods and decomposed logic units.
 
-17. **Template methods** (if applicable)
+18. **Template methods** (if applicable)
     - Declare all function templates at the end of the class definition.
     - **DO NOT EVEN FUCKING TRY TO SPECIALIZE A MEMBER TEMPLATE FUNCTION JUST TO CHANGE ITS RETURN TYPE.**
     - **HOW DO I KNOW? BECAUSE I HAVE FUCKING TRY TO FUCK AND FUCK IT IN!**

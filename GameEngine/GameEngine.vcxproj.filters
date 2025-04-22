@@ -190,9 +190,6 @@
     <Filter Include="0. Foundation\01. Header">
       <UniqueIdentifier>{0974320b-6144-4ab6-a100-b2ad3bf94d2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="0. Foundation\01. Header\011. Global Header">
-      <UniqueIdentifier>{a4962afc-10b8-47eb-86ff-0af985e15087}</UniqueIdentifier>
-    </Filter>
     <Filter Include="0. Foundation\01. Header\012. Math">
       <UniqueIdentifier>{30348236-904d-4d08-af6d-3fd457c45b57}</UniqueIdentifier>
     </Filter>
@@ -216,6 +213,9 @@
     </Filter>
     <Filter Include="3. Resource\32. Resource\329. Shader\3292. ComputeShader\32920. ComputeShader">
       <UniqueIdentifier>{cecd3d65-f944-4d6a-8b69-3ee24068259d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="0. Foundation\01. Header\011. Global">
+      <UniqueIdentifier>{a4962afc-10b8-47eb-86ff-0af985e15087}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -340,16 +340,16 @@
       <Filter>4. Component\43. StateComponent</Filter>
     </ClInclude>
     <ClInclude Include="globalFunction.h">
-      <Filter>0. Foundation\01. Header\011. Global Header</Filter>
+      <Filter>0. Foundation\01. Header\011. Global</Filter>
     </ClInclude>
-    <ClInclude Include="globalVariable.h">
-      <Filter>0. Foundation\01. Header\011. Global Header</Filter>
+    <ClInclude Include="struct.h">
+      <Filter>0. Foundation\01. Header\011. Global</Filter>
     </ClInclude>
     <ClInclude Include="SimpleMath.h">
       <Filter>0. Foundation\01. Header\012. Math</Filter>
     </ClInclude>
     <ClInclude Include="global.h">
-      <Filter>0. Foundation\01. Header\011. Global Header</Filter>
+      <Filter>0. Foundation\01. Header\011. Global</Filter>
     </ClInclude>
     <ClInclude Include="C_Mesh.h">
       <Filter>3. Resource\32. Resource\321. Mesh</Filter>
@@ -505,6 +505,9 @@
     </ClCompile>
     <ClCompile Include="C_Material.cpp">
       <Filter>3. Resource\32. Resource\323. Material</Filter>
+    </ClCompile>
+    <ClCompile Include="globalVariable.cpp">
+      <Filter>0. Foundation\01. Header\011. Global</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

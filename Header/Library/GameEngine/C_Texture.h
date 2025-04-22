@@ -10,7 +10,8 @@ public:
     C_Texture(E_RESOURCE_TYPE _RESOURCETYPE);
 
 protected:
-    C_Texture(const C_Texture&) = delete;             // C_Texture는 고유하여야 하므로, 복사생성자 작동 방지
+    C_Texture(const C_Texture&) = delete;                   // C_Texture는 고유하여야 하므로, 복사생성자 작동 방지
+    C_Texture& operator=(const C_Texture&) = delete;        // 대입연산자도 방지
 
 public:
     ~C_Texture();

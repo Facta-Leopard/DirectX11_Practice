@@ -1,5 +1,6 @@
 #pragma once
 #include "C_Entity.h"
+
 class C_StructuredBuffer :      // 향후, CP_DX_M_StructuredBufferForWriting 관련해서 아예 클래스를 구분하여 SOLID에 따라 재구성하는 것을 고려해보자
     public C_Entity
 {

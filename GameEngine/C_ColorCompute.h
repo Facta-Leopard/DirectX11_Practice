@@ -32,10 +32,10 @@ public:
         SP_M_Texture = _SP_Texture;
     }
 
-    inline void MF_Set_Texture(C_Texture _Texture)
-    {
-        SP_M_Texture = make_shared<C_Texture>(_Texture);
-    }
+    //inline void MF_Set_Texture(C_Texture _Texture)
+    //{
+    //    SP_M_Texture = make_shared<C_Texture>(move(_Texture));
+    //}
 
     inline Vector4 MF_Get_Color()
     {

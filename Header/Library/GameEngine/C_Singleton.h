@@ -21,13 +21,14 @@ protected:
 		// T*처럼 포인터로 하지 않으면 atexit()가 아니라, 직접 소멸자에서 사라지도록 해도 문제가 없을 것 같은데..
 	}
 
-private:
+protected:
 	// 유의!! static인 멤버를 getter로 땡겨오려면 getter도 static이어야 함!
-	static T* S_Instance; // Template T*
+
+	inline static T* S_Instance = nullptr;
 
 public:
 	// 유의!! static인 멤버를 getter로 땡겨오려면 getter도 static이어야 함!
-	static T* SF_Get_Instance()
+	inline static T* SF_Get_Instance()
 	{
 		if (nullptr == S_Instance)
 		{
@@ -46,8 +47,5 @@ public:
 	}
 };
 
-// 정적 멤버는 클래스 내부에서만 속하는 것이 아니므로, 초기화는 클래스 밖에서 해야 함
-// 그리고 템플릿이므로 헤더파일에서 함
-// 근데, 같은 파일명의 .cpp를 만들면 왜 에러가 나지? 씨발? 이해불가네
-template<typename T>
-T* C_Singleton<T>::S_Instance = nullptr;
+// C++17 기준: inline static 정적 멤버는 클래스 내부에서 정의 가능
+// 따라서 별도의 .cpp 파일에 정의할 필요가 없으며, 헤더에 선언/정의 모두 포함시킬 수 있음

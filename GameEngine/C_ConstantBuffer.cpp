@@ -81,4 +81,29 @@ void C_ConstantBuffer::MF_Bind_ConstantBufferToComputeShaderOnly()
 	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->CSSetConstantBuffers((UINT)E_M_ConstantBufferType, 1, CP_DX_M_ConstantBuffer.GetAddressOf());
 }
 
+void C_ConstantBuffer::MF_Set_ConstantBufferByData(void* _DataType, UINT _ByteWidth)
+{
+	if (0 == _ByteWidth)		// 방어코드; 향후, 나중에 디버깅 전용으로 전환하는 것도 생각해보자
+	{
+		POPUP(L"0 == _ByteWidth", L"in C_ConstantBuffer::MF_Set_ConstantBufferByData(), 0 == _ByteWidth")
+			return;
+	}
+
+	// 데이터 전송용 구조체
+	D3D11_MAPPED_SUBRESOURCE DX_T_Data = {};
+
+	// DeviceContext의 Map()으로 GPU에 Lock을 걸어 GPU 접근 방지 및 CPU가 데이터 접근
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->Map(CP_DX_M_ConstantBuffer.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &DX_T_Data);
+
+	// 메모리를 통으로 복사하는 빠른 복사방법
+	memcpy(DX_T_Data.pData, _DataType, _ByteWidth);
+
+	// DeviceContext의 Unmap()으로 GPU에 Lock을 풀어 CPU 접근 방지 및 GPU가 데이터 접근
+	C_Device::SF_Get_Instance()->MF_Get_DeviceContext()->Unmap(CP_DX_M_ConstantBuffer.Get(), 0);
+}
+
+
+
+
+
 
