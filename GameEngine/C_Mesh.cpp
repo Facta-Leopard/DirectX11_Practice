@@ -113,7 +113,7 @@ void C_Mesh::MF_Create_Buffer(DS_Vertex* _P_DS_VertexSystemMemory, UINT _SDK_Ver
 
 void C_Mesh::MF_Render()
 {
-	MF_Bind();
+	MF_Bind_Mesh();
 
 	UINT SDK_T_StartIndexLocation = 0;
 	INT  SDK_T_BaseVertexLocation = 0;
@@ -122,7 +122,7 @@ void C_Mesh::MF_Render()
 
 void C_Mesh::MF_ParticleRender(UINT _SDK_ParticleCount)		// 가독성을 위해 NRVO 적용; 향후, _SDK_ParticleCount를 캐싱하는 것도 고려해보자
 {
-	MF_Bind();
+	MF_Bind_Mesh();
 	// DrawIndexedInstanced에 세팅할 값 설정
 	UINT SDK_T_StartIndexLocation    = 0;		// 인덱스 버퍼에서 시작할 위치
 	INT  SDK_T_BaseVertexLocation    = 0;		// Offset
@@ -132,7 +132,7 @@ void C_Mesh::MF_ParticleRender(UINT _SDK_ParticleCount)		// 가독성을 위해 NRVO �
 		, _SDK_ParticleCount, SDK_T_StartIndexLocation, SDK_T_BaseVertexLocation, SDK_T_StartInstanceLocation);
 }
 
-void C_Mesh::MF_Bind()		// 가독성을 위해 NRVO 적용
+void C_Mesh::MF_Bind_Mesh()		// 가독성을 위해 NRVO 적용
 {
 	// DeviceContext Buffet에 세팅할 값 설정; 가독성을 위해 여기에 명시해서 씀; 향후, RVO로 하는 것을 고려해보자
 	UINT SDK_T_StartSlot = 0;								// 시작인덱스

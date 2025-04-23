@@ -3,6 +3,8 @@
 
 #include "C_GraphicShader.h"
 
+#include "define.h"
+
 class C_Material :
     public C_Resource
 {
@@ -19,6 +21,9 @@ protected:
 
     // Ä³½Ì¿ë
     static C_ConstantBuffer*                S_P_ConstantBuffer;                     // static C_ConstantBuffer*;
+
+public:
+    CLONE(C_Material)
 
 public:
     void MF_Bind_Material();
