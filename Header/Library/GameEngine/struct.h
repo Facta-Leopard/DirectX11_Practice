@@ -47,13 +47,6 @@ struct DS_MouseInfo
 	// 향후, Scroll이나 추가 버튼 추가하면 좋을 듯
 };
 
-// 제로스케일 방어용 상수값
-//// 다른 엔진의 경우
-////// Unreal Engine | 0.0001f 이하 차단
-////// Unity Engine | 0.0001f 이하 시 경고
-////// 내가 만드는 것은 상기 사항을 고려하여 0.001f의 값으로 한다
-constexpr float LL_G_ZeroScaleFloat = 0.001f;
-
 // Bind 전용 구조체
 //// Vertex용 구조체
 struct DS_Vertex

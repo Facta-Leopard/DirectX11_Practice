@@ -46,21 +46,26 @@ void C_Collider2D::MF_ComponentTick()
 	{
 		POPUP_DEBUG(L"nullptr == MF_Get_OwnerObject", L"in C_Collider2D::MF_ComponentTick(), nullptr == MF_Get_OwnerObject")
 	}
-	else
-	{
-		XM_MAT_M_CollisionXMMATRIX = MF_Get_OwnerObject()->MF_Get_TransformComponent()->MF_Get_WorldMatrix();		// 유의! 캐싱목적이므로, 이를 잘 활용할 수 있도록 하여야 함
-	}
 
+	C_Transform* P_T_ParentTransform = MF_Get_OwnerObject()->MF_Get_TransformComponent();
 	// 스케일 계산
 	//// 독립적인지 여부에 따라 월드공간 배율에 따른 스케일 계산 
 	if (true == M_IsDependent)
 	{
-
-
-		Vector3 Vec3_T_ObjectScale = MF_Get_OwnerObject()->MF_Get_TransformComponent()->MF_Get_LocalScale();
-		GF_Set_InverseVector(Vec3_T_ObjectScale);
-		GF_Set_ScaleToMatrix(XM_MAT_M_CollisionXMMATRIX, Vec3_T_ObjectScale);
+		XMMATRIX XM_MAT_T_ParentWorld = P_T_ParentTransform->MF_Get_WorldMatrix();
+		XMVECTOR XM_VEC3_T_ParentScale = P_T_ParentTransform->MF_Get_LocalScale();
+		XMMATRIX XM_MAT_T_ParentScaleInverse = XMMatrixInverse(nullptr, XMMatrixScalingFromVector(XM_VEC3_T_ParentScale));
+		XM_MAT_M_CollisionXMMATRIX = XM_MAT_M_CollisionXMMATRIX * XM_MAT_T_ParentScaleInverse * XM_MAT_T_ParentWorld;
 	}
+	else
+	{
+		XM_MAT_M_CollisionXMMATRIX = P_T_ParentTransform->MF_Get_WorldMatrix();		// 유의! 캐싱목적이므로, 이를 잘 활용할 수 있도록 하여야 함
+	}
+
+	// 방향벡터 초기화
+	XM_VEC3_M_CollisionDirection_s[_DIRECTION_RIGHT] = XMVectorSet(1.f, 0.f, 0.f, 0.f);
+	XM_VEC3_M_CollisionDirection_s[_DIRECTION_UP]    = XMVectorSet(0.f, 1.f, 0.f, 0.f);
+	XM_VEC3_M_CollisionDirection_s[_DIRECTION_FRONT] = XMVectorSet(0.f, 0.f, 1.f, 0.f);
 
 	XM_VEC3_M_ColliderScale = SF_Get_ScaleVector3FromMatrix(XM_MAT_M_CollisionXMMATRIX);
 

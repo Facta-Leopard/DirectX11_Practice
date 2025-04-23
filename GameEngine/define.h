@@ -61,3 +61,12 @@ for (int i = 0; i < _END; ++i)                          \
         FixedArray[i] = nullptr;                        \
     }                                                   \
 }
+
+
+// 제로스케일 방어용 상수값
+// 라이브러리에는 constexpr로 사용불가하므로 여기에 적시
+//// 다른 엔진의 경우
+////// Unreal Engine | 0.0001f 이하 차단
+////// Unity Engine | 0.0001f 이하 시 경고
+////// 내가 만드는 것은 상기 사항을 고려하여 0.001f의 값으로 한다
+#define G_LL_ZeroScaleFloat 0.001f

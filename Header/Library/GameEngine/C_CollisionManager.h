@@ -17,19 +17,19 @@ private:
     // 캐싱용 정적 멤버 변수; 유의! 초기화시 .cpp에서만 하되, 생성자 밖에서!
     static E_COLLIDER_TYPE                          E_S_ColliderType;                              // E_COLLIDER_TYPE; 충돌계산 오버헤드를 줄이기 위한 캐싱용
 
-    static Vector3                                  Vec3_S_ColliderPositionA;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-    static Vector3                                  Vec3_S_ColliderPositionB;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static XMVECTOR                                 XM_VEC3_S_ColliderPositionA;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static XMVECTOR                                 XM_VEC3_S_ColliderPositionB;                       // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    
+    static XMVECTOR                                 XM_VEC3_S_ColliderDistanceEachOther;               // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    
+    static XMVECTOR                                 XM_VEC3_S_ColliderRadiusA;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static XMVECTOR                                 XM_VEC3_S_ColliderRadiusB;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
 
-    static Vector3                                  Vec3_S_ColliderDistanceEachOther;               // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-
-    static Vector3                                  Vec3_S_ColliderRadiusA;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-    static Vector3                                  Vec3_S_ColliderRadiusB;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-
-    static Vector3                                  Vec3_S_ColliderScaleA;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-    static Vector3                                  Vec3_S_ColliderScaleB;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-
-    static Vector3                                  Vec3_S_ColliderDirection_sA[_DIRECTION_END];   // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
-    static Vector3                                  Vec3_S_ColliderDirection_sB[_DIRECTION_END];   // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static XMVECTOR                                 XM_VEC3_S_ColliderScaleA;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static XMVECTOR                                 XM_VEC3_S_ColliderScaleB;                         // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    
+    static XMVECTOR                                 XM_VEC3_S_ColliderDirection_sA[_DIRECTION_END];   // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
+    static XMVECTOR                                 XM_VEC3_S_ColliderDirection_sB[_DIRECTION_END];   // Vector3; 충돌계산 오버헤드를 줄이기 위한 캐싱용
 
     static int                                      S_AxisCount;                                   // int; 충돌계산 오버헤드를 줄이기 위한 캐싱용
 

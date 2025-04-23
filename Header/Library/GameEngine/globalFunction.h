@@ -132,14 +132,14 @@ inline void GF_Set_ScaleToMatrix(Matrix& _Matrix, const Vector3& V_Scale)
 //}
 
 //// RVO 버전
-inline Vector3 GF_Set_InverseVector(const Vector3& Vec3_T_Source)
-{
-	return Vector3(
-		(Vec3_T_Source.x != 0.f) ? (1.f / Vec3_T_Source.x) : LL_G_ZeroScaleFloat,
-		(Vec3_T_Source.y != 0.f) ? (1.f / Vec3_T_Source.y) : LL_G_ZeroScaleFloat,
-		(Vec3_T_Source.z != 0.f) ? (1.f / Vec3_T_Source.z) : LL_G_ZeroScaleFloat
-	);
-}
+//inline Vector3 GF_Set_InverseVector(const Vector3& Vec3_T_Source)
+//{
+//	return Vector3(
+//		(Vec3_T_Source.x != 0.f) ? (1.f / Vec3_T_Source.x) : LL_G_ZeroScaleFloat,
+//		(Vec3_T_Source.y != 0.f) ? (1.f / Vec3_T_Source.y) : LL_G_ZeroScaleFloat,
+//		(Vec3_T_Source.z != 0.f) ? (1.f / Vec3_T_Source.z) : LL_G_ZeroScaleFloat
+//	);
+//}
 
 
 

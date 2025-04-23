@@ -4,7 +4,7 @@
 
 C_Object::C_Object()
 	: C_Entity()
-	, M_GroupIndex(_GROUP_NONE)
+	, M_GroupIndex(_GROUP_END)
 	, M_ObjectType(_OBJECT_END)
 	, M_ParentObejct(nullptr)
 	, STL_P_M_ChildObejct{}

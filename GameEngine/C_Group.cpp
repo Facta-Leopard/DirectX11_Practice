@@ -4,7 +4,7 @@
 
 C_Group::C_Group()
 	: C_Entity()
-	, M_GroupIndex(_GROUP_NONE)
+	, M_GroupIndex(_GROUP_END)
 	, STL_P_M_AllObject{}
 	, STL_P_M_ParentObject{}
 	, STL_P_M_Calculation{}
@@ -104,7 +104,7 @@ void C_Group::MF_Attach_ObjectToParentObject(C_Object* _Object, bool _IsChildTog
 			STL_P_M_Calculation.push_back(T_STL_ChildObject[i]);
 		}
 
-		if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupIndex() == _GROUP_NONE)
+		if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupIndex() == _GROUP_END)
 		{
 			T_Object->MF_Set_GroupIndex(M_GroupIndex);
 		}

@@ -226,6 +226,7 @@
     <ClInclude Include="enum.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="globalFunction.h" />
+    <ClInclude Include="globalVariable.h" />
     <ClInclude Include="struct.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="C_GameEngine.h" />

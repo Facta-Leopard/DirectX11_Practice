@@ -8,7 +8,9 @@ class C_Stage :
 public:
     C_Stage(E_STAGE_NUMBER _StageNumber);          // 스테이지 분류를 위함이므로, 생성시 강제하는 걸로
 
-    // Stage를 복사할 일이 있을까? 복사생성자 정의가 필요하면 그 때 만드는 것으로 하자
+public:
+    // 복사 생성자 안 만들었다가 디버깅 지옥에 빠졌었음 하 씨발..
+    C_Stage(const C_Stage& _Origin);
 
 public:
     ~C_Stage();
@@ -19,10 +21,10 @@ protected:
 
     E_COLLIDER_TYPE                 E_M_ColliderType;                 // E_COLLIDER_TYPE; 유의! 충돌시스템 관련 가이드라인에 따라, 충돌계산 향상을 위한 추상적 선별 개념을 위해 쓰는 용도임
 
-    C_Group* P_M_Group_s[_GROUP_END];          // C_Group;
+    C_Group*                        P_M_Group_s[_GROUP_END];          // C_Group*;
 
 public:
-    virtual C_Stage* MF_Clone() override final { return nullptr; }                      // 굳이, 쓸 일이 없을 것 같아서 사용 금지; 대입연산자를 굳이 막진 않음
+    CLONE(C_Stage)
 
 public:
     void MF_Prepare();                                                                  // 초기화 함수

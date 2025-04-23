@@ -210,7 +210,7 @@ enum E_GROUP_INDEX
 
 	_GROUP_END,
 
-	_GROUP_NONE,						// 유의! C_Object 내부 M_GroupIndex 복사관련; 향후, 문제 발생시에 void C_Group::MF_Attach_ObjectToParentObject(C_Object* _Object, bool _IsChildTogether) 내부의 if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupType() == _GROUP_END) 부분을 확인할 것
+	//_GROUP_NONE,						// 유의! C_Object 내부 M_GroupIndex 복사관련; 향후, 문제 발생시에 void C_Group::MF_Attach_ObjectToParentObject(C_Object* _Object, bool _IsChildTogether) 내부의 if (nullptr == T_Object->MF_Get_ParentObject() || _IsChildTogether || T_Object->MF_Get_GroupType() == _GROUP_END) 부분을 확인할 것
 };
 
 enum E_OBJECT_TYPE					// 유의! 충돌검사 계층적 검사로 코드 개선하기 위한 enum으로 충돌체와 관련이 있음; 향후, 충돌 체크방식을 개선한 이 방식이 더 효율적인지 확인해보는 것이 좋겠다.

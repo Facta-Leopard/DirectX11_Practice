@@ -22,7 +22,7 @@ protected:
 
     XMVECTOR                      XM_VEC3_M_CollisionDirection_s[_DIRECTION_END];          // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수; C_Transform의 방향벡터를 캐싱함
 
-    bool                          M_IsDependent;                                             // bool; 오브젝트와의 의존성 관련
+    bool                          M_IsDependent;                                           // bool; 오브젝트와의 의존성 관련
 
     int                           M_OverLapCount;                                          // int; 유의! UINT로 하지않은 이유는 카운트 감소시 음수가 되서 오버플로우 될 수 있기 때문이며, 방어코드를 넣는 것이 도리어 함수호출로 인한 오버헤드 감소거 심할 것으로 사료되어 int로 씀
 
@@ -48,7 +48,7 @@ public:
         return XM_MAT_M_CollisionXMMATRIX;
     }
 
-    inline XMVECTOR MF_Get_XMVVECTOR3FromCollisionXMMATRIX()
+    inline XMVECTOR MF_Get_XMVECTOR3FromCollisionXMMATRIX()
     {
         E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
 

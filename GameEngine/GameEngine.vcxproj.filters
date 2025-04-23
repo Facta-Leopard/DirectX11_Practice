@@ -378,6 +378,9 @@
     <ClInclude Include="C_Sprite.h">
       <Filter>3. Resource\32. Resource\325. Sprite</Filter>
     </ClInclude>
+    <ClInclude Include="globalVariable.h">
+      <Filter>0. Foundation\01. Header\011. Global</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">

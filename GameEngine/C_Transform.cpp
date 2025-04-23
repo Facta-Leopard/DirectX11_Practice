@@ -89,9 +89,15 @@ void C_Transform::MF_ComponentTick()											// 유의! 캐싱이 많으므로, 일부러 
 	XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT] = XMVectorSet(0.f, 0.f, 1.f, 0.f);
 
 	//// AoS 구조로 설정했다가, 재검토한 결과 SoA구조보다 좋지 않으므로 다시금 갈아엎음
-	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT] = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT], XM_MAT_T_Rotation);
-	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP] = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_UP], XM_MAT_T_Rotation);
-	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT], XM_MAT_T_Rotation);
+	//// 방향법선벱터 계산
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT] = XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT] = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT], XM_MAT_T_Rotation);
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP]    = XM_VEC3_M_LocalDirection_s[_DIRECTION_UP]    = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_UP], XM_MAT_T_Rotation);
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT] = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT], XM_MAT_T_Rotation);
+
+	//// 로컬 방향벡터 정규화
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT] = XMVector3Normalize(XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT]);
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_UP]    = XMVector3Normalize(XM_VEC3_M_LocalDirection_s[_DIRECTION_UP]);
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT] = XMVector3Normalize(XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT]);
 
 	// 부모 오브젝트 누적 계산
 	// 유의! 반복문으로 부모의 부모까지 계산하지 않는 이유는 어차피 부모의 멤버값들이 최종결과이기 때문!
