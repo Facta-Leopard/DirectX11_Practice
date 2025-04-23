@@ -190,7 +190,8 @@
     <ClInclude Include="C_DebugManager.h" />
     <ClInclude Include="C_Device.h" />
     <ClInclude Include="C_Entity.h" />
-    <ClInclude Include="C_FlipbookRender.h" />
+    <ClInclude Include="C_FlipBook.h" />
+    <ClInclude Include="C_FlipBookRender.h" />
     <ClInclude Include="C_GraphicShader.h" />
     <ClInclude Include="C_Group.h" />
     <ClInclude Include="C_InputManager.h" />
@@ -245,7 +246,8 @@
     <ClCompile Include="C_DebugManager.cpp" />
     <ClCompile Include="C_Device.cpp" />
     <ClCompile Include="C_Entity.cpp" />
-    <ClCompile Include="C_FlipbookRender.cpp" />
+    <ClCompile Include="C_FlipBook.cpp" />
+    <ClCompile Include="C_FlipBookRender.cpp" />
     <ClCompile Include="C_GameEngine.cpp" />
     <ClCompile Include="C_GraphicShader.cpp" />
     <ClCompile Include="C_Group.cpp" />

@@ -14,12 +14,12 @@ public:
     ~C_Sprite();
 
 protected:
-    shared_ptr<C_Texture>               SP_M_AtlasTexture;                        // shared_ptr<C_Texture>; 아틀라스 이미지
-    Vector2                             VEC2_M_AtlasTextureSize;                  // Vector2; 스프라이트의 크기
+    shared_ptr<C_Texture>                SP_M_AtlasTexture;                        // shared_ptr<C_Texture>; 아틀라스 이미지
+    XMVECTOR                             XM_VEC2_M_AtlasTextureSize;                  // XMVECTOR; 스프라이트의 크기
 
-    Vector2                             VEC2_M_TopLeftPoint;                      // Vector2; 유의! 서양식 방향지칭법으로 통일함
-    Vector2                             VEC2_M_SpriteSize;                        // Vector2; 스프라이트의 크기
-    Vector2                             VEC2_M_SpriteOffset;                      // Vector2; 스프라이트의 간격
+    XMVECTOR                             XM_VEC2_M_TopLeftPoint;                      // XMVECTOR; 유의! 서양식 방향지칭법으로 통일함
+    XMVECTOR                             XM_VEC2_M_SpriteSize;                        // XMVECTOR; 스프라이트의 크기
+    XMVECTOR                             XM_VEC2_M_SpriteOffset;                      // XMVECTOR; 스프라이트의 간격
 
 public:
     inline shared_ptr<C_Texture> MF_Get_AtlaseTexture()
@@ -27,24 +27,24 @@ public:
         return SP_M_AtlasTexture;
     }
 
-    inline Vector2 MF_Get_AtlaseTextureSize()
+    inline XMVECTOR MF_Get_AtlaseTextureSize()
     {
-        return VEC2_M_AtlasTextureSize;
+        return XM_VEC2_M_AtlasTextureSize;
     }
 
-    inline Vector2 MF_Get_TopLeftPoint()
+    inline XMVECTOR MF_Get_TopLeftPoint()
     {
-        return VEC2_M_TopLeftPoint;
+        return XM_VEC2_M_TopLeftPoint;
     }
 
-    inline Vector2 MF_Get_SpriteSize()
+    inline XMVECTOR MF_Get_SpriteSize()
     {
-        return VEC2_M_SpriteSize;
+        return XM_VEC2_M_SpriteSize;
     }
 
-    inline Vector2 MF_Get_SpriteOffset()
+    inline XMVECTOR MF_Get_SpriteOffset()
     {
-        return VEC2_M_SpriteOffset;
+        return XM_VEC2_M_SpriteOffset;
     }
 
 public:
@@ -53,33 +53,33 @@ public:
         SP_M_AtlasTexture = _SP_AtlasTexture;
     }
 
-    inline void MF_Set_AtlaseTextureSize(Vector2 _VEC2_AtlasTextureSize)
+    inline void MF_Set_AtlaseTextureSize(XMVECTOR _XM_VEC2_AtlasTextureSize)
     {
-        VEC2_M_AtlasTextureSize = _VEC2_AtlasTextureSize;
+        XM_VEC2_M_AtlasTextureSize = _XM_VEC2_AtlasTextureSize;
     }
 
-    inline void MF_Set_TopLeftPoint(Vector2 _VEC2_TopLeftPoint)
+    inline void MF_Set_TopLeftPoint(XMVECTOR _XM_VEC2_TopLeftPoint)
     {
         if (nullptr == SP_M_AtlasTexture)
         {
-            VEC2_M_TopLeftPoint = Vector2(0.f, 0.f);
-            VEC2_M_AtlasTextureSize = Vector2(0.f, 0.f);
-            VEC2_M_SpriteSize = Vector2(0.f, 0.f);
-            VEC2_M_SpriteOffset = Vector2(0.f, 0.f);
+            XM_VEC2_M_TopLeftPoint     = XMVectorSet(0.f, 0.f, 0.f, 0.f);
+            XM_VEC2_M_AtlasTextureSize = XMVectorSet(0.f, 0.f, 0.f, 0.f);
+            XM_VEC2_M_SpriteSize       = XMVectorSet(0.f, 0.f, 0.f, 0.f);
+            XM_VEC2_M_SpriteOffset     = XMVectorSet(0.f, 0.f, 0.f, 0.f);
             return;
         }
 
-        VEC2_M_TopLeftPoint = _VEC2_TopLeftPoint / Vector2(SP_M_AtlasTexture->MF_Get_TextureWidth(), SP_M_AtlasTexture->MF_Get_TextureHeight());
+        XM_VEC2_M_TopLeftPoint = _XM_VEC2_TopLeftPoint / XMVectorSet((float)SP_M_AtlasTexture->MF_Get_TextureWidth(), (float)SP_M_AtlasTexture->MF_Get_TextureHeight(), 0.f, 0.f);
     }
 
-    inline void MF_Set_SpriteSize(Vector2 _VEC2_SpriteSize)
+    inline void MF_Set_SpriteSize(XMVECTOR _XM_VEC2_SpriteSize)
     {
-        VEC2_M_SpriteSize = _VEC2_SpriteSize;
+        XM_VEC2_M_SpriteSize = _XM_VEC2_SpriteSize;
     }
 
-    inline void MF_Set_SpriteOffset(Vector2 _VEC2_SpriteOffset)
+    inline void MF_Set_SpriteOffset(XMVECTOR _XM_VEC2_SpriteOffset)
     {
-        VEC2_M_SpriteOffset = _VEC2_SpriteOffset;
+        XM_VEC2_M_SpriteOffset = _XM_VEC2_SpriteOffset;
     }
 };
 

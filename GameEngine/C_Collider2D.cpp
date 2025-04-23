@@ -7,11 +7,12 @@ C_Collider2D::C_Collider2D()
 
 	, XM_MAT_M_CollisionXMMATRIX{}
 
+	, XM_VEC3_M_CollisionDirection_s{}
+
 	, M_IsDependent(false)
 
 	, M_OverLapCount(0)
 {
-
 }
 
 C_Collider2D::C_Collider2D(const C_Collider2D& _Origin)

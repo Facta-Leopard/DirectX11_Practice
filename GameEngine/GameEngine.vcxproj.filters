@@ -73,9 +73,6 @@
     <Filter Include="5. RenderComponent\62. SpriteRender">
       <UniqueIdentifier>{4eb61042-b112-465d-97a5-01ba2ae901fe}</UniqueIdentifier>
     </Filter>
-    <Filter Include="5. RenderComponent\63. FlipbookRender">
-      <UniqueIdentifier>{dac8cee3-7628-4228-a807-39fb6ce69843}</UniqueIdentifier>
-    </Filter>
     <Filter Include="5. RenderComponent\64. TileRender">
       <UniqueIdentifier>{7698376e-6d5d-4f48-86c2-b3a3662f51d8}</UniqueIdentifier>
     </Filter>
@@ -178,9 +175,6 @@
     <Filter Include="3. Resource\32. Resource\328. Prefab">
       <UniqueIdentifier>{68702963-2237-465a-a296-4a7e4dc1b1e8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="3. Resource\32. Resource\326. Flipbook">
-      <UniqueIdentifier>{39a9fa31-a9b0-42f2-8f42-72cd372a7352}</UniqueIdentifier>
-    </Filter>
     <Filter Include="3. Resource\32. Resource\325. Sprite">
       <UniqueIdentifier>{ffef2b2a-7c71-459c-904f-04f9148b5334}</UniqueIdentifier>
     </Filter>
@@ -216,6 +210,12 @@
     </Filter>
     <Filter Include="0. Foundation\01. Header\011. Global">
       <UniqueIdentifier>{a4962afc-10b8-47eb-86ff-0af985e15087}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="3. Resource\32. Resource\326. FlipBook">
+      <UniqueIdentifier>{39a9fa31-a9b0-42f2-8f42-72cd372a7352}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="5. RenderComponent\63. FlipBookRender">
+      <UniqueIdentifier>{dac8cee3-7628-4228-a807-39fb6ce69843}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -297,8 +297,8 @@
     <ClInclude Include="C_SpriteRender.h">
       <Filter>5. RenderComponent\62. SpriteRender</Filter>
     </ClInclude>
-    <ClInclude Include="C_FlipbookRender.h">
-      <Filter>5. RenderComponent\63. FlipbookRender</Filter>
+    <ClInclude Include="C_FlipBookRender.h">
+      <Filter>5. RenderComponent\63. FlipBookRender</Filter>
     </ClInclude>
     <ClInclude Include="C_TileRender.h">
       <Filter>5. RenderComponent\64. TileRender</Filter>
@@ -381,6 +381,9 @@
     <ClInclude Include="globalVariable.h">
       <Filter>0. Foundation\01. Header\011. Global</Filter>
     </ClInclude>
+    <ClInclude Include="C_FlipBook.h">
+      <Filter>3. Resource\32. Resource\326. FlipBook</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="C_GameEngine.cpp">
@@ -449,8 +452,8 @@
     <ClCompile Include="C_SpriteRender.cpp">
       <Filter>5. RenderComponent\62. SpriteRender</Filter>
     </ClCompile>
-    <ClCompile Include="C_FlipbookRender.cpp">
-      <Filter>5. RenderComponent\63. FlipbookRender</Filter>
+    <ClCompile Include="C_FlipBookRender.cpp">
+      <Filter>5. RenderComponent\63. FlipBookRender</Filter>
     </ClCompile>
     <ClCompile Include="C_TileRender.cpp">
       <Filter>5. RenderComponent\64. TileRender</Filter>
@@ -517,6 +520,9 @@
     </ClCompile>
     <ClCompile Include="C_Sprite.cpp">
       <Filter>3. Resource\32. Resource\325. Sprite</Filter>
+    </ClCompile>
+    <ClCompile Include="C_FlipBook.cpp">
+      <Filter>3. Resource\32. Resource\326. FlipBook</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
