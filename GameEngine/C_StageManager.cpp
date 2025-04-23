@@ -19,10 +19,18 @@ HRESULT C_StageManager::MF_Initialize()
 	{
 		MF_Set_CurrentStage(P_M_Stage_s[_STAGE_0]);
 	}
-	P_M_CurrentStage->MF_Prepare();
 
-	// 다른 관리자와의 통일성을 위해 HRESULT 값 반환 사용
-	return S_OK;
+	if (nullptr != P_M_CurrentStage)
+	{
+		P_M_CurrentStage->MF_Prepare();
+
+		// 다른 관리자와의 통일성을 위해 HRESULT 값 반환 사용
+		return S_OK;
+	}
+	else
+	{
+		return E_FAIL;
+	}
 }
 
 void C_StageManager::MF_Update()
