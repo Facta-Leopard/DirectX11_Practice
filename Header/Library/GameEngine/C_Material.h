@@ -29,36 +29,28 @@ public:
         return SP_M_GraphicShader;
     }
 
-    inline void MF_Set_GraphicShader(shared_ptr<C_GraphicShader> _SP_GraphicShader)                     // Setter; Overload
-    {
-        SP_M_GraphicShader = _SP_GraphicShader;
-    }
-
-    //inline void MF_Set_GraphicShader(C_GraphicShader _GraphicShader)                                    // Setter; Overload
-    //{
-    //    SP_M_GraphicShader = make_shared<C_GraphicShader>(move(_GraphicShader));
-    //}
-
     inline shared_ptr<C_Texture> MF_Get_Texture(E_TEXTURE_NUMBER _TextureNumber)                        // Getter
     {
         return SP_M_Texture_s[_TextureNumber];
     }
 
-    inline void MF_Set_Texture(shared_ptr<C_Texture> _SP_Texture, E_TEXTURE_NUMBER _TextureNumber)      // Setter; Overload
-    {
-        SP_M_Texture_s[_TextureNumber] = _SP_Texture;
-    }
-
-    //inline void MF_Set_Texture(C_Texture _Texture, E_TEXTURE_NUMBER _TextureNumber)                     // Setter; Overload
-    //{
-    //    SP_M_Texture_s[_TextureNumber] = make_shared<C_Texture>(move(_Texture));
-    //}
 
     inline DS_MaterialConstant MF_Get_MaterialCount()                                                   // Getter
     {
         return DS_M_MaterialConstant;
     }
-    
+
+public:
+    inline void MF_Set_GraphicShader(shared_ptr<C_GraphicShader> _SP_GraphicShader)                     // Setter; 유의! C_Texture는 복사 생성자 막아두었으므로, C_Texture를 인자로 받아, shared_ptr로 감싸서 넘기는 것은 move를 써도 불가능함!; 유의! 이걸 회피한다고 && 이동연산자를 만들어서 회피해도, 타 스마트 포인터가 해제시킨 댕글링 문제 터질 수 있음!
+    {
+        SP_M_GraphicShader = _SP_GraphicShader;
+    }
+
+    inline void MF_Set_Texture(shared_ptr<C_Texture> _SP_Texture, E_TEXTURE_NUMBER _TextureNumber)      // Setter; 유의! C_Texture는 복사 생성자 막아두었으므로, C_Texture를 인자로 받아, shared_ptr로 감싸서 넘기는 것은 move를 써도 불가능함!; 유의! 이걸 회피한다고 && 이동연산자를 만들어서 회피해도, 타 스마트 포인터가 해제시킨 댕글링 문제 터질 수 있음!
+    {
+        SP_M_Texture_s[_TextureNumber] = _SP_Texture;
+    }
+
     inline void MF_Set_MatrialCount(UINT _XM_UINT, int _Index)                                             // Setter; Overload
     {
         DS_M_MaterialConstant.SDK_XM_UINT_Constant_s[_Index] = _XM_UINT;

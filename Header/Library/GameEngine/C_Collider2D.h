@@ -16,11 +16,11 @@ public:
     ~C_Collider2D();
 
 protected:
-    Vector3                         Vec3_M_ColliderScale;                               // Vector3; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
+    Vector3                         VEC3_M_ColliderScale;                               // Vector3; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
 
     Matrix                          MAT_M_CollisionMatrix;                               // Matrix; 유의! 오버헤드 감소 목적의 멤버 변수;
 
-    Vector3                         Vec3_M_CollisionDirection_s[_DIRECTION_END];      // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수; C_Transform의 방향벡터를 캐싱함
+    Vector3                         VEC3_M_CollisionDirection_s[_DIRECTION_END];      // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수; C_Transform의 방향벡터를 캐싱함
 
     bool                            M_IsDependent;                                      // bool; 오브젝트와의 의존성 관련
 
@@ -40,30 +40,7 @@ public:
 public:
     inline Vector3 MF_Get_ColliderScale()
     {
-        return Vec3_M_ColliderScale;
-    }
-
-    inline void MF_Set_ColliderScale(Vector3 _ColliderScale)
-    {
-        Vec3_M_ColliderScale = _ColliderScale;
-
-        E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
-
-        switch (T_ColliderType)
-        {
-
-        case _COLLIDER_2D_TOPVEIW:
-        case _COLLIDER_2D_ISOMETRICVIEW:
-
-            Vec3_M_ColliderScale = (Vector3)(_ColliderScale.x, 0.f, _ColliderScale.z);
-
-            break;
-        default:
-
-            Vec3_M_ColliderScale = (Vector3)(_ColliderScale.x, _ColliderScale.y, 0.f);
-
-            break;
-        }
+        return VEC3_M_ColliderScale;
     }
 
     inline Matrix MF_Get_ColliderMatrix()
@@ -94,14 +71,24 @@ public:
         }
     }
 
-    inline void MF_Set_ColliderPosition(Matrix _ColliderMatrix)
-    {
-        MAT_M_CollisionMatrix = _ColliderMatrix;
-    }
-
     inline bool MF_Get_IsDependent()
     {
         return M_IsDependent;
+    }
+
+    inline int MF_Get_OverlapCount()
+    {
+        return M_OverLapCount;
+    }
+
+public:
+
+
+    void MF_Set_ColliderScale(Vector3 _ColliderScale);
+
+    inline void MF_Set_ColliderPosition(Matrix _ColliderMatrix)
+    {
+        MAT_M_CollisionMatrix = _ColliderMatrix;
     }
 
     inline void MF_Set_IsDependent(bool _IsDependent)
@@ -119,11 +106,6 @@ public:
         M_IsDependent = false;
     }
 
-    inline int MF_Get_OverlapCount()
-    {
-        return M_OverLapCount;
-    }
-
     inline void MF_Set_OverlapCount(int _OverlapCount)
     {
         M_OverLapCount = _OverlapCount;
@@ -133,6 +115,8 @@ public:
     {
         ++M_OverLapCount;
     }
+
+        
 
     // 코드개선으로 인한 무효화
     //inline void MF_Set_Subtrct_OverlapCount()

@@ -38,6 +38,12 @@ public:
         return M_IsDelete;
     }
 
+    inline bool MF_Get_IsDie()                                          // Getter
+    {
+        return M_IsDie;
+    }
+
+public:
     inline void MF_Set_IsDelete(bool _Bool)                             // Setter
     {
         M_IsDelete = _Bool;
@@ -46,11 +52,6 @@ public:
     inline void MF_Set_TimeLeftToDelete(float _RemainTime)              // Setter
     {
         M_TimeLeftToDelete = _RemainTime;
-    }
-
-    inline bool MF_Get_IsDie()                                          // Getter
-    {
-        return M_IsDie;
     }
 
     inline void MF_Set_IsDie(bool _Bool)                                // Setter

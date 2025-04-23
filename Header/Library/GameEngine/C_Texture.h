@@ -50,26 +50,57 @@ public:
     void MF_Unbind_UnorderedAccessViewFromComputeByuRegister();                               // 언오더엑세스 뷰를 u레지스터에서 바인딩을 해제하는 함수
 
 public:
-    ComPtr<ID3D11Texture2D> MF_Get_Texture2D()                                                // Getter
+    inline ComPtr<ID3D11Texture2D> MF_Get_Texture2D()                                                // Getter
     {
         return CP_DX_M_Texture2D;
     }
 
-    D3D11_TEXTURE2D_DESC MF_Get_TextureDesc()                                                 // Getter
+    inline D3D11_TEXTURE2D_DESC MF_Get_TextureDesc()                                                 // Getter
     {
         return DX_M_TextureDesc;
     }
 
-    UINT MF_Get_TextureWidth()                                                                // Getter; Texture 너비 반환
+    inline UINT MF_Get_TextureWidth()                                                                // Getter; Texture 너비 반환
     {
         return DX_M_TextureDesc.Width;
     }
 
-    UINT MF_Get_TextureHeight()                                                               // Getter; Texture 높이 반환
+    inline UINT MF_Get_TextureHeight()                                                               // Getter; Texture 높이 반환
     {
         return DX_M_TextureDesc.Height;
     }
 
+    inline ComPtr<ID3D11DepthStencilView> MF_Get_DepthStencilView()
+    {
+        return CP_DX_M_DepthStencilView;
+    }
+
+    inline ComPtr<ID3D11RenderTargetView> MF_Get_RenderTargetView()
+    {
+        return CP_DX_M_RenderTagetView;
+    }
+
+    inline ComPtr<ID3D11ShaderResourceView> MF_Get_ShaderResourceView()
+    {
+        return CP_DX_M_ShaderResourceView;
+    }
+
+    inline int MF_Get_tRegisterNumber()
+    {
+        return M_tRegisterNumber;
+    }
+
+    inline ComPtr<ID3D11UnorderedAccessView> MF_Get_UnorderedAccessView()
+    {
+        return CP_DX_M_UnorderedAccessView;
+    }
+
+    inline int MF_Get_uRegisterNumber()
+    {
+        return M_uRegisterNumber;
+    }
+
+public:
     void MF_Set_TextureDesc(DXGI_FORMAT _Fomat, UINT _Width, UINT _Height,                    // Setter; Overload; Description 기본설정용
         UINT _Flag, D3D11_USAGE _Usage);
 
@@ -78,35 +109,7 @@ public:
     void MF_Set_TextureDesc(D3D11_TEXTURE2D_DESC _Description);                               // Setter; Overload; Description를 받으면 새롭게 뷰 생성
 
 
-    ComPtr<ID3D11DepthStencilView> MF_Get_DepthStencilView()
-    {
-        return CP_DX_M_DepthStencilView;
-    }
 
-    ComPtr<ID3D11RenderTargetView> MF_Get_RenderTargetView()
-    {
-        return CP_DX_M_RenderTagetView;
-    }
-
-    ComPtr<ID3D11ShaderResourceView> MF_Get_ShaderResourceView()
-    {
-        return CP_DX_M_ShaderResourceView;
-    }
-        
-    int MF_Get_tRegisterNumber()
-    {
-        return M_tRegisterNumber;
-    }
-        
-    ComPtr<ID3D11UnorderedAccessView> MF_Get_UnorderedAccessView()
-    {
-        return CP_DX_M_UnorderedAccessView;
-    }
-        
-    int MF_Get_uRegisterNumber()
-    {
-        return M_uRegisterNumber;
-    }
         
 
     // 향후, Save 및 Load 기능 구현예정

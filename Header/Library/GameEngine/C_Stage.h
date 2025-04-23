@@ -43,11 +43,6 @@ public:
         return E_M_StageState;
     }
 
-    inline void MF_Set_StageState(E_STAGE_STATE _StageState)                            // Setter
-    {
-        E_M_StageState = _StageState;
-    }
-
     inline E_COLLIDER_TYPE MF_Get_ColliderType()                                        // Getter
     {
         return E_M_ColliderType;
@@ -56,6 +51,12 @@ public:
     inline C_Group* MF_Get_Group_s(E_GROUP_INDEX _GroupIndex)                            // Getter
     {
         return P_M_Group_s[_GroupIndex];
+    }
+
+public:
+    inline void MF_Set_StageState(E_STAGE_STATE _StageState)                            // Setter
+    {
+        E_M_StageState = _StageState;
     }
 
     inline C_Group* MF_Set_Group_s(E_GROUP_INDEX _GroupType, C_Group* _Group)     // Setter; 명명규칙에 벗어나지 않도록 헤더에 기재
@@ -67,6 +68,7 @@ public:
         P_M_Group_s[_GroupType] = _Group;
     }
 
+public:
     inline void MF_Detach_Group_s()                                                      // Detach; 소멸자 생성 이전 사용할 순환참조 방지용 함수
     {
         for (int i = 0; i < (int)_GROUP_END; ++i)

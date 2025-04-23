@@ -16,15 +16,15 @@ public:
     ~C_Collider2D();
 
 protected:
-    Vector3                         VEC3_M_ColliderScale;                               // Vector3; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
+    XMVECTOR                      XM_VEC3_M_ColliderScale;                                 // Vector3; 유의! 충돌체 크기로 축 값이 0.f가 들어가는 경우가 안 생기도록 디버깅 때 방어코드 작성 필수!
 
-    Matrix                          MAT_M_CollisionMatrix;                               // Matrix; 유의! 오버헤드 감소 목적의 멤버 변수;
+    XMMATRIX                      XM_MAT_M_CollisionXMMATRIX;                              // Matrix; 유의! 오버헤드 감소 목적의 멤버 변수;
 
-    Vector3                         VEC3_M_CollisionDirection_s[_DIRECTION_END];      // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수; C_Transform의 방향벡터를 캐싱함
+    XMVECTOR                      XM_VEC3_M_CollisionDirection_s[_DIRECTION_END];          // Vector3; 유의! 오버헤드 감소 목적의 멤버 변수; C_Transform의 방향벡터를 캐싱함
 
-    bool                            M_IsDependent;                                      // bool; 오브젝트와의 의존성 관련
+    bool                          M_IsDependent;                                             // bool; 오브젝트와의 의존성 관련
 
-    int                             M_OverLapCount;                                     // int; 유의! UINT로 하지않은 이유는 카운트 감소시 음수가 되서 오버플로우 될 수 있기 때문이며, 방어코드를 넣는 것이 도리어 함수호출로 인한 오버헤드 감소거 심할 것으로 사료되어 int로 씀
+    int                           M_OverLapCount;                                          // int; 유의! UINT로 하지않은 이유는 카운트 감소시 음수가 되서 오버플로우 될 수 있기 때문이며, 방어코드를 넣는 것이 도리어 함수호출로 인한 오버헤드 감소거 심할 것으로 사료되어 int로 씀
 
     // 향후, 알림 관련 부분은 스크립트 제작시 같이 해야할 듯
 
@@ -38,34 +38,34 @@ public:
     virtual void MF_ComponentTickAfter() override;
 
 public:
-    inline Vector3 MF_Get_ColliderScale()
+    inline XMVECTOR MF_Get_ColliderScale()
     {
-        return VEC3_M_ColliderScale;
+        return XM_VEC3_M_ColliderScale;
     }
 
-    inline Matrix MF_Get_ColliderMatrix()
+    inline XMMATRIX MF_Get_ColliderXMMATRIX()
     {
-        return MAT_M_CollisionMatrix;
+        return XM_MAT_M_CollisionXMMATRIX;
     }
 
-    inline Vector3 MF_Get_Vector3FromCollisionMatrix()
+    inline XMVECTOR MF_Get_XMVVECTOR3FromCollisionXMMATRIX()
     {
         E_COLLIDER_TYPE T_ColliderType = C_StageManager::SF_Get_Instance()->MF_Get_CurrentStage()->MF_Get_ColliderType();
 
-        Vector3 Vec3_T_Position = MAT_M_CollisionMatrix.Translation();
+        XMVECTOR _XM_VEC3_Scale, _XM_VEC3_Rotation, XM_VEC3_T_Position;
+        XMMatrixDecompose(&_XM_VEC3_Scale, &_XM_VEC3_Rotation, & XM_VEC3_T_Position, XM_MAT_M_CollisionXMMATRIX);
 
-        // 뭐같은 인텔리전스 씨발.. 문제없는데 왜 에러띄운거야
         switch (T_ColliderType)
         {
         case _COLLIDER_2D_TOPVEIW:
         case _COLLIDER_2D_ISOMETRICVIEW:
-            Vec3_T_Position.y = 0.f;
-            return Vec3_T_Position; // Vector3(Vec3_T_Position.x, 0.f, Vec3_T_Position.z);
+            XM_VEC3_T_Position = XMVectorSetY(XM_VEC3_T_Position, 0.f);
+            return XM_VEC3_T_Position; // Vector3(Vec3_T_Position.x, 0.f, Vec3_T_Position.z);
             
             break;
         default:
-            Vec3_T_Position.z = 0.f;
-            return Vec3_T_Position; // Vector3(Vec3_T_Position.x, Vec3_T_Position.y, 0.f);
+            XM_VEC3_T_Position = XMVectorSetZ(XM_VEC3_T_Position, 0.f);
+            return XM_VEC3_T_Position; // Vector3(Vec3_T_Position.x, Vec3_T_Position.y, 0.f);
 
             break;
         }
@@ -84,11 +84,11 @@ public:
 public:
 
 
-    void MF_Set_ColliderScale(Vector3 _ColliderScale);
+    void MF_Set_ColliderScale(XMVECTOR _XM_VEC3_ColliderScale);
 
-    inline void MF_Set_ColliderPosition(Matrix _ColliderMatrix)
+    inline void MF_Set_ColliderXMMATRIX(XMMATRIX _ColliderXMMATRIX)
     {
-        MAT_M_CollisionMatrix = _ColliderMatrix;
+        XM_MAT_M_CollisionXMMATRIX = _ColliderXMMATRIX;
     }
 
     inline void MF_Set_IsDependent(bool _IsDependent)

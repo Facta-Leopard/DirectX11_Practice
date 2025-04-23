@@ -58,19 +58,9 @@ public:
         return DX_M_PrimitiveTopology;
     }
 
-    inline void MF_Set_Topology(D3D11_PRIMITIVE_TOPOLOGY _PrimitiveTopology)
-    {
-        DX_M_PrimitiveTopology = _PrimitiveTopology;
-    }
-
     inline E_RASTERIZER_STATE MF_Get_RasterizerState()
     {
         return E_M_RasterizerState;
-    }
-
-    inline void MF_Set_RasterizerState(E_RASTERIZER_STATE _RasterizeState)
-    {
-        E_M_RasterizerState = _RasterizeState;
     }
 
     inline E_DEPTHSTENCIL_STATE MF_Get_DepthStencilState()
@@ -78,24 +68,35 @@ public:
         return E_M_DepthStencilState;
     }
 
-    inline void MF_Set_DepthStencilState(E_DEPTHSTENCIL_STATE _DepthStencilState)
-    {
-        E_M_DepthStencilState = _DepthStencilState;
-    }
-
     inline E_BLEND_STATE MF_Get_BlendState()
     {
         return E_M_BlendState;
     }
 
-    inline void MF_Set_BlendState(E_BLEND_STATE _BlendState)
-    {
-        E_M_BlendState = _BlendState;
-    }
-
     inline E_DOMAIN_STATE MF_Get_DomainState()
     {
         return E_M_DomainState;
+    }
+
+public:
+    inline void MF_Set_Topology(D3D11_PRIMITIVE_TOPOLOGY _PrimitiveTopology)
+    {
+        DX_M_PrimitiveTopology = _PrimitiveTopology;
+    }
+
+    inline void MF_Set_RasterizerState(E_RASTERIZER_STATE _RasterizeState)
+    {
+        E_M_RasterizerState = _RasterizeState;
+    }
+
+    inline void MF_Set_DepthStencilState(E_DEPTHSTENCIL_STATE _DepthStencilState)
+    {
+        E_M_DepthStencilState = _DepthStencilState;
+    }
+
+    inline void MF_Set_BlendState(E_BLEND_STATE _BlendState)
+    {
+        E_M_BlendState = _BlendState;
     }
 
     inline void MF_Set_DomainType(E_DOMAIN_STATE _DomainState)

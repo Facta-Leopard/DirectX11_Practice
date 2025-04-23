@@ -32,7 +32,7 @@ public:
 
     void MF_Update();
 
-
+public:
     inline float MF_Get_EngineTime()                 // Getter; M_EngineTime
     {
         return M_EngineTime;

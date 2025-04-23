@@ -45,6 +45,7 @@ public:
         return DX_M_PerformanceFormat;
     }
 
+public:
     void MF_Set_DXGIFormat(DXGI_FORMAT _PerfomanceFormat)
     {
         DX_M_PerformanceFormat = _PerfomanceFormat;

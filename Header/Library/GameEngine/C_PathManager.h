@@ -17,7 +17,7 @@ private:
 public:
     HRESULT MF_Initialize();
 
-
+public:
     // 유의: 배열을 버퍼로 읽을 때는 포인터로 하여야 함!
     // 배열은 포인터로 표현이 가능!
     inline wchar_t* MF_Get_ProjectPath_s()                         // Getter; M_ProjectPath_s

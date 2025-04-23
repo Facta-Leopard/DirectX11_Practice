@@ -4,53 +4,40 @@
 
 C_Transform::C_Transform()
 	: C_Component(_COMPONENT_TRANSFORM)
-	, VEC3_M_RelativeScale(1.f, 1.f, 1.f)			// 스케일 초기화; 스케일은 (1.f, 1.f, 1.f) 가 원본값이므로 초기화를 1.f로 함
-	, VEC3_M_RelativeRotation(0.f, 0.f, 0.f)		// 회전 초기화
-	, VEC3_M_RelativePosition(0.f, 0.f, 0.f)		// 좌표 초기화
+	, XM_VEC3_M_LocalScale(XMVectorSet(1.f, 1.f, 1.f, 0.f))			// 스케일 초기화; 스케일은 (1.f, 1.f, 1.f) 가 원본값이므로 초기화를 1.f로 함
+	, XM_VEC3_M_LocalRotation(XMVectorZero())						// 회전 초기화
+	, XM_VEC3_M_LocalPosition(XMVectorZero())						// 좌표 초기화
 
 	, M_IsScaleDependent(false)						// 부모 오브젝트 연결 초기화
 	
-	, MAT_M_WorldMatrix{ 1.f, 0.f, 0.f, 0.f			// 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화!
-						,0.f, 1.f, 0.f, 0.f
-						,0.f, 0.f, 1.f, 0.f
-						,0.f, 0.f, 0.f, 1.f }
-
+	, XM_MAT_M_WorldMatrix(XMMatrixIdentity())			// 유의! 변환용으로 쓸 수도 있으므로 무조건 단위행렬로 초기화!
 {
-	// 상대방향(로컬방향) 초기화; 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
-	VEC3_M_RelativeDirection_s[_DIRECTION_RIGHT]   = { 1.f, 0.f, 0.f }
-	, VEC3_M_RelativeDirection_s[_DIRECTION_UP]    = { 0.f, 1.f, 0.f }
-	, VEC3_M_RelativeDirection_s[_DIRECTION_FRONT] = { 0.f, 0.f, 1.f };
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT] = XMVectorSet(1.f, 0.f, 0.f, 0.f);
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_UP]    = XMVectorSet(0.f, 1.f, 0.f, 0.f);
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT] = XMVectorSet(0.f, 0.f, 1.f, 0.f);
 
-
-	// 월드방향 초기화; 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
-	VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT]   = { 1.f, 0.f, 0.f }
-	, VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP]    = { 0.f, 1.f, 0.f }
-	, VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = { 0.f, 0.f, 1.f };
-
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT] = XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT];
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP]    = XM_VEC3_M_LocalDirection_s[_DIRECTION_UP];
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT];
 }
 
 C_Transform::C_Transform(const C_Transform& _Origin)
 	: C_Component(_Origin)
-	, VEC3_M_RelativeScale(_Origin.VEC3_M_RelativeScale)
-	, VEC3_M_RelativeRotation(_Origin.VEC3_M_RelativeRotation)
-	, VEC3_M_RelativePosition(_Origin.VEC3_M_RelativePosition)
+	, XM_VEC3_M_LocalScale(_Origin.XM_VEC3_M_LocalScale)
+	, XM_VEC3_M_LocalRotation(_Origin.XM_VEC3_M_LocalRotation)
+	, XM_VEC3_M_LocalPosition(_Origin.XM_VEC3_M_LocalPosition)
 
-	, VEC3_M_RelativeDirection_s{}
-	, M_IsScaleDependent(false)
+	, M_IsScaleDependent(_Origin.M_IsScaleDependent)
 
-	, MAT_M_WorldMatrix{_Origin.MAT_M_WorldMatrix}
-	, VEC3_M_WorldMatrixDirection_s{}
+	, XM_MAT_M_WorldMatrix(_Origin.XM_MAT_M_WorldMatrix)
 {
-	// 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
-	VEC3_M_RelativeDirection_s[_DIRECTION_RIGHT]   = _Origin.VEC3_M_RelativeDirection_s[_DIRECTION_RIGHT]
-	, VEC3_M_RelativeDirection_s[_DIRECTION_UP]    = _Origin.VEC3_M_RelativeDirection_s[_DIRECTION_UP]
-	, VEC3_M_RelativeDirection_s[_DIRECTION_FRONT] = _Origin.VEC3_M_RelativeDirection_s[_DIRECTION_FRONT];
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT] = _Origin.XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT];
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_UP]    = _Origin.XM_VEC3_M_LocalDirection_s[_DIRECTION_UP];
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT] = _Origin.XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT];
 
-	// 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
-	VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT]   = _Origin.VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT]
-	, VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP]    = _Origin.VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP]
-	, VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = _Origin.VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT];
-
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT] = _Origin.XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT];
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP]    = _Origin.XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP];
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = _Origin.XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT];
 }
 
 C_Transform::~C_Transform()
@@ -63,87 +50,88 @@ void C_Transform::MF_Prepare()													// 향후, 함수들 통일성을 위해 생성자�
 
 void C_Transform::MF_ComponentTick()											// 유의! 캐싱이 많으므로, 일부러 모듈화를 하지 않은 것임! 향후, 캐싱이나 모듈화 관련해서 최적화 방법이 더 없는지 확인해보자
 {
-#ifdef _DEBUG				// 디버그 전용
-	if ((0.f == VEC3_M_RelativeScale.x) || (0.f == VEC3_M_RelativeScale.y) || (0.f == VEC3_M_RelativeScale.z))						// 방어코드; 유의! 스케일 값에 0.f가 들어가는 경우에는 문제가 생길 수 있으므로 검사; 향후, 오버헤드를 더 줄일 수 있는 방법을 생각해보자.
+	// 제로스케일 방어코드
+	if (0.f == XMVectorGetX(XM_VEC3_M_LocalScale))
 	{
-		POPUP(L"", L"in C_Transform::MF_ComponentTick(), ")
-		assert(true);
+		XM_VEC3_M_LocalScale = XMVectorSetX(XM_VEC3_M_LocalScale, G_LL_ZeroScaleFloat);
 	}
-#endif
+
+	if (0.f == XMVectorGetY(XM_VEC3_M_LocalScale))
+	{
+		XM_VEC3_M_LocalScale = XMVectorSetY(XM_VEC3_M_LocalScale, G_LL_ZeroScaleFloat);
+	}
+
+	if (0.f == XMVectorGetZ(XM_VEC3_M_LocalScale))
+	{
+		XM_VEC3_M_LocalScale = XMVectorSetZ(XM_VEC3_M_LocalScale, G_LL_ZeroScaleFloat);
+	}
 
 	// 전체적인 계산 흐름
 	// 상대 방향 초기화 → 회전행렬 생성 → 회전 결과로 월드방향 갱신 → 월드 행렬 생성 → 부모 의존성(스케일 포함 여부) 계산
 	// 
 	// 위치계산 : 스케일 -> 회전 -> 이동
 	// 스케일 행렬로 변환
-	Matrix T_Mat_Scale = XMMatrixScaling(VEC3_M_RelativeScale.x, VEC3_M_RelativeScale.y, VEC3_M_RelativeScale.z);
+	XMMATRIX XM_MAT_T_Scale = XMMatrixScalingFromVector(XM_VEC3_M_LocalScale);
 
-	// 회전 행렬로 변환; 유의! 쿼터니언 방식으로 코드 개선하여 오버헤드 감소 및 짐벌락 회피했으나, 일부 가독성이 떨어지는 문제가 있음!; 향후, 이에 대한 생각을 해 보는 것이 좋겠음
 	// 회전벡터를 쿼터니언으로 변환
-	Vector3 Vec3_T_Rotation = XMQuaternionRotationRollPitchYaw(VEC3_M_RelativeRotation.x
-                                                              , VEC3_M_RelativeRotation.y
-                                                              , VEC3_M_RelativeRotation.z);
-	Matrix MAT_T_Rotation = XMMatrixRotationQuaternion(Vec3_T_Rotation);																				// 
+	XMMATRIX XM_MAT_T_Rotation = XMMatrixRotationRollPitchYawFromVector(XM_VEC3_M_LocalRotation);
 
 	// 좌표이동을 행렬로 변환
-	Matrix MAT_T_Translation = XMMatrixTranslation(VEC3_M_RelativePosition.x
-											, VEC3_M_RelativePosition.y
-											, VEC3_M_RelativePosition.z);
+	XMMATRIX XM_MAT_T_Translation = XMMatrixTranslationFromVector(XM_VEC3_M_LocalPosition);
 
 	// 월드공간 행렬 계산
-	MAT_M_WorldMatrix = T_Mat_Scale * MAT_T_Rotation * MAT_T_Translation;
-
+	XM_MAT_M_WorldMatrix = XM_MAT_T_Scale * XM_MAT_T_Rotation * XM_MAT_T_Translation;
 
 	// 방향벡터 계산
-	//// 방향벡터 초기화; 매프레임마다 고정된 값으로 설정; 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
-	VEC3_M_RelativeDirection_s[_DIRECTION_RIGHT] = { 1.f, 0.f, 0.f }
-	, VEC3_M_RelativeDirection_s[_DIRECTION_UP] = { 0.f, 1.f, 0.f }
-	, VEC3_M_RelativeDirection_s[_DIRECTION_FRONT] = { 0.f, 0.f, 1.f };
+	//// 방향벡터 초기화; 매프레임마다 고정된 값으로 설정
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT] = XMVectorSet(1.f, 0.f, 0.f, 0.f);
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_UP] = XMVectorSet(0.f, 1.f, 0.f, 0.f);
+	XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT] = XMVectorSet(0.f, 0.f, 1.f, 0.f);
 
-	//// AoS 구조로 설정했다가, 재검토한 결과 SoA구조보다 좋지 않으므로 다시금 갈아엎음; 개선코드 : 오버헤드 개선을 위해 한 줄로 수정(CPU 캐싱 감소)
-	VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT]   = VEC3_M_RelativeDirection_s[_DIRECTION_RIGHT] = XMVector3TransformNormal(VEC3_M_RelativeDirection_s[_DIRECTION_RIGHT], MAT_T_Rotation)
-	, VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP]    = VEC3_M_RelativeDirection_s[_DIRECTION_UP]    = XMVector3TransformNormal(VEC3_M_RelativeDirection_s[_DIRECTION_UP], MAT_T_Rotation)
-	, VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = VEC3_M_RelativeDirection_s[_DIRECTION_FRONT] = XMVector3TransformNormal(VEC3_M_RelativeDirection_s[_DIRECTION_FRONT], MAT_T_Rotation);
-
+	//// AoS 구조로 설정했다가, 재검토한 결과 SoA구조보다 좋지 않으므로 다시금 갈아엎음
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT] = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_RIGHT], XM_MAT_T_Rotation);
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP] = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_UP], XM_MAT_T_Rotation);
+	XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = XMVector3TransformNormal(XM_VEC3_M_LocalDirection_s[_DIRECTION_FRONT], XM_MAT_T_Rotation);
 
 	// 부모 오브젝트 누적 계산
 	// 유의! 반복문으로 부모의 부모까지 계산하지 않는 이유는 어차피 부모의 멤버값들이 최종결과이기 때문!
 	C_Object* P_T_ParentObject = MF_Get_OwnerObject()->MF_Get_ParentObject();
 
-	// 조건문에 사용할 임시변수 선언
-	//// 오버헤드를 줄이기 위해, 조건문 바깥에서 캐싱함
-	Matrix MAT_T_ParentScaleInverse = {};
-
-	Vector3 Vec3_T_ParentDirection[_DIRECTION_END] = {};
-
-	if (M_IsScaleDependent && (nullptr != P_T_ParentObject))			// 방어코드; 유의! 오버헤드를 줄이기 위해, 브렌치를 감소시키고자 조건문으로 방식 변경
+	if (nullptr != P_T_ParentObject)			// 방어코드; 유의! 오버헤드를 줄이기 위해, 브렌치를 감소시키고자 조건문으로 방식 변경
 	{
-		Vector3 vParentScale = P_T_ParentObject->MF_Get_TransformComponent()->MF_Get_RelativeScale();
-		MAT_T_ParentScaleInverse = XMMatrixInverse(nullptr, XMMatrixScaling(vParentScale.x, vParentScale.y, vParentScale.z));
-		MAT_M_WorldMatrix = MAT_M_WorldMatrix * MAT_T_ParentScaleInverse * P_T_ParentObject->MF_Get_TransformComponent()->MF_Get_WorldMatrix();
-
 		C_Transform* T_ParentTransform = P_T_ParentObject->MF_Get_TransformComponent();
+		XMMATRIX XM_MAT_T_ParentWorld = T_ParentTransform->MF_Get_WorldMatrix();
 
-		Vec3_T_ParentDirection[_DIRECTION_RIGHT] = T_ParentTransform->MF_Get_RelativeDirection(_DIRECTION_RIGHT);
-		Vec3_T_ParentDirection[_DIRECTION_UP]    = T_ParentTransform->MF_Get_RelativeDirection(_DIRECTION_UP);
-		Vec3_T_ParentDirection[_DIRECTION_FRONT] = T_ParentTransform->MF_Get_RelativeDirection(_DIRECTION_FRONT);
+		// 스케일 영향받는지 계산
+		if (true == M_IsScaleDependent)
+		{
+			XMVECTOR XM_VEC3_T_ParentScale = T_ParentTransform->MF_Get_LocalScale();
+			XMMATRIX XM_MAT_T_ParentScaleInverse = XMMatrixInverse(nullptr, XMMatrixScalingFromVector(XM_VEC3_T_ParentScale));
+			XM_MAT_M_WorldMatrix = XM_MAT_M_WorldMatrix * XM_MAT_T_ParentScaleInverse * XM_MAT_T_ParentWorld;
+		}
+		else
+		{
+			XM_MAT_M_WorldMatrix *= (P_T_ParentObject->MF_Get_TransformComponent()->MF_Get_WorldMatrix());
+		}
+
+		// 방향벡터 초기화
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT] = XMVectorSet(1.f, 0.f, 0.f, 0.f);
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP] = XMVectorSet(0.f, 1.f, 0.f, 0.f);
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = XMVectorSet(0.f, 0.f, 1.f, 0.f);
+
+		XMVECTOR XM_Vec3_Scale, XM_Vec3_Rot, XM_Vec3_Trans;
+		XMMatrixDecompose(&XM_Vec3_Scale, &XM_Vec3_Rot, &XM_Vec3_Trans, XM_MAT_M_WorldMatrix);
+		XMMATRIX XM_MAT_T_ScaleInverse = XMMatrixInverse(nullptr, XMMatrixScalingFromVector(XM_Vec3_Scale));
+
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT] = XMVector3TransformNormal(XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT], XM_MAT_T_ScaleInverse * XM_MAT_M_WorldMatrix);
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP] = XMVector3TransformNormal(XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP], XM_MAT_T_ScaleInverse * XM_MAT_M_WorldMatrix);
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = XMVector3TransformNormal(XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT], XM_MAT_T_ScaleInverse * XM_MAT_M_WorldMatrix);
+
+		//// 월드방향 정규화
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT] = XMVector3Normalize(XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT]);
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP] = XMVector3Normalize(XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP]);
+		XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT] = XMVector3Normalize(XM_VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT]);
 	}
-	else if(nullptr != P_T_ParentObject)
-	{
-		MAT_M_WorldMatrix *= MF_Get_OwnerObject()->MF_Get_ParentObject()->MF_Get_TransformComponent()->MF_Get_WorldMatrix();
-	}
-
-	// 방향벡터 정규화
-	// 코드 개선; 오버헤드 감소를 위한 나열방식으로 함
-	//// 상대방향(로컬방향) 정규화
-	VEC3_M_RelativeDirection_s[_DIRECTION_RIGHT].Normalize();
-	VEC3_M_RelativeDirection_s[_DIRECTION_UP].Normalize();
-	VEC3_M_RelativeDirection_s[_DIRECTION_FRONT].Normalize();
-
-	//// 월드방향 정규화
-	VEC3_M_WorldMatrixDirection_s[_DIRECTION_RIGHT].Normalize();
-	VEC3_M_WorldMatrixDirection_s[_DIRECTION_UP].Normalize();
-	VEC3_M_WorldMatrixDirection_s[_DIRECTION_FRONT].Normalize();
 }
 
 void C_Transform::MF_ComponentTickAfter()										// 더미함수; 유의! 위치계산은 Narrow Phase로 쓸 일이 없음
@@ -152,60 +140,36 @@ void C_Transform::MF_ComponentTickAfter()										// 더미함수; 유의! 위치계산은
 
 void C_Transform::MF_Bind_Transform()
 {
-	// 오브젝트 위치를 상수버퍼에 삽입
+	// 트랜스폼 전용버퍼를 가져옴
 	C_ConstantBuffer* P_T_ConstantBuffer = C_Device::SF_Get_Instance()->MF_Get_ConstantBuffer(_CONSTANTBUFFER_TRANSFORM);
 
-	// 월드행렬 전역변수에 삽입
-	G_DS_TransformVariable.SDK_XM_FLOAT4X4_ViewMatrix = MAT_M_WorldMatrix;
+	// GPU 전달용 XM구조를 CPU 계산용 XM으로 전환
+	//// 월드는 기존값 그대로 사용하니 생략
+	//// 뷰 행렬 변환
+	XMMATRIX XM_MAT_View = XMLoadFloat4x4(&G_DS_TransformVariable.SDK_XM_FLOAT4X4_ViewMatrix);
 
-	// 전역변수에서 월드 + 뷰 행렬 계산
-	G_DS_TransformVariable.SDK_XM_FLOAT4X4_WorldViewMatrix = G_DS_TransformVariable.SDK_XM_FLOAT4X4_WorldMatrix * G_DS_TransformVariable.SDK_XM_FLOAT4X4_ViewMatrix;
+	//// 프로젝션 행렬 변환
+	XMMATRIX XM_MAT_Proj = XMLoadFloat4x4(&G_DS_TransformVariable.SDK_XM_FLOAT4X4_ProjectionMatrix);
+
+	// 계산
+	//// 전역변수에서 월드 + 뷰 행렬 계산
+	//// 단, 월드 행렬은 기존값을 쓴다.
+	XMMATRIX XM_MAT_WV = XM_MAT_M_WorldMatrix * XM_MAT_View;
 
 	// 전역변수에서 (월드 + 뷰) + 프로젝션 행렬 계산
-	G_DS_TransformVariable.SDK_XM_FLOAT4X4_WorldViewProjectionMatrix = G_DS_TransformVariable.SDK_XM_FLOAT4X4_WorldViewMatrix * G_DS_TransformVariable.SDK_XM_FLOAT4X4_ProjectionMatrix;
+	XMMATRIX XM_MAT_WVP = XM_MAT_WV * XM_MAT_Proj;
 
+	// CPU 연산용 XM구조를 GPU 전달용 XM으로 전환
+	//// 월드행렬 전역변수에 삽입
+	XMStoreFloat4x4(&G_DS_TransformVariable.SDK_XM_FLOAT4X4_WorldMatrix, XM_MAT_M_WorldMatrix);
+
+	//// 전역변수에서 월드 + 뷰 행렬 삽입
+	XMStoreFloat4x4(&G_DS_TransformVariable.SDK_XM_FLOAT4X4_WorldViewMatrix, XM_MAT_WV);
+
+	//// 전역변수에서 (월드 + 뷰) + 프로젝션 행렬 삽입
+	XMStoreFloat4x4(&G_DS_TransformVariable.SDK_XM_FLOAT4X4_WorldViewProjectionMatrix, XM_MAT_WVP);
+
+	// 상수버퍼에 데이터 삽입
 	P_T_ConstantBuffer->MF_Set_ConstantBufferByData(&G_DS_TransformVariable, sizeof(DS_Transform));
-	P_T_ConstantBuffer->MF_Get_ConstantBufferType();
+	P_T_ConstantBuffer->MF_Bind_ConstantBuffer();
 }
-
-Vector3 C_Transform::MF_ConvertWorldMatrixToVectorPosition()
-{
-	return Vector3();
-}
-
-Vector3 C_Transform::MF_ConvertWorldMatrixToVectorScale()						// 유의! 오버헤드를 줄이기 위해 직접접근을 선택함
-{
-	C_Object* P_T_ParantObject = MF_Get_OwnerObject()->MF_Get_ParentObject();
-	
-	Vector3 T_WorldSpaceScale = VEC3_M_RelativeScale;
-
-	bool T_IsDependent = M_IsScaleDependent;
-
-	while (T_IsDependent && (nullptr != P_T_ParantObject))						// 방어코드; 향후, 더 효율적인 오버헤드 감소방법이 있을 지 생각해보자
-	{
-		C_Transform* T_ParentTransform = P_T_ParantObject->MF_Get_TransformComponent();
-		
-		T_WorldSpaceScale *= T_ParentTransform->MF_Get_RelativeScale();
-
-		T_IsDependent = T_ParentTransform->MF_Get_IsScaleDependent();
-
-		P_T_ParantObject = P_T_ParantObject->MF_Get_ParentObject();
-	}
-	return T_WorldSpaceScale;
-}
-
-#ifdef _DEBUG
-
-void C_Transform::MF_ConvertWorldMatrixToVectorRotation()
-{
-	// 계산할 수 없는 부분이므로, 일부러 함수를 만들어서 실수 하지 않도록 만든 함수
-	assert(true);
-}
-
-void C_Transform::MF_ConvertWorldMatrixToVectorDirection()
-{
-	// 계산할 수 없는 부분이므로, 일부러 함수를 만들어서 실수 하지 않도록 만든 함수
-	assert(true);
-}
-
-#endif // _DEBUG
