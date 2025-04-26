@@ -12,7 +12,6 @@ struct DS_KeyInfo
 	// 현재 눌린 것은 GetAsyncKeyState()를 통해 알 수 있으므로 별도로 쓸 이유가 없음
 };
 
-
 // about Mouse
 //// MouseLeftButton
 struct DS_MouseLeftButton
@@ -86,7 +85,66 @@ struct DS_Transform
 	XMFLOAT4X4	SDK_XM_FLOAT4X4_WorldViewProjectionMatrix;		// 16 * 4 bytes (64); 월드 + 뷰 + 프로젝션 행렬
 };
 
+
+// FL_IMAGE_PACKER 사용; 내가 만든 라이브러리
+//// FL_ResourceImageDesc 전용 구분용 플래그
+enum FL_E_IMAGETYPE
+{
+	_IMAGETYPE_PNG,				// PNG 파일용
+	_IMAGETYPE_JPG,				// JPG 파일용
+	_IMAGETYPE_JPEG,			// JPEG 파일용
+	_IMAGETYPE_BMP,				// BMP 파일용
+
+	_IMAGETYPE_END,
+};
+
+//// C.O.M.(Component Object Model) 개념 적용을 위한 메타데이터 구조체
+struct FL_DS_ResourceImageDesc
+{
+	// 리소스를 저장하거나, 리소스가 있는 디렉토리 주소; 비워둘 경우에는 기본적으로 실행 디렉토리 + (\Resource) 디렉토리 주소를 기반으로 함
+	wstring						wstring_Path = L"EMPTY";
+
+	// 저장시 구분하기 위해 구분용 플래그로 사용; 비워둘 경우에는 PNG를 기반으로 함
+	FL_E_IMAGETYPE				E_ImageType = _IMAGETYPE_PNG;
+};
+
+//// 스크래치 이미지로 환원시 사용할 정보 구조체
+struct FL_DS_ImageEntry
+{
+	size_t				SDK_M_Width;				// 높이정보
+	size_t				SDK_M_Height;				// 길이정보
+	DXGI_FORMAT			DX_M_ImageFormat;			// 이미지 포맷형식
+	size_t				SDK_M_RowPitch;				// 한 줄당 픽셀이 차지하는 크기
+	size_t				SDK_M_SlicePitch;			// 전체 이미지 크기(SDK_M_RowPitch * SDK_M_Height)
+	size_t				SDK_M_OffsetInBlob;			// Offset 정보
+};
+
+//// 리소스 패킹전용 구조체
+struct FL_DS_CPU_Image
+{
+	TexMetadata					M_MetaData;			// 이미지 파일이 갖고 있는 메타데이터; 밈맵 증 정보가 들어있음; DirectX 전용
+	vector<FL_DS_ImageEntry>       STL_M_Entry;		// 스크래치 이미지로 환원시 사용할 정보들
+	vector<uint8_t>             M_PixelBlob;		// 이미지에 관한 전체정보(1차원 정보)로, 모든 정보가 한 줄로 담김
+};
+
+//// 리소스 이미지세트
+struct FL_DS_ImageSet
+{
+	FL_DS_CPU_Image					M_CPUImage;
+	FL_DS_ResourceImageDesc			M_Desc;
+};
+
+
+
+
+// 전역변수
+
 extern DS_Transform G_DS_TransformVariable;
+
+
+
+
+
 
 // 유니온 방식 쓰려고 했으나, 메모리 정렬에 따른 오버헤드 및 충돌체 개수 증가 등 확상성을 고려해서 윈도우 구조체를 쓰기로 함
 //union U_HashInfo

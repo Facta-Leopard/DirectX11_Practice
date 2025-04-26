@@ -91,6 +91,15 @@ inline void GF_Set_ScaleToMatrix(Matrix& _Matrix, const Vector3& V_Scale)
 	// 유의! _41, _42, _43은 위치 값과 관련이 있어서 건드리면 대형사고 나니까 절대 조심
 }
 
+
+// 문자열 변환관련 함수
+//// wstring -> string 변환함수
+
+
+
+//// string -> wsting 변환함수
+
+
 // Vector3 관련 전역함수
 //// Vector3 값을 리버스한다.
 //// NRVO 버전

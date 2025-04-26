@@ -35,8 +35,10 @@ void C_MeshRender::MF_Render()
 {
 	((C_Transform*)MF_Get_OwnerObject()->MF_Get_Component(_COMPONENT_TRANSFORM))->MF_Bind_Transform();
 
-	MF_Get_OwnerObject()->MF_Get_RenderComponent()->MF_Get_CurrentMaterial()->MF_Bind_Material();
+	// 코드 개선: 멤버 직접접근으로 오버헤드 감소; 내가 접근자를 protected로 쓴 건, 이를 위한 복선이었다!
+	SP_M_CurrentMaterial->MF_Bind_Material();
 
-	MF_Get_OwnerObject()->MF_Get_RenderComponent()->MF_Get_Mesh()->MF_Bind_Mesh();
+	// 코드 개선: 멤버 직접접근으로 오버헤드 감소; 내가 접근자를 protected로 쓴 건, 이를 위한 복선이었다!
+	SP_M_Mesh->MF_Bind_Mesh();
 
 }
