@@ -524,6 +524,9 @@
     <ClCompile Include="C_FlipBook.cpp">
       <Filter>3. Resource\32. Resource\326. FlipBook</Filter>
     </ClCompile>
+    <ClCompile Include="globalFunction.cpp">
+      <Filter>0. Foundation\01. Header\011. Global</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="cpp.hint">
