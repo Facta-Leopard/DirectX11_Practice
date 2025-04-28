@@ -37,7 +37,7 @@ public:
 
 public:
     // 바인딩함수; 향후, DXGI_FORMAT 값을 변경해서 정점 수 제한을 푸는 등 퍼포먼스 사용가능토록 고려해보자
-    void MF_Bind();                                         // 가독성을 위해 NRVO 적용
+    void MF_Bind_Mesh();                                         // 가독성을 위해 NRVO 적용
 
 public:
     DXGI_FORMAT MF_Get_DXGIFormat()

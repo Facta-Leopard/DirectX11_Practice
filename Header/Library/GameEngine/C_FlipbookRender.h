@@ -1,19 +1,19 @@
 #pragma once
 #include "C_RenderComponent.h"
-class C_FlipbookRender :
+class C_FlipBookRender :
     public C_RenderComponent
 {
 public:
-    C_FlipbookRender();
+    C_FlipBookRender();
 
 protected:
-    C_FlipbookRender(const C_FlipbookRender& _Origin);
+    C_FlipBookRender(const C_FlipBookRender& _Origin);
 
 public:
-    ~C_FlipbookRender();
+    ~C_FlipBookRender();
 
 public:
-    CLONE(C_FlipbookRender)
+    CLONE(C_FlipBookRender)
 
     virtual void MF_Prepare() override;
 

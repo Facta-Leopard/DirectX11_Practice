@@ -35,8 +35,8 @@ shared_ptr<C_Material> C_RenderComponent::MF_Get_CustomMaterial()
 {
 	if (nullptr == SP_M_CustomMaterial.get())					// 방어코드
 	{
-		shared_ptr<C_Material> SP_T_Material = shared_ptr<C_Material>(SP_M_CurrentMaterial->MF_Clone());
-		SP_M_CustomMaterial = make_shared<C_Material>(SP_T_Material);	// 커스텀하기 위한 깊은 복사
+		shared_ptr<C_Material> SP_T_Material = shared_ptr<C_Material>(SP_M_CurrentMaterial->MF_Clone());		// 커스텀하기 위한 깊은 복사
+		SP_M_CustomMaterial = SP_T_Material;
 	}
 
 	return SP_M_CustomMaterial;

@@ -43,12 +43,25 @@ Class* MF_Get_##Class##()                                                \
 
 // Heap Memory Free Macro
 //// STL Version
-// 범위기반 for문 이용; Swift 범위기반 문 응용
+////// 범위기반 for문 이용; Swift 범위기반 문 응용
 #define DELETEALL_STL(STL)      \
 for (auto& Element : STL)       \
 {                               \
     delete Element;             \
 }                               \
+STL.clear();
+
+//// STL Map Version
+////// 범위기반 for문 이용; Swift 범위기반 문 응용
+#define DELETEALL_STL_MAP(STL)      \
+for (auto& Element : STL)           \
+{                                   \
+    if (nullptr != Element.second)	\
+    {                               \
+        delete Element.second;      \
+        Element.second = nullptr;   \
+    }                               \
+}                                   \
 STL.clear();
 
 //// Fixed Array Version
