@@ -14,8 +14,26 @@ C_ResourceManager::C_ResourceManager()
 	wcscat_s(wchar_T_Path_s, 255, L"\\Resource\\");
 	wstring_M_BasicPath = wchar_T_Path_s;
 
+	CreateDirectoryW(wstring_M_BasicPath.c_str(), nullptr);
+
 	// 코드개선: 기본적으로 지정되는 파일명(확장자 포함)
 	wstring_M_BasicImageFileName = L"CompressedImage.rsc";
+
+	// 파일이 없는 경우, CompressedImage.rsc 파일을 생성
+	FILE* SDK_T_File = nullptr;
+	wstring wstring_T_Path = wstring_M_BasicPath + wstring_M_BasicImageFileName;
+
+	_wfopen_s(&SDK_T_File, wstring_T_Path.c_str(), L"rb");
+
+	// 향후, 조건문 부분을 _wfopen_s 반환값으로 하면 오버헤드가 더 적을 것 같긴한데, 10시간째 씨름중이라 나중에 다시 생각해보자
+	if (nullptr == SDK_T_File)
+	{
+		_wfopen_s(&SDK_T_File, wstring_T_Path.c_str(), L"wb");
+		size_t T_Zero = 0;
+		fwrite(&T_Zero, sizeof(size_t), 1, SDK_T_File);
+		fclose(SDK_T_File);
+		POPUP(L"The .rsc File Does Not Exist", (L"A temporary file named `" + wstring_M_BasicImageFileName+ L"` has been created at `" + wstring_M_BasicPath).c_str())
+	}
 
 	// 기존에 저장된 내용 로드
 	MF_Load_All();
@@ -281,13 +299,13 @@ HRESULT C_ResourceManager::MF_Load_ImageAllFromFile()
 	// 오버헤드를 극한으로 감소하기 위해, 환원방식이 아닌 스택 임시변수 선언 및 버리기로 함
 	wstring wstring_T_Path = wstring_M_BasicPath + wstring_M_BasicImageFileName;
 
-	// 파일 열기
 	_wfopen_s(&SDK_T_File, wstring_T_Path.c_str(), L"rb");
 
 	// 향후, 조건문 부분을 _wfopen_s 반환값으로 하면 오버헤드가 더 적을 것 같긴한데, 10시간째 씨름중이라 나중에 다시 생각해보자
 	if (nullptr == SDK_T_File)
 	{
 		MessageBox(nullptr, L"_wfopen_s() Failed", L"_wfopen_s() Must Check", MB_OK | MB_ICONINFORMATION);
+
 		return E_FAIL;
 	}
 
