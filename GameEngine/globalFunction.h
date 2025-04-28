@@ -94,11 +94,34 @@ inline void GF_Set_ScaleToMatrix(Matrix& _Matrix, const Vector3& V_Scale)
 
 // 문자열 변환관련 함수
 //// wstring -> string 변환함수
+string GF_ConvertWStringToString_WinAPI(const wstring& _wstring)
+{
+	// 변환에 필요한 문자열 개수 계산
+	int string_T_Size = WideCharToMultiByte(CP_UTF8, 0, _wstring.c_str(), -1, nullptr, 0, nullptr, nullptr);
 
+	// 문자열 개수만큼 string 버퍼 생성
+	string string_T(string_T_Size, 0);
 
+	// 변환
+	WideCharToMultiByte(CP_UTF8, 0, _wstring.c_str(), -1, &string_T[0], string_T_Size, nullptr, nullptr);
+
+	return string_T;
+}
 
 //// string -> wsting 변환함수
+wstring GF_ConvertStringToWString_WinAPI(const string& _string)
+{
+	// 변환에 필요한 문자열 개수 계산
+	int wstring_T_Size = MultiByteToWideChar(CP_UTF8, 0, _string.c_str(), -1, nullptr, 0);
 
+	// 문자열 개수만큼 wstring 버퍼 생성
+	wstring wstring_T(wstring_T_Size, 0);
+
+	// 변환
+	MultiByteToWideChar(CP_UTF8, 0, _string.c_str(), -1, &wstring_T[0], wstring_T_Size);
+
+	return wstring_T;
+}
 
 // Vector3 관련 전역함수
 //// Vector3 값을 리버스한다.

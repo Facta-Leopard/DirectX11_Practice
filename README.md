@@ -482,6 +482,14 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - Later, if I work more with `parallel programming`, I may move it `back into the function`.
 
+- If a value is only needed once inside a function, it’s better to create a **stack variable** instead of caching it as static.
+
+- Using **stack variables** for one-time use cuts down overhead and avoids extra memory work.
+
+- I first applied this idea to resource path handling during resource management system development(C_ResoureManager).
+
+- It should be reviewed again when checking the whole codebase later.
+
 #### Overhead Comparison Table: Static vs Member vs Local Variable
 
 | Method               | Memory Location            | Access                           | Creation        | Thread-Safe   | Cache Efficiency   | Example              | Performance (10M ops)   |
@@ -564,6 +572,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 - **`F_`**: Prefix for FMOD classes in FMOD Library.
 - **`I_`**: Prefix for Using IMGUI Headers.
 - **`DX_`**: Prefix for DirectX-specific classes.
+- **`FL_`**: Prefix for FL_IMAGE_PACKER functions.(https://github.com/Facta-Leopard/FL_IMAGE_PACKER)
 
 ---
 

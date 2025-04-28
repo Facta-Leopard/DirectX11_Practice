@@ -5,6 +5,8 @@
 C_Material::C_Material()
 	: C_Resource(_RESOURCE_MATERIAL)
 
+	, SP_M_GraphicShader{}
+	, DS_M_MaterialConstant{}
 
 {
 }

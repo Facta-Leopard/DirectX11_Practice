@@ -46,6 +46,7 @@
 - **`F_`**: Prefix for FMOD classes in FMOD Library.
 - **`I_`**: Prefix for Using IMGUI Headers.
 - **`DX_`**: Prefix for DirectX-specific classes.
+- **`FL_`**: Prefix for FL_IMAGE_PACKER functions.(https://github.com/Facta-Leopard/FL_IMAGE_PACKER)
 
 ---
 
