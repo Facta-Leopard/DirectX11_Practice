@@ -46,30 +46,81 @@ public:
     HRESULT MF_Create_ComputeShaderResource();
 
 public:
-// 붙히고 떼고 하는 것은 디버그 모드에서만 되도록 조정
+    inline wstring MF_Get_BasicPath()
+    {
+        return wstring_M_BasicPath;
+    }
+
+    inline wstring MF_Get_BasicFileName()
+    {
+        return wstring_M_BasicFileName;
+    }
+
+    inline wstring MF_Get_BasicResourceFileName()
+    {
+        return wstring_M_BasicResourceFileName;
+    }
+
+    inline wstring MF_Get_BasicImageFileName()
+    {
+        return wstring_M_BasicImageFileName;
+    }
+
+public:
+    inline void MF_Set_BasicPath(const wstring& _wsting)
+    {
+        wstring_M_BasicPath = _wsting;
+    }
+
+    inline void MF_Set_BasicFileName(const wstring& _wsting)
+    {
+        wstring_M_BasicFileName = _wsting;
+    }
+
+    inline void MF_Set_BasicResourceFileName(const wstring& _wsting)
+    {
+        wstring_M_BasicResourceFileName = _wsting;
+    }
+
+    inline void MF_Set_BasicImageFileName(const wstring& _wsting)
+    {
+        wstring_M_BasicImageFileName = _wsting;
+    }
+
+public:
+// 저장된 벡터 자료형 중에서 이미지 찾기
+    FL_DS_ImageSet* MF_FindImageSetFromVectorData(const wstring& _wstringName);
+
+    FL_DS_ImageSet* MF_FindImageSetFromVectorData(const string& _stringName);
+
+public:
+// 붙히는 것은 디버그 모드에서만 되도록 조정
 #ifdef _DEBUG
-    HRESULT MF_Attach_Resource(const wstring& _wstringName, C_Resource* _Resource);
+    HRESULT MF_Attach_Resource(const wstring& _wstringName);
 
-    HRESULT MF_Attach_Resource(const string& _stringName, C_Resource* _Resource);
+    HRESULT MF_Attach_Resource(const string& _stringName);
 
-    HRESULT MF_Attach_ImageToImageSet(const wstring& _wstringName, FL_DS_ImageSet* _ImageSet);
+    HRESULT MF_Attach_ImageToImageSet(const wstring& _wstringName);
 
-    HRESULT MF_Attach_ImageToImageSet(const string& _stringName, FL_DS_ImageSet* _ImageSet);
-
-    HRESULT MF_Detach_Resource(const wstring& _wstringName);
-
-    HRESULT MF_Detach_Resource(const string& _stringName);
-
-    HRESULT MF_Detach_ImageToImageSet(const wstring& _wstringName);
-
-    HRESULT MF_Detach_ImageToImageSet(const string& _stringName);
+    HRESULT MF_Attach_ImageToImageSet(const string& _stringName);
 #endif // _DEBUG
 
 public:
+// 변환용 함수
+//// 실제 파일에서 스크래치이미지로 변환
+    HRESULT MF_Convert_FileToScratchImage(const wstring& _wstringName, ScratchImage& _ScratchImage);
 
+    HRESULT MF_Convert_FileToScratchImage(const string& _stringName, ScratchImage& _ScratchImage);
+
+//// 스크래치 이미지를 이미지세트로 변환
+    HRESULT MF_Convert_ScratchImageToCPUImage(const ScratchImage& _ScratchImage, FL_DS_ImageSet& _ImageSet);
+
+//// 이미지세트를 스크래치 이미지로 변환
+    HRESULT MF_Convery_CPUImageToScratchImage(const FL_DS_CPU_Image& _Source_CPU_Image, ScratchImage& _Out_ScratchImage_Out);
 
 public:
 // 저장하는 것은 디버그 모드에서만 되도록 조정
+// 단, 스테이지 저장은 별개로 할 수 있도록 함; 향후, 스테이지 작성시 사용
 #ifdef _DEBUG
     void MF_Save_All();
 

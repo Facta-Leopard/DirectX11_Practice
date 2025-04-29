@@ -122,6 +122,11 @@ struct FL_DS_ImageEntry
 //// 리소스 패킹전용 구조체
 struct FL_DS_CPU_Image
 {
+	FL_DS_CPU_Image()
+		: M_MetaData{}
+	{
+	}
+
 	TexMetadata					M_MetaData;			// 이미지 파일이 갖고 있는 메타데이터; 밈맵 증 정보가 들어있음; DirectX 전용
 	vector<FL_DS_ImageEntry>       STL_M_Entry;		// 스크래치 이미지로 환원시 사용할 정보들
 	vector<uint8_t>             M_PixelBlob;		// 이미지에 관한 전체정보(1차원 정보)로, 모든 정보가 한 줄로 담김
