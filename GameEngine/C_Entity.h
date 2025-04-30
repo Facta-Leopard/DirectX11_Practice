@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+using namespace std;
 #include "globalFunction.h"
 
 class C_Entity
@@ -39,10 +41,5 @@ public:
 		M_Name = _wstringName;
 	}
 
-	inline void MF_Set_Name(const string& _stringName)					// Setter; M_Name
-	{
-		wstring _wstringName = GF_ConvertStringToWString_WinAPI(_stringName);
-
-		MF_Set_Name(_wstringName);
-	}
+	void MF_Set_Name(const string& _stringName);						// Setter; M_Name
 };

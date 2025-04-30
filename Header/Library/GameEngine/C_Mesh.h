@@ -29,7 +29,7 @@ protected:
     UINT*                       P_SDK_M_IndexSystemMemory;        // UINT*
 
 public:
-    void MF_Create_Buffer(DS_Vertex* _DS_VertexSystemMemory, UINT _SDK_VertexCount, UINT* _SDK_IndexSystemMemory, UINT _SDK_IndexCount);     // 가독성을 위해 NRVO 적용
+    HRESULT MF_Create_Buffer(DS_Vertex* _DS_VertexSystemMemory, UINT _SDK_VertexCount, UINT* _SDK_IndexSystemMemory, UINT _SDK_IndexCount);     // 가독성을 위해 NRVO 적용
 
     void MF_Render();                                       // 가독성을 위해 NRVO 적용
 

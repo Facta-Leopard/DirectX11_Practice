@@ -21,8 +21,11 @@ C_Device::~C_Device()
 
 }
 
-void C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
+HRESULT C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
 {
+    H_M_Window = _OutputWnd;
+    VEC2_M_RenderTargetResolution = _vResolution;
+
     // DirectX Version Setting
     D3D_FEATURE_LEVEL level = D3D_FEATURE_LEVEL_11_0;
 
@@ -74,6 +77,11 @@ void C_Device::MF_Initialize(HWND _OutputWnd, Vector2 _vResolution)
 
     }
 #endif // _DEBUG
+
+
+
+
+    return S_OK;
 }
 
 void C_Device::MF_ClearRenderTargetView()

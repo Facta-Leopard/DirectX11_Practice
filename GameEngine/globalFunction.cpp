@@ -1,5 +1,6 @@
-// LNK2005 에러 방지용
+#pragma once
 
+// LNK2005 에러 방지용
 #include "pch.h"
 
 #include "globalFunction.h"

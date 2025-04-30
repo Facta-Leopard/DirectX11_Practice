@@ -66,6 +66,8 @@ using namespace DirectX::SimpleMath;
 #include "C_TaskManager.h"
 
 // Resourece
+#include "struct.h"
+
 #include "C_Entity.h"
 
 #include "C_Object.h"

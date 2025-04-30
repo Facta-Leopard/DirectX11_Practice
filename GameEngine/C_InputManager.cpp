@@ -73,9 +73,9 @@ HRESULT C_InputManager::MF_Initialize()
 	Vector2 T_Mousepos = (Vector2)(C_GameEngine::SF_Get_Instance()->MF_Get_Resolution());
 	T_Mousepos /= 2;
 
-	M_DS_MouseInfo.M_MousePos = T_Mousepos;															// 현재 마우스 좌표 초기좌표 해상도 절반으로 강제 설정
+	M_DS_MouseInfo.SDK_XM_FLOAT2_MousePos = T_Mousepos;															// 현재 마우스 좌표 초기좌표 해상도 절반으로 강제 설정
 	// M_DS_MouseInfo.M_MousePos = (Vector2)((float)T_MousePos.x, (float)T_MousePos.y);				// 이렇게 하면 초기 값이 창 생기는 위치를 벗어나면 화면 컨트롤 불가	
-	M_DS_MouseInfo.M_MousePosBefore = T_Mousepos;													// 현재 마우스 좌표 초기좌표 해상도 절반으로 강제 설정
+	M_DS_MouseInfo.SDK_XM_FLOAT2_MousePosBefore = T_Mousepos;													// 현재 마우스 좌표 초기좌표 해상도 절반으로 강제 설정
 	// M_DS_MouseInfo.M_MousePosBefore = (Vector2)((float)T_MousePos.x, (float)T_MousePos.y);		// 이렇게 하면 초기 값이 창 생기는 위치를 벗어나면 화면 컨트롤 불가
 
 	return S_OK;
@@ -125,7 +125,7 @@ void C_InputManager::MF_Update()
 		}
 
 		//// 마우스 좌표 갱신
-		M_DS_MouseInfo.M_MousePosBefore = M_DS_MouseInfo.M_MousePos;
+		M_DS_MouseInfo.SDK_XM_FLOAT2_MousePosBefore = M_DS_MouseInfo.SDK_XM_FLOAT2_MousePos;
 
 		POINT T_MousePos;
 		if (NULL == GetCursorPos(&T_MousePos))	// 마우스 절대좌표 가져오는 WInAPI Function 사용
@@ -138,9 +138,9 @@ void C_InputManager::MF_Update()
 			POPUP_DEBUG(L"MousePos Initializing Failed", L"in C_KeyManager::MF_Update() ScreenToClient(), NULL == ScreenToClient(");
 		}
 
-		M_DS_MouseInfo.M_MousePos = (Vector2)((float)T_MousePos.x, (float)T_MousePos.y);								// 현재 마우스 좌표 설정
+		M_DS_MouseInfo.SDK_XM_FLOAT2_MousePos = (Vector2)((float)T_MousePos.x, (float)T_MousePos.y);								// 현재 마우스 좌표 설정
 
-		M_DS_MouseInfo.M_V2_Direction = M_DS_MouseInfo.M_MousePos - M_DS_MouseInfo.M_MousePosBefore;	// 마우스 방향벡터 계산
+		M_DS_MouseInfo.SDK_XM_FLOAT2_V2_Direction = M_DS_MouseInfo.SDK_XM_FLOAT2_MousePos - M_DS_MouseInfo.SDK_XM_FLOAT2_MousePosBefore;	// 마우스 방향벡터 계산
 	}
 
 	// 실행창이 포커스 중이 아닐 때
@@ -155,12 +155,12 @@ void C_InputManager::MF_Update()
 		}
 
 		//// 마우스 좌표로 인한 문제가 발생하지 않도록 좌표를 강제 함
-		M_DS_MouseInfo.M_MousePosBefore = (Vector2)((float)0xffffffff, (float)0xffffffff);
-		M_DS_MouseInfo.M_MousePos = (Vector2)((float)0xffffffff, (float)0xffffffff);
+		M_DS_MouseInfo.SDK_XM_FLOAT2_MousePosBefore = (Vector2)((float)0xffffffff, (float)0xffffffff);
+		M_DS_MouseInfo.SDK_XM_FLOAT2_MousePos = (Vector2)((float)0xffffffff, (float)0xffffffff);
 
 		//// 마우스 클릭 부분을 false로 함
-		M_DS_MouseInfo.M_DS_MouseLeftButton.M_WasPressed = false;
-		M_DS_MouseInfo.M_DS_MouseLeftButton.M_IsPressed = false;
+		M_DS_MouseInfo.DS_MouseLeftButton.M_WasPressed = false;
+		M_DS_MouseInfo.DS_MouseRightButton.M_IsPressed = false;
 
 	}
 }

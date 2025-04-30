@@ -35,7 +35,7 @@ private:
 	// WinAPI를 활용하니까 에러검출용 반환값인 HRESULT로 통일하자
 
 public:
-	void MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
+	HRESULT MF_Initialize(HWND _OutputWnd, Vector2 _vResolution);
 
 	void MF_ClearRenderTargetView();
 

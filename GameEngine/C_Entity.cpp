@@ -22,3 +22,10 @@ C_Entity::~C_Entity()
 {
 
 }
+
+void C_Entity::MF_Set_Name(const string& _stringName)					// Setter; M_Name
+{
+	wstring _wstringName = GF_ConvertStringToWString_WinAPI(_stringName);
+
+	MF_Set_Name(_wstringName);
+}

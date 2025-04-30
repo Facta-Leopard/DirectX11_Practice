@@ -114,6 +114,8 @@ HRESULT C_ResourceManager::MF_Create_MeshResource(UINT _SDK_Slice)
 	MF_Create_RectangleMeshResource();
 
 	MF_Create_CircleMeshResource(_SDK_Slice);
+
+	return S_OK;
 }
 
 ////// 점 메쉬 생성 함수
