@@ -116,7 +116,7 @@ public:
     HRESULT MF_Convert_ScratchImageToCPUImage(const ScratchImage& _ScratchImage, FL_DS_ImageSet& _ImageSet);
 
 //// 이미지세트를 스크래치 이미지로 변환
-    HRESULT MF_Convery_CPUImageToScratchImage(const FL_DS_CPU_Image& _Source_CPU_Image, ScratchImage& _Out_ScratchImage_Out);
+    HRESULT MF_Convert_CPUImageToScratchImage(const FL_DS_CPU_Image& _Source_CPU_Image, ScratchImage& _Out_ScratchImage_Out);
 
 public:
 // 저장하는 것은 디버그 모드에서만 되도록 조정

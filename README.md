@@ -21,7 +21,7 @@
 
 - Maintain separation of concerns when handling transformations, ensuring that each system (rendering, physics, and so on.) has access to the required data without interference.
 
-- Use `quaternion-based matrices` for `GPU-side` `transforms` and `vector-based logic` for `CPU-side` `collision` checks to reduce overhead.
+- Use `quaternion-based matrices` for `GPU-side` `transforms` and `SIMD-based logic` for `CPU-side` `collision` checks to reduce overhead.
 
 - Code should be `easy to read first`.
 
@@ -498,9 +498,9 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 | Member-like variable | Heap or stack (via object) | `this` pointer (slightly slower) | Per object      | Yes           | Medium             | this->tempVec;       | 0.8819 sec              |
 | Local variable       | Stack frame (per loop)     | Stack allocation (slowest)       | Every iteration | Yes           | Low                | Vector2 temp = ...;  | 3.0636 sec              |
 
-### 10.5 About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
+~~### 10.5 About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)~~
 
-- Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
+~~- Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.~~
 
 ### 10.6 Ternary Operator Rule
 

@@ -24,7 +24,7 @@ C_Mesh::~C_Mesh()
 
 }
 
-void C_Mesh::MF_Create_Buffer(DS_Vertex* _P_DS_VertexSystemMemory, UINT _SDK_VertexCount, UINT* _SDK_IndexSystemMemory, UINT _SDK_IndexCount)		// 가독성을 위해 NRVO 적용
+HRESULT C_Mesh::MF_Create_Buffer(DS_Vertex* _P_DS_VertexSystemMemory, UINT _SDK_VertexCount, UINT* _SDK_IndexSystemMemory, UINT _SDK_IndexCount)		// 가독성을 위해 NRVO 적용
 {
 	SDK_M_VertexCount = _SDK_VertexCount;
 	SDK_M_IndexCount = _SDK_IndexCount;
@@ -62,10 +62,16 @@ void C_Mesh::MF_Create_Buffer(DS_Vertex* _P_DS_VertexSystemMemory, UINT _SDK_Ver
 
 	// 초기 데이터 전송용 구조체
 	D3D11_SUBRESOURCE_DATA DX_T_Data = {};
-	DX_T_Data.pSysMem = P_DS_M_VertexSystemMemory;		// DS_Vertex*를 Void*로 대입
+	DX_T_Data.pSysMem = _P_DS_VertexSystemMemory;		// DS_Vertex*를 Void*로 대입
 
 	// Vertex Buffer 생성
-	C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer(&DX_M_VertexBufferDesc, &DX_T_Data, CP_DX_M_VertexBuffer.GetAddressOf());
+	HRESULT SDK_HRESULT_T_Vertexbuffer = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer(&DX_M_VertexBufferDesc, &DX_T_Data, CP_DX_M_VertexBuffer.GetAddressOf());
+
+	if (FAILED(SDK_HRESULT_T_Vertexbuffer))
+	{
+		POPUP(L"SDK_HRESULT_T_Vertexbuffer = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer() Failed", L"in C_Mesh::MF_Create_Buffer(), SDK_HRESULT_T_Vertexbuffer = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer() Failed")
+		return E_FAIL;
+	}
 
 	// D3D11_BUFFER_DESC.ByteWidth; Index Buffer 크기 설정
 	DX_M_IndexBufferDesc.ByteWidth = sizeof(UINT) * _SDK_IndexCount;
@@ -100,7 +106,13 @@ void C_Mesh::MF_Create_Buffer(DS_Vertex* _P_DS_VertexSystemMemory, UINT _SDK_Ver
 
 	DX_T_Data.pSysMem = _SDK_IndexSystemMemory;
 
-	C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer(&DX_M_IndexBufferDesc, &DX_T_Data, CP_DX_M_IndexBuffer.GetAddressOf());
+	HRESULT SDK_HRESULT_T_Indexbuffer = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer(&DX_M_IndexBufferDesc, &DX_T_Data, CP_DX_M_IndexBuffer.GetAddressOf());
+
+	if (FAILED(SDK_HRESULT_T_Indexbuffer))
+	{
+		POPUP(L"SDK_HRESULT_T_Indexbuffer = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer() Failed", L"in C_Mesh::MF_Create_Buffer(), SDK_HRESULT_T_Indexbuffer = C_Device::SF_Get_Instance()->MF_Get_Device()->CreateBuffer() Failed")
+		return E_FAIL;
+	}
 
 	// System 메모리로 데이터 대입
 	P_DS_M_VertexSystemMemory = new DS_Vertex[SDK_M_VertexCount];
@@ -109,6 +121,8 @@ void C_Mesh::MF_Create_Buffer(DS_Vertex* _P_DS_VertexSystemMemory, UINT _SDK_Ver
 	// 빠른 복사; for문이 아닌 memcpy()
 	memcpy(P_DS_M_VertexSystemMemory, _P_DS_VertexSystemMemory, (sizeof(DS_Vertex) * SDK_M_VertexCount));
 	memcpy(P_SDK_M_IndexSystemMemory, _SDK_IndexSystemMemory, (sizeof(UINT) * SDK_M_IndexCount));
+
+	return S_OK;
 }
 
 void C_Mesh::MF_Render()

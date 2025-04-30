@@ -31,17 +31,17 @@ struct DS_MouseRightButton
 struct DS_MouseInfo
 {
 	// Mouse Pos
-	Vector2					M_MousePos;					// Vector2
-	Vector2					M_MousePosBefore;			// Vector2
+	XMFLOAT2					SDK_XM_FLOAT2_MousePos;					// XMFLOAT2
+	XMFLOAT2					SDK_XM_FLOAT2_MousePosBefore;			// XMFLOAT2
 
 	// Drag Direction
-	Vector2					M_V2_Direction;				// Vector2
+	XMFLOAT2					SDK_XM_FLOAT2_V2_Direction;				// XMFLOAT2
 
 	// Left Button
-	DS_MouseLeftButton		M_DS_MouseLeftButton;		// DS_MouseLeftButton
+	DS_MouseLeftButton			DS_MouseLeftButton;						// DS_MouseLeftButton
 
 	// Right Button
-	DS_MouseRightButton		M_DS_MouseRightButton;		// DS_MouseRightButton
+	DS_MouseRightButton			DS_MouseRightButton;					// DS_MouseRightButton
 
 	// 향후, Scroll이나 추가 버튼 추가하면 좋을 듯
 };
@@ -50,9 +50,9 @@ struct DS_MouseInfo
 //// Vertex용 구조체
 struct DS_Vertex
 {
-	Vector3			Position;		// Vector3; 3차원 좌표
-	Vector2			PositionUV;		// Vector2; 2차원 UV좌표
-	Vector4			Color;			// Vector4; RGBA
+	XMFLOAT3			SDK_XM_FLOAT3_Position;			// XMFLOAT3; 3차원 좌표
+	XMFLOAT2			SDK_XM_FLOAT2_PositionUV;		// XMFLOAT2; 2차원 UV좌표
+	XMFLOAT4			SDK_XM_FLOAT4_Color;			// XMFLOAT4; RGBA
 };
 
 //// Material용 구조체

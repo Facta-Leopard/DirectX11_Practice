@@ -50,9 +50,9 @@ struct DS_MouseInfo
 //// Vertex용 구조체
 struct DS_Vertex
 {
-	Vector3			Position;		// Vector3; 3차원 좌표
-	Vector2			PositionUV;		// Vector2; 2차원 UV좌표
-	Vector4			Color;			// Vector4; RGBA
+	XMFLOAT3			SDK_XM_FLOAT_3_Position;		// XMFLOAT3; 3차원 좌표
+	XMFLOAT2			SDK_XM_FLOAT_2_PositionUV;		// XMFLOAT2; 2차원 UV좌표
+	XMFLOAT4			SDK_XM_FLOAT_4_Color;			// XMFLOAT4; RGBA
 };
 
 //// Material용 구조체

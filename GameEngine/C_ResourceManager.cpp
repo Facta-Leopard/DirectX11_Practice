@@ -4,6 +4,8 @@
 #include "DirectxTex/DirectXTex.h"
 #include "DirectxTex/DirectXTex.inl"
 
+#include "C_Mesh.h"
+
 C_ResourceManager::C_ResourceManager()
 	: STL_M_ImageSet{}
 {
@@ -43,20 +45,240 @@ C_ResourceManager::~C_ResourceManager()
 {
 	// STL 컨테이너 메모리 해제
 	DELETEALL_STL_MAP(STL_M_Stage)
-	DELETEALL_STL_MAP(STL_M_Resoure)
+
+	// MAP 구조인 STL 내부 값이 shared_ptr 이므로, delete를 사용한 매크로가 아닌 .clear()를 사용
+	STL_M_Resoure.clear();
 	DELETEALL_STL_MAP(STL_M_ImageSet)
 }
 
 // Basic
-
+// 초기화 함수
 HRESULT C_ResourceManager::MF_Initialize()
 {
-	return E_NOTIMPL;
+	if (FAILED(MF_Create_MeshResource()))
+	{
+		POPUP(L"MF_Create_MeshResource() Failed", L"in C_ResourceManager::MF_Initialize(), MF_Create_MeshResource() Failed")
+		return E_FAIL;
+	}
+
+	if (FAILED(MF_Create_TextureResource()))
+	{
+		POPUP(L"MF_Create_TextureResource() Failed", L"in C_ResourceManager::MF_Initialize(), MF_Create_TextureResource() Failed")
+		return E_FAIL;
+	}
+
+	if (FAILED(MF_Create_SpriteResource()))
+	{
+		POPUP(L"MF_Create_SpriteResource() Failed", L"in C_ResourceManager::MF_Initialize(), MF_Create_SpriteResource() Failed")
+		return E_FAIL;
+	}
+
+	if (FAILED(MF_Create_FlipBookResource()))
+	{
+		POPUP(L"MF_Create_FlipBookResource() Failed", L"in C_ResourceManager::MF_Initialize(), MF_Create_FlipBookResource() Failed")
+		return E_FAIL;
+	}
+
+	if (FAILED(MF_Create_SoundResource()))
+	{
+		POPUP(L"MF_Create_SoundResource() Failed", L"in C_ResourceManager::MF_Initialize(), MF_Create_SoundResource() Failed")
+		return E_FAIL;
+	}
+
+	if (FAILED(MF_Create_PrefabResource()))
+	{
+		POPUP(L"MF_Create_PrefabResource() Failed", L"in C_ResourceManager::MF_Initialize(), MF_Create_PrefabResource() Failed")
+		return E_FAIL;
+	}
+
+	if (FAILED(MF_Create_GraphicShaderResource()))
+	{
+		POPUP(L"MF_Create_GraphicShaderResource() Failed", L"in C_ResourceManager::MF_Initialize(), MF_Create_GraphicShaderResource() Failed")
+		return E_FAIL;
+	}
+
+	if (FAILED(MF_Create_ComputeShaderResource()))
+	{
+		POPUP(L"MF_Create_ComputeShaderResource() Failed", L"in C_ResourceManager::MF_Initialize(), MF_Create_ComputeShaderResource() Failed")
+		return E_FAIL;
+	}
+
+	return S_OK;
 }
 
-HRESULT C_ResourceManager::MF_Create_MeshResource()
+//// 메쉬 생성 함수
+HRESULT C_ResourceManager::MF_Create_MeshResource(UINT _SDK_Slice)
 {
-	return E_NOTIMPL;
+	MF_Create_PointMeshResource();
+
+	MF_Create_RectangleMeshResource();
+
+	MF_Create_CircleMeshResource(_SDK_Slice);
+}
+
+////// 점 메쉬 생성 함수
+HRESULT C_ResourceManager::MF_Create_PointMeshResource()
+{
+	// PointMesh; 점메쉬
+	shared_ptr<C_Mesh> SP_T_PointMesh = make_shared<C_Mesh>();
+	SP_T_PointMesh->MF_Set_Name(L"PointMesh");
+
+	DS_Vertex DS_T_PointVertex;
+	DS_T_PointVertex.SDK_XM_FLOAT3_Position = { 0.f, 0.f, 0.f };
+	DS_T_PointVertex.SDK_XM_FLOAT2_PositionUV = { 0.f, 0.f };
+	DS_T_PointVertex.SDK_XM_FLOAT4_Color = { 1.f, 1.f, 1.f, 1.f };
+
+	UINT SDK_T_Index = 0;
+
+	HRESULT SDK_HRESULT_PointMeshBuffer = SP_T_PointMesh->MF_Create_Buffer(&DS_T_PointVertex, 1, &SDK_T_Index, 1);
+	HRESULT SDK_HRESULT_PointMeshAttach = MF_Attach_Resource(SP_T_PointMesh->MF_Get_Name(), SP_T_PointMesh);
+	if (FAILED(SDK_HRESULT_PointMeshBuffer) || FAILED(SDK_HRESULT_PointMeshAttach))
+	{
+		POPUP_DEBUG(L"PointMesh Failed ", L"in C_ResourceManager::MF_Create_PointMeshResource(), PointMesh Failed")
+		return E_FAIL;
+	}
+
+	return S_OK;
+}
+
+////// 네모 메쉬 생성 함수
+HRESULT C_ResourceManager::MF_Create_RectangleMeshResource()
+{
+	// RectangleMesh; 네모메쉬
+	shared_ptr<C_Mesh> SP_T_RectangleMesh = make_shared<C_Mesh>();
+	SP_T_RectangleMesh->MF_Set_Name(L"RectangleMesh");
+
+	//// 점 구조체 배열 선언
+	////// 0번째 점 값 초기화
+	DS_Vertex DS_T_RectangleVertex_s[4] = {};
+	DS_T_RectangleVertex_s[0].SDK_XM_FLOAT3_Position = { -0.5f, 0.5f, 0.f };
+	DS_T_RectangleVertex_s[0].SDK_XM_FLOAT2_PositionUV = { 0.f, 0.f };
+	DS_T_RectangleVertex_s[0].SDK_XM_FLOAT4_Color = { 1.f, 0.f, 0.f, 1.f };
+
+	////// 1번째 점 값 초기화
+	DS_T_RectangleVertex_s[1].SDK_XM_FLOAT3_Position = { 0.5f, 0.5f, 0.f };
+	DS_T_RectangleVertex_s[1].SDK_XM_FLOAT2_PositionUV = { 1.f, 0.f };
+	DS_T_RectangleVertex_s[1].SDK_XM_FLOAT4_Color = { 0.f, 1.f, 0.f, 1.f };
+
+	////// 2번째 점 값 초기화
+	DS_T_RectangleVertex_s[2].SDK_XM_FLOAT3_Position = { 0.5f, -0.5f, 0.f };
+	DS_T_RectangleVertex_s[2].SDK_XM_FLOAT2_PositionUV = { 1.f, 1.f };
+	DS_T_RectangleVertex_s[2].SDK_XM_FLOAT4_Color = { 0.f, 0.f, 1.f, 1.f };
+
+	////// 3번째 점 값 초기화
+	DS_T_RectangleVertex_s[3].SDK_XM_FLOAT3_Position = { -0.5f, -0.5f, 0.f };
+	DS_T_RectangleVertex_s[3].SDK_XM_FLOAT2_PositionUV = { 0.f, 1.f };
+	DS_T_RectangleVertex_s[3].SDK_XM_FLOAT4_Color = { 1.f, 0.f, 1.f, 1.f };
+
+	//// Index: Topology 순서
+	//// 유의! 삼각형 토폴로지 2개를 붙히는 방식이므로, 아래와 같이 설정함
+	UINT SDK_T_RectangleTopologyIndex[6] = { 0, 1, 2, 0, 2, 3 };
+
+	//// 유의! 점 구조체는 아래에서 디버그용으로 재활용하므로, 그래서 인덱스는 6개임(삼각형 0-1-2, 삼각형 0-2-3)!
+	HRESULT SDK_HRESULT_RectangleMeshBuffer = SP_T_RectangleMesh->MF_Create_Buffer(DS_T_RectangleVertex_s, 4, SDK_T_RectangleTopologyIndex, 6);
+	HRESULT SDK_HRESULT_RectangleMeshAttach = MF_Attach_Resource(SP_T_RectangleMesh->MF_Get_Name(), SP_T_RectangleMesh);
+
+	if (FAILED(SDK_HRESULT_RectangleMeshBuffer) || FAILED(SDK_HRESULT_RectangleMeshAttach))
+	{
+		POPUP_DEBUG(L"RectangleMesh Failed ", L"in C_ResourceManager::MF_Create_RectangleMeshResource(), RectangleMesh Failed")
+		return E_FAIL;
+	}
+
+	// RectangleMesh_Debug; 디버깅용 네모메쉬
+	shared_ptr<C_Mesh> SP_T_RectangleMesh_Debug = make_shared<C_Mesh>();
+	SP_T_RectangleMesh_Debug->MF_Set_Name(L"RectangleMesh_Debug");
+
+	//// Index: Topology 순서
+	////// 유의! 삼각형 토폴로지 2개가 아닌 사각형 토폴로지를 붙히는 방식이므로, 아래와 같이 설정함
+	UINT SDK_T_RectangleTopologyIndex_Debug[5] = { 0, 1, 2, 3, 0 };
+
+	//// 유의! 점 구조체는 위에서 만든 점 구조체를 재활용하므로, 그래서 인덱스는 5개임(사각형 0-1-2-3-0)!
+	HRESULT SDK_HRESULT_RectangleMeshBuffer_Debug = SP_T_RectangleMesh_Debug->MF_Create_Buffer(DS_T_RectangleVertex_s, 4, SDK_T_RectangleTopologyIndex_Debug, 5);
+	HRESULT SDK_HRESULT_RectangleMeshAttach_Debug = MF_Attach_Resource(SP_T_RectangleMesh_Debug->MF_Get_Name(), SP_T_RectangleMesh_Debug);
+
+	if (FAILED(SDK_HRESULT_RectangleMeshBuffer_Debug) || FAILED(SDK_HRESULT_RectangleMeshAttach_Debug))
+	{
+		POPUP_DEBUG(L"RectangleMesh_Debug Failed ", L"in C_ResourceManager::MF_Create_RectangleMeshResource(), RectangleMesh_Debug Failed")
+		return E_FAIL;
+	}
+
+	return S_OK;
+}
+
+////// 원 메쉬 생성 함수
+HRESULT C_ResourceManager::MF_Create_CircleMeshResource(UINT _SDK_Slice)
+{
+	// CircleMesh; 원 메쉬
+	shared_ptr<C_Mesh> SP_T_CircleMesh = make_shared<C_Mesh>();
+	SP_T_CircleMesh->MF_Set_Name(L"CircleMesh");
+
+	//// 원을 표시할 원 메쉬 STL 컨테이너 생성
+	vector<DS_Vertex> STL_DS_T_CircleVertex;
+
+	////// 원 중심 별도 생성
+	DS_Vertex DS_T_CircleCenter;
+	DS_T_CircleCenter.SDK_XM_FLOAT3_Position = { 0.f, 0.f, 0.f };
+	DS_T_CircleCenter.SDK_XM_FLOAT2_PositionUV = { 0.5f, 0.5f };
+	DS_T_CircleCenter.SDK_XM_FLOAT4_Color = { 1.f, 1.f, 1.f, 1.f };
+
+	////// 원 중심을 원 메쉬 STL 컨테이너에 삽입
+	STL_DS_T_CircleVertex.push_back(DS_T_CircleCenter);
+
+	float T_Radius = 0.5f;
+	float T_Angle = 0.f;
+
+	////// 원 외곽을 구성할 정점 계산 및 삽입
+	////// 디버그용에도 똑같이 사용
+	for (UINT i = 0; i < _SDK_Slice + 1; ++i)
+	{
+		DS_T_CircleCenter.SDK_XM_FLOAT3_Position = { T_Radius * cosf(T_Angle), T_Radius * sinf(T_Angle), 0.f };
+		DS_T_CircleCenter.SDK_XM_FLOAT2_PositionUV = { DS_T_CircleCenter.SDK_XM_FLOAT3_Position.x + 0.5f, 1.f - (DS_T_CircleCenter.SDK_XM_FLOAT3_Position.y + 0.5f) };
+		STL_DS_T_CircleVertex.push_back(DS_T_CircleCenter);
+
+		// 나눌 때, float으로 바꾸지 않으면 정수형 연산으로 바뀌어서 0이되는 불상사가 발생가능
+		// 피연산자 중 하나만 실수여도 가능하지만, 실수방지를 위해 전부 강제로 캐스팅해서 맞춰주는 것이 좋다,
+		T_Angle += XM_2PI / (float)_SDK_Slice;
+	}
+
+	//// 원을 표시하는데 쓸 인덱스
+	vector<UINT> STL_SDK_T_CircleIndex;
+
+	////// 원 인덱스 계산 및 삽입
+	////// 삼각형 토폴로지를 연속으로 놓는 형식 사용
+	////// 디버그용에도 똑같이 사용
+	for (UINT i = 0; i < _SDK_Slice; ++i)
+	{
+		STL_SDK_T_CircleIndex.push_back(0);
+		STL_SDK_T_CircleIndex.push_back(i + 2);
+		STL_SDK_T_CircleIndex.push_back(i + 1);
+	}
+
+	HRESULT SDK_HRESULT_T_CircleMeshBuffer = SP_T_CircleMesh->MF_Create_Buffer(STL_DS_T_CircleVertex.data(), (UINT)STL_DS_T_CircleVertex.size(), STL_SDK_T_CircleIndex.data(), (UINT)STL_SDK_T_CircleIndex.size());
+	HRESULT SDK_HRESULT_T_CircleMeshAttach = MF_Attach_Resource(SP_T_CircleMesh->MF_Get_Name(), SP_T_CircleMesh);
+
+	if (FAILED(SDK_HRESULT_T_CircleMeshBuffer) || FAILED(SDK_HRESULT_T_CircleMeshAttach))
+	{
+		POPUP_DEBUG(L"CircleMesh Failed ", L"in C_ResourceManager::MF_Create_CircleMeshResource(), CircleMesh Failed")
+		return E_FAIL;
+	}
+
+	// CircleMesh_Debug; 디버그 원 메쉬
+	shared_ptr<C_Mesh> SP_T_CircleMesh_Debug = make_shared<C_Mesh>();
+	SP_T_CircleMesh->MF_Set_Name(L"CircleMesh_Debug");
+
+	HRESULT SDK_HRESULT_T_CircleMeshBuffer_Debug = SP_T_CircleMesh_Debug->MF_Create_Buffer(STL_DS_T_CircleVertex.data(), (UINT)STL_DS_T_CircleVertex.size(), STL_SDK_T_CircleIndex.data(), (UINT)STL_SDK_T_CircleIndex.size());
+	HRESULT SDK_HRESULT_T_CircleMeshAttach_Debug = MF_Attach_Resource(SP_T_CircleMesh_Debug->MF_Get_Name(), SP_T_CircleMesh_Debug);
+
+	if (FAILED(SDK_HRESULT_T_CircleMeshBuffer_Debug) || FAILED(SDK_HRESULT_T_CircleMeshAttach_Debug))
+	{
+		POPUP_DEBUG(L"CircleMesh_Debug Failed ", L"in C_ResourceManager::MF_Create_CircleMeshResource(), CircleMesh_Debug Failed")
+		return E_FAIL;
+	}
+
+	STL_DS_T_CircleVertex.clear();
+	STL_SDK_T_CircleIndex.clear();
+
+	return S_OK;
 }
 
 HRESULT C_ResourceManager::MF_Create_TextureResource()
@@ -119,23 +341,18 @@ FL_DS_ImageSet* C_ResourceManager::MF_FindImageSetFromVectorData(const string& _
 }
 
 // Attach & Detach
-// 붙히고 떼고 하는 것은 디버그 모드에서만 되도록 조정
-#ifdef _DEBUG
-
-HRESULT C_ResourceManager::MF_Attach_Resource(const wstring& _wstringName)
+HRESULT C_ResourceManager::MF_Attach_Resource(const wstring& _wstringName, shared_ptr<C_Resource> _SP_Resource)
 {
 	return E_NOTIMPL;
 }
 
-HRESULT C_ResourceManager::MF_Attach_Resource(const string& _stringName)
+HRESULT C_ResourceManager::MF_Attach_Resource(const string& _stringName, shared_ptr<C_Resource> _SP_Resource)
 {
 	// UTF-8 -> UNICODE로 변환
 	const wstring _wstringName = GF_ConvertStringToWString_WinAPI(_stringName);
 
-	return MF_Attach_Resource(_wstringName);
+	return MF_Attach_Resource(_wstringName, _SP_Resource);
 }
-
-
 
 HRESULT C_ResourceManager::MF_Attach_ImageToImageSet(const wstring& _wstringName)
 {
@@ -210,9 +427,9 @@ HRESULT C_ResourceManager::MF_Attach_ImageToImageSet(const string& _stringName)
 
 	return MF_Attach_ImageToImageSet(_wstringName);
 }
-#endif // _DEBUG
 
-
+// 변환용 함수
+//// 실제 파일에서 스크래치이미지로 변환
 HRESULT C_ResourceManager::MF_Convert_FileToScratchImage(const wstring& _wstringName, ScratchImage& _ScratchImage)
 {
 	// 저장할 임시용 구조체 초기화
@@ -263,8 +480,7 @@ HRESULT C_ResourceManager::MF_Convert_FileToScratchImage(const wstring& _wstring
 	return S_OK;
 }
 
-// 변환용 함수
-//// 실제 파일에서 스크래치이미지로 변환
+//// 실제 파일에서 스크래치이미지로 변환(string 용)
 HRESULT C_ResourceManager::MF_Convert_FileToScratchImage(const string& _stringName, ScratchImage& _ScratchImage)
 {
 	// wstring으로 변환
@@ -282,15 +498,16 @@ HRESULT C_ResourceManager::MF_Convert_ScratchImageToCPUImage(const ScratchImage&
 	const uint8_t* P_PixelsBase = _ScratchImage.GetPixels();
 	size_t TotalSize = _ScratchImage.GetPixelsSize();
 
-	if ((nullptr == P_ImageArray) || (nullptr == P_PixelsBase) || (Count == 0) || (TotalSize == 0))
+	if ((nullptr == P_ImageArray) || (nullptr == P_PixelsBase) || (0 == Count) || (0 == TotalSize))
 	{
+		POPUP_DEBUG(L"struct Image Is Empty", L"in C_ResourceManager::MF_Convert_ScratchImageToCPUImage(), struct Image Is Empty")
 		return E_FAIL;
 	}
 
 	T_CPU_Image.M_MetaData = _ScratchImage.GetMetadata();
 	T_CPU_Image.M_PixelBlob.resize(TotalSize);
 
-	// 실제 메모리 버퍼 복사
+	// 실제 메모리 버퍼 복사; 유의! 통으로 복사하는 버릇을 들이자!
 	memcpy(T_CPU_Image.M_PixelBlob.data(), P_PixelsBase, TotalSize);
 
 	T_CPU_Image.STL_M_Entry.clear();
@@ -308,17 +525,19 @@ HRESULT C_ResourceManager::MF_Convert_ScratchImageToCPUImage(const ScratchImage&
 		T_CPU_Image.STL_M_Entry.push_back(Entry);
 	}
 
-	// 자꾸 이부분 실수하는 듯; STL 컨테이너는 기본적으로 얉은 복사니까 강제적으로 깊은 복사를 시켜야 함
+	// 자꾸 이부분 실수하는 듯; 유의! STL 컨테이너는 기본적으로 얉은 복사니까 강제적으로 깊은 복사를 시켜야 함!
 	_ImageSet.M_CPUImage = std::move(T_CPU_Image);
 
 	return S_OK;
 }
 
 //// 이미지세트를 스크래치 이미지로 변환
-HRESULT C_ResourceManager::MF_Convery_CPUImageToScratchImage(const FL_DS_CPU_Image& _Source_CPU_Image, ScratchImage& _Out_ScratchImage_Out)
+HRESULT C_ResourceManager::MF_Convert_CPUImageToScratchImage(const FL_DS_CPU_Image& _Source_CPU_Image, ScratchImage& _Out_ScratchImage_Out)
 {
 	if (FAILED(_Out_ScratchImage_Out.Initialize(_Source_CPU_Image.M_MetaData)))		// 방어코드
 	{
+		POPUP_DEBUG(L"_Out_ScratchImage_Out.Initialize() Failed", L"in C_ResourceManager::MF_Convert_CPUImageToScratchImage(), _Out_ScratchImage_Out.Initialize() Failed")
+
 		return E_FAIL;
 	}
 
@@ -327,13 +546,16 @@ HRESULT C_ResourceManager::MF_Convery_CPUImageToScratchImage(const FL_DS_CPU_Ima
 	uint8_t* P_PixelsBase = _Out_ScratchImage_Out.GetPixels();
 	size_t TotalSize = _Out_ScratchImage_Out.GetPixelsSize();
 
-	if (nullptr == P_ImageArray || nullptr == P_PixelsBase || Count != _Source_CPU_Image.STL_M_Entry.size())
+	if ((nullptr == P_ImageArray) || (nullptr == P_PixelsBase) || (_Source_CPU_Image.STL_M_Entry.size() != Count))
 	{
+		POPUP_DEBUG(L"struct Image Is Empty", L"in C_ResourceManager::MF_Convert_CPUImageToScratchImage(), struct Image Is Empty")
+
 		return E_FAIL;
 	}
 
 	if (TotalSize > _Source_CPU_Image.M_PixelBlob.size())
 	{
+		POPUP_DEBUG(L"struct Image Is Empty", L"in C_ResourceManager::MF_Convert_CPUImageToScratchImage(), struct Image Is Empty")
 		return E_FAIL;
 	}
 
