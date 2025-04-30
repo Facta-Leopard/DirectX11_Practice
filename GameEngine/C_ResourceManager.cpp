@@ -345,7 +345,7 @@ FL_DS_ImageSet* C_ResourceManager::MF_FindImageSetFromVectorData(const string& _
 // Attach & Detach
 HRESULT C_ResourceManager::MF_Attach_Resource(const wstring& _wstringName, shared_ptr<C_Resource> _SP_Resource)
 {
-	return E_NOTIMPL;
+	return S_OK;
 }
 
 HRESULT C_ResourceManager::MF_Attach_Resource(const string& _stringName, shared_ptr<C_Resource> _SP_Resource)

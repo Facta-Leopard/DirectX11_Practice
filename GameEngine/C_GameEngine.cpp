@@ -29,6 +29,7 @@ HRESULT C_GameEngine::MF_Initialize(HINSTANCE _H_Instance, UINT _SDK_ResolutionX
     C_InputManager::SF_Get_Instance()->MF_Initialize();
     C_PathManager::SF_Get_Instance()->MF_Initialize();
     C_TimeManager::SF_Get_Instance()->MF_Initialize();
+    C_Device::SF_Get_Instance()->MF_Initialize(M_H_WindowHandle, M_V2_Resolution);
     C_ResourceManager::SF_Get_Instance()->MF_Initialize();
     C_CollisionManager::SF_Get_Instance()->MF_Initialize();
     C_StageManager::SF_Get_Instance()->MF_Initialize();
