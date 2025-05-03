@@ -15,11 +15,11 @@ class C_ResourceManager :
     SINGLE(C_ResourceManager)
 
 protected:
-    map<wstring, C_Stage*>                        STL_M_Stage;                            // map<wstring, C_Stage*>; 스테이지를 저장할 STL 컨테이너
+    map<wstring, C_Stage*>                        STL_M_Stage;                          // map<wstring, C_Stage*>; 스테이지를 저장할 STL 컨테이너
 
-    map<wstring, shared_ptr<C_Resource>>          STL_M_Resoure;                          // map<wstring, C_Resource*>; 리소스를 저장할 STL컨테이너
+    map<wstring, shared_ptr<C_Resource>>          STL_SP_M_Resource;                    // map<wstring, C_Resource*>; 리소스를 저장할 STL컨테이너
     
-    map<wstring, FL_DS_ImageSet*>		          STL_M_ImageSet;			                // map<wstring, FL_DS_ImageSet*>; 데이터를 저장할 STL 컨테이너; 향후, 추가 개선
+    map<wstring, FL_DS_ImageSet*>		          STL_M_ImageSet;			            // map<wstring, FL_DS_ImageSet*>; 데이터를 저장할 STL 컨테이너; 향후, 추가 개선
     wstring						    	          wstring_M_BasicPath;	            	// wstring; 기본적인 디렉토리 주소; 실행 디렉토리 + (\Resource) 디렉토리 주소 설정
     wstring								          wstring_M_BasicFileName;	        	// wstring; 기본적인 파일명; 필요시 수정하여 사용가능
     wstring								          wstring_M_BasicResourceFileName;		// wstring; 기본적인 파일명; 필요시 수정하여 사용가능
@@ -98,12 +98,6 @@ public:
     }
 
 public:
-    // 저장된 벡터 자료형 중에서 이미지 찾기
-    FL_DS_ImageSet* MF_FindImageSetFromVectorData(const wstring& _wstringName);
-
-    FL_DS_ImageSet* MF_FindImageSetFromVectorData(const string& _stringName);
-
-public:
     // shared_ptr 스마트 포인터를 사용한 C_Resource로 모든 리소스 관리
     HRESULT MF_Attach_Resource(const wstring& _wstringName, shared_ptr<C_Resource> _SP_Resource);
 
@@ -113,6 +107,17 @@ public:
     HRESULT MF_Attach_ImageToImageSet(const wstring& _wstringName);
 
     HRESULT MF_Attach_ImageToImageSet(const string& _stringName);
+
+public:
+    // 리소스가 저장된 STL 컨테이너에서 리소스 찾기
+    shared_ptr<C_Resource> MF_FindResourceFromSTL(const wstring& _wstringName);
+
+    shared_ptr<C_Resource> MF_FindResourceFromSTL(const string& _stringName);
+
+    // 이미지가 저장된 STL 컨테이너에서 이미지 찾기
+    FL_DS_ImageSet* MF_FindImageSetFromSTL(const wstring& _wstringName);
+
+    FL_DS_ImageSet* MF_FindImageSetFromSTL(const string& _stringName);
 
 public:
     // 변환용 함수

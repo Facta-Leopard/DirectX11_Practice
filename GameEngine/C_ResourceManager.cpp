@@ -47,7 +47,7 @@ C_ResourceManager::~C_ResourceManager()
 	DELETEALL_STL_MAP(STL_M_Stage)
 
 	// MAP 구조인 STL 내부 값이 shared_ptr 이므로, delete를 사용한 매크로가 아닌 .clear()를 사용
-	STL_M_Resoure.clear();
+	STL_SP_M_Resource.clear();
 	DELETEALL_STL_MAP(STL_M_ImageSet)
 }
 
@@ -318,33 +318,38 @@ HRESULT C_ResourceManager::MF_Create_ComputeShaderResource()
 	return E_NOTIMPL;
 }
 
-// 찾기 함수
-// 저장된 벡터 자료형 중에서 이미지 찾기
-FL_DS_ImageSet* C_ResourceManager::MF_FindImageSetFromVectorData(const wstring& _wstringName)
-{
-	map<wstring, FL_DS_ImageSet*>::iterator T_Iterator = STL_M_ImageSet.find(_wstringName);
-
-	if (STL_M_ImageSet.end() != T_Iterator)
-	{
-		return (*T_Iterator).second;
-	}
-	else
-	{
-		return nullptr;
-	}
-}
-
-FL_DS_ImageSet* C_ResourceManager::MF_FindImageSetFromVectorData(const string& _stringName)
-{
-	const wstring wstring_T_Name = GF_ConvertStringToWString_WinAPI(_stringName);
-
-	// 래핑
-	return MF_FindImageSetFromVectorData(wstring_T_Name);
-}
-
 // Attach & Detach
 HRESULT C_ResourceManager::MF_Attach_Resource(const wstring& _wstringName, shared_ptr<C_Resource> _SP_Resource)
 {
+	// 향후, Find 부분의 코드를 여기에 이식하면 성능은 더 좋아지는 부분 고려
+	// 유의! Find를 가독성을 위해 분리하여 사용하는 것임!
+	if (nullptr != MF_FindResourceFromSTL(_wstringName))
+	{
+		// 이미 존재하면 메시지 박스 띄워서 사용자에게 확인
+		int T_MessageResult = MessageBoxW(
+			nullptr,
+			(_wstringName + L" Is Used").c_str(),
+			(L"Do You Want to OverWrite" + _wstringName + L"?").c_str(),
+			MB_YESNO | MB_ICONQUESTION);
+
+		if (IDYES != T_MessageResult )
+		{
+			return E_FAIL;
+		}
+	}
+
+	map<wstring, shared_ptr<C_Resource>>::iterator T_Iterator = STL_SP_M_Resource.find(_wstringName);
+
+	if (T_Iterator != STL_SP_M_Resource.end())
+	{
+		// 유의! T_Iterator->second가 shared_ptr로 감싸져 있으므로 .reset() 메소드를 쓰는 것이 좋을 것 같이 보이나. 앞서 중복여부를 물어봤으므로 대입하는 것이 오버헤드가 더 적다.
+		// 향후, 중복여부 묻는 것을 없앨 경우에는 .reset()으로 바꾸는 것을 고려할 것
+		T_Iterator->second = _SP_Resource;
+	}
+	else
+	{
+		STL_SP_M_Resource.insert(make_pair(_wstringName, _SP_Resource));
+	}
 	return S_OK;
 }
 
@@ -358,22 +363,6 @@ HRESULT C_ResourceManager::MF_Attach_Resource(const string& _stringName, shared_
 
 HRESULT C_ResourceManager::MF_Attach_ImageToImageSet(const wstring& _wstringName)
 {
-	// 먼저, 해당 내용이 있는지 확인
-	if (nullptr != MF_FindImageSetFromVectorData(_wstringName))
-	{
-		// 이미 존재하면 메시지 박스 띄워서 사용자에게 확인
-		int T_MessageResult = MessageBoxW(
-			nullptr,
-			(_wstringName + L" Is Used").c_str(),
-			(L"Do You Want to OverWrite" + _wstringName + L"?").c_str(),
-			MB_YESNO | MB_ICONQUESTION);
-
-		if (T_MessageResult != IDYES)
-		{
-			return E_FAIL;
-		}
-	}
-	
 	// 스크래치이미지 구조체 임시생성
 	ScratchImage T_ScretchImage = {};
 
@@ -395,25 +384,28 @@ HRESULT C_ResourceManager::MF_Attach_ImageToImageSet(const wstring& _wstringName
 	FL_DS_ImageSet* P_T_ImageSet = &T_ImageSet;
 
 	map<wstring, FL_DS_ImageSet*>::iterator T_Iterator = STL_M_ImageSet.find(_wstringName);
-	if (T_Iterator != STL_M_ImageSet.end())
+
+	// 향후, Find 부분의 코드를 여기에 이식하면 성능은 더 좋아지는 부분 고려
+	// 유의! Find를 가독성을 위해 분리하여 사용하는 것임!
+	// 먼저, 해당 내용이 있는지 확인
+	if (nullptr != MF_FindImageSetFromSTL(_wstringName))
 	{
 		// 이미 존재하면 메시지 박스 띄워서 사용자에게 확인
 		int T_MessageResult = MessageBoxW(
 			nullptr,
 			(_wstringName + L" Is Used").c_str(),
 			(L"Do You Want to OverWrite" + _wstringName + L"?").c_str(),
-			MB_YESNO | MB_ICONQUESTION
-		);
+			MB_YESNO | MB_ICONQUESTION);
 
-		if (T_MessageResult == IDYES)
-		{
-			delete T_Iterator->second;
-			STL_M_ImageSet[_wstringName] = P_T_ImageSet;
-		}
-		else
+		if (IDYES != T_MessageResult)
 		{
 			return E_FAIL;
 		}
+	}
+	if (T_Iterator != STL_M_ImageSet.end())
+	{
+		delete T_Iterator->second;
+		STL_M_ImageSet[_wstringName] = P_T_ImageSet;
 	}
 	else
 	{
@@ -428,6 +420,53 @@ HRESULT C_ResourceManager::MF_Attach_ImageToImageSet(const string& _stringName)
 	const wstring _wstringName = GF_ConvertStringToWString_WinAPI(_stringName);
 
 	return MF_Attach_ImageToImageSet(_wstringName);
+}
+
+// 찾기 함수
+//// 리소스가 저장된 STL 컨테이너에서 리소스 찾기
+shared_ptr<C_Resource> C_ResourceManager::MF_FindResourceFromSTL(const wstring& _wstringName)
+{
+	map<wstring, shared_ptr<C_Resource>>::iterator T_Iterator = STL_SP_M_Resource.find(_wstringName);
+
+	if (STL_SP_M_Resource.end() != T_Iterator)
+	{
+		return (*T_Iterator).second;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+shared_ptr<C_Resource> C_ResourceManager::MF_FindResourceFromSTL(const string& _stringName)
+{
+	const wstring wstring_T_Name = GF_ConvertStringToWString_WinAPI(_stringName);
+
+	// 래핑
+	return MF_FindResourceFromSTL(wstring_T_Name);
+}
+
+//// 이미지가 저장된 STL 컨테이너에서 이미지 찾기
+FL_DS_ImageSet* C_ResourceManager::MF_FindImageSetFromSTL(const wstring& _wstringName)
+{
+	map<wstring, FL_DS_ImageSet*>::iterator T_Iterator = STL_M_ImageSet.find(_wstringName);
+
+	if (STL_M_ImageSet.end() != T_Iterator)
+	{
+		return (*T_Iterator).second;
+	}
+	else
+	{
+		return nullptr;
+	}
+}
+
+FL_DS_ImageSet* C_ResourceManager::MF_FindImageSetFromSTL(const string& _stringName)
+{
+	const wstring wstring_T_Name = GF_ConvertStringToWString_WinAPI(_stringName);
+
+	// 래핑
+	return MF_FindImageSetFromSTL(wstring_T_Name);
 }
 
 // 변환용 함수
