@@ -21,7 +21,7 @@
 
 - Maintain separation of concerns when handling transformations, ensuring that each system (rendering, physics, and so on.) has access to the required data without interference.
 
-- Use `quaternion-based matrices` for `GPU-side` `transforms` and `SIMD-based logic` for `CPU-side` `collision` checks to reduce overhead.
+- Use `quaternion-based matrices` for `GPU-side` `transforms` and `vector-based logic` for `CPU-side` `collision` checks to reduce overhead.
 
 - Code should be `easy to read first`.
 
@@ -402,9 +402,23 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-## 10. Techniques and Rationale Used Here
+10. Resource Normalization Design Principles
 
-### 10.1 Yoda Condition Rule
+- Image resources are currently **packed and managed using the custom-built `FL_IMAGE_PACKER` system**
+
+- following a normalized structure. The **initial normalization level is based on the First Normal Form (1NF)**.
+
+- As development progresses and the system evolves, the design allows for **flexible extension to the Second (2NF) or Third Normal Form (3NF)** as needed.
+
+- `FL_IMAGE_PACKER` implements this normalization method for image resources by **separating metadata from binary blocks** and enabling **key-based direct lookup**.
+
+- **All future resource types** (e.g., textures, materials, shaders, sounds) will adopt the same normalization philosophy and be integrated into a **unified packing system**.
+
+---
+
+## 11. Techniques and Rationale Used Here
+
+### 11.1 Yoda Condition Rule
 
 - When comparing against a constant or literal, always place it on the left side.  
 
@@ -414,7 +428,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - I don't really know much about Star Wars, but the name has a wise ring to it.
 
-### 10.2 Branch Split Rule
+### 11.2 Branch Split Rule
 
 > **"Branch predictability drives speed. Nested ifs lead straight into unpredictability."**
 
@@ -459,7 +473,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - In this test scenario (10,000 iterations), the `else-if` chain saved approximately **37,800 CPU cycles**.
 
-### 10.3 Components Design
+### 11.3 Components Design
 
 - `Components are for data`, `scripts are for logic`.
 
@@ -476,7 +490,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 | 2-Level           | `Vector2 Pos = C_Object->MF_Get_Transform()->MF_Get_Position();`                                 | 2                     | 2                    | Low                           | Fair                | Moderate            | 0.00383                        |
 | 3-Level           | `Vector2 Pos = C_Component->MF_Get_OwnerObject()->MF_Get_Transform()->MF_Get_Position();`              | 3                     | 3                    | Very Low                      | Poor                | High                | 0.00414                        |
 
-### 10.4 Value Caching
+### 11.4 Value Caching
 
 - I Cached a `value as a static member variable` to avoid `repeated work in a loop`.  
 
@@ -498,21 +512,21 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 | Member-like variable | Heap or stack (via object) | `this` pointer (slightly slower) | Per object      | Yes           | Medium             | this->tempVec;       | 0.8819 sec              |
 | Local variable       | Stack frame (per loop)     | Stack allocation (slowest)       | Every iteration | Yes           | Low                | Vector2 temp = ...;  | 3.0636 sec              |
 
-~~### 10.5 About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)~~
+### 11.5 About Memory Layout SoA(Structure of Array) and AoS(Array of Structure)
 
-~~- Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.~~
+- Think about for Using Structure of Arrays (SoA) instead of Array of Structures (AoS) when doing repeated math on many vectors, to make the code faster with better cache and SIMD use.
 
-### 10.6 Ternary Operator Rule
+### 11.6 Ternary Operator Rule
 
 - Nested ternary is allowed only inside for or while loops — my personal rule for compactness and clarity.
 
 - Outside loops, I choose if statements for better readability and cache safety.
 
-### 10.7 Using `Getter` function for classfied
+### 11.7 Using `Getter` function for classfied
 
 - I decide to use getters for other classes' members and access own class's members directly to keep things clear.
 
-### 10.8 About Scale and Rotation Transformation
+### 11.8 About Scale and Rotation Transformation
 
 - The Quaternion Method was chosen due to its significantly faster processing time and protecting Zero Scale problem, and to avoid Gimbal Lock problem.
 
