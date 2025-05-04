@@ -537,4 +537,75 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 | Quaternion Method     | `XMQuaternionToAxisAngle()` → `XMConvertToDegrees()` | 627 nanoseconds | Reference |
 | Matrix Method         | `XMMatrixRotationQuaternion()` → `XMMatrixDecompose()` → `XMConvertToDegrees()` | Approximately 3,637-4,452 nanoseconds | Approximately 5.8-7.1 times slower |
 
+### 11.9 Shader File Format Convention (.fx vs .hlsl)
+
+- Shader source files **must use `.hlsl`** as the standard extension.
+
+- The `.fx` extension is a deprecated legacy format that should be avoided.
+
+---
+
+#### Rule
+
+- **Use `.hlsl` for all shader source files.**
+
+- **Using `.fx` is banned**, even if only for test files or examples.
+
+- Match the shader stage in the filename (e.g., `PostProcess_VertexShafer.hlsl`, `Basci_PixelShader.hlsl`).
+
+- Maintain a flat, clean naming scheme to simplify shader binding.
+
+---
+
+#### Historical Comparison Table
+
+| Extension | Purpose                        | Framework       | Status         |
+|:-----------:|--------------------------------|------------------|----------------|
+| `.fx`     | Shader + Graphics State Bundle | FX Framework     | Deprecated  |
+| `.hlsl`   | Shader Source Only             | DirectX Native   | Modern Use  |
+
+- The `.fx` format was introduced with **DirectX 9/10** under the **FX Framework**, which allowed developers to bundle shaders with render states (blend, rasterizer, depth, etc.) inside a single script-like `.fx` file using `technique` and `pass` blocks.
+
+- At runtime, developers could use `D3DX11CreateEffectFromFile()` to automatically load and apply these shaders and states with minimal code.
+
+- This approach reduced boilerplate at the time but **sacrificed fine control, performance tuning, and modern flexibility**.
+
+---
+
+#### Reason: `.fx` is `Banned`
+
+- The FX Framework is **deprecated by Microsoft** and is **not supported in DirectX 12**.
+
+- It introduces **unpredictable performance costs**, poor debuggability, and **tight coupling between state and shader logic**.
+
+- Modern engines favor **manual state control**, which offers **better optimization and clean separation** of responsibilities.
+
+- In most cases today, `.fx` is used only out of habit or from old tutorials—not because it is viable.
+
+---
+
+#### Reason: `.hlsl` is `the Standard`
+
+- `.hlsl` is a pure shader source file — it contains no render state logic.
+
+- With this separation, **all graphics pipeline states must be manually bound in C++**.
+
+- This gives **maximum control over performance, memory layout, GPU pipeline structure, and debugging**.
+
+- It also matches the approach used by modern APIs such as **DirectX 11/12**, **Vulkan**, and **Metal**.
+
+---
+
+#### Summary
+
+- `.fx` is a wrapper from an outdated era.
+
+- `.hlsl` is the only format that fits modern low-level graphics programming.
+
+- Abandon `.fx`. Embrace `.hlsl`.
+
+- Write every pipeline by hand. Control every bit.
+
+- That’s what makes it **your engine**, not someone else’s.
+
 ---
