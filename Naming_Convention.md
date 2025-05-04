@@ -56,10 +56,17 @@
 - **`XM_VEC4_`**: Prefix for computational vectors using XMVECTOR with full 4-float usage.
 - **`XM_MAT_`**: Prefix for matrix types using XMMATRIX.
 
-
 ---
 
 ### GPU Transfer-Compatible Types (Memory-Aligned Structures)
+- **`XM_INT2_`**: Prefix for GPU-aligned transfer structures based on XMINT2.
+- **`XM_INT3_`**: Prefix for GPU-aligned transfer structures based on XMINT3.
+- **`XM_INT4_`**: Prefix for GPU-aligned transfer structures based on XMINT4.
+
+- **`XM_UINT2_`**: Prefix for GPU-aligned transfer structures based on XMUINT2.
+- **`XM_UINT3_`**: Prefix for GPU-aligned transfer structures based on XMUINT3.
+- **`XM_UINT4_`**: Prefix for GPU-aligned transfer structures based on XMUINT4.
+
 - **`XM_FLOAT2_`**: Prefix for GPU-aligned transfer structures based on XMFLOAT2.
 - **`XM_FLOAT3_`**: Prefix for GPU-aligned transfer structures based on XMFLOAT3.
 - **`XM_FLOAT4_`**: Prefix for GPU-aligned transfer structures based on XMFLOAT4.

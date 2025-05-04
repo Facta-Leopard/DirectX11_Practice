@@ -113,7 +113,7 @@
 
 - This `mismatch` can result in wrong values being read by the shader or silent bugs.
 
-- To `avoid this`, always use `Windows SDK types BOOL(alias of int, 4 bytes)`, UINT, FLOAT, XMFLOAT2, XMFLOAT4, XMFLOAT4X4 and so on.
+- To `avoid this`, always use `Windows SDK types BOOL(alias of int, 4 bytes)`, UINT, FLOAT, XMINT#, XMUINT# XMFLOAT#, XMFLOAT4X4 and so on.
 
 - These types are all aligned to 4-byte boundaries and are safe to use with GPU constant buffers.
 
@@ -667,10 +667,17 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 - **`XM_VEC4_`**: Prefix for computational vectors using XMVECTOR with full 4-float usage.
 - **`XM_MAT_`**: Prefix for matrix types using XMMATRIX.
 
-
 ---
 
 ### GPU Transfer-Compatible Types (Memory-Aligned Structures)
+- **`XM_INT2_`**: Prefix for GPU-aligned transfer structures based on XMINT2.
+- **`XM_INT3_`**: Prefix for GPU-aligned transfer structures based on XMINT3.
+- **`XM_INT4_`**: Prefix for GPU-aligned transfer structures based on XMINT4.
+
+- **`XM_UINT2_`**: Prefix for GPU-aligned transfer structures based on XMUINT2.
+- **`XM_UINT3_`**: Prefix for GPU-aligned transfer structures based on XMUINT3.
+- **`XM_UINT4_`**: Prefix for GPU-aligned transfer structures based on XMUINT4.
+
 - **`XM_FLOAT2_`**: Prefix for GPU-aligned transfer structures based on XMFLOAT2.
 - **`XM_FLOAT3_`**: Prefix for GPU-aligned transfer structures based on XMFLOAT3.
 - **`XM_FLOAT4_`**: Prefix for GPU-aligned transfer structures based on XMFLOAT4.

@@ -536,4 +536,30 @@
       <Filter>0. Foundation\01. Header\012. Math</Filter>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="ComputeShader.hlsl">
+      <Filter>0. Foundation\02. HLSL\023. Compute FX</Filter>
+    </FxCompile>
+    <FxCompile Include="GeometryShader.hlsl">
+      <Filter>0. Foundation\02. HLSL\022. Graphic FX</Filter>
+    </FxCompile>
+    <FxCompile Include="VertexShader.hlsl">
+      <Filter>0. Foundation\02. HLSL\022. Graphic FX</Filter>
+    </FxCompile>
+    <FxCompile Include="DomainShader.hlsl">
+      <Filter>0. Foundation\02. HLSL\022. Graphic FX</Filter>
+    </FxCompile>
+    <FxCompile Include="PixelShader.hlsl">
+      <Filter>0. Foundation\02. HLSL\022. Graphic FX</Filter>
+    </FxCompile>
+    <FxCompile Include="HullShader.hlsl">
+      <Filter>0. Foundation\02. HLSL\022. Graphic FX</Filter>
+    </FxCompile>
+    <FxCompile Include="Variable.hlsl">
+      <Filter>0. Foundation\02. HLSL\021. Global FX</Filter>
+    </FxCompile>
+    <FxCompile Include="Function.hlsl">
+      <Filter>0. Foundation\02. HLSL\021. Global FX</Filter>
+    </FxCompile>
+  </ItemGroup>
 </Project>

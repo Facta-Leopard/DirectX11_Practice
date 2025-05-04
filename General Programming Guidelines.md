@@ -113,7 +113,7 @@
 
 - This `mismatch` can result in wrong values being read by the shader or silent bugs.
 
-- To `avoid this`, always use `Windows SDK types BOOL(alias of int, 4 bytes)`, UINT, FLOAT, XMFLOAT2, XMFLOAT4, XMFLOAT4X4 and so on.
+- To `avoid this`, always use `Windows SDK types BOOL(alias of int, 4 bytes)`, UINT, FLOAT, XMINT#, XMUINT# XMFLOAT#, XMFLOAT4X4 and so on.
 
 - These types are all aligned to 4-byte boundaries and are safe to use with GPU constant buffers.
 
