@@ -537,11 +537,80 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 | Quaternion Method     | `XMQuaternionToAxisAngle()` → `XMConvertToDegrees()` | 627 nanoseconds | Reference |
 | Matrix Method         | `XMMatrixRotationQuaternion()` → `XMMatrixDecompose()` → `XMConvertToDegrees()` | Approximately 3,637-4,452 nanoseconds | Approximately 5.8-7.1 times slower |
 
-### 11.9 Shader File Format Convention (.fx vs .hlsl)
+---
+
+## 12. GPU Binding and Shader Register Guidelines
+
+### 12.1 Shader File Format Convention (.fx vs .hlsl)
 
 - Shader source files **must use `.hlsl`** as the standard extension.
 
 - The `.fx` extension is a deprecated legacy format that should be avoided.
+
+### 12.2 Matrix Alignment Rule
+
+- All matrices sent from the CPU must be stored using **row-major layout**.
+
+- Therefore, in HLSL, use the `row_major` keyword to ensure correct memory interpretation.
+
+- This avoids alignment mismatches between `XMFLOAT4X4` (CPU) and `float4x4` (HLSL).
+
+- If you later plan to make the shader cross-platform (e.g., for GLSL), you must switch to `column_major` globally.
+
+---
+
+### 12.3 HLSL Register Types and Limits (HLSL 5.0, DirectX 11)
+
+| Register Type | Prefix | Max Count | DX11 Practical Limit | Notes |
+|---------------|--------|-----------|-----------------------|-------|
+| Constant Buffer | `b#` | 4096      | 14                    | Use `cbuffer` |
+| Texture (SRV)   | `t#` | 128       | 128                   | Includes `Texture2D`, `StructuredBuffer`, etc. |
+| Sampler         | `s#` | 16        | 16                    | Used in pixel shaders |
+| UAV             | `u#` | 64        | 8 (PS), 64 (CS)       | For compute/output buffers only |
+
+---
+
+### 12.4 Register Slot Design
+
+#### 12.4.1. b#
+
+- **`b0`** : **`Resolution`**
+
+- **`b1`** : **`Time`**
+
+- **`b2`** : **`Transform`**
+
+- **`b3`** : **`Material`**
+
+- **`b10`** : **`Light`**
+
+#### 12.4.2. t#
+
+- **`t0-t9`** : **`Texture`**
+
+- **`t10-t19`** : **`Light`**
+
+- **`t100-t128`** : **`PostProcess`**
+
+#### 12.4.3. s#
+
+- Undecided
+
+#### 12.4.4. u#
+
+- **`u0-u7`** : **`Pixel Shader Only`**
+
+- **`u8-u63`** : **`Compute Shader Only`**
+
+### 12.5 Notes for Portability and Precision
+
+- GPU register slots must be tracked carefully and not exceed the limit.
+
+- HLSL is sensitive to alignment: pad manually if needed to ensure 16-byte alignment inside `cbuffer`.
+
+- UAVs in pixel shaders are rare and limited (8 max), use only when needed.
+
+- When targeting GLSL or Metal, rework layout for column-major and descriptor sets.
 
 ---
 

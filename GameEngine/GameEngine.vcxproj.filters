@@ -555,10 +555,13 @@
     <FxCompile Include="HullShader.hlsl">
       <Filter>0. Foundation\02. HLSL\022. Graphic FX</Filter>
     </FxCompile>
-    <FxCompile Include="Variable.hlsl">
+    <FxCompile Include="Binding.hlsl">
       <Filter>0. Foundation\02. HLSL\021. Global FX</Filter>
     </FxCompile>
     <FxCompile Include="Function.hlsl">
+      <Filter>0. Foundation\02. HLSL\021. Global FX</Filter>
+    </FxCompile>
+    <FxCompile Include="Variable.hlsl">
       <Filter>0. Foundation\02. HLSL\021. Global FX</Filter>
     </FxCompile>
   </ItemGroup>

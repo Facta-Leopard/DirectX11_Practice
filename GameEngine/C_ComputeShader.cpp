@@ -10,6 +10,8 @@ C_ComputeShader::C_ComputeShader()
 	, CP_DX_M_ComputeShader{}
 	, CP_DX_M_ComputeShaderBlob{}
 
+	, DS_M_MaterialConstant{}
+
 	, SDK_M_GroupCountX(1)
 	, SDK_M_GroupCountY(1)
 	, SDK_M_GroupCountZ(1)
@@ -39,6 +41,8 @@ C_ComputeShader::C_ComputeShader(const wstring& _Path, const string& _HLSL_Funct
 
 	, CP_DX_M_ComputeShader{}
 	, CP_DX_M_ComputeShaderBlob{}
+
+	, DS_M_MaterialConstant{}
 
 	, SDK_M_GroupCountX(_SDK_RegisterGroupX)
 	, SDK_M_GroupCountY(_SDK_RegisterGroupY)

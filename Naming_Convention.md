@@ -35,6 +35,28 @@
 
 ---
 
+### Fixed Abbreviations
+- **`E_`**: Used alone for enum structures.
+- **`EC_`**: Used alone for `enum class`.
+- **`_`**: Used alone as a suffix for enum members.
+- **`VEC2_`**: Used for Vector2 structure. Represents the data form, not memory alignment.
+- **`VEC3_`**: Used for Vector3 structure. Represents the data form, not memory alignment.
+- **`VEC4_`**: Used for Vector4 structure. Represents the data form, not memory alignment.
+
+---
+
+### Array Type
+- **_s**: Suffix for Fixed-size array.
+
+---
+
+### Enum Structure
+- To reduce overhead, enum class is not used.
+
+- Instead, to minimize duplication, an underscore (_) is used as a suffix, and all letters are written in uppercase with words separated by underscores.
+
+---
+
 ### STL Container Types
 - **`STL_`**: Prefix for types or variables implemented using STL containers.
 
@@ -74,25 +96,15 @@
 
 ---
 
-### Fixed Abbreviations
-- **`E_`**: Used alone for enum structures.
-- **`EC_`**: Used alone for `enum class`.
-- **`_`**: Used alone as a suffix for enum members.
-- **`VEC2_`**: Used for Vector2 structure. Represents the data form, not memory alignment.
-- **`VEC3_`**: Used for Vector3 structure. Represents the data form, not memory alignment.
-- **`VEC4_`**: Used for Vector4 structure. Represents the data form, not memory alignment.
+### GPU Binding Types
+- **`GPU_`**: Prefix for all GPU-bound resources(buffers, textures, views, etc.).
+- **`PAD_`**: Prefix for Padding variable.
 
 ---
 
-### Array Type
-- **_s**: Suffix for Fixed-size array.
-
----
-
-### Enum Structure
-- To reduce overhead, enum class is not used.
-
-- Instead, to minimize duplication, an underscore (_) is used as a suffix, and all letters are written in uppercase with words separated by underscores.
+### HLSL Variable Types
+- **`HLSL_DS_`**: Prefix for all structure defined in HLSL.
+- **`HLSL_`**: Prefix for all structure defined in HLSL.
 
 ---
 
