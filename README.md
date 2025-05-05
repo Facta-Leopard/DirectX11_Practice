@@ -614,7 +614,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-#### Rule
+## 12.5 Rule
 
 - **Use `.hlsl` for all shader source files.**
 
@@ -624,9 +624,11 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - Maintain a flat, clean naming scheme to simplify shader binding.
 
+- **HLSL doesn't support bool*, so **`BOOL`** data is received as **`uint`**.
+
 ---
 
-#### Historical Comparison Table
+### 12.5.1. Historical Comparison Table
 
 | Extension | Purpose                        | Framework       | Status         |
 |:-----------:|--------------------------------|------------------|----------------|
@@ -641,7 +643,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-#### Reason: `.fx` is `Banned`
+### 12.5.2. Reason: `.fx` is `Banned`
 
 - The FX Framework is **deprecated by Microsoft** and is **not supported in DirectX 12**.
 
@@ -653,7 +655,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-#### Reason: `.hlsl` is `the Standard`
+### 12.5.3. Reason: `.hlsl` is `the Standard`
 
 - `.hlsl` is a pure shader source file — it contains no render state logic.
 
@@ -665,7 +667,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ---
 
-#### Summary
+### 12.5.4. Summary
 
 - `.fx` is a wrapper from an outdated era.
 

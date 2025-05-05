@@ -107,7 +107,7 @@ Texture2D GPU_Texture_t3 : register(t3);
 //// 2D 광원 관련
 //// 구분을 위해 t10부터 광원 설정
 //// 향후, 확장시 레지스터 범위 재설정
-StructuredBuffer<HLSL_DS_Light2D_Desc> GPU_Light2D_t100 : register(t10);
+StructuredBuffer<HLSL_DS_Light2D> GPU_Light2D_t100 : register(t10);
 
 //// 후처리 관련
 //// 구분을 위해 t100부터 후처리 설정
