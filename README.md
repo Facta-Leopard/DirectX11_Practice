@@ -34,6 +34,8 @@
 ### 2.1 Function Return Style
 
 - Prefer `RVO(Return Value Optimization)` style when returning objects.
+	- `HLSL`/`GLSL`/`MSL` `do not support RVO`(Return Value Optimization).
+	- SO, DO NOT USE `RVO` ON `HLSL CODE`.
 
 - Return values should be directly constructed without temporary variables.
 
@@ -627,9 +629,11 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - **`t0-t9`** : **`Texture`**
 
-- **`t10-t19`** : **`Light`**
+- **`t10-t19`** : **`Noise`**
 
-- **`t100-t128`** : **`PostProcess`**
+- **`t20-t29`** : **`PostProcess`**
+
+- **`t100-t128`** : **`Light`**
 
 #### 12.4.3. s#
 

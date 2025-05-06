@@ -10,41 +10,43 @@
 //// 향후, 변환을 통한 크로스 플랫폼으로 개조할 경우에는 column_major로 전체적인 개조가 필요함!
 //// 유의! HLSL을 GLSL로 변환을 할 경우에는 column_major 형식을 사용하여야 함!
 
+// 유의! HLSL에서 자동으로 정렬해준다고 해도, 무조건 16바이트를 기준으로 정렬한다!
+
 // 상수 레지스터(b#)
 // 유의! 상수 레지스터(HLSL 5.0 기준)는 4096개가 최대지만 Direct 11에서는 14개만 사용가능함!
 // cbuffer 사용
 //// 상수 레지스터 0번: 해상도
 cbuffer GPU_RESOLUTION : register(b0)     // 16
 {
-    float2 Resolution;                    // 8
+    float2 Bind_Resolution;               // 8
     
     // Padding
     float2 PAD_Resoultion;                // 8
 }
 
 //// 상수 레지스터 1번: 시간
-cbuffer GPU_TIME : register(b1) // 16
+cbuffer GPU_TIME : register(b1)     // 16
 {
-    float Time; // 4
-    float EngineTime; // 4
+    float Bind_Time;                // 4
+    float Bind_EngineTime;          // 4
     
-    float DeltaTIme; // 4
-    float EngineDeltaTIme; // 4
+    float Bind_DeltaTIme;           // 4
+    float Bind_EngineDeltaTIme;     // 4
 }
 
 //// 상수 레지스터 2번: 위치
-cbuffer GPU_TRANSFORM : register(b2)                  // 320: 64 * 5
+cbuffer GPU_TRANSFORM : register(b2)                    // 320: 64 * 5
 {
-    row_major matrix WorldMatrix;                     // 64
-    row_major matrix ViewMatrix;                      // 64
-    row_major matrix ProjectionMatrix;                // 64
+    row_major matrix Bind_WorldMatrix;                  // 64
+    row_major matrix Bind_ViewMatrix;                   // 64
+    row_major matrix Bind_ProjectionMatrix;             // 64
     
-    row_major matrix WorldViewMatrix;                 // 64
-    row_major matrix WorldViewProjectionMatrix;       // 64
+    row_major matrix Bind_WorldViewMatrix;              // 64
+    row_major matrix Bind_WorldViewProjectionMatrix;    // 64
 }
 
 //// 상수 레지스터 3번: 재질
-cbuffer GPU_MATERIAL : register(b3)     // 400: 16 * 25
+cbuffer GPU_MATERIAL : register(b3)   // 400: 16 * 25
 {
     // 16
     int int_0;                        // 4
@@ -76,18 +78,26 @@ cbuffer GPU_MATERIAL : register(b3)     // 400: 16 * 25
     row_major Matrix Matrix_2;        // 64
     row_major Matrix Matrix_3;        // 64
     
-    // 16
-    int BindingTextureSlot_0;         // 4
-    int BindingTextureSlot_1;         // 4
-    int BindingTextureSlot_2;         // 4
-    int BindingTextureSlot_3;         // 4
+    // 32
+    // 텍스처 레지스터(t#) 관련 바인딩 여부
+    //// 텍스처 관련
+    uint Bind_Texture_t0;                   // 4
+    uint Bind_Texture_t1;                   // 4
+    uint Bind_Texture_t2;                   // 4
+    uint Bind_Texture_t3;                   // 4
+    
+    //// 노이즈 텍스처 관련
+    uint Bind_Texture_Noise_t10;            // 4
+    uint Bind_Texture_Noise_t11;            // 4
+    uint Bind_Texture_Noise_t12;            // 4
+    uint Bind_Texture_Noise_t13;            // 4
 }
 
 //// 상수 레지스터 10번: 광원
 cbuffer GPU_LIGHT : register(b10)       // 16
 {
-    int Light2DCount;                   // 4
-    int Light3DCount;                   // 4
+    int Bind_Light2DCount;              // 4
+    int Bind_Light3DCount;              // 4
     
     // Padding
     int PAD_Light2DCount;               // 4
@@ -95,25 +105,45 @@ cbuffer GPU_LIGHT : register(b10)       // 16
 }
 
 
-// 텍스처 레지스터(t#)
+// 텍스처 레지스터(t#); 연관 -> cbuffer GPU_MATERIAL : register(b3)
 // Shader Resource View와 관련
 // 유의! 텍스처 레지스터(HLSL 5.0 기준)는 최대 128개 가능(DirectX 12는 수천개까지 가능)
-//// 텍스터 관련
+//// Texture 관련
 Texture2D GPU_Texture_t0 : register(t0);
 Texture2D GPU_Texture_t1 : register(t1);
 Texture2D GPU_Texture_t2 : register(t2);
 Texture2D GPU_Texture_t3 : register(t3);
 
+
+//// Noise Texture 관련
+//// 구분을 위해 t10부터 노이즈 설정
+//// 향후, 확장시 레지스터 범위 재설정
+Texture2D GPU_Texture_Noise_t10 : register(t10);
+Texture2D GPU_Texture_Noise_t11 : register(t11);
+Texture2D GPU_Texture_Noise_t12 : register(t12);
+Texture2D GPU_Texture_Noise_t13 : register(t13);
+
+//// PostProcess Texture 관련
+//// 구분을 위해 t20부터 후처리 설정
+//// 향후, 확장시 레지스터 범위 재설정
+////// 흑백효과
+Texture2D GPU_Texture_PostProcess_t20 : register(t20);
+
+////// 붉은효과
+Texture2D GPU_Texture_PostProcess_t21 : register(t21);
+
+////// 노이즈효과1
+Texture2D GPU_Texture_PostProcess_t22 : register(t22);
+
+////// 노이즈효과2
+Texture2D GPU_Texture_PostProcess_t23 : register(t23);
+
+
 //// 2D 광원 관련
-//// 구분을 위해 t10부터 광원 설정
+//// 구분을 위해 t100부터 광원 설정
 //// 향후, 확장시 레지스터 범위 재설정
-StructuredBuffer<HLSL_DS_Light2D> GPU_Light2D_t100 : register(t10);
-
-//// 후처리 관련
-//// 구분을 위해 t100부터 후처리 설정
-//// 향후, 확장시 레지스터 범위 재설정
-Texture2D GPU_PostProcessTarget : register(t100);
-
+StructuredBuffer<HLSL_DS_Light2D> GPU_DS_Light2D_t100 : register(t100);
+StructuredBuffer<HLSL_DS_Light2D> GPU_DS_Light2D_t101 : register(t101);
 
 // 샘플러 레지스터(s#)
 // Pixel Shader와 관련
