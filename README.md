@@ -473,6 +473,24 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - In this test scenario (10,000 iterations), the `else-if` chain saved approximately **37,800 CPU cycles**.
 
+### Conditional Check Micro-Optimization: Multiplication vs Logical Compare
+
+- I used to write `if (0 == w * h)` to shorten the condition, but it's inefficient on the GPU due to unnecessary ALU operations. Now I always write it clearly as `if ((0 == w) || (0 == h))`, and optionally convert it to Yoda Condition (`if ((0 == w) || (0 == h))`) if I want to prevent accidental assignment.
+
+- On **CPU**, this is fine because integer multiplication is **cheap or optimized away**.
+
+- But on **GPU (HLSL)**:
+   - Multiplication introduces **extra ALU operations** and **may consume additional registers**.
+   - Use **logical comparison** instead: `if ((0 == w) || (0 == h))` or optimized bitwise form `if (!(w | h))`.
+
+#### Micro Performance Table
+
+| Style        | CPU Cost       | GPU Cost | Notes                 |                               |                          |
+| ------------ | -------------- | -------- | --------------------- | ----------------------------- | ------------------------ |
+| \`0 == w \|\| 0 == h\` | Low                   | Low                           | Readable and predictable |
+| `0 == w * h` | Low            | Higher   | Extra multiply on GPU |                               |                          |
+|`!(w \| h)` (bitwise)| Low| Very Low|Fastest on GPU, low branching|
+
 ### 11.3 Components Design
 
 - `Components are for data`, `scripts are for logic`.
