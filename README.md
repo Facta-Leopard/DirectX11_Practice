@@ -446,6 +446,27 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - For `enum class`, I use `switch branching` instead of `if branching`, to `keep the code style consistent`.
 
+#### Hot Path vs Cold Path
+
+- Always **write `hot path first`**, and **exit early on `cold path`**.
+
+- **This improves branch predictability, code readability, and CPU cache coherence**.
+
+
+##### Note on GPU Branching (Branch Divergence)
+
+- **Unlike CPU**, **GPU operate always using SIMD**(Single Instruction, Multiple Data) architecture.
+
+- In GPU shaders(HLSL, MSL, GLSL and so on), branches cause divergence inside a warp/wave.
+
+- This leads to serial execution, harming the parallel throughput.
+	- Avoid branching inside GPU code unless absolutely necessary.
+	- Keep all threads in a warp on the same execution path.
+
+- USE 'SELECT', `LERP`, OR `TERNARY OPERATORS` IF IT'S CLEAR AND EASY TO READ!!
+
+- REDUCE BRANCHING IF YOU CAN!!
+
 #### Branch Prediction Table
 
 ##### Diagram
@@ -473,7 +494,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 - In this test scenario (10,000 iterations), the `else-if` chain saved approximately **37,800 CPU cycles**.
 
-### Conditional Check Micro-Optimization: Multiplication vs Logical Compare
+#### Conditional Check Micro-Optimization: Multiplication vs Logical Compare
 
 - I used to write `if (0 == w * h)` to shorten the condition, but it's inefficient on the GPU due to unnecessary ALU operations. Now I always write it clearly as `if ((0 == w) || (0 == h))`, and optionally convert it to Yoda Condition (`if ((0 == w) || (0 == h))`) if I want to prevent accidental assignment.
 
@@ -483,7 +504,7 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
    - Multiplication introduces **extra ALU operations** and **may consume additional registers**.
    - Use **logical comparison** instead: `if ((0 == w) || (0 == h))` or optimized bitwise form `if (!(w | h))`.
 
-#### Micro Performance Table
+##### Micro Performance Table
 
 | Style        | CPU Cost       | GPU Cost | Notes                 |                               |                          |
 | ------------ | -------------- | -------- | --------------------- | ----------------------------- | ------------------------ |

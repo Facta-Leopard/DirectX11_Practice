@@ -15,10 +15,20 @@ uint HLSL_IsBinded(in Texture2D _Texture)
     _Texture.GetDimensions(T_uint_Width, T_uint_Height);
     
     // 유의! GPU의 분기예측은 CPU와 달라서, 곱셉보다는 비트마스킹을 통해서 분기예측을 히트 시키기 좋음
-    if (0 == (T_uint_Width | T_uint_Height))
-        return false;
-    else
-        return true;
+    // 개량버전; 오버헤드를 극한으로 줄인 버전
+    return (T_uint_Width | T_uint_Height) != 0;
+
+    // 중간 개량버전; 오버헤드를 줄인 버전
+    //if (0 == (T_uint_Width | T_uint_Height))
+    //    return false;
+    //else
+    //    return true;
+
+    // 원래 버전
+    //if ((0 == T_uint_Width) || (0 == T_uint_Height))
+    //    return false;
+    //else
+    //    return true;
 }
 
 
