@@ -102,9 +102,24 @@
 
 ---
 
-### HLSL Variable Types
+### HLSL Types
+
+#### HLSL Variable Type
 - **`HLSL_DS_`**: Prefix for all structure defined in HLSL.
 - **`HLSL_`**: Prefix for all structure defined in HLSL.
+
+#### HLSL Function Type
+
+* **`HF_`**: Prefix for all functions written in HLSL.
+
+#### HLSL Shader Types
+
+* **`HF_VS_`**: Prefix for HLSL functions specifically used in Vertex Shaders.
+* **`HF_PS_`**: Prefix for HLSL functions specifically used in Pixel Shaders.
+* **`HF_GS_`**: Prefix for HLSL functions specifically used in Geometry Shaders.
+* **`HF_HS_`**: Prefix for HLSL functions specifically used in Hull Shaders.
+* **`HF_DS_`**: Prefix for HLSL functions specifically used in Domain Shaders.
+* **`HF_CS_`**: Prefix for HLSL functions specifically used in Compute Shaders.
 
 ---
 

@@ -111,6 +111,27 @@ struct HLSL_DS_Light2D          // 64; 16 * 4
 };
 
 
+// Shader Only
+// 유의! 자동으로 정렬해주는 거 말고, 수동으로 메모리 정렬을 맞춰서 사용하는 것에 주의를 맞춘다!
+//// Vertex 전용
+///// Vertex In
+struct HLSL_DS_Vertex_INPUT
+{
+    // 유의! 향후 변환의 용이성 및 통일성을 위해 위치정보를 xyz가 아닌 xyzw로 썼음!
+    // 향후, xyz를 제외한 w값을 어찌 활용할 지 생각해보는 것이 좋을 듯
+    float4 vPos : Position;
+    float4 vUV  : UVPosition;
+};
+
+////// Vertex Out
+struct HLSL_DS_Vertex_OUTPUT
+{
+    float4 vPos : Position;
+    float4 vUV  : UVPosition;
+};
+
+
+
 // Variable
 
 

@@ -7,7 +7,7 @@
 // 유의! HLSL 내에서 함수를 선언할 때만, 인자값 앞에 in, out, inout 커맨드를 명시할 수 있도록 하자!
 
 // 해당 텍스처가 바인딩되어 있는 지를 확인하는 함수; Texture2D 메소드인 .GetDimensions()를 사용
-uint HLSL_IsBinded(in Texture2D _Texture)
+uint HF_IsBinded(in Texture2D _Texture)
 {
     uint T_uint_Width, T_uint_Height = 0;
     
