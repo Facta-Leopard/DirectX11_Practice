@@ -457,17 +457,23 @@ Get calculation type -> Decide which axes to ignore and if it's 2D or 3D -> Chec
 
 ##### Note on GPU Branching (Branch Divergence)
 
-- **Unlike CPU**, **GPU operate always using SIMD**(Single Instruction, Multiple Data) architecture.
+- **Unlike CPU**, the **GPU always uses SIMD** (Single Instruction, Multiple Data) architecture.
 
-- In GPU shaders(HLSL, MSL, GLSL and so on), branches cause divergence inside a warp/wave.
+- In GPU shaders (HLSL, MSL, GLSL, etc), branching causes **warp/wave divergence**.
 
-- This leads to serial execution, harming the parallel throughput.
-	- Avoid branching inside GPU code unless absolutely necessary.
-	- Keep all threads in a warp on the same execution path.
+- Divergence means different threads take different paths -> **serial execution** -> lower parallel performance.
 
-- USE 'SELECT', `LERP`, OR `TERNARY OPERATORS` IF IT'S CLEAR AND EASY TO READ!!
+- **Avoid branching inside GPU code unless absolutely necessary.**
 
-- REDUCE BRANCHING IF YOU CAN!!
+- Try to **keep all threads in a warp on the same path**.
+
+- Use **math-based expressions** like `clip`, `step`, or `lerp` to replace `if` statements when possible.
+
+- **USE 'SELECT', `LERP`, OR `TERNARY OPERATORS` IF IT'S CLEAR AND EASY TO READ!!**
+
+- **REDUCE BRANCHING IF YOU CAN!!**
+
+- **JUST HIT IT WITH MATH INSTEAD OF BRANCHING!! IT'S FASTER!!**
 
 #### Branch Prediction Table
 

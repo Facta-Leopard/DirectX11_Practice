@@ -56,6 +56,7 @@ struct DS_Vertex
 };
 
 //// Material용 구조체
+//// HLSL의 Binding.hlsl의 cbuffer GPU_MATERIAL : register(b3)와 관련; 메모리 크기를 맞추어 주어야 함
 //// 코드개선: 데이터 정렬(16바이트 단위) 및 SIMD를 고려한 최적화 포함
 struct DS_MaterialConstant
 {
@@ -67,7 +68,7 @@ struct DS_MaterialConstant
 
 	// 텍스처 정보
 	// 유의! DS_MaterialConstant 구조체의 데이터 정렬 때문에 bool아닌 SDK인 BOOL을 썻다는 점을 잊지 말 것!
-	BOOL				SDK_XM_BOOL_Texture_s[_TEXTURE_END];			// 16 * 2 bytes + 8 bytes (4 * 6); 텍스처 분류 전용; 바인딩 되어 있으면 true, 아니면 false
+	BOOL				SDK_XM_BOOL_Texture_s[_TEXTURE_END];			// 16 * 2 bytes + 8 bytes (4 * 4); 텍스처 분류 전용; 바인딩 되어 있으면 true, 아니면 false
 	UINT				SDK_XM_Padding_s[2];							// 8 bytes; 16비트 정렬을 위해 넣는 더미 데이터
 };
 

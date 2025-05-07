@@ -121,8 +121,11 @@ struct HLSL_VS_INPUT
 {
     // 유의! 향후 변환의 용이성 및 통일성을 위해 위치정보를 xyz가 아닌 xyzw로 썼음!
     // 향후, xyz를 제외한 w값을 어찌 활용할 지 생각해보는 것이 좋을 듯
-    float4 Position : POSITIONT;
+    float4 Position : POSITION;
     float2 UV       : TEXCOORD;
+    float4 Color    : COLOR;
+    
+    // Padding
     float2 PAD_Padding;
 };
 
@@ -132,7 +135,13 @@ struct HLSL_VS_OUTPUT
     // 유의! 향후 변환의 용이성 및 통일성을 위해 위치정보를 xyz가 아닌 xyzw로 썼음!
     // 향후, xyz를 제외한 w값을 어찌 활용할 지 생각해보는 것이 좋을 듯
     float4 Position : SV_Position;
-    float2 UV       : TEXCOORD;
+    float2 UV       : TEXCOORD;    
+    float4 Color    : COLOR;
+    
+    // Geometry Shader POSITION 재활용 관련
+    float4 WorldMatrix : POSITION;
+
+    // Padding
     float2 PAD_Padding;
 };
 

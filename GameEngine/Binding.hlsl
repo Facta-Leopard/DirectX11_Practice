@@ -16,93 +16,95 @@
 // 유의! 상수 레지스터(HLSL 5.0 기준)는 4096개가 최대지만 Direct 11에서는 14개만 사용가능함!
 // cbuffer 사용
 //// 상수 레지스터 0번: 해상도
-cbuffer GPU_RESOLUTION : register(b0)     // 16
+cbuffer GPU_RESOLUTION : register(b0) // 16
 {
-    float2 Bind_Resolution;               // 8
+    float2 Bind_Resolution; // 8
     
     // Padding
-    float2 PAD_Resoultion;                // 8
-}
+    float2 PAD_Resoultion; // 8}
+};
 
 //// 상수 레지스터 1번: 시간
-cbuffer GPU_TIME : register(b1)     // 16
+cbuffer GPU_TIME : register(b1) // 16
 {
-    float Bind_Time;                // 4
-    float Bind_EngineTime;          // 4
+    float Bind_Time; // 4
+    float Bind_EngineTime; // 4
     
-    float Bind_DeltaTIme;           // 4
-    float Bind_EngineDeltaTIme;     // 4
-}
+    float Bind_DeltaTIme; // 4
+    float Bind_EngineDeltaTIme; // 4
+};
 
 //// 상수 레지스터 2번: 위치
-cbuffer GPU_TRANSFORM : register(b2)                    // 320: 64 * 5
+cbuffer GPU_TRANSFORM : register(b2) // 320: 64 * 5
 {
-    row_major matrix Bind_WorldMatrix;                  // 64
-    row_major matrix Bind_ViewMatrix;                   // 64
-    row_major matrix Bind_ProjectionMatrix;             // 64
+    row_major matrix Bind_WorldMatrix; // 64
+    row_major matrix Bind_ViewMatrix; // 64
+    row_major matrix Bind_ProjectionMatrix; // 64
     
-    row_major matrix Bind_WorldViewMatrix;              // 64
-    row_major matrix Bind_WorldViewProjectionMatrix;    // 64
-}
+    row_major matrix Bind_WorldViewMatrix; // 64
+    row_major matrix Bind_WorldViewProjectionMatrix; // 64
+};
 
 //// 상수 레지스터 3번: 재질
-cbuffer GPU_MATERIAL : register(b3)   // 400: 16 * 25
+//// struct DS_MaterialConstant 와 관련; 메모리 크기를 맞추어 주어야 함
+//// 내부 값은 플래그처럼 사용하기 위함; C_Material에서 Binding을 통해 그래픽 관련 부분을 통제함
+cbuffer GPU_MATERIAL : register(b3) // 400: 16 * 25
 {
     // 16
-    int int_0;                        // 4
-    int int_1;                        // 4
-    int int_2;                        // 4
-    int int_3;                        // 4
+    int int_0; // 4; 보일건지 안 보일건지
+    int int_1; // 4; 노이즈 걸기
+    int int_2; // 4; 흑백으로 물들이기
+    int int_3; // 4; 붉게 물들이기
     
     // 16
-    float float_0;                    // 4
-    float float_1;                    // 4
-    float float_2;                    // 4
-    float float_3;                    // 4
+    float float_0; // 4
+    float float_1; // 4
+    float float_2; // 4
+    float float_3; // 4
     
     // 32
-    float2 Vector2_0;                 // 8
-    float2 Vector2_1;                 // 8
-    float2 Vector2_2;                 // 8
-    float2 Vector2_3;                 // 8
+    float2 Vector2_0; // 8
+    float2 Vector2_1; // 8
+    float2 Vector2_2; // 8
+    float2 Vector2_3; // 8
     
     // 64
-    float4 Vector4_0;                 // 16
-    float4 Vector4_1;                 // 16
-    float4 Vector4_2;                 // 16
-    float4 Vector4_3;                 // 16
+    float4 Vector4_0; // 16
+    float4 Vector4_1; // 16
+    float4 Vector4_2; // 16
+    float4 Vector4_3; // 16
     
     // 256
-    row_major Matrix Matrix_0;        // 64
-    row_major Matrix Matrix_1;        // 64
-    row_major Matrix Matrix_2;        // 64
-    row_major Matrix Matrix_3;        // 64
+    row_major Matrix Matrix_0; // 64
+    row_major Matrix Matrix_1; // 64
+    row_major Matrix Matrix_2; // 64
+    row_major Matrix Matrix_3; // 64
     
     // 32
     // 텍스처 레지스터(t#) 관련 바인딩 여부
     //// 텍스처 관련
-    uint Bind_Texture_t0;                   // 4
-    uint Bind_Texture_t1;                   // 4
-    uint Bind_Texture_t2;                   // 4
-    uint Bind_Texture_t3;                   // 4
+    uint Bind_Texture_t0; // 4
+    uint Bind_Texture_t1; // 4
+    uint Bind_Texture_t2; // 4
+    uint Bind_Texture_t3; // 4
     
     //// 노이즈 텍스처 관련
-    uint Bind_Texture_Noise_t10;            // 4
-    uint Bind_Texture_Noise_t11;            // 4
-    uint Bind_Texture_Noise_t12;            // 4
-    uint Bind_Texture_Noise_t13;            // 4
-}
+    uint Bind_Texture_Noise_t10; // 4
+    uint Bind_Texture_Noise_t11; // 4
+    uint Bind_Texture_Noise_t12; // 4
+    uint Bind_Texture_Noise_t13; // 4
+};
 
 //// 상수 레지스터 10번: 광원
-cbuffer GPU_LIGHT : register(b10)       // 16
+cbuffer GPU_LIGHT : register(b10) // 16
 {
-    int Bind_Light2DCount;              // 4
-    int Bind_Light3DCount;              // 4
+    int Bind_Light2DCount; // 4
+    int Bind_Light3DCount; // 4
     
     // Padding
-    int PAD_Light2DCount;               // 4
-    int PAD_Light3DCount;               // 4
-}
+    int PAD_Light2DCount; // 4
+    int PAD_Light3DCount; // 4
+};
 
 
 // 텍스처 레지스터(t#); 연관 -> cbuffer GPU_MATERIAL : register(b3)

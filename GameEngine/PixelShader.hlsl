@@ -1,37 +1,63 @@
 #include "Binding.hlsl"
 
+#include "Function.hlsl"
 
+// 일반
+float4 HF_PS_Basic(HLSL_VS_OUTPUT _INPUT) : SV_Target
+{
+
+    
+    float4 T_Color = float4(1.f, 0.f, 1.f, 1.f);
+    
+    // 출력색상
+    if (Bind_Texture_t0)    
+        T_Color = GPU_Texture_t0.Sample(GPU_Sampler_s1, _INPUT.UV);
+    
+    // 노이즈 텍스쳐
+    if (Bind_Texture_Noise_t10)
+    {
+        float T_Noise = GPU_Texture_Noise_t10.Sample(GPU_Sampler_s1, _INPUT.UV).r;
+                
+        if (1.f <= T_Noise + float_0)
+        {
+            discard;
+        }
+    }
+          
+    if (T_Color.a == 0.f)
+        discard;
+        
+    // 광원처리   
+    float4 T_Color_Light = (float4) 0.f;
+    HF_CalculateColorBy_Light2D(_INPUT.WorldMatrix, T_Color_Light);
+   
+    // 물체의 색상 * 광원색상 == 최종 색상
+    T_Color.rgba = T_Color.rgba * T_Color_Light;
+    
+    return T_Color;
+    
+    
+}
 
 // 후처리 부분
 //// 색깔변화 관련
 ////// 흑백효과
-float4 PS_PostProcess_BlackAndWhite(HLSL_VS_OUTPUT _INPUT) : SV_Target
+float4 HF_PS_PostProcess_BlackAndWhite(HLSL_VS_OUTPUT _INPUT) : SV_Target
 {
     float4 OUTPUTCOLOR = GPU_Texture_PostProcess_t20.Sample(GPU_Sampler_s1, _INPUT.UV);
     
-    // 흑백효과
-    OUTPUTCOLOR.rgb = (OUTPUTCOLOR.r + OUTPUTCOLOR.g + OUTPUTCOLOR.b) / 3.f;
-    
-    // a값을 활용하여 세기 조절
-    OUTPUTCOLOR.rgb *= OUTPUTCOLOR.a;
+    HF_BlackBoost(OUTPUTCOLOR);
     
     return OUTPUTCOLOR;
 }
 
 ////// 붉은효과
-float4 PS_PostProcess_RedBoost(HLSL_VS_OUTPUT _INPUT) : SV_Target
+float4 HF_PS_PostProcess_RedBoost(HLSL_VS_OUTPUT _INPUT) : SV_Target
 {
     float4 OUTPUTCOLOR = GPU_Texture_PostProcess_t21.Sample(GPU_Sampler_s1, _INPUT.UV);
     
+    HF_RedBoost(OUTPUTCOLOR);
     // 붉은색 강조
-    // a값을 활용하여 세기 조절
-    float T_RedIntensity = OUTPUTCOLOR.a * 0.5f;
-    OUTPUTCOLOR.r += OUTPUTCOLOR.r * T_RedIntensity;
-    OUTPUTCOLOR.g *= 1.f - T_RedIntensity; // 초록 약화
-    OUTPUTCOLOR.b *= 1.f - T_RedIntensity; // 파랑 약화
-
-    // a값을 활용하여 세기 조절
-    OUTPUTCOLOR.rgb *= OUTPUTCOLOR.a;
     
     return OUTPUTCOLOR;
 }
@@ -39,7 +65,7 @@ float4 PS_PostProcess_RedBoost(HLSL_VS_OUTPUT _INPUT) : SV_Target
 
 //// 노이즈 효과관련
 ////// 상하좌우 흔들림
-float4 PS_PostProcess_Noise0(HLSL_VS_OUTPUT _INPUT) : SV_Target
+float4 HF_PS_PostProcess_Noise0(HLSL_VS_OUTPUT _INPUT) : SV_Target
 {
     float2 T_UV = _INPUT.UV;
     
@@ -62,6 +88,7 @@ float4 PS_PostProcess_Noise0(HLSL_VS_OUTPUT _INPUT) : SV_Target
         T_UV += T_NoiseUV;
         
         // UV(0.f-1.f 범위)좌표를 벗어나게 될 경우, 조정
+        // 유의! 노이즈는 흔들리는 왜곡을 주는 것이므로, 클리핑을 통한 최적화는 적절하지 않음!
         if (T_UV.x < 0.f || 1.f < T_UV.x 
             || T_UV.y < 0.f || 1.f < T_UV.y)
         {
@@ -75,7 +102,7 @@ float4 PS_PostProcess_Noise0(HLSL_VS_OUTPUT _INPUT) : SV_Target
 }
 
 ////// 좌우로만 흔들림
-float4 PS_PostProcess_Noise1(HLSL_VS_OUTPUT _INPUT) : SV_Target
+float4 HF_PS_PostProcess_Noise1(HLSL_VS_OUTPUT _INPUT) : SV_Target
 {
     float2 T_UV = _INPUT.UV;
     
@@ -98,6 +125,7 @@ float4 PS_PostProcess_Noise1(HLSL_VS_OUTPUT _INPUT) : SV_Target
         T_UV += T_NoiseUV;
         
         // UV(0.f-1.f 범위)좌표를 벗어나게 될 경우, 조정
+        // 유의! 노이즈는 흔들리는 왜곡을 주는 것이므로, 클리핑을 통한 최적화는 적절하지 않음!
         if (T_UV.x < 0.f || 1.f < T_UV.x 
             || T_UV.y < 0.f || 1.f < T_UV.y)
         {
@@ -111,7 +139,7 @@ float4 PS_PostProcess_Noise1(HLSL_VS_OUTPUT _INPUT) : SV_Target
 }
 
 ////// 상하로만 흔들림
-float4 PS_PostProcess_Noise2(HLSL_VS_OUTPUT _INPUT) : SV_Target
+float4 HF_PS_PostProcess_Noise2(HLSL_VS_OUTPUT _INPUT) : SV_Target
 {
     float2 T_UV = _INPUT.UV;
     
@@ -134,6 +162,7 @@ float4 PS_PostProcess_Noise2(HLSL_VS_OUTPUT _INPUT) : SV_Target
         T_UV += T_NoiseUV;
         
         // UV(0.f-1.f 범위)좌표를 벗어나게 될 경우, 조정
+        // 유의! 노이즈는 흔들리는 왜곡을 주는 것이므로, 클리핑을 통한 최적화는 적절하지 않음!
         if (T_UV.x < 0.f || 1.f < T_UV.x 
             || T_UV.y < 0.f || 1.f < T_UV.y)
         {
@@ -147,7 +176,7 @@ float4 PS_PostProcess_Noise2(HLSL_VS_OUTPUT _INPUT) : SV_Target
 }
 
 ////// 대각선으로 흔들림
-float4 PS_PostProcess_Noise3(HLSL_VS_OUTPUT _INPUT) : SV_Target
+float4 HF_PS_PostProcess_Noise3(HLSL_VS_OUTPUT _INPUT) : SV_Target
 {
     float2 T_UV = _INPUT.UV;
     
@@ -170,6 +199,7 @@ float4 PS_PostProcess_Noise3(HLSL_VS_OUTPUT _INPUT) : SV_Target
         T_UV += T_NoiseUV;
         
         // UV(0.f-1.f 범위)좌표를 벗어나게 될 경우, 조정
+        // 유의! 노이즈는 흔들리는 왜곡을 주는 것이므로, 클리핑을 통한 최적화는 적절하지 않음!
         if (T_UV.x < 0.f || 1.f < T_UV.x 
             || T_UV.y < 0.f || 1.f < T_UV.y)
         {
